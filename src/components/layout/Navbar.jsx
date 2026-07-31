@@ -54,19 +54,19 @@ export function Navbar() {
       <nav
         className={`transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#070b18]/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl py-2.5'
-            : 'bg-[#070b18]/60 backdrop-blur-md py-3.5'
+            ? 'bg-[#070b18]/95 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl py-2.5'
+            : 'bg-[#070b18]/70 backdrop-blur-md py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* OFFICIAL UNCHANGED CADPOINT LOGO IMAGE */}
+          {/* OFFICIAL UNCHANGED CADPOINT LOGO BRAND CARD (Increased Height + Padding) */}
           <Link to="/" className="flex items-center group">
-            <div className="p-1.5 rounded-xl bg-white/95 shadow-md border border-white/20">
+            <div className="py-2 px-3.5 sm:py-2.5 sm:px-4 rounded-2xl bg-[#FFFFFF] shadow-lg border border-white/20 transition-transform group-hover:scale-105">
               <img
                 src="/cadpoint_logo.svg"
-                alt="CADPOINT Authorized Training Centre"
-                className="h-9 sm:h-11 w-auto object-contain"
+                alt="CADPOINT Authorized Training Centre - ISO 9001 : 2008 Certified"
+                className="h-10 sm:h-12 w-auto object-contain shrink-0"
               />
             </div>
           </Link>

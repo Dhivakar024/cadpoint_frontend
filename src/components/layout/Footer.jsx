@@ -13,14 +13,14 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
-          {/* BRAND COLUMN WITH EXACT UNCHANGED LOGO IMAGE */}
+          {/* BRAND COLUMN WITH INCREASED LOGO CONTAINER HEIGHT & PADDING */}
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
-              <div className="p-2 rounded-2xl bg-white/95 shadow-lg border border-white/20 inline-block">
+              <div className="py-2.5 px-4 rounded-2xl bg-[#FFFFFF] shadow-lg border border-white/20 inline-block">
                 <img
                   src="/cadpoint_logo.svg"
-                  alt="CADPOINT Authorized Training Centre"
-                  className="h-14 w-auto object-contain"
+                  alt="CADPOINT Authorized Training Centre - ISO 9001 : 2008 Certified"
+                  className="h-14 sm:h-16 w-auto object-contain shrink-0"
                 />
               </div>
             </Link>
