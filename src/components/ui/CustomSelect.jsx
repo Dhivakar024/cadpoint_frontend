@@ -16,7 +16,7 @@ export function CustomSelect({ options, value, onChange, className = '' }) {
   }, []);
 
   return (
-    <div ref={containerRef} className={`relative min-w-[150px] ${className}`}>
+    <div ref={containerRef} className={`relative min-w-[160px] ${className}`}>
       {/* Dropdown Button */}
       <button
         type="button"
@@ -27,9 +27,9 @@ export function CustomSelect({ options, value, onChange, className = '' }) {
         <ChevronDown className={`w-4 h-4 text-red-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      {/* Custom Dropdown Menu */}
+      {/* Custom Floating Dropdown Menu (High z-index: z-[100] & max-h-60 overflow-y-auto so no items are hidden) */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-full min-w-[160px] py-1.5 bg-[#0F172A] border border-red-500/30 rounded-xl shadow-2xl backdrop-blur-xl z-50 overflow-hidden animate-fadeIn">
+        <div className="absolute right-0 top-full mt-2 w-full min-w-[170px] max-h-64 py-1.5 bg-[#0F172A] border border-red-500/40 rounded-xl shadow-2xl backdrop-blur-2xl z-[100] overflow-y-auto animate-fadeIn">
           {options.map((opt) => {
             const isSelected = value === opt;
             return (

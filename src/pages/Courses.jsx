@@ -38,7 +38,8 @@ export function Courses() {
         </p>
       </div>
 
-      <div className="glass-card p-6 rounded-2xl space-y-6">
+      {/* FILTER BAR CARD (relative z-30 overflow-visible to allow dropdown floating on top) */}
+      <div className="glass-card p-6 rounded-2xl space-y-6 relative z-30 overflow-visible">
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
           <div className="relative w-full md:w-96">
             <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
@@ -79,7 +80,8 @@ export function Courses() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* COURSE CARDS GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
         {filteredCourses.map((course) => (
           <Card key={course.id} className="flex flex-col justify-between h-full p-6 group border-slate-800 hover:border-red-500/50">
             <div>
