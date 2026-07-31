@@ -102,19 +102,19 @@ export function AIChatbot() {
         animate={{ scale: 1, opacity: 1 }}
         whileHover={{ scale: 1.15, y: -2 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white flex items-center justify-center shadow-2xl shadow-purple-600/50 hover:shadow-purple-500/70 border border-purple-400/40 cursor-pointer group backdrop-blur-md"
+        className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-red-600 via-red-700 to-slate-900 text-white flex items-center justify-center shadow-2xl shadow-red-950/50 hover:shadow-red-900/70 border border-red-500/40 cursor-pointer group backdrop-blur-md"
         aria-label="Open CADPOINT AI Assistant"
         title="Ask CADPOINT AI Assistant"
       >
         {/* Pulse Ring */}
-        <span className="absolute -inset-1.5 rounded-full bg-purple-500/30 animate-ping pointer-events-none" />
+        <span className="absolute -inset-1.5 rounded-full bg-red-500/30 animate-ping pointer-events-none" />
 
         {isOpen ? (
           <X className="w-6 h-6 text-white" />
         ) : (
           <div className="relative">
             <Bot className="w-7 h-7 text-white transition-transform group-hover:scale-110" />
-            <Sparkles className="w-3.5 h-3.5 text-cyan-300 absolute -top-1 -right-1 animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-red-300 absolute -top-1 -right-1 animate-pulse" />
           </div>
         )}
       </motion.button>
@@ -127,21 +127,21 @@ export function AIChatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-40 right-4 sm:right-6 z-[100] w-[calc(100vw-2rem)] sm:w-[380px] h-[520px] rounded-3xl glass-panel border border-purple-500/40 shadow-2xl overflow-hidden flex flex-col bg-[#070b18]/95 backdrop-blur-xl"
+            className="fixed bottom-40 right-4 sm:right-6 z-[100] w-[calc(100vw-2rem)] sm:w-[380px] h-[520px] rounded-3xl glass-panel border border-red-500/40 shadow-2xl overflow-hidden flex flex-col bg-[#070b18]/95 backdrop-blur-xl"
           >
             {/* Header */}
-            <div className="p-4 bg-gradient-to-r from-purple-900/60 via-indigo-900/60 to-cyan-900/60 border-b border-white/10 flex items-center justify-between shrink-0">
+            <div className="p-4 bg-gradient-to-r from-red-950/80 via-[#111827] to-slate-900/90 border-b border-white/10 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-400 p-0.5 shadow-md">
+                <div className="relative w-10 h-10 rounded-full bg-gradient-to-tr from-red-600 to-slate-900 p-0.5 shadow-md border border-red-500/30">
                   <div className="w-full h-full rounded-full bg-[#070b18] flex items-center justify-center">
-                    <Bot className="w-5 h-5 text-cyan-400" />
+                    <Bot className="w-5 h-5 text-red-400" />
                   </div>
                   <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#070b18]" />
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-white font-heading flex items-center gap-1.5">
                     CADPOINT AI Assistant
-                    <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                    <Sparkles className="w-3.5 h-3.5 text-red-400" />
                   </h4>
                   <span className="text-[11px] text-emerald-400 font-medium">Online • Instant Support</span>
                 </div>
@@ -163,22 +163,22 @@ export function AIChatbot() {
                   className={`flex gap-2.5 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.sender === 'bot' && (
-                    <div className="w-7 h-7 rounded-full bg-purple-600/30 border border-purple-500/40 flex items-center justify-center shrink-0 mt-1">
-                      <Bot className="w-4 h-4 text-purple-300" />
+                    <div className="w-7 h-7 rounded-full bg-red-600/20 border border-red-500/40 flex items-center justify-center shrink-0 mt-1">
+                      <Bot className="w-4 h-4 text-red-400" />
                     </div>
                   )}
 
                   <div
                     className={`max-w-[80%] p-3.5 rounded-2xl whitespace-pre-line leading-relaxed shadow-sm ${
                       msg.sender === 'user'
-                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-br-none'
+                        ? 'bg-gradient-to-r from-red-600 to-slate-900 text-white rounded-br-none border border-red-500/30'
                         : 'bg-white/10 text-slate-200 border border-white/10 rounded-bl-none'
                     }`}
                   >
                     {msg.text}
                     <div
                       className={`text-[9px] mt-1.5 text-right ${
-                        msg.sender === 'user' ? 'text-purple-200' : 'text-slate-400'
+                        msg.sender === 'user' ? 'text-red-200' : 'text-slate-400'
                       }`}
                     >
                       {msg.time}
@@ -186,8 +186,8 @@ export function AIChatbot() {
                   </div>
 
                   {msg.sender === 'user' && (
-                    <div className="w-7 h-7 rounded-full bg-cyan-600/30 border border-cyan-500/40 flex items-center justify-center shrink-0 mt-1">
-                      <User className="w-4 h-4 text-cyan-300" />
+                    <div className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 mt-1">
+                      <User className="w-4 h-4 text-slate-300" />
                     </div>
                   )}
                 </div>
@@ -196,13 +196,13 @@ export function AIChatbot() {
               {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex gap-2.5 items-center text-slate-400 text-xs">
-                  <div className="w-7 h-7 rounded-full bg-purple-600/30 border border-purple-500/40 flex items-center justify-center shrink-0">
-                    <Bot className="w-4 h-4 text-purple-300" />
+                  <div className="w-7 h-7 rounded-full bg-red-600/20 border border-red-500/40 flex items-center justify-center shrink-0">
+                    <Bot className="w-4 h-4 text-red-400" />
                   </div>
                   <div className="bg-white/10 p-3 rounded-2xl border border-white/10 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" />
-                    <span className="w-2 h-2 rounded-full bg-purple-400 animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce [animation-delay:0.4s]" />
+                    <span className="w-2 h-2 rounded-full bg-red-400 animate-bounce" />
+                    <span className="w-2 h-2 rounded-full bg-slate-300 animate-bounce [animation-delay:0.2s]" />
+                    <span className="w-2 h-2 rounded-full bg-red-500 animate-bounce [animation-delay:0.4s]" />
                   </div>
                 </div>
               )}
@@ -229,19 +229,19 @@ export function AIChatbot() {
                 e.preventDefault();
                 handleSend();
               }}
-              className="p-3 bg-[#0a0f24] border-t border-white/10 flex items-center gap-2 shrink-0"
+              className="p-3 bg-[#040711] border-t border-white/10 flex items-center gap-2 shrink-0"
             >
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask anything about CADPOINT..."
-                className="flex-1 px-3.5 py-2 rounded-xl glass-input text-xs bg-white/5 text-white placeholder-slate-400 focus:outline-none focus:border-purple-500"
+                className="flex-1 px-3.5 py-2 rounded-xl glass-input text-xs bg-white/5 text-white placeholder-slate-400 focus:outline-none focus:border-red-500"
               />
               <button
                 type="submit"
                 disabled={!input.trim()}
-                className="w-9 h-9 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 text-white flex items-center justify-center hover:opacity-90 disabled:opacity-40 transition-opacity cursor-pointer shrink-0"
+                className="w-9 h-9 rounded-xl bg-gradient-to-r from-red-600 to-slate-900 text-white flex items-center justify-center hover:opacity-90 disabled:opacity-40 transition-opacity cursor-pointer shrink-0 border border-red-500/30"
               >
                 <Send className="w-4 h-4" />
               </button>

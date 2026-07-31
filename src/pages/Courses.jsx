@@ -3,6 +3,7 @@ import { COURSES, CATEGORIES, LEVELS } from '../utils/courseData';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
+import { CustomSelect } from '../components/ui/CustomSelect';
 import { Search, Clock, Laptop, ArrowRight, Filter, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -51,18 +52,13 @@ export function Courses() {
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto">
-            <Filter className="w-4 h-4 text-red-400" />
-            <select
+            <Filter className="w-4 h-4 text-red-400 shrink-0" />
+            <CustomSelect
+              options={LEVELS}
               value={selectedLevel}
-              onChange={(e) => setSelectedLevel(e.target.value)}
-              className="px-4 py-3 rounded-xl glass-input text-sm cursor-pointer w-full md:w-auto bg-[#111827]"
-            >
-              {LEVELS.map((lvl) => (
-                <option key={lvl} value={lvl} className="bg-[#111827] text-white">
-                  {lvl}
-                </option>
-              ))}
-            </select>
+              onChange={(val) => setSelectedLevel(val)}
+              className="w-full md:w-auto"
+            />
           </div>
         </div>
 
