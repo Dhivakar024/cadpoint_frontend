@@ -9,7 +9,7 @@ export function Ecosystem() {
   return (
     <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center pt-6">
-        <Badge variant="cyan" className="mb-4">Corporate Network</Badge>
+        <Badge variant="red" className="mb-4">Corporate Network</Badge>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
           CADPOINT Ecosystem
         </h1>
@@ -20,7 +20,7 @@ export function Ecosystem() {
 
       <section className="space-y-8">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400">
+          <div className="w-8 h-8 rounded-lg bg-red-600/20 border border-red-500/30 flex items-center justify-center text-red-400">
             <Sparkles className="w-4 h-4" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
@@ -30,14 +30,14 @@ export function Ecosystem() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {ECOSYSTEM_DATA.ownBrands.map((brand, i) => (
-            <Card key={i} className="p-8 flex flex-col justify-between border-purple-500/30 group">
+            <Card key={i} className="p-8 flex flex-col justify-between border-red-500/20 group hover:border-red-500/50">
               <div>
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {brand.tags.map((tag, idx) => (
-                    <Badge key={idx} variant="purple" className="text-[10px]">{tag}</Badge>
+                    <Badge key={idx} variant="red" className="text-[10px]">{tag}</Badge>
                   ))}
                 </div>
-                <h3 className="text-2xl font-bold text-white font-heading mb-3 group-hover:text-purple-300 transition-colors">
+                <h3 className="text-2xl font-bold text-white font-heading mb-3 group-hover:text-red-400 transition-colors">
                   {brand.name}
                 </h3>
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
@@ -63,7 +63,7 @@ export function Ecosystem() {
 
       <section className="space-y-8">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-cyan-600/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+          <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-blue-400">
             <Building className="w-4 h-4" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
@@ -73,14 +73,14 @@ export function Ecosystem() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {ECOSYSTEM_DATA.partnerBrands.map((brand, i) => (
-            <Card key={i} className="p-8 flex flex-col justify-between border-cyan-500/30 group">
+            <Card key={i} className="p-8 flex flex-col justify-between border-slate-800 group hover:border-red-500/40">
               <div>
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {brand.tags.map((tag, idx) => (
-                    <Badge key={idx} variant="cyan" className="text-[10px]">{tag}</Badge>
+                    <Badge key={idx} variant="navy" className="text-[10px]">{tag}</Badge>
                   ))}
                 </div>
-                <h3 className="text-2xl font-bold text-white font-heading mb-3 group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-2xl font-bold text-white font-heading mb-3 group-hover:text-red-400 transition-colors">
                   {brand.name}
                 </h3>
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">

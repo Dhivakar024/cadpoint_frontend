@@ -10,25 +10,25 @@ export function About() {
       icon: Award,
       title: "ISO 9001 : 2008 Certified Pioneer (Est. 1993)",
       text: "CADPOINT ® Engineering Solutions Pvt. Ltd is an ISO 9001 : 2008 Certified Company, credited with introducing and pioneering the revolutionary concept of CAD/CAM/CAE/ Animation & Multimedia training and Architectural works & Engineering Designs in India in 1993.",
-      color: "from-purple-500 to-indigo-600"
+      color: "from-red-600 to-slate-900"
     },
     {
       icon: TrendingUp,
       title: "32 Years Track Record of Sustained Growth",
       text: "Our company has 32 years track record of sustained growth, student satisfaction & diversification.",
-      color: "from-cyan-500 to-blue-600"
+      color: "from-red-700 to-slate-800"
     },
     {
       icon: Building2,
       title: "Towering Presence in Computer Aided Designs",
       text: "From the humble beginning as a CAD/CAM/CAE trainer, the company has steadily grown into a towering presence in the business of computer aided designs & drafting.",
-      color: "from-emerald-500 to-teal-600"
+      color: "from-red-600 to-blue-900"
     },
     {
       icon: MapPin,
       title: "Registered & Administrative Offices",
       text: "Our Registered office in Chennai and admin office in Kerala.",
-      color: "from-amber-500 to-orange-600"
+      color: "from-slate-800 to-red-900"
     }
   ];
 
@@ -59,7 +59,7 @@ export function About() {
     <div className="space-y-20 sm:space-y-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* HEADER SECTION */}
       <div className="text-center pt-6">
-        <Badge variant="purple" className="mb-4">Get More About Us</Badge>
+        <Badge variant="red" className="mb-4">Get More About Us</Badge>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
           ABOUT CADPOINT
         </h1>
@@ -74,17 +74,17 @@ export function About() {
           {aboutPoints.map((point, index) => {
             const Icon = point.icon;
             return (
-              <Card key={index} className="p-8 border-purple-500/30 flex flex-col justify-between group hover:border-purple-500/60 transition-colors">
+              <Card key={index} className="p-8 border-red-500/20 flex flex-col justify-between group hover:border-red-500/50 transition-colors">
                 <div>
                   <div className="flex items-center gap-4 mb-5">
                     <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${point.color} flex items-center justify-center text-white shadow-lg shrink-0`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-xs font-bold text-purple-400 uppercase tracking-widest">
+                    <span className="text-xs font-bold text-red-400 uppercase tracking-widest">
                       Point 0{index + 1}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-white font-heading mb-3 group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-xl font-bold text-white font-heading mb-3 group-hover:text-red-400 transition-colors">
                     {point.title}
                   </h3>
                   <p className="text-slate-300 text-sm leading-relaxed">
@@ -99,8 +99,8 @@ export function About() {
 
       {/* MISSION & VISION */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card className="p-8 sm:p-10 border-purple-500/30">
-          <div className="w-14 h-14 rounded-2xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 mb-6">
+        <Card className="p-8 sm:p-10 border-red-500/30">
+          <div className="w-14 h-14 rounded-2xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400 mb-6">
             <Target className="w-7 h-7" />
           </div>
           <h2 className="text-2xl font-bold text-white font-heading mb-4">Our Mission</h2>
@@ -112,8 +112,8 @@ export function About() {
           </p>
         </Card>
 
-        <Card className="p-8 sm:p-10 border-cyan-500/30">
-          <div className="w-14 h-14 rounded-2xl bg-cyan-600/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 mb-6">
+        <Card className="p-8 sm:p-10 border-slate-700/80">
+          <div className="w-14 h-14 rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-blue-400 mb-6">
             <Eye className="w-7 h-7" />
           </div>
           <h2 className="text-2xl font-bold text-white font-heading mb-4">Our Vision</h2>
@@ -135,9 +135,9 @@ export function About() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {milestones.map((m, i) => (
-            <Card key={i} className="p-6 relative group">
-              <span className="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-2">{m.year}</span>
-              <h3 className="text-lg font-bold text-white font-heading mb-2 group-hover:text-cyan-300 transition-colors">{m.title}</h3>
+            <Card key={i} className="p-6 relative group border-slate-800 hover:border-red-500/40">
+              <span className="text-xs font-bold text-red-400 uppercase tracking-widest block mb-2">{m.year}</span>
+              <h3 className="text-lg font-bold text-white font-heading mb-2 group-hover:text-red-300 transition-colors">{m.title}</h3>
               <p className="text-slate-400 text-xs leading-relaxed">{m.desc}</p>
             </Card>
           ))}
@@ -145,9 +145,9 @@ export function About() {
       </section>
 
       {/* FUTURE OUTLOOK */}
-      <Card className="p-8 sm:p-12 bg-gradient-to-br from-purple-950/30 via-[#111827] to-cyan-950/30 border-purple-500/30">
+      <Card className="p-8 sm:p-12 bg-gradient-to-br from-red-950/40 via-[#111827] to-slate-900/60 border-red-500/30">
         <div className="max-w-4xl mx-auto space-y-6">
-          <Badge variant="cyan">Future Outlook</Badge>
+          <Badge variant="red">Future Outlook</Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-heading">
             What the Future Holds
           </h2>
@@ -159,11 +159,11 @@ export function About() {
           </p>
           <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-medium flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-red-400 shrink-0" />
               AI, ML, Cloud & Cybersecurity focus
             </div>
             <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-medium flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-red-400 shrink-0" />
               Personalized 1-on-1 mentorship
             </div>
             <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-medium flex items-center gap-2">

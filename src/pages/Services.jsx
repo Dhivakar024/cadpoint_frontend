@@ -21,7 +21,7 @@ export function Services() {
       <div className="space-y-4 pt-2">
         <p className="text-slate-300 text-sm leading-relaxed">{service.content}</p>
         <div className="pt-3 border-t border-white/5 flex items-center justify-between">
-          <span className="text-xs text-purple-400 font-medium flex items-center gap-1.5">
+          <span className="text-xs text-red-400 font-medium flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             Industry Standard Deliverable
           </span>
@@ -38,7 +38,7 @@ export function Services() {
   return (
     <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center pt-6">
-        <Badge variant="cyan" className="mb-4">Professional Services</Badge>
+        <Badge variant="red" className="mb-4">Professional Services</Badge>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
           Services & Technical Solutions
         </h1>
