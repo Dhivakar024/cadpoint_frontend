@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight, PhoneCall } from 'lucide-react';
+import { Menu, X, ArrowRight, PhoneCall, Mail } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { COMPANY_INFO } from '../../utils/constants';
 
@@ -37,8 +37,9 @@ export function Navbar() {
               <span>{COMPANY_INFO.phone}</span>
             </a>
             <span className="hidden sm:inline text-slate-600">|</span>
-            <a href={`mailto:${COMPANY_INFO.email}`} className="hidden sm:inline hover:text-white transition-colors">
-              {COMPANY_INFO.email}
+            <a href={`mailto:${COMPANY_INFO.email}`} className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+              <Mail className="w-3.5 h-3.5 text-red-500" />
+              <span>{COMPANY_INFO.email}</span>
             </a>
           </div>
           <div className="flex items-center gap-3">
