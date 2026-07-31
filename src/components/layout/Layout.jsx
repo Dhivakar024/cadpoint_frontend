@@ -4,6 +4,7 @@ import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { ContactPopup } from '../ui/ContactPopup';
 import { WhatsAppButton } from '../ui/WhatsAppButton';
+import { AIChatbot } from '../ui/AIChatbot';
 
 export function Layout({ children }) {
   const { pathname } = useLocation();
@@ -19,7 +20,9 @@ export function Layout({ children }) {
       <Footer />
       {/* Automatic 1-second Lead Popup */}
       <ContactPopup />
-      {/* Floating WhatsApp Button */}
+      {/* Floating AI Chatbot Assistant */}
+      <AIChatbot />
+      {/* Floating Circular WhatsApp Icon Button */}
       <WhatsAppButton />
     </div>
   );
