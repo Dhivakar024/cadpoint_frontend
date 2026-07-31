@@ -1,26 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400">
   <defs>
     <!-- Soft Red & Blue Aura Glow Filter -->
     <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#EF4444" flood-opacity="0.35" />
-      <feDropShadow dx="0" dy="0" stdDeviation="24" flood-color="#1E3A8A" flood-opacity="0.25" />
+      <feDropShadow dx="0" dy="6" stdDeviation="14" flood-color="#EF4444" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="0" stdDeviation="20" flood-color="#1E3A8A" flood-opacity="0.25" />
     </filter>
   </defs>
 
-  <!-- Official White Rounded Rectangle Badge with Soft Brand Aura Glow -->
-  <rect x="25" y="25" width="910" height="430" rx="36" fill="#FFFFFF" stroke="rgba(239, 68, 68, 0.25)" stroke-width="3" filter="url(#logoGlow)" />
-  
-  <g transform="translate(0, 15)">
-    <!-- 1. RED CADPOINT TYPOGRAPHY -->
-    <text x="480" y="170" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="180" fill="#EE1D23" letter-spacing="1">CADPOINT</text>
+  <!-- TRANSPARENT BACKGROUND (No White Box) -->
+  <g transform="translate(0, 10)">
+    <!-- 1. RED CADPOINT TYPOGRAPHY (Slightly reduced font-size: 160) -->
+    <text x="460" y="150" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="160" fill="#EE1D23" letter-spacing="1">CADPOINT</text>
     
-    <!-- 2. DARK NAVY BAR (Wider width = 880px to provide generous 45px padding on left & right) -->
-    <rect x="40" y="202" width="880" height="78" fill="#0F172A" rx="8" />
+    <!-- 2. DARK NAVY BAR (840px width with 40px margin on both sides) -->
+    <rect x="40" y="182" width="840" height="68" fill="#0F172A" rx="8" stroke="rgba(30, 58, 138, 0.4)" stroke-width="1.5" />
     
-    <!-- WHITE AUTHORIZED TRAINING CENTRE (Perfect 32px font with 2.2 spacing: 'A' and 'E' have 45px clear margin) -->
-    <text x="480" y="254" text-anchor="middle" font-family="'Arial Black', 'Helvetica', sans-serif" font-weight="900" font-size="32" fill="#FFFFFF" letter-spacing="2.2">AUTHORIZED TRAINING CENTRE</text>
+    <!-- WHITE AUTHORIZED TRAINING CENTRE (Font size: 28) -->
+    <text x="460" y="228" text-anchor="middle" font-family="'Arial Black', 'Helvetica', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" letter-spacing="2.5">AUTHORIZED TRAINING CENTRE</text>
     
-    <!-- 3. ISO SUBTITLE -->
-    <text x="480" y="360" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="34" fill="#1E293B" letter-spacing="3.5">ISO 9001 : 2008 CERTIFIED COMPANY</text>
+    <!-- 3. ISO SUBTITLE (Font size: 28, crisp light slate text for dark theme) -->
+    <text x="460" y="320" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="28" fill="#E2E8F0" letter-spacing="3">ISO 9001 : 2008 CERTIFIED COMPANY</text>
   </g>
 </svg>
