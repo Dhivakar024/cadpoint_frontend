@@ -32,20 +32,7 @@ export function SplashScreen({ onComplete }) {
 
   // Synchronized 3% brightness boost during the 1.5s light sweep
   useEffect(() => {
-    const sweepInterval = setInterval(() => {
-      setIsSweeping(true);
-      setTimeout(() => setIsSweeping(false), 1500); // 1.5s duration
-    }, 9500); // 1.5s + 8.0s delay = 9.5s total cycle
-
-    const initialTimer = setTimeout(() => {
-      setIsSweeping(true);
-      setTimeout(() => setIsSweeping(false), 1500);
-    }, 200);
-
-    return () => {
-      clearInterval(sweepInterval);
-      clearTimeout(initialTimer);
-    };
+    setIsSweeping(true);
   }, []);
 
   return (
@@ -137,17 +124,15 @@ export function SplashScreen({ onComplete }) {
               style={{ preserveAspectRatio: 'xMidYMid meet' }}
             />
 
-            {/* CINEMATIC LIGHT SWEEP (Angle: 18°, Width: 45px, Opacity: 18%, Duration: 1.5s, Delay: 8s) */}
+            {/* CINEMATIC LIGHT SWEEP (Continuous 3.5s smooth glide across full CADPOINT logo from C to T) */}
             <motion.div
               initial={{ x: '-150%' }}
-              animate={{ x: '150%' }}
+              animate={{ x: '250%' }}
               transition={{
-                duration: 1.5,
+                duration: 3.5,
                 ease: 'easeInOut',
-                repeat: Infinity,
-                repeatDelay: 8.0, // 8 seconds delay between sweeps
               }}
-              className="absolute inset-0 w-[45px] h-full bg-gradient-to-r from-transparent via-white/18 to-transparent -skew-x-[18deg] pointer-events-none mix-blend-overlay backdrop-blur-[2px]"
+              className="absolute inset-0 w-[60px] sm:w-[90px] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-[20deg] pointer-events-none mix-blend-overlay backdrop-blur-[2px]"
             />
           </motion.div>
         </motion.div>
