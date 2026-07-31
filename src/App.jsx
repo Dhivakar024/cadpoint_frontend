@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
+import { SplashScreen } from './components/ui/SplashScreen';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
@@ -13,20 +14,35 @@ import { Terms } from './pages/Terms';
 import { RefundPolicy } from './pages/RefundPolicy';
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(() => {
+    // Show splash screen once per session
+    const hasSeenSplash = sessionStorage.getItem('cadpoint_splash_seen');
+    return !hasSeenSplash;
+  });
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+    sessionStorage.setItem('cadpoint_splash_seen', 'true');
+  };
+
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/ecosystem" element={<Ecosystem />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/refund-policy" element={<RefundPolicy />} />
-      </Routes>
-    </Layout>
+    <>
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/ecosystem" element={<Ecosystem />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+        </Routes>
+      </Layout>
+    </>
   );
 }

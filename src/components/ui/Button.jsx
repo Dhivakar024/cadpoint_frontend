@@ -1,59 +1,53 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { Loader2 } from 'lucide-react';
 
 export function Button({
   children,
   variant = 'primary',
   size = 'md',
-  className = '',
-  icon: Icon,
-  iconPosition = 'right',
   isLoading = false,
   disabled = false,
+  icon: Icon,
+  className = '',
   onClick,
   type = 'button',
   ...props
 }) {
-  const baseStyles = "relative inline-flex items-center justify-center font-medium rounded-xl transition-all duration-300 focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden";
-  
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none';
+
   const variants = {
-    primary: "bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#06B6D4] text-white shadow-lg shadow-purple-900/30 hover:shadow-purple-600/40 hover:scale-[1.02] active:scale-[0.98]",
-    secondary: "bg-white/10 text-white backdrop-blur-md border border-white/10 hover:bg-white/15 hover:border-purple-500/50 hover:scale-[1.02] active:scale-[0.98]",
-    outline: "bg-transparent text-white border border-purple-500/50 hover:bg-purple-600/10 hover:border-purple-400 hover:scale-[1.02] active:scale-[0.98]",
-    ghost: "bg-transparent text-slate-300 hover:text-white hover:bg-white/5",
-    accent: "bg-gradient-to-r from-[#06B6D4] to-[#38BDF8] text-slate-950 font-semibold shadow-lg shadow-cyan-900/30 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98]"
+    // Primary: Red -> Navy Gradient with soft glow & premium hover lift
+    primary: 'bg-gradient-to-r from-red-600 via-red-700 to-slate-900 hover:from-red-500 hover:to-slate-800 text-white shadow-lg shadow-red-950/50 border border-red-500/30 hover:shadow-red-900/60 hover:-translate-y-0.5',
+    
+    // Secondary: Glass button with thin Navy border & red hover highlight
+    secondary: 'bg-slate-900/70 border border-slate-700/80 hover:border-red-500/50 hover:bg-slate-800/80 text-white shadow-md hover:-translate-y-0.5',
+    
+    // Outline & Accent
+    outline: 'border border-red-500/40 text-red-400 hover:bg-red-500/10 hover:border-red-500',
+    accent: 'bg-gradient-to-r from-red-600 to-blue-900 text-white font-bold shadow-lg hover:shadow-red-600/40 hover:-translate-y-0.5',
+    ghost: 'text-slate-300 hover:text-white hover:bg-white/5',
   };
 
   const sizes = {
-    sm: "px-4 py-2 text-xs gap-1.5",
-    md: "px-6 py-3 text-sm gap-2",
-    lg: "px-8 py-4 text-base gap-2.5 font-semibold"
+    sm: 'px-3.5 py-1.5 text-xs gap-1.5',
+    md: 'px-5 py-2.5 text-sm gap-2',
+    lg: 'px-7 py-3.5 text-base gap-2.5 font-bold',
   };
 
   return (
-    <motion.button
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.98 }}
+    <button
       type={type}
-      onClick={onClick}
       disabled={disabled || isLoading}
+      onClick={onClick}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
-      <span className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full hover:animate-shimmer pointer-events-none" />
-
       {isLoading ? (
-        <svg className="animate-spin h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-      ) : (
-        <>
-          {Icon && iconPosition === 'left' && <Icon className="w-4 h-4" />}
-          <span>{children}</span>
-          {Icon && iconPosition === 'right' && <Icon className="w-4 h-4" />}
-        </>
-      )}
-    </motion.button>
+        <Loader2 className="w-4 h-4 animate-spin shrink-0" />
+      ) : Icon ? (
+        <Icon className="w-4 h-4 shrink-0" />
+      ) : null}
+      <span>{children}</span>
+    </button>
   );
 }

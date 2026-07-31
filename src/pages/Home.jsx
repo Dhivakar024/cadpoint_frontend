@@ -61,11 +61,15 @@ export function Home() {
   return (
     <div className="space-y-24 sm:space-y-32 pb-16">
       {/* =====================================================
-          FULL-SCREEN BACKGROUND 3D HERO SECTION
+          FULL-SCREEN BACKGROUND 3D HERO SECTION (OFFICIAL RED & NAVY BRANDING)
          ===================================================== */}
       <section className="relative min-h-[92vh] flex items-center justify-center pt-8 pb-16 overflow-hidden bg-grid-pattern">
         {/* Full-Screen 3D Background Canvas Layer */}
         <KnowledgeCore />
+
+        {/* Soft Red & Dark Navy Radial Glows */}
+        <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
+        <div className="absolute bottom-10 right-10 w-[600px] h-[600px] bg-blue-900/15 rounded-full blur-[160px] pointer-events-none animate-pulse-glow" style={{ animationDelay: '3s' }} />
 
         {/* High-Readability Gradient Backdrop Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#070B18]/95 via-[#070B18]/80 to-[#070B18]/40 pointer-events-none z-5" />
@@ -79,9 +83,9 @@ export function Home() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-purple-500/30 text-purple-300 text-xs sm:text-sm font-semibold backdrop-blur-md mb-6 shadow-lg shadow-purple-950/40"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-red-500/30 text-red-300 text-xs sm:text-sm font-semibold backdrop-blur-md mb-6 shadow-lg shadow-red-950/30"
             >
-              <Sparkles className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '8s' }} />
+              <Sparkles className="w-4 h-4 text-red-400 animate-spin" style={{ animationDuration: '8s' }} />
               <span>ISO Certified Premier Training & IT Services</span>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
             </motion.div>
@@ -94,7 +98,7 @@ export function Home() {
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white font-heading tracking-tight leading-[1.1]"
             >
               Welcome to the Future of <br />
-              <span className="text-gradient-purple">Tech, Design & Business</span> Excellence
+              <span className="text-gradient-red">Tech, Design & Business</span> Excellence
             </motion.h1>
 
             {/* Supporting Paragraph */}
@@ -166,16 +170,16 @@ export function Home() {
                     <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${dept.color} flex items-center justify-center text-white shadow-lg`}>
                       <Icon className="w-7 h-7" />
                     </div>
-                    <Badge variant="purple">{dept.badge}</Badge>
+                    <Badge variant="red">{dept.badge}</Badge>
                   </div>
-                  <h3 className="text-xl font-bold text-white font-heading mb-3 group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-xl font-bold text-white font-heading mb-3 group-hover:text-red-400 transition-colors">
                     {dept.title}
                   </h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-6">
                     {dept.desc}
                   </p>
                 </div>
-                <Link to="/courses" className="inline-flex items-center gap-2 text-cyan-400 font-semibold text-sm hover:text-cyan-300 transition-colors">
+                <Link to="/courses" className="inline-flex items-center gap-2 text-red-400 font-semibold text-sm hover:text-red-300 transition-colors">
                   <span>Explore Department</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -187,10 +191,10 @@ export function Home() {
 
       {/* 3. ABOUT CADPOINT SUMMARY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Card className="p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-purple-950/40 via-[#070B18] to-cyan-950/40 border-purple-500/30">
+        <Card className="p-8 sm:p-12 relative overflow-hidden bg-gradient-to-r from-slate-900 via-[#070B18] to-slate-900 border-slate-800">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge variant="cyan" className="mb-4">About CADPOINT</Badge>
+              <Badge variant="red" className="mb-4">About CADPOINT</Badge>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-heading mb-6">
                 Bridging Creativity, Technology & Industry Standards
               </h2>
@@ -200,7 +204,7 @@ export function Home() {
               <div className="space-y-3 mb-8">
                 {HERO_HIGHLIGHTS.map((h, i) => (
                   <div key={i} className="flex items-center gap-3 text-slate-200 font-medium text-sm">
-                    <ShieldCheck className="w-5 h-5 text-cyan-400 shrink-0" />
+                    <ShieldCheck className="w-5 h-5 text-red-400 shrink-0" />
                     <span>{h}</span>
                   </div>
                 ))}
@@ -212,13 +216,13 @@ export function Home() {
               </Link>
             </div>
             <div className="relative flex justify-center">
-              <div className="w-full h-80 rounded-2xl glass-panel p-6 border border-white/10 flex flex-col justify-center items-center text-center relative overflow-hidden">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center text-white text-3xl font-extrabold font-heading mb-4 shadow-xl">
+              <div className="w-full h-80 rounded-2xl glass-panel p-6 border border-slate-800 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-red-600 to-slate-900 flex items-center justify-center text-white text-3xl font-extrabold font-heading mb-4 shadow-xl border border-red-500/30">
                   CP
                 </div>
-                <h3 className="text-xl font-bold text-white font-heading mb-2">15+ Years of Excellence</h3>
+                <h3 className="text-xl font-bold text-white font-heading mb-2">32 Years of Excellence</h3>
                 <p className="text-slate-400 text-xs max-w-xs">
-                  Trusted by thousands of professionals, college students, and corporate teams across India.
+                  Trusted by thousands of professionals, college students, and corporate teams across India since 1993.
                 </p>
               </div>
             </div>
@@ -238,7 +242,7 @@ export function Home() {
             const Icon = iconMap[serv.icon] || Briefcase;
             return (
               <Card key={index} className="p-6">
-                <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-5">
+                <div className="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-5">
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-white font-heading mb-2">{serv.title}</h3>
@@ -258,7 +262,7 @@ export function Home() {
 
       {/* 5. INTERNSHIP & PLACEMENT SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Card className="p-8 sm:p-12 bg-gradient-to-r from-purple-900/30 via-[#111827] to-cyan-900/30 border-purple-500/30">
+        <Card className="p-8 sm:p-12 bg-gradient-to-r from-red-950/30 via-[#111827] to-slate-900/40 border-slate-800">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <Badge variant="emerald" className="mb-3">Career Advancement</Badge>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-heading">
@@ -270,12 +274,12 @@ export function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="glass-card p-6 rounded-2xl">
-              <div className="w-12 h-12 rounded-full bg-purple-600/20 mx-auto flex items-center justify-center text-purple-400 mb-4 font-bold text-xl">1</div>
+              <div className="w-12 h-12 rounded-full bg-red-600/20 mx-auto flex items-center justify-center text-red-400 mb-4 font-bold text-xl">1</div>
               <h3 className="text-lg font-bold text-white font-heading mb-2">Internship Opportunity</h3>
               <p className="text-slate-400 text-xs">Best performers are offered internship in our company with hands-on live project training.</p>
             </div>
             <div className="glass-card p-6 rounded-2xl">
-              <div className="w-12 h-12 rounded-full bg-cyan-600/20 mx-auto flex items-center justify-center text-cyan-400 mb-4 font-bold text-xl">2</div>
+              <div className="w-12 h-12 rounded-full bg-blue-600/20 mx-auto flex items-center justify-center text-blue-400 mb-4 font-bold text-xl">2</div>
               <h3 className="text-lg font-bold text-white font-heading mb-2">Live Project Exposure</h3>
               <p className="text-slate-400 text-xs">Work with our senior dev teams on real-world client production tasks and architecture.</p>
             </div>
@@ -290,12 +294,12 @@ export function Home() {
 
       {/* 6. CALL TO ACTION SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl p-10 sm:p-16 bg-gradient-to-r from-purple-600 via-purple-700 to-cyan-600 overflow-hidden shadow-2xl text-center flex flex-col items-center">
+        <div className="relative rounded-3xl p-10 sm:p-16 bg-gradient-to-r from-red-600 via-red-700 to-slate-900 overflow-hidden shadow-2xl text-center flex flex-col items-center border border-red-500/30">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none" />
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl">
             Ready to Build Your Tech or Design Career?
           </h2>
-          <p className="mt-4 text-purple-100 text-base sm:text-lg max-w-2xl">
+          <p className="mt-4 text-red-100 text-base sm:text-lg max-w-2xl">
             Enroll today in our certified diploma and professional courses. Take the first step toward corporate excellence.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
@@ -305,7 +309,7 @@ export function Home() {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button variant="secondary" size="lg" className="bg-white/20 hover:bg-white/30 text-white border-white/20">
+              <Button variant="secondary" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-white/20">
                 Contact Helpline
               </Button>
             </Link>

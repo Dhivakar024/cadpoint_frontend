@@ -28,14 +28,16 @@ export function KnowledgeCore() {
 
     container.appendChild(renderer.domElement);
 
-    // 2. SUBTLE LIGHTING (Purple & Cyan Ambient Glows)
+    // 2. BRAND COLOR LIGHTING (Red & Dark Navy Ambient Glows)
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
     scene.add(ambientLight);
 
-    const purpleGlowLight = new THREE.PointLight(0xa855f7, 6, 40);
-    purpleGlowLight.position.set(10, 8, 5);
-    scene.add(purpleGlowLight);
+    // Brand Red Point Light
+    const redGlowLight = new THREE.PointLight(0xef4444, 7, 45);
+    redGlowLight.position.set(10, 8, 5);
+    scene.add(redGlowLight);
 
+    // Dark Navy / Cyan Accent Light
     const cyanGlowLight = new THREE.PointLight(0x06b6d4, 6, 40);
     cyanGlowLight.position.set(-10, -6, 5);
     scene.add(cyanGlowLight);
@@ -48,15 +50,15 @@ export function KnowledgeCore() {
     const nodeCount = 140;
     const nodes = [];
     const nodeGeo = new THREE.SphereGeometry(0.04, 12, 12);
-    const nodeMatPurple = new THREE.MeshBasicMaterial({ color: 0xc084fc });
+    const nodeMatRed = new THREE.MeshBasicMaterial({ color: 0xf87171 });
     const nodeMatCyan = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
 
-    // Distribute nodes across full canvas width/height with extra density on right half
+    // Distribute nodes across canvas width/height
     for (let i = 0; i < nodeCount; i++) {
       const isRightSide = i % 3 !== 0;
       const x = isRightSide
-        ? (Math.random() * 20 - 4)    // Right & Center canvas: -4 to 16
-        : (Math.random() * 16 - 16);  // Left canvas: -16 to 0
+        ? (Math.random() * 20 - 4)
+        : (Math.random() * 16 - 16);
 
       const y = (Math.random() - 0.5) * 18;
       const z = (Math.random() - 0.5) * 12;
@@ -68,14 +70,14 @@ export function KnowledgeCore() {
         (Math.random() - 0.5) * 0.003
       );
 
-      const mesh = new THREE.Mesh(nodeGeo, i % 2 === 0 ? nodeMatPurple : nodeMatCyan);
+      const mesh = new THREE.Mesh(nodeGeo, i % 2 === 0 ? nodeMatRed : nodeMatCyan);
       mesh.position.copy(position);
       networkGroup.add(mesh);
 
       nodes.push({ position, velocity, mesh, originalPos: position.clone() });
     }
 
-    // 4. ANIMATED DYNAMIC CONSTELLATION LINE SEGMENTS
+    // 4. DYNAMIC SYNAPSE CONNECTIONS
     const maxConnectDistance = 3.6;
     const linePositions = new Float32Array(nodeCount * nodeCount * 6);
     const lineColors = new Float32Array(nodeCount * nodeCount * 6);
@@ -108,9 +110,9 @@ export function KnowledgeCore() {
     particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
     const particleMat = new THREE.PointsMaterial({
       size: 0.045,
-      color: 0x38bdf8,
+      color: 0xef4444,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.45,
       blending: THREE.AdditiveBlending,
     });
     const particleSystem = new THREE.Points(particleGeo, particleMat);
@@ -144,15 +146,13 @@ export function KnowledgeCore() {
       targetX += (mouseX - targetX) * 0.04;
       targetY += (mouseY - targetY) * 0.04;
 
-      // Parallax shift
       networkGroup.position.x = targetX * 1.5;
       networkGroup.position.y = -targetY * 1.5;
 
-      // Update node positions and gentle drift
+      // Update node positions
       nodes.forEach((node) => {
         node.position.add(node.velocity);
 
-        // Keep inside bounds
         if (Math.abs(node.position.x - node.originalPos.x) > 2.5) node.velocity.x *= -1;
         if (Math.abs(node.position.y - node.originalPos.y) > 2.5) node.velocity.y *= -1;
         if (Math.abs(node.position.z - node.originalPos.z) > 2.5) node.velocity.z *= -1;
@@ -160,7 +160,7 @@ export function KnowledgeCore() {
         node.mesh.position.copy(node.position);
       });
 
-      // Update Dynamic Connection Lines
+      // Update Lines & Energy Pulses
       let vertexIdx = 0;
       let colorIdx = 0;
       const positionsAttr = lineGeo.attributes.position;
@@ -174,8 +174,6 @@ export function KnowledgeCore() {
           const dist = nodes[i].position.distanceTo(nodes[j].position);
 
           if (dist < maxConnectDistance) {
-            const alpha = 1.0 - dist / maxConnectDistance;
-
             pArr[vertexIdx] = nodes[i].position.x;
             pArr[vertexIdx + 1] = nodes[i].position.y;
             pArr[vertexIdx + 2] = nodes[i].position.z;
@@ -185,11 +183,10 @@ export function KnowledgeCore() {
             pArr[vertexIdx + 5] = nodes[j].position.z;
             vertexIdx += 6;
 
-            // Energy Pulse wave passing through network
             const pulseWave = Math.sin(elapsedTime * 2.0 - dist * 0.5) * 0.5 + 0.5;
-            const r = (i % 2 === 0 ? 0.65 : 0.02) * pulseWave;
-            const g = (i % 2 === 0 ? 0.34 : 0.71) * pulseWave;
-            const b = (i % 2 === 0 ? 0.93 : 0.83) * pulseWave;
+            const r = (i % 2 === 0 ? 0.93 : 0.02) * pulseWave;
+            const g = (i % 2 === 0 ? 0.26 : 0.71) * pulseWave;
+            const b = (i % 2 === 0 ? 0.26 : 0.83) * pulseWave;
 
             cArr[colorIdx] = r;
             cArr[colorIdx + 1] = g;
@@ -207,7 +204,6 @@ export function KnowledgeCore() {
       positionsAttr.needsUpdate = true;
       colorsAttr.needsUpdate = true;
 
-      // Drifting background particles
       particleSystem.rotation.y = elapsedTime * 0.01;
 
       renderer.render(scene, camera);
@@ -215,7 +211,6 @@ export function KnowledgeCore() {
 
     animate();
 
-    // RESIZE HANDLER
     const handleResize = () => {
       if (!container) return;
       const w = container.clientWidth || window.innerWidth;
@@ -240,14 +235,13 @@ export function KnowledgeCore() {
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-      {/* Three.js Constellation Network Canvas */}
       <div ref={containerRef} className="w-full h-full" />
 
-      {/* Floating Glass Pills positioned around the right & outer areas (Never overlapping hero heading) */}
+      {/* Floating Glass Pills positioned around outer areas */}
       <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center">
         <div className="w-full max-w-7xl h-full relative">
-          <div className="absolute top-10 right-36 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-purple-300 border border-purple-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '6s' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block mr-2 animate-pulse" />
+          <div className="absolute top-10 right-36 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-red-400 border border-red-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '6s' }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block mr-2 animate-pulse" />
             Artificial Intelligence
           </div>
           <div className="absolute top-28 right-12 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-cyan-300 border border-cyan-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '7s' }}>
@@ -258,8 +252,8 @@ export function KnowledgeCore() {
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block mr-2 animate-pulse" />
             Cloud Computing
           </div>
-          <div className="absolute top-68 right-16 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-purple-300 border border-purple-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '7.5s' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block mr-2 animate-pulse" />
+          <div className="absolute top-68 right-16 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-red-300 border border-red-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '7.5s' }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-red-400 inline-block mr-2 animate-pulse" />
             Cyber Security
           </div>
           <div className="absolute bottom-44 right-28 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-cyan-300 border border-cyan-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '8s' }}>
@@ -270,8 +264,8 @@ export function KnowledgeCore() {
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block mr-2 animate-pulse" />
             Finance & Accounting
           </div>
-          <div className="absolute bottom-12 right-64 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-pink-300 border border-pink-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '8.5s' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-pink-400 inline-block mr-2 animate-pulse" />
+          <div className="absolute bottom-12 right-64 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-red-400 border border-red-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '8.5s' }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block mr-2 animate-pulse" />
             Digital Marketing
           </div>
           <div className="absolute top-96 right-48 px-3.5 py-1.5 rounded-full glass-panel text-[11px] font-semibold text-indigo-300 border border-indigo-500/30 shadow-lg backdrop-blur-md animate-bounce" style={{ animationDuration: '7.2s' }}>

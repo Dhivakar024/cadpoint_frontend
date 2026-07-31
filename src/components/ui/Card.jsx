@@ -1,22 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
-export function Card({
-  children,
-  className = '',
-  hoverGlow = true,
-  onClick,
-  ...props
-}) {
+export function Card({ children, className = '', hover = true, ...props }) {
   return (
-    <motion.div
-      whileHover={hoverGlow ? { y: -6, transition: { duration: 0.2 } } : {}}
-      onClick={onClick}
-      className={`glass-card rounded-2xl p-6 relative overflow-hidden group ${onClick ? 'cursor-pointer' : ''} ${className}`}
+    <div
+      className={`rounded-3xl bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 p-6 shadow-xl ${
+        hover ? 'hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-950/30 hover:-translate-y-1 transition-all duration-300' : ''
+      } ${className}`}
       {...props}
     >
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500/30 to-transparent group-hover:via-cyan-400/60 transition-all duration-500" />
       {children}
-    </motion.div>
+    </div>
   );
 }
