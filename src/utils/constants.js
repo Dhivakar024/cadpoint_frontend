@@ -4,7 +4,7 @@ export const COMPANY_INFO = {
   tagline: "Welcome to the Future of Tech, Design & Multimedia Excellence",
   phone: "(+91) 9566679928",
   helpline: "+91 98765 43210",
-  email: "mdhivakar091@gmail.com",
+  email: "dhivakarm205@gmail.com",
   hours: "Mon – Sat (9 AM – 7 PM)",
   address: "1st Floor, CPS Tower, Advaitha Ashram Rd, Fairlands, Salem - 636007",
   location: "Salem, Tamil Nadu, India",
