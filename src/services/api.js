@@ -8,12 +8,16 @@ const api = axios.create({
   timeout: 15000,
 });
 
-export const submitRegistration = async (formData) => {
-  const response = await api.post('/registration', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+export const submitRegistration = async (registrationData) => {
+  // Convert FormData to plain object if needed
+  let payload = registrationData;
+  if (registrationData instanceof FormData) {
+    payload = {};
+    registrationData.forEach((value, key) => {
+      payload[key] = value;
+    });
+  }
+  const response = await api.post('/registration', payload);
   return response.data;
 };
 

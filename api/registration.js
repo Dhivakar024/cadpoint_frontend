@@ -82,13 +82,13 @@ export default async function handler(req, res) {
     });
 
     const resendData = await resendRes.json();
-    console.log('[Vercel Registration Resend Result]:', resendData);
+    console.log('[Vercel Registration Resend Result]:', resendRes.status, resendData);
 
     return res.status(200).json({
-      success: true,
+      success: resendRes.ok,
       message: 'Registration submitted successfully',
       registrationId: regId,
-      resendId: resendData.id
+      resendId: resendData.id || null
     });
   } catch (err) {
     console.error('[Vercel Registration Error]:', err);
