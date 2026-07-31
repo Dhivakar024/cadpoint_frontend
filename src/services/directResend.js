@@ -8,7 +8,7 @@ const RESEND_API_KEY = typeof window !== 'undefined' && window.atob
   : Buffer.from('cmVfQ3p5am1qREdfRTVUQjZBSEIxUGJUNHVDSkRQU0pVcURm', 'base64').toString('ascii');
 
 const ADMIN_EMAIL = 'dhivakarm205@gmail.com';
-const ADMIN_WHATSAPP = '917811822644';
+const ADMIN_WHATSAPP = '919566679928';
 
 export const sendContactEmailDirect = async (formData) => {
   const { name, email, phone, subject, message } = formData;

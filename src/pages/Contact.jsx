@@ -140,7 +140,7 @@ export function Contact() {
                     rel="noopener noreferrer"
                     className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold flex items-center gap-2 hover:opacity-90 transition-opacity"
                   >
-                    <span>💬 Send Direct WhatsApp Message to 7811822644</span>
+                    <span>💬 Send Direct WhatsApp Message to 9566679928</span>
                   </a>
                   <Button variant="outline" size="sm" onClick={() => setSubmitted(false)}>
                     Send Another Message

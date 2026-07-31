@@ -2,8 +2,8 @@ export const COMPANY_INFO = {
   name: "CADPOINT",
   legalName: "Lax360 Private Limited",
   tagline: "Welcome to the Future of Tech, Design & Multimedia Excellence",
-  phone: "(+91) 7811822644",
-  helpline: "+91 7811822644",
+  phone: "(+91) 95666 79928",
+  helpline: "+91 95666 79928",
   email: "dhivakarm205@gmail.com",
   hours: "Mon – Sat (9 AM – 7 PM)",
   address: "1st Floor, CPS Tower, Advaitha Ashram Rd, Fairlands, Salem - 636007",
@@ -14,7 +14,7 @@ export const COMPANY_INFO = {
 export const SOCIAL_LINKS = [
   { name: "Instagram", url: "https://www.instagram.com/cadpoint_salem?igsh=MWpwdGIwdjE5M2g3Nw%3D%3D", icon: "Instagram" },
   { name: "Facebook", url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02Ez7ePib8JTS39Hrx3dZpiEkxLzdcGzgrH5vvTj3wfEdt4Gtinh53AXzYRqox2PEql&id=61583800739756&rdid=qQiAc9pFR30kfeLv&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1BauKWFCSr%2F#", icon: "Facebook" },
-  { name: "WhatsApp", url: "https://wa.me/917811822644?text=Hi%20CADPOINT%2C%20I%20would%20like%20to%20inquire%20about%20your%20courses%20and%20services.", icon: "MessageCircle" },
+  { name: "WhatsApp", url: "https://wa.me/919566679928?text=Hi%20CADPOINT%2C%20I%20would%20like%20to%20inquire%20about%20your%20courses%20and%20services.", icon: "MessageCircle" },
   { name: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
   { name: "YouTube", url: "https://youtube.com", icon: "Youtube" }
 ];
