@@ -5,6 +5,7 @@ import { Footer } from './Footer';
 import { ContactPopup } from '../ui/ContactPopup';
 import { WhatsAppButton } from '../ui/WhatsAppButton';
 import { AIChatbot } from '../ui/AIChatbot';
+import { WhyChooseUs } from '../sections/WhyChooseUs';
 
 export function Layout({ children }) {
   const { pathname } = useLocation();
@@ -17,7 +18,12 @@ export function Layout({ children }) {
     <div className="min-h-screen flex flex-col bg-[#070B18] text-[#F8FAFC]">
       <Navbar />
       <main className="flex-grow pt-24 sm:pt-28">{children}</main>
+      
+      {/* Why Choose CADPOINT Section (Mounted directly above Footer) */}
+      <WhyChooseUs />
+      
       <Footer />
+
       {/* Automatic 1-second Lead Popup */}
       <ContactPopup />
       {/* Floating AI Chatbot Assistant */}
