@@ -7,13 +7,13 @@ export function SplashScreen({ onComplete }) {
   const [isSweeping, setIsSweeping] = useState(false);
 
   useEffect(() => {
-    // 1.8 Seconds total duration for smooth 2s max transition
+    // 3.6 Seconds loading duration + 0.4s fade out = 4.0 seconds total CADPOINT splash screen
     const timer = setTimeout(() => {
       setIsVisible(false);
       setTimeout(() => {
         if (onComplete) onComplete();
       }, 400);
-    }, 1800);
+    }, 3600);
 
     const handleMouseMove = (e) => {
       const { innerWidth, innerHeight } = window;

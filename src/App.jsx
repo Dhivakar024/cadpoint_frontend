@@ -14,15 +14,10 @@ import { Terms } from './pages/Terms';
 import { RefundPolicy } from './pages/RefundPolicy';
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(() => {
-    // Show splash screen once per session
-    const hasSeenSplash = sessionStorage.getItem('cadpoint_splash_seen');
-    return !hasSeenSplash;
-  });
+  const [showSplash, setShowSplash] = useState(true);
 
   const handleSplashComplete = () => {
     setShowSplash(false);
-    sessionStorage.setItem('cadpoint_splash_seen', 'true');
   };
 
   return (
