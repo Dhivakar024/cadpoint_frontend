@@ -57,7 +57,7 @@ export function AIChatbot() {
     }
 
     if (q.includes('location') || q.includes('where') || q.includes('address') || q.includes('salem') || q.includes('contact') || q.includes('phone') || q.includes('number')) {
-      return "📍 CADPOINT Salem Location:\n1st Floor, CPS Tower, Advaitha Ashram Road, Fairlands, Salem - 636007, Tamil Nadu, India.\n\n📞 Phone: (+91) 9566679928 / (+91) 6383332121\n✉️ Email: dhivakarm205@gmail.com\n⏰ Office Hours: Mon – Sat (9 AM – 7 PM)";
+      return "📍 CADPOINT Salem Location:\n1st Floor, CPS Tower, Advaitha Ashram Road, Fairlands, Salem - 636007, Tamil Nadu, India.\n\n📞 Phone: (+91) 7811822644\n✉️ Email: dhivakarm205@gmail.com\n⏰ Office Hours: Mon – Sat (9 AM – 7 PM)";
     }
 
     if (q.includes('register') || q.includes('enroll') || q.includes('apply') || q.includes('fees') || q.includes('price') || q.includes('admission')) {
