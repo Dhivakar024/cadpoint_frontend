@@ -61,94 +61,89 @@ export function Home() {
   return (
     <div className="space-y-24 sm:space-y-32 pb-16">
       {/* =====================================================
-          WORLD-CLASS ENTERPRISE HERO SECTION
+          FULL-SCREEN BACKGROUND 3D HERO SECTION
          ===================================================== */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-4 pb-12 overflow-hidden bg-grid-pattern">
-        {/* Background Radial Glows */}
-        <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
-        <div className="absolute bottom-10 right-10 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[160px] pointer-events-none animate-pulse-glow" style={{ animationDelay: '3s' }} />
+      <section className="relative min-h-[92vh] flex items-center justify-center pt-8 pb-16 overflow-hidden bg-grid-pattern">
+        {/* Full-Screen 3D Background Canvas Layer */}
+        <KnowledgeCore />
 
+        {/* High-Readability Gradient Backdrop Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070B18]/95 via-[#070B18]/80 to-[#070B18]/40 pointer-events-none z-5" />
+
+        {/* Content Container (Layered z-10 above 3D scene) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="max-w-2xl flex flex-col items-start text-left">
             
-            {/* LEFT SIDE CONTENT */}
-            <div className="lg:col-span-6 flex flex-col items-start text-left">
-              {/* Small Premium Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-purple-500/30 text-purple-300 text-xs sm:text-sm font-semibold backdrop-blur-md mb-6 shadow-lg shadow-purple-950/40"
-              >
-                <Sparkles className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '8s' }} />
-                <span>ISO Certified Premier Training & IT Services</span>
-                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-              </motion.div>
+            {/* Small Premium Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-purple-500/30 text-purple-300 text-xs sm:text-sm font-semibold backdrop-blur-md mb-6 shadow-lg shadow-purple-950/40"
+            >
+              <Sparkles className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '8s' }} />
+              <span>ISO Certified Premier Training & IT Services</span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+            </motion.div>
 
-              {/* Large Heading */}
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white font-heading tracking-tight leading-[1.1]"
-              >
-                Welcome to the Future of <br />
-                <span className="text-gradient-purple">Tech, Design & Business</span> Excellence
-              </motion.h1>
+            {/* Large Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white font-heading tracking-tight leading-[1.1]"
+            >
+              Welcome to the Future of <br />
+              <span className="text-gradient-purple">Tech, Design & Business</span> Excellence
+            </motion.h1>
 
-              {/* Supporting Paragraph */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-6 text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-xl"
-              >
-                Dive into our immersive ecosystem where cutting-edge AI, multimedia innovation, CADD engineering, and creative design converge. Experience hands-on projects, expert mentorship, and next-gen training that shapes your skills for tomorrow's industries.
-              </motion.p>
+            {/* Supporting Paragraph */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-6 text-base sm:text-lg text-slate-300 font-normal leading-relaxed"
+            >
+              Dive into our immersive ecosystem where cutting-edge AI, multimedia innovation, CADD engineering, and creative design converge. Experience hands-on projects, expert mentorship, and next-gen training that shapes your skills for tomorrow's industries.
+            </motion.p>
 
-              {/* Two CTA Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto"
-              >
-                <Link to="/courses" className="w-full sm:w-auto">
-                  <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-xl" icon={ArrowRight}>
-                    Explore Courses
-                  </Button>
-                </Link>
-                <Link to="/contact" className="w-full sm:w-auto">
-                  <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                    Contact Us
-                  </Button>
-                </Link>
-              </motion.div>
+            {/* Two CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto"
+            >
+              <Link to="/courses" className="w-full sm:w-auto">
+                <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-xl" icon={ArrowRight}>
+                  Explore Courses
+                </Button>
+              </Link>
+              <Link to="/contact" className="w-full sm:w-auto">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto">
+                  Contact Us
+                </Button>
+              </Link>
+            </motion.div>
 
-              {/* Hero Statistics */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-8 border-t border-white/10"
-              >
-                {HERO_STATS.map((stat, idx) => (
-                  <div key={idx} className="flex flex-col">
-                    <span className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
-                      <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-                    </span>
-                    <span className="text-xs text-slate-400 font-medium mt-1">
-                      {stat.label}
-                    </span>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* RIGHT SIDE: REUSABLE KNOWLEDGE CORE 3D VISUALIZATION */}
-            <div className="lg:col-span-6 relative flex items-center justify-center">
-              <KnowledgeCore />
-            </div>
+            {/* Hero Statistics */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-8 border-t border-white/10"
+            >
+              {HERO_STATS.map((stat, idx) => (
+                <div key={idx} className="flex flex-col">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
+                    <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+                  </span>
+                  <span className="text-xs text-slate-400 font-medium mt-1">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
 
           </div>
         </div>
