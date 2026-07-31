@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
-  // Set CORS Headers
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader(
@@ -17,7 +17,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const data = req.body || {};
+    let data = req.body || {};
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) {}
+    }
+
     const { name, email, phone, subject, message } = data;
 
     if (!name || !email || !message) {
@@ -37,7 +43,7 @@ export default async function handler(req, res) {
               <p style="margin: 6px 0; font-size: 14px;"><strong>Student Name:</strong> <span style="color: #ffffff;">${name}</span></p>
               <p style="margin: 6px 0; font-size: 14px;"><strong>Student Email:</strong> <span style="color: #38bdf8;">${email}</span></p>
               <p style="margin: 6px 0; font-size: 14px;"><strong>Phone Number:</strong> <span style="color: #4ade80;">${phone}</span></p>
-              <p style="margin: 6px 0; font-size: 14px;"><strong>Subject:</strong> <span style="color: #ffffff;">${subject}</span></p>
+              <p style="margin: 6px 0; font-size: 14px;"><strong>Subject:</strong> <span style="color: #ffffff;">${subject || 'General Enquiry'}</span></p>
               <p style="margin: 16px 0 6px 0; font-size: 14px;"><strong>Enquiry Message:</strong></p>
               <div style="background: #0b132b; padding: 14px; border-radius: 6px; color: #cbd5e1; font-size: 13px; line-height: 1.6;">
                   ${message}
@@ -64,15 +70,15 @@ export default async function handler(req, res) {
     });
 
     const resendData = await resendRes.json();
-    console.log('[Vercel Serverless Contact Resend]:', resendData);
+    console.log('[Vercel Contact Resend Result]:', resendData);
 
     return res.status(200).json({
       success: true,
-      message: 'Enquiry received and email sent successfully',
+      message: 'Enquiry received successfully',
       resendId: resendData.id
     });
   } catch (err) {
-    console.error('[Vercel Serverless Contact Error]:', err);
+    console.error('[Vercel Contact Error]:', err);
     return res.status(500).json({ error: 'Internal server error', details: err.message });
   }
 }

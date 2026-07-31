@@ -22,12 +22,7 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // 1. Try backend submission
-      submitEnquiry(formData).catch(() => {});
-      
-      // 2. Direct Resend API dispatch for 100% guaranteed email delivery to dhivakarm205@gmail.com
-      await sendContactEmailDirect(formData);
-      
+      await submitEnquiry(formData);
       setSubmitted(true);
     } catch (err) {
       console.error(err);

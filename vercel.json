@@ -1,15 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/api/contact",
-      "destination": "/api/contact"
-    },
-    {
-      "source": "/api/registration",
-      "destination": "/api/registration"
-    },
-    {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ]

@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
-  // Set CORS Headers
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader(
@@ -17,7 +17,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const data = req.body || {};
+    let data = req.body || {};
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) {}
+    }
+
     const fullName = data.fullName || data.name || 'Student';
     const email = data.email || 'N/A';
     const phone = data.phone || 'N/A';
@@ -76,7 +82,7 @@ export default async function handler(req, res) {
     });
 
     const resendData = await resendRes.json();
-    console.log('[Vercel Serverless Registration Resend]:', resendData);
+    console.log('[Vercel Registration Resend Result]:', resendData);
 
     return res.status(200).json({
       success: true,
@@ -85,7 +91,7 @@ export default async function handler(req, res) {
       resendId: resendData.id
     });
   } catch (err) {
-    console.error('[Vercel Serverless Registration Error]:', err);
+    console.error('[Vercel Registration Error]:', err);
     return res.status(500).json({ error: 'Internal server error', details: err.message });
   }
 }
