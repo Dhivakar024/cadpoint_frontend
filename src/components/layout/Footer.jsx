@@ -18,8 +18,8 @@ export function Footer() {
             <Link to="/" className="inline-block">
               <img
                 src="/cadpoint_logo.svg"
-                alt="CADPOINT Authorized Training Centre - ISO 9001 : 2008 Certified"
-                className="w-[220px] sm:w-[260px] h-auto object-contain shrink-0"
+                alt="CADPOINT Authorized Training Centre - ISO Certified"
+                className="w-[200px] sm:w-[250px] h-auto object-contain shrink-0 filter drop-shadow-md"
                 style={{ preserveAspectRatio: 'xMidYMid meet' }}
               />
             </Link>
