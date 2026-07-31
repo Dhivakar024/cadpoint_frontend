@@ -25,7 +25,7 @@ export function SplashScreen({ onComplete }) {
           transition={{ duration: 0.4, ease: 'easeInOut' }}
           className="fixed inset-0 z-[9999] bg-[#070B18] flex flex-col items-center justify-center overflow-hidden px-4"
         >
-          {/* Soft Breathing Red & Navy Blue Ambient Glows */}
+          {/* Soft Breathing Red & Navy Blue Ambient Glows Behind Logo */}
           <motion.div
             animate={{
               opacity: [0.3, 0.6, 0.3],
@@ -43,9 +43,9 @@ export function SplashScreen({ onComplete }) {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-blue-900/20 rounded-full blur-[160px] pointer-events-none"
           />
 
-          {/* Minimal Floating Micro Particles */}
+          {/* Minimal Floating Micro Particles Behind/Around Logo */}
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(12)].map((_, i) => (
+            {[...Array(14)].map((_, i) => (
               <motion.div
                 key={i}
                 initial={{
@@ -55,53 +55,47 @@ export function SplashScreen({ onComplete }) {
                 }}
                 animate={{
                   y: ['-10px', '10px', '-10px'],
-                  opacity: [0.1, 0.3, 0.1],
+                  opacity: [0.1, 0.35, 0.1],
                 }}
                 transition={{
                   duration: 4 + (i % 3),
                   repeat: Infinity,
                   ease: 'easeInOut',
-                  delay: i * 0.2,
+                  delay: i * 0.15,
                 }}
                 className="absolute left-1/2 top-1/2 w-1.5 h-1.5 rounded-full bg-cyan-400/40"
               />
             ))}
           </div>
 
-          {/* PREMIUM FLOATING BRAND CARD (28px Radius, Pure White #FFFFFF, Increased Height) */}
+          {/* Thin Light Sweep Line Behind the Image */}
           <motion.div
-            initial={{ scale: 0.92, opacity: 0, y: 10 }}
+            initial={{ x: '-150%' }}
+            animate={{ x: '150%' }}
+            transition={{ duration: 1.2, ease: 'easeInOut', repeat: Infinity, repeatDelay: 6.8 }}
+            className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-10"
+          />
+
+          {/* UNCHANGED OFFICIAL CADPOINT LOGO IMAGE (Direct 380px Desktop Width, Height: Auto, Object Contain) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{
-              scale: 1,
               opacity: 1,
-              y: [-2, 2, -2], // 2-3px slow floating movement
+              scale: 1,
+              y: [-2, 2, -2], // 2px subtle float
             }}
             transition={{
-              scale: { duration: 0.5 },
               opacity: { duration: 0.5 },
+              scale: { duration: 0.5 },
               y: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
             }}
-            className="relative flex flex-col items-center justify-center text-center z-20 py-8 px-10 sm:py-10 sm:px-14 rounded-[28px] bg-[#FFFFFF] shadow-2xl border border-white/20 overflow-hidden"
+            className="relative z-20 flex items-center justify-center p-2"
           >
-            {/* Direct reference to official CADPOINT logo with increased height & generous white space */}
             <img
               src="/cadpoint_logo.svg"
-              alt="CADPOINT Authorized Training Centre - ISO 9001 : 2008 Certified"
-              className="h-24 sm:h-32 w-auto object-contain shrink-0"
-            />
-
-            {/* Light Sweep Effect (Sweeping across card every 8 seconds) */}
-            <motion.div
-              animate={{
-                x: ['-200%', '200%'],
-              }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                repeatDelay: 6.2, // Total cycle 8s
-                ease: 'easeInOut',
-              }}
-              className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-12 pointer-events-none"
+              alt="CADPOINT Authorized Training Centre"
+              className="w-[280px] sm:w-[380px] h-auto object-contain shrink-0"
+              style={{ preserveAspectRatio: 'xMidYMid meet' }}
             />
           </motion.div>
         </motion.div>
