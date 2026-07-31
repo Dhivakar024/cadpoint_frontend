@@ -1,10 +1,37 @@
 import React from 'react';
-import { Target, Eye, CheckCircle2 } from 'lucide-react';
+import { Target, Eye, CheckCircle2, Award, Building2, TrendingUp, MapPin } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { SectionHeader } from '../components/ui/SectionHeader';
 
 export function About() {
+  const aboutPoints = [
+    {
+      icon: Award,
+      title: "ISO 9001 : 2008 Certified Pioneer (Est. 1993)",
+      text: "CADPOINT ® Engineering Solutions Pvt. Ltd is an ISO 9001 : 2008 Certified Company, credited with introducing and pioneering the revolutionary concept of CAD/CAM/CAE/ Animation & Multimedia training and Architectural works & Engineering Designs in India in 1993.",
+      color: "from-purple-500 to-indigo-600"
+    },
+    {
+      icon: TrendingUp,
+      title: "32 Years Track Record of Sustained Growth",
+      text: "Our company has 32 years track record of sustained growth, student satisfaction & diversification.",
+      color: "from-cyan-500 to-blue-600"
+    },
+    {
+      icon: Building2,
+      title: "Towering Presence in Computer Aided Designs",
+      text: "From the humble beginning as a CAD/CAM/CAE trainer, the company has steadily grown into a towering presence in the business of computer aided designs & drafting.",
+      color: "from-emerald-500 to-teal-600"
+    },
+    {
+      icon: MapPin,
+      title: "Registered & Administrative Offices",
+      text: "Our Registered office in Chennai and admin office in Kerala.",
+      color: "from-amber-500 to-orange-600"
+    }
+  ];
+
   const milestones = [
     {
       year: "Pillar 1",
@@ -30,16 +57,47 @@ export function About() {
 
   return (
     <div className="space-y-20 sm:space-y-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* HEADER SECTION */}
       <div className="text-center pt-6">
-        <Badge variant="purple" className="mb-4">About CADPOINT</Badge>
+        <Badge variant="purple" className="mb-4">Get More About Us</Badge>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
-          Our Journey & Mission
+          ABOUT CADPOINT
         </h1>
         <p className="mt-4 text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
-          CADPOINT is a premier training and design institute that blends creativity, technology, and innovation. We specialize in CAD/CAM/BIM, IT, Digital Media, and Accounting — empowering learners through industry-level projects.
+          CADPOINT ® Engineering Solutions Pvt. Ltd is a premier ISO Certified company with 32 years of track record in CAD/CAM/CAE, Multimedia, IT, and Engineering Solutions.
         </p>
       </div>
 
+      {/* ABOUT CADPOINT HIGHLIGHT POINTS (4 CARDS) */}
+      <section className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {aboutPoints.map((point, index) => {
+            const Icon = point.icon;
+            return (
+              <Card key={index} className="p-8 border-purple-500/30 flex flex-col justify-between group hover:border-purple-500/60 transition-colors">
+                <div>
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${point.color} flex items-center justify-center text-white shadow-lg shrink-0`}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className="text-xs font-bold text-purple-400 uppercase tracking-widest">
+                      Point 0{index + 1}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white font-heading mb-3 group-hover:text-cyan-300 transition-colors">
+                    {point.title}
+                  </h3>
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    {point.text}
+                  </p>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* MISSION & VISION */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <Card className="p-8 sm:p-10 border-purple-500/30">
           <div className="w-14 h-14 rounded-2xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 mb-6">
@@ -68,6 +126,7 @@ export function About() {
         </Card>
       </div>
 
+      {/* ROADMAP */}
       <section>
         <SectionHeader
           eyebrow="Structured Learning"
@@ -85,6 +144,7 @@ export function About() {
         </div>
       </section>
 
+      {/* FUTURE OUTLOOK */}
       <Card className="p-8 sm:p-12 bg-gradient-to-br from-purple-950/30 via-[#111827] to-cyan-950/30 border-purple-500/30">
         <div className="max-w-4xl mx-auto space-y-6">
           <Badge variant="cyan">Future Outlook</Badge>
