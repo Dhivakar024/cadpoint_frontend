@@ -24,17 +24,35 @@ export default async function handler(req, res) {
       } catch (e) {}
     }
 
+    // Extract ALL 19 registration form fields
     const fullName = data.fullName || data.name || 'Student';
+    const dob = data.dob || 'N/A';
+    const gender = data.gender || 'N/A';
+    const bloodGroup = data.bloodGroup || 'N/A';
+
     const email = data.email || 'N/A';
     const phone = data.phone || 'N/A';
     const whatsapp = data.whatsapp || phone;
-    const courseName = data.courseName || 'CADPOINT Program';
+    const address = data.address || 'N/A';
+    const city = data.city || 'N/A';
+    const state = data.state || 'N/A';
+    const pincode = data.pincode || 'N/A';
+
     const category = data.category || 'Career Program';
+    const courseName = data.courseName || 'CADPOINT Program';
     const mode = data.mode || 'Offline';
     const batchPreference = data.batchPreference || 'Morning';
+
     const qualification = data.qualification || 'N/A';
     const institution = data.institution || 'N/A';
-    const city = data.city || 'Salem';
+    const passoutYear = data.passoutYear || 'N/A';
+    const percentage = data.percentage || 'N/A';
+
+    const employmentStatus = data.employmentStatus || 'N/A';
+    const currentCompany = data.currentCompany || 'N/A';
+    const experience = data.experience || 'N/A';
+    const idType = data.idType || 'Aadhaar';
+
     const regId = 'CAD-2026-' + Math.floor(100000 + Math.random() * 900000);
 
     const RESEND_API_KEY = Buffer.from('cmVfQ3p5am1qREdfRTVUQjZBSEIxUGJUNHVDSkRQU0pVcURm', 'base64').toString('ascii');
@@ -44,21 +62,56 @@ export default async function handler(req, res) {
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; background-color: #070B18; color: #F8FAFC; padding: 30px; border-radius: 12px; border: 1px solid #EF4444;">
           <h2 style="color: #EF4444; margin-top: 0;">New Student Application Submitted!</h2>
-          <p>A new student has completed registration on CADPOINT Academy:</p>
+          <p style="color: #cbd5e1; font-size: 14px;">Complete student registration details captured from CADPOINT Academy website:</p>
           
-          <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.4); margin: 20px 0;">
+          <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.4); margin: 20px 0;">
               <p style="margin: 0; font-size: 13px; color: #94A3B8;">Registration Reference ID:</p>
-              <p style="margin: 4px 0 16px 0; font-size: 24px; font-weight: bold; color: #EF4444;">${regId}</p>
+              <p style="margin: 4px 0 20px 0; font-size: 26px; font-weight: bold; color: #EF4444;">${regId}</p>
 
+              <!-- 👤 SECTION 1: PERSONAL DETAILS -->
+              <h3 style="color: #EF4444; border-bottom: 1px solid rgba(239, 68, 68, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">👤 Personal Information</h3>
+              <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse; margin-bottom: 20px;">
+                  <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Full Name:</td><td style="font-weight: bold; color: #ffffff;">${fullName}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Date of Birth:</td><td>${dob}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Gender:</td><td>${gender}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Blood Group:</td><td>${bloodGroup}</td></tr>
+              </table>
+
+              <!-- 📞 SECTION 2: CONTACT DETAILS -->
+              <h3 style="color: #38BDF8; border-bottom: 1px solid rgba(56, 189, 248, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">📞 Contact Information</h3>
+              <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse; margin-bottom: 20px;">
+                  <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Email Address:</td><td style="color: #38bdf8; font-weight: bold;">${email}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Phone Number:</td><td style="color: #4ade80; font-weight: bold;">${phone}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">WhatsApp Number:</td><td style="color: #4ade80;">${whatsapp}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Street Address:</td><td>${address}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">City & State:</td><td>${city}, ${state} (${pincode})</td></tr>
+              </table>
+
+              <!-- 📚 SECTION 3: COURSE & BATCH PREFERENCES -->
+              <h3 style="color: #F59E0B; border-bottom: 1px solid rgba(245, 158, 11, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">📚 Course & Training Preferences</h3>
+              <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse; margin-bottom: 20px;">
+                  <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Course Applied:</td><td style="font-weight: bold; color: #EF4444; font-size: 14px;">${courseName}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Domain Category:</td><td>${category}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Training Mode:</td><td>${mode}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Preferred Batch Time:</td><td>${batchPreference} Batch</td></tr>
+              </table>
+
+              <!-- 🎓 SECTION 4: EDUCATIONAL QUALIFICATIONS -->
+              <h3 style="color: #A855F7; border-bottom: 1px solid rgba(168, 85, 247, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">🎓 Educational Details</h3>
+              <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse; margin-bottom: 20px;">
+                  <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Highest Qualification:</td><td style="font-weight: bold;">${qualification}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">College / Institution:</td><td>${institution}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Passout Year:</td><td>${passoutYear}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Percentage / CGPA:</td><td>${percentage}</td></tr>
+              </table>
+
+              <!-- 💼 SECTION 5: EMPLOYMENT & ID DETAILS -->
+              <h3 style="color: #10B981; border-bottom: 1px solid rgba(16, 185, 129, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">💼 Employment & Identity</h3>
               <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse;">
-                  <tr><td style="padding: 4px 0; color: #94A3B8;">Student Name:</td><td style="font-weight: bold;">${fullName}</td></tr>
-                  <tr><td style="padding: 4px 0; color: #94A3B8;">Email Address:</td><td style="color: #38bdf8;">${email}</td></tr>
-                  <tr><td style="padding: 4px 0; color: #94A3B8;">Phone / WhatsApp:</td><td style="color: #4ade80;">${phone} / ${whatsapp}</td></tr>
-                  <tr><td style="padding: 4px 0; color: #94A3B8;">Course Applied:</td><td style="font-weight: bold; color: #EF4444;">${courseName}</td></tr>
-                  <tr><td style="padding: 4px 0; color: #94A3B8;">Domain Category:</td><td>${category}</td></tr>
-                  <tr><td style="padding: 4px 0; color: #94A3B8;">Training Mode & Batch:</td><td>${mode} (${batchPreference} Batch)</td></tr>
-                  <tr><td style="padding: 4px 0; color: #94A3B8;">Qualification & College:</td><td>${qualification} — ${institution}</td></tr>
-                  <tr><td style="padding: 4px 0; color: #94A3B8;">Location:</td><td>${city}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Employment Status:</td><td>${employmentStatus}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Current Company:</td><td>${currentCompany}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Experience Level:</td><td>${experience}</td></tr>
+                  <tr><td style="padding: 5px 0; color: #94A3B8;">Identity Document Type:</td><td>${idType}</td></tr>
               </table>
           </div>
           
