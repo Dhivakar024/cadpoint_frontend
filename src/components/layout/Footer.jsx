@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, ShieldCheck } from 'lucide-react';
-import { COMPANY_INFO, DEPARTMENTS } from '../../utils/constants';
+import { Phone, Mail, MapPin, Clock, ShieldCheck, Instagram, Facebook, MessageCircle, Linkedin, Youtube } from 'lucide-react';
+import { COMPANY_INFO, DEPARTMENTS, SOCIAL_LINKS } from '../../utils/constants';
 
 export function Footer() {
+  const getSocialIcon = (name) => {
+    switch (name) {
+      case 'Instagram': return Instagram;
+      case 'Facebook': return Facebook;
+      case 'WhatsApp': return MessageCircle;
+      case 'LinkedIn': return Linkedin;
+      case 'YouTube': return Youtube;
+      default: return MessageCircle;
+    }
+  };
+
   return (
     <footer className="bg-[#040711] text-slate-400 border-t border-slate-800/80 pt-16 pb-12 relative overflow-hidden">
       {/* Background Subtle Red & Navy Glows */}
@@ -13,7 +24,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
-          {/* BRAND COLUMN WITH WHITE GLOW ON CURSOR HOVER */}
+          {/* BRAND COLUMN WITH WHITE GLOW ON CURSOR HOVER & SOCIAL LINKS */}
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
               <img
@@ -31,6 +42,31 @@ export function Footer() {
             <div className="flex items-center gap-3 text-xs text-slate-300 font-medium pt-2">
               <ShieldCheck className="w-5 h-5 text-red-500 shrink-0" />
               <span>32 Years Track Record of Educational Excellence</span>
+            </div>
+
+            {/* OFFICIAL SOCIAL MEDIA CONNECT LINKS */}
+            <div className="pt-2">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-3">
+                Connect With Us
+              </span>
+              <div className="flex items-center gap-3">
+                {SOCIAL_LINKS.map((item) => {
+                  const Icon = getSocialIcon(item.name);
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 hover:border-red-500/50 hover:bg-red-600/20 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 shadow-md group cursor-pointer"
+                      title={`Follow CADPOINT on ${item.name}`}
+                      aria-label={`CADPOINT ${item.name}`}
+                    >
+                      <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
