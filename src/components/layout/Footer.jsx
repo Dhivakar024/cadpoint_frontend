@@ -13,13 +13,13 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
-          {/* BRAND COLUMN WITH COMPACT SLEEK LOGO */}
+          {/* BRAND COLUMN WITH WHITE GLOW ON CURSOR HOVER */}
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
               <img
                 src="/cadpoint_logo.svg"
                 alt="CADPOINT Authorized Training Centre - ISO Certified"
-                className="w-[170px] sm:w-[210px] h-auto object-contain shrink-0 filter drop-shadow-[0_0_12px_rgba(239,68,68,0.25)]"
+                className="w-[170px] sm:w-[210px] h-auto object-contain shrink-0 filter drop-shadow-[0_0_12px_rgba(239,68,68,0.25)] logo-white-glow cursor-pointer"
                 style={{ preserveAspectRatio: 'xMidYMid meet' }}
               />
             </Link>

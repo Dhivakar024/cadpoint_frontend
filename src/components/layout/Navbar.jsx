@@ -60,12 +60,12 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* OFFICIAL CADPOINT LOGO (Sleek Compact Size: Desktop 170px, Tablet 150px, Mobile 125px) */}
+          {/* OFFICIAL CADPOINT LOGO WITH WHITE GLOW ON CURSOR HOVER / TOUCH */}
           <Link to="/" className="flex items-center group">
             <img
               src="/cadpoint_logo.svg"
               alt="CADPOINT Authorized Training Centre - ISO Certified"
-              className="w-[125px] sm:w-[150px] md:w-[170px] h-auto object-contain shrink-0 filter drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] transition-transform group-hover:scale-105"
+              className="w-[125px] sm:w-[150px] md:w-[170px] h-auto object-contain shrink-0 filter drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] logo-white-glow cursor-pointer"
               style={{ preserveAspectRatio: 'xMidYMid meet' }}
             />
           </Link>
