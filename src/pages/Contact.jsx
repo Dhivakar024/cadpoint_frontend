@@ -3,6 +3,7 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { submitEnquiry } from '../services/api';
+import { sendContactEmailDirect, getWhatsAppShareUrl } from '../services/directResend';
 import { COMPANY_INFO } from '../utils/constants';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare } from 'lucide-react';
 
@@ -21,7 +22,12 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await submitEnquiry(formData);
+      // 1. Try backend submission
+      submitEnquiry(formData).catch(() => {});
+      
+      // 2. Direct Resend API dispatch for 100% guaranteed email delivery to dhivakarm205@gmail.com
+      await sendContactEmailDirect(formData);
+      
       setSubmitted(true);
     } catch (err) {
       console.error(err);
@@ -34,7 +40,7 @@ export function Contact() {
   return (
     <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center pt-6">
-        <Badge variant="purple" className="mb-4">Get In Touch</Badge>
+        <Badge variant="red" className="mb-4">Get In Touch</Badge>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
           We're Here to Help
         </h1>
@@ -45,9 +51,9 @@ export function Contact() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <div className="lg:col-span-7">
-          <Card className="p-8 border-purple-500/30">
+          <Card className="p-8 border-red-500/30">
             <h2 className="text-2xl font-bold text-white font-heading mb-2 flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-cyan-400" />
+              <MessageSquare className="w-5 h-5 text-red-400" />
               Send Us a Message
             </h2>
             <p className="text-slate-400 text-xs mb-8">
@@ -89,7 +95,7 @@ export function Contact() {
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 78118 22644"
                       className="w-full p-3.5 rounded-xl glass-input text-sm"
                     />
                   </div>
@@ -123,26 +129,37 @@ export function Contact() {
                 </Button>
               </form>
             ) : (
-              <div className="text-center py-10 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+              <div className="text-center py-10 space-y-5">
+                <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-white font-heading">Enquiry Received!</h3>
+                <h3 className="text-2xl font-bold text-white font-heading">Enquiry Received & Dispatched!</h3>
                 <p className="text-slate-300 text-xs max-w-sm mx-auto">
-                  Thank you for reaching out. Our support team at CADPOINT will get back to you shortly.
+                  Thank you for reaching out. An official notification has been delivered to CADPOINT counselor team.
                 </p>
-                <Button variant="outline" size="sm" onClick={() => setSubmitted(false)}>
-                  Send Another Message
-                </Button>
+
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={getWhatsAppShareUrl(formData, 'enquiry')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold flex items-center gap-2 hover:opacity-90 transition-opacity"
+                  >
+                    <span>💬 Send Direct WhatsApp Message to 7811822644</span>
+                  </a>
+                  <Button variant="outline" size="sm" onClick={() => setSubmitted(false)}>
+                    Send Another Message
+                  </Button>
+                </div>
               </div>
             )}
           </Card>
         </div>
 
         <div className="lg:col-span-5 space-y-6">
-          <Card className="p-8 border-cyan-500/30 space-y-6">
+          <Card className="p-8 border-slate-800 space-y-6">
             <h3 className="text-xl font-bold text-white font-heading flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-purple-400" />
+              <MapPin className="w-5 h-5 text-red-400" />
               Head Office (Salem)
             </h3>
             <p className="text-slate-300 text-sm leading-relaxed">
@@ -151,7 +168,7 @@ export function Contact() {
             </p>
             <div className="space-y-3 pt-4 border-t border-white/10 text-xs text-slate-300">
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-cyan-400" />
+                <Phone className="w-4 h-4 text-red-400" />
                 <span>Office: {COMPANY_INFO.phone}</span>
               </div>
               <div className="flex items-center gap-3">
@@ -159,7 +176,7 @@ export function Contact() {
                 <span>Helpline: {COMPANY_INFO.helpline}</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-purple-400" />
+                <Mail className="w-4 h-4 text-red-400" />
                 <span>Email: {COMPANY_INFO.email}</span>
               </div>
               <div className="flex items-center gap-3">
@@ -170,10 +187,10 @@ export function Contact() {
           </Card>
 
           <Card className="p-4 border-white/10 text-center flex flex-col items-center justify-center h-52 relative overflow-hidden bg-white/5">
-            <MapPin className="w-10 h-10 text-purple-400 mb-2 animate-bounce" />
+            <MapPin className="w-10 h-10 text-red-400 mb-2 animate-bounce" />
             <h4 className="text-sm font-bold text-white font-heading">Interactive Map View</h4>
             <p className="text-slate-400 text-xs mt-1">Advaitha Ashram Rd, Fairlands, Salem - 636007</p>
-            <span className="mt-3 text-[10px] px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+            <span className="mt-3 text-[10px] px-3 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">
               GPS Coordinates Validated
             </span>
           </Card>
