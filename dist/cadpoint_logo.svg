@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="900" height="360">
+  <!-- Background transparent -->
+  <g transform="translate(0, 0)">
+    <!-- Red CADPOINT Typography -->
+    <text x="450" y="165" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="195" fill="#EE1D23" letter-spacing="1">CADPOINT</text>
+    
+    <!-- Dark Navy Bar -->
+    <rect x="75" y="195" width="750" height="70" fill="#0F172A" rx="4" />
+    
+    <!-- White AUTHORIZED TRAINING CENTRE -->
+    <text x="450" y="246" text-anchor="middle" font-family="'Arial Black', 'Helvetica', sans-serif" font-weight="900" font-size="39" fill="#FFFFFF" letter-spacing="4.5">AUTHORIZED TRAINING CENTRE</text>
+    
+    <!-- ISO Subtitle -->
+    <text x="450" y="325" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="34" fill="#1E293B" letter-spacing="3">ISO 9001 : 2008 CERTIFIED COMPANY</text>
+  </g>
+</svg>

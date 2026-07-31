@@ -29,11 +29,11 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Contact Bar */}
-      <div className="bg-[#0b132b] text-slate-300 py-1.5 px-4 text-xs border-b border-white/5">
+      <div className="bg-[#040711] text-slate-300 py-1.5 px-4 text-xs border-b border-white/5">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <a href={`tel:${COMPANY_INFO.phone}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <PhoneCall className="w-3.5 h-3.5 text-red-400" />
+              <PhoneCall className="w-3.5 h-3.5 text-red-500" />
               <span>{COMPANY_INFO.phone}</span>
             </a>
             <span className="hidden sm:inline text-slate-600">|</span>
@@ -54,25 +54,20 @@ export function Navbar() {
       <nav
         className={`transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#070b18]/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl py-3'
-            : 'bg-[#070b18]/60 backdrop-blur-md py-4'
+            ? 'bg-[#070b18]/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl py-2.5'
+            : 'bg-[#070b18]/60 backdrop-blur-md py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* OFFICIAL CADPOINT BRANDING LOGO */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="flex flex-col items-start leading-none">
-              {/* Bold Red Header */}
-              <span className="text-2xl sm:text-3xl font-black text-[#EF4444] tracking-tighter font-heading group-hover:text-red-500 transition-colors">
-                CADPOINT
-              </span>
-              {/* Dark Navy Blue Bar */}
-              <div className="mt-0.5 px-2 py-0.5 bg-[#0F172A] border border-[#1E3A8A] rounded-xs">
-                <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-white block">
-                  AUTHORIZED TRAINING CENTRE
-                </span>
-              </div>
+          {/* OFFICIAL UNCHANGED CADPOINT LOGO IMAGE */}
+          <Link to="/" className="flex items-center group">
+            <div className="p-1.5 rounded-xl bg-white/95 shadow-md border border-white/20">
+              <img
+                src="/cadpoint_logo.svg"
+                alt="CADPOINT Authorized Training Centre"
+                className="h-9 sm:h-11 w-auto object-contain"
+              />
             </div>
           </Link>
 

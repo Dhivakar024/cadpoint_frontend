@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ShieldCheck } from 'lucide-react';
 import { COMPANY_INFO, DEPARTMENTS } from '../../utils/constants';
 
 export function Footer() {
@@ -13,21 +13,15 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
-          {/* BRAND COLUMN */}
+          {/* BRAND COLUMN WITH EXACT UNCHANGED LOGO IMAGE */}
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
-              <div className="flex flex-col items-start leading-none">
-                <span className="text-3xl font-black text-[#EF4444] tracking-tighter font-heading">
-                  CADPOINT
-                </span>
-                <div className="mt-1 px-2 py-0.5 bg-[#0F172A] border border-[#1E3A8A] rounded-xs">
-                  <span className="text-[9px] font-black uppercase tracking-widest text-white block">
-                    AUTHORIZED TRAINING CENTRE
-                  </span>
-                </div>
-                <span className="text-[9px] font-semibold text-slate-400 tracking-wider uppercase mt-1">
-                  ISO 9001 : 2008 CERTIFIED COMPANY
-                </span>
+              <div className="p-2 rounded-2xl bg-white/95 shadow-lg border border-white/20 inline-block">
+                <img
+                  src="/cadpoint_logo.svg"
+                  alt="CADPOINT Authorized Training Centre"
+                  className="h-14 w-auto object-contain"
+                />
               </div>
             </Link>
             
