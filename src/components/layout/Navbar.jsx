@@ -54,18 +54,18 @@ export function Navbar() {
       <nav
         className={`transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#070b18]/95 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl py-2.5'
-            : 'bg-[#070b18]/70 backdrop-blur-md py-3.5'
+            ? 'bg-[#070b18]/95 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl py-2'
+            : 'bg-[#070b18]/70 backdrop-blur-md py-3'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* OFFICIAL CADPOINT LOGO WITH RADIANT GLOW */}
+          {/* OFFICIAL CADPOINT LOGO (Sleek Compact Size: Desktop 170px, Tablet 150px, Mobile 125px) */}
           <Link to="/" className="flex items-center group">
             <img
               src="/cadpoint_logo.svg"
               alt="CADPOINT Authorized Training Centre - ISO Certified"
-              className="w-[160px] sm:w-[215px] h-auto object-contain shrink-0 filter drop-shadow-[0_0_12px_rgba(239,68,68,0.35)] drop-shadow-[0_0_24px_rgba(30,58,138,0.25)] transition-transform group-hover:scale-105"
+              className="w-[125px] sm:w-[150px] md:w-[170px] h-auto object-contain shrink-0 filter drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] transition-transform group-hover:scale-105"
               style={{ preserveAspectRatio: 'xMidYMid meet' }}
             />
           </Link>

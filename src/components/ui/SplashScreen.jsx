@@ -65,7 +65,7 @@ export function SplashScreen({ onComplete }) {
               y: mousePos.y * -0.3,
             }}
             transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none"
+            className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] bg-red-600/10 rounded-full blur-[130px] pointer-events-none"
           />
 
           {/* VERY LOW OPACITY SOFT NAVY BLUE AMBIENT GLOW (RIGHT) */}
@@ -76,7 +76,7 @@ export function SplashScreen({ onComplete }) {
               y: mousePos.y * 0.3,
             }}
             transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-            className="absolute top-1/2 right-1/3 translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] bg-blue-900/15 rounded-full blur-[150px] pointer-events-none"
+            className="absolute top-1/2 right-1/3 translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] bg-blue-900/15 rounded-full blur-[140px] pointer-events-none"
           />
 
           {/* LOW OPACITY FLOATING MICRO PARTICLES */}
@@ -106,7 +106,7 @@ export function SplashScreen({ onComplete }) {
             ))}
           </div>
 
-          {/* LOGO CONTAINER WITH EXACT CINEMATIC LIGHT SWEEP SPECIFICATIONS */}
+          {/* LOGO CONTAINER WITH COMPACT SLEEK DIMENSIONS */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{
@@ -123,21 +123,21 @@ export function SplashScreen({ onComplete }) {
             }}
             className="relative z-20 flex items-center justify-center p-2 rounded-3xl overflow-hidden"
           >
-            {/* UNCHANGED OFFICIAL CADPOINT LOGO IMAGE (With 3% Brightness Boost During Sweep) */}
+            {/* UNCHANGED OFFICIAL CADPOINT LOGO IMAGE (Desktop 340px, Tablet 260px, Mobile 200px) */}
             <motion.img
               src="/cadpoint_logo.svg"
               alt="CADPOINT Authorized Training Centre - ISO Certified"
               animate={{
                 filter: isSweeping
-                  ? 'brightness(1.03) drop-shadow(0 12px 35px rgba(239,68,68,0.25))'
-                  : 'brightness(1.00) drop-shadow(0 12px 35px rgba(239,68,68,0.18))',
+                  ? 'brightness(1.03) drop-shadow(0 10px 30px rgba(239,68,68,0.25))'
+                  : 'brightness(1.00) drop-shadow(0 10px 30px rgba(239,68,68,0.18))',
               }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="w-[240px] sm:w-[320px] lg:w-[440px] h-auto object-contain shrink-0"
+              className="w-[200px] sm:w-[260px] lg:w-[340px] h-auto object-contain shrink-0"
               style={{ preserveAspectRatio: 'xMidYMid meet' }}
             />
 
-            {/* CINEMATIC LIGHT SWEEP (Angle: 18°, Width: 55px, Opacity: 18%, Soft Feather, Medium Blur, Duration: 1.5s, Delay: 8s) */}
+            {/* CINEMATIC LIGHT SWEEP (Angle: 18°, Width: 45px, Opacity: 18%, Duration: 1.5s, Delay: 8s) */}
             <motion.div
               initial={{ x: '-150%' }}
               animate={{ x: '150%' }}
@@ -147,7 +147,7 @@ export function SplashScreen({ onComplete }) {
                 repeat: Infinity,
                 repeatDelay: 8.0, // 8 seconds delay between sweeps
               }}
-              className="absolute inset-0 w-[55px] h-full bg-gradient-to-r from-transparent via-white/18 to-transparent -skew-x-[18deg] pointer-events-none mix-blend-overlay backdrop-blur-[2px]"
+              className="absolute inset-0 w-[45px] h-full bg-gradient-to-r from-transparent via-white/18 to-transparent -skew-x-[18deg] pointer-events-none mix-blend-overlay backdrop-blur-[2px]"
             />
           </motion.div>
         </motion.div>
