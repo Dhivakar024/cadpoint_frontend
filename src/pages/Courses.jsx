@@ -83,43 +83,66 @@ export function Courses() {
       {/* COURSE CARDS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
         {filteredCourses.map((course) => (
-          <Card key={course.id} className="flex flex-col justify-between h-full p-6 group border-slate-800 hover:border-red-500/50">
-            <div>
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <Badge variant="red">
+          <Card key={course.id} className="flex flex-col justify-between h-full p-0 overflow-hidden group border-slate-800 hover:border-red-500/50">
+            {/* HERO COVER IMAGE */}
+            {course.image && (
+              <div className="relative h-44 w-full overflow-hidden bg-slate-950">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-black/20" />
+                <Badge variant="red" className="absolute top-3 left-3 shadow-lg backdrop-blur-md bg-red-600/90">
                   {course.level}
                 </Badge>
-                <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
+                <span className="absolute bottom-3 right-3 text-xs text-white font-medium flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
                   <Clock className="w-3.5 h-3.5 text-red-400" />
                   {course.duration}
                 </span>
               </div>
-              <h3 className="text-lg font-bold text-white font-heading mb-2 group-hover:text-red-400 transition-colors">
-                {course.title}
-              </h3>
-              <p className="text-slate-400 text-xs leading-relaxed mb-4">
-                {course.description}
-              </p>
-              <div className="flex items-center gap-2 text-xs text-red-400 mb-6">
-                <Laptop className="w-3.5 h-3.5" />
-                <span>Tools: {course.software}</span>
-              </div>
-            </div>
+            )}
 
-            <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span className="text-xs text-slate-400">{course.mode}</span>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setSelectedCourse(course)}
-                  className="text-xs text-slate-300 hover:text-white underline cursor-pointer"
-                >
-                  Details
-                </button>
-                <Link to="/registration">
-                  <Button variant="primary" size="sm" icon={ArrowRight}>
-                    Enroll
-                  </Button>
-                </Link>
+            <div className="p-6 flex flex-col justify-between flex-grow space-y-4">
+              <div>
+                {!course.image && (
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <Badge variant="red">
+                      {course.level}
+                    </Badge>
+                    <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
+                      <Clock className="w-3.5 h-3.5 text-red-400" />
+                      {course.duration}
+                    </span>
+                  </div>
+                )}
+                <h3 className="text-lg font-bold text-white font-heading mb-2 group-hover:text-red-400 transition-colors">
+                  {course.title}
+                </h3>
+                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                  {course.description}
+                </p>
+                <div className="flex items-center gap-2 text-xs text-red-400 mb-2">
+                  <Laptop className="w-3.5 h-3.5" />
+                  <span>Tools: {course.software}</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/5 flex items-center justify-between mt-auto">
+                <span className="text-xs text-slate-400">{course.mode}</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setSelectedCourse(course)}
+                    className="text-xs text-slate-300 hover:text-white underline cursor-pointer"
+                  >
+                    Details
+                  </button>
+                  <Link to="/registration">
+                    <Button variant="primary" size="sm" icon={ArrowRight}>
+                      Enroll
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </Card>

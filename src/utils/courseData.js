@@ -11,6 +11,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Languages",
     software: "Python",
+    image: "/images/python.jpg",
     description: "Foundational Python programming concepts and hands-on exercises."
   },
   {
@@ -22,6 +23,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Languages",
     software: "Java",
+    image: "/images/java.jpg",
     description: "Java basics and core concepts for application development."
   },
   {
@@ -33,6 +35,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Languages",
     software: "C",
+    image: "/images/c.jpg",
     description: "C language fundamentals and procedural programming."
   },
   {
@@ -44,6 +47,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Languages",
     software: "C++",
+    image: "/images/cpp.jpg",
     description: "C++ syntax, OOP basics, and standard library usage."
   },
   {
@@ -55,6 +59,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Web Designing",
     software: "JavaScript",
+    image: "/images/javascript.jpg",
     description: "Core JavaScript essentials for modern web development."
   },
   {
@@ -66,6 +71,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Web Designing",
     software: "HTML, CSS",
+    image: "/images/htmlcss.jpg",
     description: "Foundations of web layout, semantic tags, and modern responsive styling."
   },
   {
@@ -77,6 +83,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Frameworks",
     software: "React",
+    image: "/images/react.jpg",
     description: "React fundamentals: component lifecycle, hooks, state, and props."
   },
   {
@@ -88,6 +95,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Frameworks",
     software: "Node.js",
+    image: "/images/node.jpg",
     description: "Node.js runtime basics, event loop, REST APIs, and server-side JS."
   },
   {
@@ -99,6 +107,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Database",
     software: "MongoDB",
+    image: "/images/mongodb.jpg",
     description: "NoSQL fundamentals with MongoDB CRUD operations, indexing, and aggregation."
   },
   {
@@ -110,6 +119,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Cloud Computing",
     software: "AWS",
+    image: "/images/aws.jpg",
     description: "Core AWS cloud services: EC2, S3, IAM, Lambda, and VPC fundamentals."
   },
   {
@@ -121,6 +131,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "DevOps",
     software: "Docker",
+    image: "/images/docker.jpg",
     description: "Containerization fundamentals, Dockerfiles, images, containers, and Docker Compose."
   },
   {
@@ -132,6 +143,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "DevOps",
     software: "Kubernetes",
+    image: "/images/kubernetes.jpg",
     description: "Container orchestration basics, deployments, pods, services, and cluster management."
   },
   {
@@ -143,6 +155,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Database & AI",
     software: "Python, Scikit-Learn",
+    image: "/images/machine_learning.jpg",
     description: "ML fundamentals, supervised & unsupervised learning, and model building basics."
   },
   {
@@ -154,6 +167,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Database & AI",
     software: "Power BI",
+    image: "/images/machine_learning.jpg",
     description: "Power BI essentials for interactive dashboards, DAX queries, and reporting."
   },
   {
@@ -165,6 +179,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Full Stack",
     software: "Python, Django, React, PostgreSQL, Git",
+    image: "/images/python.jpg",
     description: "Extensive full-stack professional program covering Python, Django, REST APIs, and React UI development."
   },
   {
@@ -176,6 +191,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Full Stack",
     software: "Java, Spring Boot, Angular, MySQL",
+    image: "/images/java.jpg",
     description: "Professional Java full stack training with Spring Boot microservices and modern frontend."
   },
   {
@@ -187,6 +203,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Full Stack",
     software: "MongoDB, Express, React, Node.js",
+    image: "/images/react.jpg",
     description: "Complete MERN stack professional training with real-time projects and production deployment."
   },
   {
@@ -198,6 +215,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "AI & Analytics",
     software: "Python, Pandas, TensorFlow, Tableau, SQL",
+    image: "/images/machine_learning.jpg",
     description: "In-depth data science and AI professional training with real-world case studies and predictive analytics."
   },
   {
@@ -209,6 +227,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "DevOps",
     software: "AWS, Azure, Docker, Kubernetes, Jenkins, Terraform",
+    image: "/images/kubernetes.jpg",
     description: "Cloud and DevOps skills for production environments, CI/CD automation, and infrastructure as code."
   },
   {
@@ -220,6 +239,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Master Engineering",
     software: "Full Stack Suite, Cloud, DevOps",
+    image: "/images/node.jpg",
     description: "Comprehensive master-level full-stack development program with system design, microservices, and live client projects."
   },
   {
@@ -231,6 +251,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Master Engineering",
     software: "Python, Deep Learning, NLP, Big Data",
+    image: "/images/machine_learning.jpg",
     description: "Deep dive into data science, machine learning models, neural networks, and big data ecosystems."
   },
 
