@@ -1,6 +1,12 @@
+import dns from 'dns';
 import { MongoClient } from 'mongodb';
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://cadpointsalem001_db_user:cadpoint123@cadpoint.vrrgzz8.mongodb.net/?appName=cadpoint';
+// Ensure Google Public DNS for guaranteed MongoDB Atlas SRV resolution
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1', '8.8.4.4']);
+} catch (e) {}
+
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://cadpointsalem001_db_user:cadpoint123@cadpoint.vrrgzz8.mongodb.net/cadpoint?retryWrites=true&w=majority';
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -62,8 +68,9 @@ export default async function handler(req, res) {
     // 1. SAVE ALL 19 FIELDS DIRECTLY TO MONGODB ATLAS
     let mongoSuccess = false;
     let insertedId = null;
+    let client = null;
     try {
-      const client = new MongoClient(MONGO_URI);
+      client = new MongoClient(MONGO_URI, { connectTimeoutMS: 5000, serverSelectionTimeoutMS: 5000 });
       await client.connect();
       const db = client.db('cadpoint');
       const collection = db.collection('registrations');
@@ -101,9 +108,12 @@ export default async function handler(req, res) {
       insertedId = result.insertedId;
       mongoSuccess = true;
       console.log('[MongoDB Atlas Registration Insert Success]:', insertedId);
-      await client.close();
     } catch (dbErr) {
       console.error('[MongoDB Atlas Registration Insert Error]:', dbErr);
+    } finally {
+      if (client) {
+        try { await client.close(); } catch(e) {}
+      }
     }
 
     // 2. DISPATCH RESEND EMAIL
