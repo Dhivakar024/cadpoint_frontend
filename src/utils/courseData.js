@@ -267,6 +267,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Graphic Design",
     software: "Adobe Photoshop",
+    image: "/images/htmlcss.jpg",
     description: "Learn graphic design fundamentals, image manipulation, and digital artwork using Adobe Photoshop."
   },
   {
@@ -278,6 +279,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "VFX & Motion",
     software: "Adobe After Effects",
+    image: "/images/cpp.jpg",
     description: "Learn VFX, compositing, motion graphics, and green screen keying using After Effects."
   },
   {
@@ -289,6 +291,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "3D & Animation",
     software: "Autodesk Maya",
+    image: "/images/c.jpg",
     description: "3D modeling fundamentals, texturing, lighting, and asset creation in Autodesk Maya."
   },
   {
@@ -300,6 +303,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "UI/UX",
     software: "Figma, Adobe XD, Photoshop",
+    image: "/images/javascript.jpg",
     description: "UI/UX design with modern design systems, wireframing, interactive prototyping, and user testing."
   },
   {
@@ -311,6 +315,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Master Media",
     software: "Maya, Blender, After Effects, Nuke",
+    image: "/images/react.jpg",
     description: "Advanced animation & VFX master diploma preparing students for film, gaming, and commercial production."
   },
 
@@ -326,6 +331,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Accounting",
     software: "Tally Prime",
+    image: "/images/mongodb.jpg",
     description: "Practical accounting and GST workflows, e-way bills, inventory, and voucher entries using Tally Prime."
   },
   {
@@ -337,6 +343,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Finance",
     software: "Excel, Power Query, Macros",
+    image: "/images/machine_learning.jpg",
     description: "Advanced Excel techniques for financial analysis, pivot tables, VLOOKUP/XLOOKUP, and report automation."
   },
   {
@@ -348,6 +355,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "ERP Systems",
     software: "SAP FICO S/4HANA",
+    image: "/images/java.jpg",
     description: "Introductory course on SAP FICO for general ledger, accounts payable, receivable, and financial controlling."
   },
   {
@@ -359,6 +367,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Taxation",
     software: "Tally Prime, GST Portal, Income Tax",
+    image: "/images/python.jpg",
     description: "Professional accounting and taxation program with practical exposure to GST returns, TDS, and balance sheets."
   },
   {
@@ -370,6 +379,7 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "ERP Master",
     software: "SAP FICO, MM, SD, PP",
+    image: "/images/aws.jpg",
     description: "Comprehensive SAP ERP implementation, configuration, business blueprinting, and end-to-end integration."
   },
 

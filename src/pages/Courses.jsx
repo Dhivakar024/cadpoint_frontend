@@ -8,70 +8,33 @@ import { Search, Clock, Laptop, ArrowRight, Filter, X, Sparkles, Layers, Box, Cp
 import { Link } from 'react-router-dom';
 
 const CourseHeroBanner = ({ course }) => {
-  if (course.image) {
-    return (
-      <div className="relative h-44 w-full overflow-hidden bg-slate-950">
-        <img
-          src={course.image}
-          alt={course.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-black/30" />
-        <Badge variant="red" className="absolute top-3 left-3 shadow-lg backdrop-blur-md bg-red-600/90">
-          {course.level}
-        </Badge>
-        <span className="absolute bottom-3 right-3 text-xs text-white font-medium flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
-          <Clock className="w-3.5 h-3.5 text-red-400" />
-          {course.duration}
-        </span>
-      </div>
-    );
-  }
-
-  // Domain Color Accents & Graphics for Custom Dark 3D Enterprise Hero Banners
-  const domainColors = {
-    'IT & Non-IT': 'from-blue-950 via-red-950/40 to-[#0B1220]',
-    'Multimedia': 'from-purple-950 via-red-950/40 to-[#0B1220]',
-    'Accounting & ERP': 'from-emerald-950 via-red-950/40 to-[#0B1220]',
-    'Civil & Architecture': 'from-amber-950 via-red-950/40 to-[#0B1220]',
-    'Mechanical & Aeronautical': 'from-cyan-950 via-red-950/40 to-[#0B1220]',
-    'Electrical & Electronics': 'from-indigo-950 via-red-950/40 to-[#0B1220]',
+  // Map domain default 3D artwork images so NO card ever renders a plain gradient
+  const domainFallbackImages = {
+    'IT & Non-IT': '/images/python.jpg',
+    'Multimedia': '/images/htmlcss.jpg',
+    'Accounting & ERP': '/images/machine_learning.jpg',
+    'Civil & Architecture': '/images/c.jpg',
+    'Mechanical & Aeronautical': '/images/cpp.jpg',
+    'Electrical & Electronics': '/images/kubernetes.jpg',
   };
 
-  const gradientClass = domainColors[course.domain] || 'from-slate-900 via-red-950/30 to-[#0B1220]';
+  const imageSrc = course.image || domainFallbackImages[course.domain] || '/images/python.jpg';
 
   return (
-    <div className={`relative h-44 w-full overflow-hidden bg-gradient-to-br ${gradientClass} p-4 flex flex-col justify-between border-b border-white/10`}>
-      {/* Background Micro Grid Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
-      
-      {/* Red Volumetric Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-red-600/20 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
-
-      {/* Top Badges */}
-      <div className="flex items-center justify-between relative z-10">
-        <Badge variant="red" className="shadow-lg backdrop-blur-md bg-red-600/90">
-          {course.level}
-        </Badge>
-        <span className="text-xs text-white font-medium flex items-center gap-1 bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
-          <Clock className="w-3.5 h-3.5 text-red-400" />
-          {course.duration}
-        </span>
-      </div>
-
-      {/* Center 3D Tool Emblem Visualizer */}
-      <div className="relative z-10 my-auto text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 shadow-xl text-white font-bold text-xs group-hover:border-red-500/50 transition-colors">
-          <Sparkles className="w-4 h-4 text-red-400" />
-          <span className="truncate max-w-[200px]">{course.software}</span>
-        </div>
-      </div>
-
-      {/* Bottom Domain Ribbon */}
-      <div className="relative z-10 flex items-center justify-between text-[11px]">
-        <span className="font-semibold text-red-400 uppercase tracking-wider">{course.domain}</span>
-        <span className="text-slate-400 font-mono text-[10px]">{course.category}</span>
-      </div>
+    <div className="relative h-44 w-full overflow-hidden bg-slate-950">
+      <img
+        src={imageSrc}
+        alt={course.title}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-black/30" />
+      <Badge variant="red" className="absolute top-3 left-3 shadow-lg backdrop-blur-md bg-red-600/90">
+        {course.level}
+      </Badge>
+      <span className="absolute bottom-3 right-3 text-xs text-white font-medium flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
+        <Clock className="w-3.5 h-3.5 text-red-400" />
+        {course.duration}
+      </span>
     </div>
   );
 };
