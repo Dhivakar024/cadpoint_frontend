@@ -4,7 +4,7 @@ export const COMPANY_INFO = {
   tagline: "Welcome to the Future of Tech, Design & Multimedia Excellence",
   phone: "(+91) 95666 79928",
   helpline: "(+91) 95666 79958",
-  email: "dhivakarm205@gmail.com",
+  email: "cadpointsalem001@gmail.com",
   hours: "Mon – Sat (9 AM – 7 PM)",
   address: "1st Floor, CPS Tower, Advaitha Ashram Rd, Fairlands, Salem - 636007",
   location: "Salem, Tamil Nadu, India",

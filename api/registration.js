@@ -55,8 +55,8 @@ export default async function handler(req, res) {
 
     const regId = 'CAD-2026-' + Math.floor(100000 + Math.random() * 900000);
 
-    const RESEND_API_KEY = Buffer.from('cmVfQ3p5am1qREdfRTVUQjZBSEIxUGJUNHVDSkRQU0pVcURm', 'base64').toString('ascii');
-    const ADMIN_EMAIL = 'dhivakarm205@gmail.com';
+    const RESEND_API_KEY = Buffer.from('cmVfM296VG9BR3NfOWNpQ3hQeHRVeWVOcThtTTF1VFZZVTN5', 'base64').toString('ascii');
+    const ADMIN_EMAIL = 'cadpointsalem001@gmail.com';
 
     const emailSubject = `New Student Registration [${regId}]: ${fullName} - ${courseName}`;
     const htmlContent = `
