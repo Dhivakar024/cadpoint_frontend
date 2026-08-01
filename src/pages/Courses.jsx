@@ -4,8 +4,77 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { CustomSelect } from '../components/ui/CustomSelect';
-import { Search, Clock, Laptop, ArrowRight, Filter, X } from 'lucide-react';
+import { Search, Clock, Laptop, ArrowRight, Filter, X, Sparkles, Layers, Box, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const CourseHeroBanner = ({ course }) => {
+  if (course.image) {
+    return (
+      <div className="relative h-44 w-full overflow-hidden bg-slate-950">
+        <img
+          src={course.image}
+          alt={course.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-black/30" />
+        <Badge variant="red" className="absolute top-3 left-3 shadow-lg backdrop-blur-md bg-red-600/90">
+          {course.level}
+        </Badge>
+        <span className="absolute bottom-3 right-3 text-xs text-white font-medium flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
+          <Clock className="w-3.5 h-3.5 text-red-400" />
+          {course.duration}
+        </span>
+      </div>
+    );
+  }
+
+  // Domain Color Accents & Graphics for Custom Dark 3D Enterprise Hero Banners
+  const domainColors = {
+    'IT & Non-IT': 'from-blue-950 via-red-950/40 to-[#0B1220]',
+    'Multimedia': 'from-purple-950 via-red-950/40 to-[#0B1220]',
+    'Accounting & ERP': 'from-emerald-950 via-red-950/40 to-[#0B1220]',
+    'Civil & Architecture': 'from-amber-950 via-red-950/40 to-[#0B1220]',
+    'Mechanical & Aeronautical': 'from-cyan-950 via-red-950/40 to-[#0B1220]',
+    'Electrical & Electronics': 'from-indigo-950 via-red-950/40 to-[#0B1220]',
+  };
+
+  const gradientClass = domainColors[course.domain] || 'from-slate-900 via-red-950/30 to-[#0B1220]';
+
+  return (
+    <div className={`relative h-44 w-full overflow-hidden bg-gradient-to-br ${gradientClass} p-4 flex flex-col justify-between border-b border-white/10`}>
+      {/* Background Micro Grid Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+      
+      {/* Red Volumetric Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-red-600/20 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
+
+      {/* Top Badges */}
+      <div className="flex items-center justify-between relative z-10">
+        <Badge variant="red" className="shadow-lg backdrop-blur-md bg-red-600/90">
+          {course.level}
+        </Badge>
+        <span className="text-xs text-white font-medium flex items-center gap-1 bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
+          <Clock className="w-3.5 h-3.5 text-red-400" />
+          {course.duration}
+        </span>
+      </div>
+
+      {/* Center 3D Tool Emblem Visualizer */}
+      <div className="relative z-10 my-auto text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 shadow-xl text-white font-bold text-xs group-hover:border-red-500/50 transition-colors">
+          <Sparkles className="w-4 h-4 text-red-400" />
+          <span className="truncate max-w-[200px]">{course.software}</span>
+        </div>
+      </div>
+
+      {/* Bottom Domain Ribbon */}
+      <div className="relative z-10 flex items-center justify-between text-[11px]">
+        <span className="font-semibold text-red-400 uppercase tracking-wider">{course.domain}</span>
+        <span className="text-slate-400 font-mono text-[10px]">{course.category}</span>
+      </div>
+    </div>
+  );
+};
 
 export function Courses() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -38,7 +107,7 @@ export function Courses() {
         </p>
       </div>
 
-      {/* FILTER BAR CARD (relative z-30 overflow-visible to allow dropdown floating on top) */}
+      {/* FILTER BAR CARD */}
       <div className="glass-card p-6 rounded-2xl space-y-6 relative z-30 overflow-visible">
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
           <div className="relative w-full md:w-96">
@@ -84,38 +153,11 @@ export function Courses() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
         {filteredCourses.map((course) => (
           <Card key={course.id} className="flex flex-col justify-between h-full p-0 overflow-hidden group border-slate-800 hover:border-red-500/50">
-            {/* HERO COVER IMAGE */}
-            {course.image && (
-              <div className="relative h-44 w-full overflow-hidden bg-slate-950">
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-black/20" />
-                <Badge variant="red" className="absolute top-3 left-3 shadow-lg backdrop-blur-md bg-red-600/90">
-                  {course.level}
-                </Badge>
-                <span className="absolute bottom-3 right-3 text-xs text-white font-medium flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
-                  <Clock className="w-3.5 h-3.5 text-red-400" />
-                  {course.duration}
-                </span>
-              </div>
-            )}
+            {/* HERO COVER BANNER (GENERATED JPG OR CUSTOM 3D ENTERPRISE BANNER) */}
+            <CourseHeroBanner course={course} />
 
             <div className="p-6 flex flex-col justify-between flex-grow space-y-4">
               <div>
-                {!course.image && (
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <Badge variant="red">
-                      {course.level}
-                    </Badge>
-                    <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-red-400" />
-                      {course.duration}
-                    </span>
-                  </div>
-                )}
                 <h3 className="text-lg font-bold text-white font-heading mb-2 group-hover:text-red-400 transition-colors">
                   {course.title}
                 </h3>
