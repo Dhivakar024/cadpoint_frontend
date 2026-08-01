@@ -29,11 +29,11 @@ export default async function handler(req, res) {
     const RESEND_API_KEY = Buffer.from('cmVfM296VG9BR3NfOWNpQ3hQeHRVeWVOcThtTTF1VFZZVTN5', 'base64').toString('ascii');
     const ADMIN_EMAIL = 'cadpointsalem001@gmail.com';
 
-    const emailSubject = `New Contact Lead: ${name || 'Website Visitor'} - ${subject || 'General Enquiry'}`;
+    const emailSubject = `CADPOINT Lead: ${name || 'Visitor'} - ${subject || 'General Enquiry'}`;
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; background-color: #070B18; color: #F8FAFC; padding: 30px; border-radius: 12px; border: 1px solid #EF4444;">
-          <h2 style="color: #EF4444; margin-top: 0;">New Website Contact Enquiry Received</h2>
-          <p>A new lead has submitted an enquiry through the CADPOINT website Contact Us form:</p>
+          <h2 style="color: #EF4444; margin-top: 0;">CADPOINT Contact Enquiry Received</h2>
+          <p>A new lead has submitted an enquiry through the CADPOINT Contact Us form:</p>
 
           <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.4); margin: 20px 0;">
               <p style="margin: 6px 0; font-size: 14px;"><strong>Student Name:</strong> <span style="color: #ffffff;">${name || 'N/A'}</span></p>
