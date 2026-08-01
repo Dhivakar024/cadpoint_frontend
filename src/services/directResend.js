@@ -4,10 +4,10 @@
  */
 
 const RESEND_API_KEY = typeof window !== 'undefined' && window.atob 
-  ? window.atob('cmVfQ3p5am1qREdfRTVUQjZBSEIxUGJUNHVDSkRQU0pVcURm')
-  : Buffer.from('cmVfQ3p5am1qREdfRTVUQjZBSEIxUGJUNHVDSkRQU0pVcURm', 'base64').toString('ascii');
+  ? window.atob('cmVfM296VG9BR3NfOWNpQ3hQeHRVeWVOcThtTTF1VFZZVTN5')
+  : Buffer.from('cmVfM296VG9BR3NfOWNpQ3hQeHRVeWVOcThtTTF1VFZZVTN5', 'base64').toString('ascii');
 
-const ADMIN_EMAIL = 'dhivakarm205@gmail.com';
+const ADMIN_EMAIL = 'cadpointsalem001@gmail.com';
 const ADMIN_WHATSAPP = '919566679928';
 
 export const sendContactEmailDirect = async (formData) => {

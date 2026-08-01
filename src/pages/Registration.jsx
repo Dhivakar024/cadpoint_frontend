@@ -119,7 +119,7 @@ export function Registration() {
       // 1. Try backend API submission
       submitRegistration(formData).catch(() => {});
 
-      // 2. Direct Resend API dispatch for 100% guaranteed email delivery to dhivakarm205@gmail.com
+      // 2. Direct Resend API dispatch for 100% guaranteed email delivery to cadpointsalem001@gmail.com
       await sendRegistrationEmailDirect(data, regId);
 
       setSubmitSuccess(regId);
