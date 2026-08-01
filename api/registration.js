@@ -1,3 +1,7 @@
+import { MongoClient } from 'mongodb';
+
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://cadpointsalem001_db_user:cadpoint123@cadpoint.vrrgzz8.mongodb.net/?appName=cadpoint';
+
 export default async function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -55,10 +59,58 @@ export default async function handler(req, res) {
 
     const regId = 'CAD-2026-' + Math.floor(100000 + Math.random() * 900000);
 
+    // 1. SAVE ALL 19 FIELDS DIRECTLY TO MONGODB ATLAS
+    let mongoSuccess = false;
+    let insertedId = null;
+    try {
+      const client = new MongoClient(MONGO_URI);
+      await client.connect();
+      const db = client.db('cadpoint');
+      const collection = db.collection('registrations');
+
+      const registrationDoc = {
+        registrationId: regId,
+        fullName,
+        dob,
+        gender,
+        bloodGroup,
+        email,
+        phone,
+        whatsapp,
+        address,
+        city,
+        state,
+        pincode,
+        category,
+        courseName,
+        mode,
+        batchPreference,
+        qualification,
+        institution,
+        passoutYear,
+        percentage,
+        employmentStatus,
+        currentCompany,
+        experience,
+        idType,
+        source: 'Website Registration Form',
+        createdAt: new Date()
+      };
+
+      const result = await collection.insertOne(registrationDoc);
+      insertedId = result.insertedId;
+      mongoSuccess = true;
+      console.log('[MongoDB Atlas Registration Insert Success]:', insertedId);
+      await client.close();
+    } catch (dbErr) {
+      console.error('[MongoDB Atlas Registration Insert Error]:', dbErr);
+    }
+
+    // 2. DISPATCH RESEND EMAIL
     const RESEND_API_KEY = Buffer.from('cmVfM296VG9BR3NfOWNpQ3hQeHRVeWVOcThtTTF1VFZZVTN5', 'base64').toString('ascii');
     const ADMIN_EMAIL = 'cadpointsalem001@gmail.com';
 
-    const emailSubject = `New Student Registration [${regId}]: ${fullName} - ${courseName}`;
+    const emailSubject = `CADPOINT Student Registration [${regId}]: ${fullName} - ${courseName}`;
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; background-color: #070B18; color: #F8FAFC; padding: 30px; border-radius: 12px; border: 1px solid #EF4444;">
           <h2 style="color: #EF4444; margin-top: 0;">New Student Application Submitted!</h2>
@@ -68,7 +120,6 @@ export default async function handler(req, res) {
               <p style="margin: 0; font-size: 13px; color: #94A3B8;">Registration Reference ID:</p>
               <p style="margin: 4px 0 20px 0; font-size: 26px; font-weight: bold; color: #EF4444;">${regId}</p>
 
-              <!-- 👤 SECTION 1: PERSONAL DETAILS -->
               <h3 style="color: #EF4444; border-bottom: 1px solid rgba(239, 68, 68, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">👤 Personal Information</h3>
               <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse; margin-bottom: 20px;">
                   <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Full Name:</td><td style="font-weight: bold; color: #ffffff;">${fullName}</td></tr>
@@ -77,7 +128,6 @@ export default async function handler(req, res) {
                   <tr><td style="padding: 5px 0; color: #94A3B8;">Blood Group:</td><td>${bloodGroup}</td></tr>
               </table>
 
-              <!-- 📞 SECTION 2: CONTACT DETAILS -->
               <h3 style="color: #38BDF8; border-bottom: 1px solid rgba(56, 189, 248, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">📞 Contact Information</h3>
               <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse; margin-bottom: 20px;">
                   <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Email Address:</td><td style="color: #38bdf8; font-weight: bold;">${email}</td></tr>
@@ -87,7 +137,6 @@ export default async function handler(req, res) {
                   <tr><td style="padding: 5px 0; color: #94A3B8;">City & State:</td><td>${city}, ${state} (${pincode})</td></tr>
               </table>
 
-              <!-- 📚 SECTION 3: COURSE & BATCH PREFERENCES -->
               <h3 style="color: #F59E0B; border-bottom: 1px solid rgba(245, 158, 11, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">📚 Course & Training Preferences</h3>
               <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse; margin-bottom: 20px;">
                   <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Course Applied:</td><td style="font-weight: bold; color: #EF4444; font-size: 14px;">${courseName}</td></tr>
@@ -96,7 +145,6 @@ export default async function handler(req, res) {
                   <tr><td style="padding: 5px 0; color: #94A3B8;">Preferred Batch Time:</td><td>${batchPreference} Batch</td></tr>
               </table>
 
-              <!-- 🎓 SECTION 4: EDUCATIONAL QUALIFICATIONS -->
               <h3 style="color: #A855F7; border-bottom: 1px solid rgba(168, 85, 247, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">🎓 Educational Details</h3>
               <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse; margin-bottom: 20px;">
                   <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Highest Qualification:</td><td style="font-weight: bold;">${qualification}</td></tr>
@@ -105,7 +153,6 @@ export default async function handler(req, res) {
                   <tr><td style="padding: 5px 0; color: #94A3B8;">Percentage / CGPA:</td><td>${percentage}</td></tr>
               </table>
 
-              <!-- 💼 SECTION 5: EMPLOYMENT & ID DETAILS -->
               <h3 style="color: #10B981; border-bottom: 1px solid rgba(16, 185, 129, 0.3); padding-bottom: 6px; margin-top: 15px; font-size: 15px;">💼 Employment & Identity</h3>
               <table style="width: 100%; color: #F8FAFC; font-size: 13px; border-collapse: collapse;">
                   <tr><td style="padding: 5px 0; color: #94A3B8; width: 40%;">Employment Status:</td><td>${employmentStatus}</td></tr>
@@ -120,28 +167,36 @@ export default async function handler(req, res) {
       </div>
     `;
 
-    const resendRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: 'onboarding@resend.dev',
-        to: [ADMIN_EMAIL],
-        subject: emailSubject,
-        html: htmlContent
-      })
-    });
+    let resendId = null;
+    try {
+      const resendRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'onboarding@resend.dev',
+          to: [ADMIN_EMAIL],
+          subject: emailSubject,
+          html: htmlContent
+        })
+      });
 
-    const resendData = await resendRes.json();
-    console.log('[Vercel Registration Resend Result]:', resendRes.status, resendData);
+      const resendData = await resendRes.json();
+      resendId = resendData.id || null;
+      console.log('[Vercel Registration Resend Result]:', resendRes.status, resendData);
+    } catch (eErr) {
+      console.error('[Resend Email Error]:', eErr);
+    }
 
     return res.status(200).json({
-      success: resendRes.ok,
+      success: true,
       message: 'Registration submitted successfully',
       registrationId: regId,
-      resendId: resendData.id || null
+      mongoInserted: mongoSuccess,
+      mongoId: insertedId,
+      resendId: resendId
     });
   } catch (err) {
     console.error('[Vercel Registration Error]:', err);

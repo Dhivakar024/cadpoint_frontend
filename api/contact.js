@@ -1,3 +1,7 @@
+import { MongoClient } from 'mongodb';
+
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://cadpointsalem001_db_user:cadpoint123@cadpoint.vrrgzz8.mongodb.net/?appName=cadpoint';
+
 export default async function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -26,6 +30,35 @@ export default async function handler(req, res) {
 
     const { name, email, phone, subject, message } = data;
 
+    // 1. SAVE DIRECTLY TO MONGODB ATLAS
+    let mongoSuccess = false;
+    let insertedId = null;
+    try {
+      const client = new MongoClient(MONGO_URI);
+      await client.connect();
+      const db = client.db('cadpoint');
+      const collection = db.collection('enquiries');
+      
+      const enquiryDoc = {
+        name: name || 'N/A',
+        email: email || 'N/A',
+        phone: phone || 'N/A',
+        subject: subject || 'General Enquiry',
+        message: message || 'N/A',
+        source: 'Website Contact Form',
+        createdAt: new Date()
+      };
+
+      const result = await collection.insertOne(enquiryDoc);
+      insertedId = result.insertedId;
+      mongoSuccess = true;
+      console.log('[MongoDB Atlas Contact Insert Success]:', insertedId);
+      await client.close();
+    } catch (dbErr) {
+      console.error('[MongoDB Atlas Contact Insert Error]:', dbErr);
+    }
+
+    // 2. DISPATCH RESEND EMAIL
     const RESEND_API_KEY = Buffer.from('cmVfM296VG9BR3NfOWNpQ3hQeHRVeWVOcThtTTF1VFZZVTN5', 'base64').toString('ascii');
     const ADMIN_EMAIL = 'cadpointsalem001@gmail.com';
 
@@ -51,27 +84,35 @@ export default async function handler(req, res) {
       </div>
     `;
 
-    const resendRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: 'onboarding@resend.dev',
-        to: [ADMIN_EMAIL],
-        subject: emailSubject,
-        html: htmlContent
-      })
-    });
+    let resendId = null;
+    try {
+      const resendRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'onboarding@resend.dev',
+          to: [ADMIN_EMAIL],
+          subject: emailSubject,
+          html: htmlContent
+        })
+      });
 
-    const resendData = await resendRes.json();
-    console.log('[Vercel Contact Resend Result]:', resendRes.status, resendData);
+      const resendData = await resendRes.json();
+      resendId = resendData.id || null;
+      console.log('[Vercel Contact Resend Result]:', resendRes.status, resendData);
+    } catch (eErr) {
+      console.error('[Resend Email Error]:', eErr);
+    }
 
     return res.status(200).json({
-      success: resendRes.ok,
+      success: true,
       message: 'Enquiry processed',
-      resendId: resendData.id || null
+      mongoInserted: mongoSuccess,
+      mongoId: insertedId,
+      resendId: resendId
     });
   } catch (err) {
     console.error('[Vercel Contact Error]:', err);
