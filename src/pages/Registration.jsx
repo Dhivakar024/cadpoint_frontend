@@ -190,7 +190,7 @@ export function Registration() {
                     <label className="block text-xs font-semibold text-slate-300 mb-2">Full Name *</label>
                     <input
                       {...register('fullName')}
-                      placeholder="e.g. Dhivakar S"
+                      placeholder="e.g. Rahul Kumar"
                       className="w-full p-3.5 rounded-xl glass-input text-sm"
                     />
                     {errors.fullName && <p className="text-red-400 text-xs mt-1">{errors.fullName.message}</p>}
@@ -236,7 +236,7 @@ export function Registration() {
                     <input
                       type="email"
                       {...register('email')}
-                      placeholder="e.g. student@gmail.com"
+                      placeholder="e.g. student@example.com"
                       className="w-full p-3.5 rounded-xl glass-input text-sm"
                     />
                     {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
@@ -245,7 +245,7 @@ export function Registration() {
                     <label className="block text-xs font-semibold text-slate-300 mb-2">Phone Number *</label>
                     <input
                       {...register('phone')}
-                      placeholder="+91 9876543210"
+                      placeholder="+91 98765 43210"
                       className="w-full p-3.5 rounded-xl glass-input text-sm"
                     />
                     {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone.message}</p>}
