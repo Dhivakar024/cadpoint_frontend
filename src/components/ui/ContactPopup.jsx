@@ -99,7 +99,7 @@ export function ContactPopup() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Dhivakar S"
+                      placeholder="e.g. Rahul Kumar"
                       className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs"
                     />
                   </div>
@@ -112,7 +112,7 @@ export function ContactPopup() {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91 9876543210"
+                        placeholder="+91 98765 43210"
                         className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs"
                       />
                     </div>
@@ -123,7 +123,7 @@ export function ContactPopup() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="name@gmail.com"
+                        placeholder="student@example.com"
                         className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs"
                       />
                     </div>

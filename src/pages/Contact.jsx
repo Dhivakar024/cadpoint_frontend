@@ -65,7 +65,7 @@ export function Contact() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Dhivakar"
+                      placeholder="e.g. Rahul Kumar"
                       className="w-full p-3.5 rounded-xl glass-input text-sm"
                     />
                   </div>
@@ -76,7 +76,7 @@ export function Contact() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="e.g. name@gmail.com"
+                      placeholder="e.g. student@example.com"
                       className="w-full p-3.5 rounded-xl glass-input text-sm"
                     />
                   </div>
@@ -90,7 +90,7 @@ export function Contact() {
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 78118 22644"
+                      placeholder="+91 98765 43210"
                       className="w-full p-3.5 rounded-xl glass-input text-sm"
                     />
                   </div>
