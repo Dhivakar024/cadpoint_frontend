@@ -53,7 +53,7 @@ export function AIChatbot() {
     }
 
     if (q.includes('placement') || q.includes('job') || q.includes('internship') || q.includes('hiring')) {
-      return "Yes! CADPOINT provides 100% Placement Assistance with 350+ corporate hiring partners and a 96% placement record.\n\nOur top performers also get DIRECT INTERNSHIP opportunities inside our company to work on live client projects!";
+      return "Yes! CADPOINT provides Direct Internship Opportunities inside our company for top performers to work on live client production tasks and gain industry-ready practical experience!";
     }
 
     if (q.includes('location') || q.includes('where') || q.includes('address') || q.includes('salem') || q.includes('contact') || q.includes('phone') || q.includes('number')) {

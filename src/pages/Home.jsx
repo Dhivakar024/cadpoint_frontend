@@ -269,14 +269,14 @@ export function Home() {
               Internship Opportunities & Live Project Exposure
             </h2>
             <p className="text-slate-300 text-base mt-4">
-              Best performers are offered direct internships in our company. Work with our dev teams on real-world production tasks and secure permanent placement!
+              Best performers are offered direct internships in our company. Work with our team on real-world production tasks and gain hands-on practical experience!
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="glass-card p-6 rounded-2xl">
               <div className="w-12 h-12 rounded-full bg-red-600/20 mx-auto flex items-center justify-center text-red-400 mb-4 font-bold text-xl">1</div>
-              <h3 className="text-lg font-bold text-white font-heading mb-2">Internship Opportunity</h3>
-              <p className="text-slate-400 text-xs">Best performers are offered internship in our company with hands-on live project training.</p>
+              <h3 className="text-lg font-bold text-white font-heading mb-2">Hands-on Practical Training</h3>
+              <p className="text-slate-400 text-xs">Learn industry-standard software tools through practical exercises and real-world case studies.</p>
             </div>
             <div className="glass-card p-6 rounded-2xl">
               <div className="w-12 h-12 rounded-full bg-blue-600/20 mx-auto flex items-center justify-center text-blue-400 mb-4 font-bold text-xl">2</div>
@@ -285,8 +285,8 @@ export function Home() {
             </div>
             <div className="glass-card p-6 rounded-2xl">
               <div className="w-12 h-12 rounded-full bg-emerald-600/20 mx-auto flex items-center justify-center text-emerald-400 mb-4 font-bold text-xl">3</div>
-              <h3 className="text-lg font-bold text-white font-heading mb-2">Permanent Placement</h3>
-              <p className="text-slate-400 text-xs">Top performers get placed directly in our company or through partner hiring drives.</p>
+              <h3 className="text-lg font-bold text-white font-heading mb-2">Direct Internship Support</h3>
+              <p className="text-slate-400 text-xs">Top performers get direct internship opportunities in our company with live project certification.</p>
             </div>
           </div>
         </Card>
