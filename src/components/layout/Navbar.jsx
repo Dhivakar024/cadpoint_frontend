@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight, PhoneCall, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Menu, X, ArrowRight, PhoneCall, Mail, Sun, Moon } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { COMPANY_INFO } from '../../utils/constants';
+import { useTheme } from '../../context/ThemeContext';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,9 +30,9 @@ export function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
       {/* Top Contact Bar */}
-      <div className="bg-[#040711] text-slate-300 py-1.5 px-4 text-xs border-b border-white/5">
+      <div className="bg-[#040711] text-slate-300 py-1.5 px-4 text-xs border-b border-white/5 transition-colors duration-500">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <a href={`tel:${COMPANY_INFO.phone}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
@@ -53,7 +56,7 @@ export function Navbar() {
 
       {/* Main Glass Navigation Bar */}
       <nav
-        className={`transition-all duration-300 ${
+        className={`transition-all duration-500 ${
           isScrolled
             ? 'bg-[#070b18]/95 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl py-2'
             : 'bg-[#070b18]/70 backdrop-blur-md py-3'
@@ -91,8 +94,29 @@ export function Navbar() {
             })}
           </div>
 
-          {/* Right Action CTA */}
+          {/* Right Action CTA & Theme Toggle */}
           <div className="hidden md:flex items-center gap-3">
+            {/* SUN / MOON THEME TOGGLE BUTTON */}
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Toggle Theme"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              className="p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-amber-400 hover:text-amber-300 transition-colors cursor-pointer flex items-center justify-center"
+            >
+              <motion.div
+                animate={{ rotate: theme === 'light' ? 180 : 0 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              >
+                {theme === 'dark' ? (
+                  <Moon className="w-4 h-4 text-cyan-300" />
+                ) : (
+                  <Sun className="w-4 h-4 text-amber-500 animate-spin-slow" />
+                )}
+              </motion.div>
+            </motion.button>
+
             <Link to="/registration">
               <Button variant="primary" size="sm" icon={ArrowRight}>
                 Register Now
@@ -100,8 +124,15 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu & Theme Toggle */}
           <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl bg-white/5 border border-white/10 text-amber-400 hover:text-amber-300"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? <Moon className="w-5 h-5 text-cyan-300" /> : <Sun className="w-5 h-5 text-amber-500" />}
+            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white"
@@ -131,8 +162,8 @@ export function Navbar() {
                 </Link>
               ))}
             </div>
-            <div className="pt-2">
-              <Link to="/registration" onClick={() => setMobileMenuOpen(false)}>
+            <div className="pt-2 flex items-center gap-3">
+              <Link to="/registration" onClick={() => setMobileMenuOpen(false)} className="flex-1">
                 <Button variant="primary" size="md" className="w-full justify-center" icon={ArrowRight}>
                   Register Now
                 </Button>
