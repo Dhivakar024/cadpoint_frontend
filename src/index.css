@@ -14,12 +14,12 @@
 
   [data-theme="light"] {
     --bg-main: #ffffff;
-    --card-bg: rgba(255, 255, 255, 0.88);
-    --border-card: rgba(226, 232, 240, 0.9);
-    --text-main: #0f172a;
-    --text-muted: #475569;
+    --card-bg: #ffffff;
+    --border-card: #e2e8f0;
+    --text-main: #111827;
+    --text-muted: #4b5563;
     --brand-red: #2563eb;
-    --brand-navy: #1e3a8a;
+    --brand-navy: #123c8f;
     --brand-blue: #2563eb;
   }
 
@@ -52,7 +52,7 @@
 
   [data-theme="light"] select option {
     background-color: #ffffff !important;
-    color: #0f172a !important;
+    color: #111827 !important;
   }
 }
 
@@ -68,18 +68,12 @@ a {
   transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Glassmorphism Panel Utilities */
+/* Glassmorphism Panel Utilities (Dark Mode Default) */
 .glass-panel {
   background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-[data-theme="light"] .glass-panel {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 10px 30px -10px rgba(30, 58, 138, 0.08);
 }
 
 .glass-card {
@@ -89,21 +83,10 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-[data-theme="light"] .glass-card {
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 8px 25px -8px rgba(30, 58, 138, 0.08);
-}
-
 .glass-card:hover {
   border-color: rgba(239, 68, 68, 0.45);
   box-shadow: 0 10px 30px -10px rgba(239, 68, 68, 0.25);
   transform: translateY(-3px) translateZ(0);
-}
-
-[data-theme="light"] .glass-card:hover {
-  border-color: rgba(37, 99, 235, 0.45);
-  box-shadow: 0 12px 30px -10px rgba(37, 99, 235, 0.18);
 }
 
 .glass-input {
@@ -112,32 +95,15 @@ a {
   color: #f8fafc;
 }
 
-[data-theme="light"] .glass-input {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #cbd5e1;
-  color: #0f172a;
-}
-
 .glass-input:focus {
   outline: none;
   border-color: #ef4444;
   box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
-[data-theme="light"] .glass-input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
-}
-
 /* Red & Navy Brand Gradients */
 .text-gradient {
   background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #cbd5e1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-[data-theme="light"] .text-gradient {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e293b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -148,20 +114,8 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-[data-theme="light"] .text-gradient-brand {
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0284c7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .text-gradient-red {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-[data-theme="light"] .text-gradient-red {
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -173,120 +127,171 @@ a {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-[data-theme="light"] .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(30, 58, 138, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 58, 138, 0.04) 1px, transparent 1px);
-}
-
 /* =========================================================================
-   LIGHT THEME COMPREHENSIVE BLUE & WHITE OVERRIDES (EXCLUDING ORIGINAL LOGO)
+   LIGHT THEME WCAG AA HIGH CONTRAST & FLUENT DESIGN ENGINE
    ========================================================================= */
+
 [data-theme="light"] {
-  background-color: #ffffff !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 50%, #EEF5FF 100%) !important;
+  color: #111827 !important;
 }
 
-/* 1. TEXT RED OVERRIDES TO ROYAL BLUE */
+/* 1. HEADINGS: High Contrast Dark Charcoal (#111827) */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #111827 !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+/* 2. PARAGRAPHS & BODY TEXT: High Contrast Slate (#374151 & #4B5563) */
+[data-theme="light"] p {
+  color: #374151 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400,
+[data-theme="light"] .text-slate-500 {
+  color: #374151 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .text-white {
+  color: #111827 !important;
+}
+
+/* Exception for buttons with dark backgrounds */
+[data-theme="light"] button.bg-gradient-to-r,
+[data-theme="light"] button.bg-red-600,
+[data-theme="light"] button.bg-blue-600,
+[data-theme="light"] .bg-gradient-to-r .text-white,
+[data-theme="light"] .bg-red-600 .text-white,
+[data-theme="light"] .bg-blue-600 .text-white,
+[data-theme="light"] .bg-slate-900 .text-white,
+[data-theme="light"] .bg-red-600\/20 .text-white {
+  color: #ffffff !important;
+}
+
+/* 3. GRADIENT TEXT IN LIGHT MODE */
+[data-theme="light"] .text-gradient {
+  background: linear-gradient(135deg, #111827 0%, #123c8f 50%, #1e293b 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .text-gradient-brand,
+[data-theme="light"] .text-gradient-red {
+  background: linear-gradient(135deg, #123c8f 0%, #2563eb 50%, #0284c7 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  opacity: 1 !important;
+}
+
+/* 4. CARDS & PANELS: Pure White, 18px Radius, Soft Blue Elevation Shadow */
+[data-theme="light"] .glass-card,
+[data-theme="light"] .glass-panel {
+  background: #ffffff !important;
+  border-radius: 1.125rem !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 30px -10px rgba(18, 60, 143, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .glass-card:hover {
+  border-color: #93c5fd !important;
+  box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.16) !important;
+  transform: translateY(-4px) !important;
+}
+
+[data-theme="light"] .glass-input {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #111827 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .glass-input:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* 5. BUTTONS & ACCENTS */
+[data-theme="light"] .bg-red-600,
+[data-theme="light"] .bg-red-500,
+[data-theme="light"] .from-red-600 {
+  background-color: #2563eb !important;
+  background-image: linear-gradient(135deg, #2563eb 0%, #123c8f 100%) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
 [data-theme="light"] .text-red-400,
 [data-theme="light"] .text-red-500,
 [data-theme="light"] .text-red-600,
-[data-theme="light"] .text-red-300 {
+[data-theme="light"] .text-cyan-400,
+[data-theme="light"] .text-amber-400 {
   color: #2563eb !important;
-}
-
-/* 2. BACKGROUND RED OVERRIDES TO ROYAL BLUE / NAVY */
-[data-theme="light"] .bg-red-600,
-[data-theme="light"] .bg-red-500,
-[data-theme="light"] .bg-red-700,
-[data-theme="light"] .bg-red-800,
-[data-theme="light"] .bg-red-900 {
-  background-color: #2563eb !important;
+  opacity: 1 !important;
 }
 
 [data-theme="light"] .bg-red-600\/20,
 [data-theme="light"] .bg-red-500\/10,
 [data-theme="light"] .bg-red-500\/20,
-[data-theme="light"] .bg-red-950\/30,
-[data-theme="light"] .bg-red-950\/80 {
-  background-color: rgba(37, 99, 235, 0.12) !important;
-}
-
-/* 3. BORDER RED OVERRIDES TO BLUE */
-[data-theme="light"] .border-red-500,
-[data-theme="light"] .border-red-500\/30,
-[data-theme="light"] .border-red-500\/40,
-[data-theme="light"] .border-red-500\/50,
-[data-theme="light"] .border-red-600 {
-  border-color: rgba(37, 99, 235, 0.35) !important;
-}
-
-/* 4. GRADIENT OVERRIDES TO CORPORATE BLUE & NAVY */
-[data-theme="light"] .from-red-600,
-[data-theme="light"] .from-red-700,
-[data-theme="light"] .from-red-950,
-[data-theme="light"] .via-red-700 {
-  --tw-gradient-from: #1e3a8a !important;
-  --tw-gradient-to: #2563eb !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-/* 5. BUTTON & NAVBAR ACTIVE STATE OVERRIDES */
-[data-theme="light"] .bg-gradient-to-r.from-red-600.to-slate-900 {
-  background-image: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%) !important;
-}
-
-[data-theme="light"] header nav {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  border-color: rgba(226, 232, 240, 0.8) !important;
-}
-
-[data-theme="light"] header div.bg-\[\#040711\] {
-  background-color: #1e3a8a !important;
-  color: #ffffff !important;
-}
-
-/* Top bar icons & elements in Light Mode */
-[data-theme="light"] header div.bg-\[\#040711\] .text-red-500 {
-  color: #38bdf8 !important;
-}
-
-/* 6. GLOBAL CONTAINER BACKGROUND OVERRIDES */
-[data-theme="light"] .bg-\[\#070b18\],
-[data-theme="light"] .bg-\[\#080B16\],
-[data-theme="light"] .bg-\[\#040711\],
-[data-theme="light"] .bg-slate-950,
-[data-theme="light"] .bg-slate-900 {
-  background-color: #ffffff !important;
-}
-
+[data-theme="light"] .bg-white\/5,
 [data-theme="light"] .bg-slate-900\/60,
-[data-theme="light"] .bg-slate-900\/40,
-[data-theme="light"] .bg-white\/5 {
+[data-theme="light"] .bg-slate-900\/40 {
   background-color: #f1f5f9 !important;
 }
 
-/* 7. TEXT COLOR OVERRIDES */
-[data-theme="light"] .text-slate-300,
-[data-theme="light"] .text-slate-400 {
-  color: #475569 !important;
-}
-
-[data-theme="light"] .text-slate-200,
-[data-theme="light"] .text-slate-100,
-[data-theme="light"] .text-white {
-  color: #0f172a !important;
-}
-
-/* 8. BORDER OVERRIDES */
 [data-theme="light"] .border-slate-800,
 [data-theme="light"] .border-white\/10,
 [data-theme="light"] .border-white\/5 {
   border-color: #e2e8f0 !important;
 }
 
-/* 9. FOOTER OVERRIDES */
+/* 6. NAVBAR IN LIGHT MODE */
+[data-theme="light"] header nav {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] header div.bg-\[\#040711\] {
+  background-color: #123c8f !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] header div.bg-\[\#040711\] .text-slate-300,
+[data-theme="light"] header div.bg-\[\#040711\] span,
+[data-theme="light"] header div.bg-\[\#040711\] a {
+  color: #ffffff !important;
+}
+
+/* 7. FOOTER IN LIGHT MODE (Stays Crisp Dark Navy) */
 [data-theme="light"] footer {
   background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="light"] footer h1,
+[data-theme="light"] footer h2,
+[data-theme="light"] footer h3,
+[data-theme="light"] footer h4,
+[data-theme="light"] footer h5,
+[data-theme="light"] footer h6,
+[data-theme="light"] footer p,
+[data-theme="light"] footer span,
+[data-theme="light"] footer a,
+[data-theme="light"] footer div {
   color: #f8fafc !important;
 }
 
@@ -295,11 +300,6 @@ a {
   color: #94a3b8 !important;
 }
 
-[data-theme="light"] footer .text-white {
-  color: #ffffff !important;
-}
-
-[data-theme="light"] footer .text-red-400,
-[data-theme="light"] footer .text-red-500 {
+[data-theme="light"] footer a:hover {
   color: #38bdf8 !important;
 }
