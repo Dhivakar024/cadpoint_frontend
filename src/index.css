@@ -18,7 +18,7 @@
     --border-card: rgba(226, 232, 240, 0.9);
     --text-main: #0f172a;
     --text-muted: #475569;
-    --brand-red: #e31e24;
+    --brand-red: #2563eb;
     --brand-navy: #1e3a8a;
     --brand-blue: #2563eb;
   }
@@ -102,7 +102,7 @@ a {
 }
 
 [data-theme="light"] .glass-card:hover {
-  border-color: rgba(227, 30, 36, 0.45);
+  border-color: rgba(37, 99, 235, 0.45);
   box-shadow: 0 12px 30px -10px rgba(37, 99, 235, 0.18);
 }
 
@@ -149,13 +149,19 @@ a {
 }
 
 [data-theme="light"] .text-gradient-brand {
-  background: linear-gradient(135deg, #e31e24 0%, #2563eb 50%, #1e3a8a 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0284c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-red {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .text-gradient-red {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -173,9 +179,60 @@ a {
     linear-gradient(to bottom, rgba(30, 58, 138, 0.04) 1px, transparent 1px);
 }
 
-/* Light Mode Comprehensive Global Overrides */
+/* =========================================================================
+   LIGHT THEME COMPREHENSIVE BLUE & WHITE OVERRIDES (EXCLUDING ORIGINAL LOGO)
+   ========================================================================= */
 [data-theme="light"] {
-  background-color: #f8fafc !important;
+  background-color: #ffffff !important;
+}
+
+/* 1. TEXT RED OVERRIDES TO ROYAL BLUE */
+[data-theme="light"] .text-red-400,
+[data-theme="light"] .text-red-500,
+[data-theme="light"] .text-red-600,
+[data-theme="light"] .text-red-300 {
+  color: #2563eb !important;
+}
+
+/* 2. BACKGROUND RED OVERRIDES TO ROYAL BLUE / NAVY */
+[data-theme="light"] .bg-red-600,
+[data-theme="light"] .bg-red-500,
+[data-theme="light"] .bg-red-700,
+[data-theme="light"] .bg-red-800,
+[data-theme="light"] .bg-red-900 {
+  background-color: #2563eb !important;
+}
+
+[data-theme="light"] .bg-red-600\/20,
+[data-theme="light"] .bg-red-500\/10,
+[data-theme="light"] .bg-red-500\/20,
+[data-theme="light"] .bg-red-950\/30,
+[data-theme="light"] .bg-red-950\/80 {
+  background-color: rgba(37, 99, 235, 0.12) !important;
+}
+
+/* 3. BORDER RED OVERRIDES TO BLUE */
+[data-theme="light"] .border-red-500,
+[data-theme="light"] .border-red-500\/30,
+[data-theme="light"] .border-red-500\/40,
+[data-theme="light"] .border-red-500\/50,
+[data-theme="light"] .border-red-600 {
+  border-color: rgba(37, 99, 235, 0.35) !important;
+}
+
+/* 4. GRADIENT OVERRIDES TO CORPORATE BLUE & NAVY */
+[data-theme="light"] .from-red-600,
+[data-theme="light"] .from-red-700,
+[data-theme="light"] .from-red-950,
+[data-theme="light"] .via-red-700 {
+  --tw-gradient-from: #1e3a8a !important;
+  --tw-gradient-to: #2563eb !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+/* 5. BUTTON & NAVBAR ACTIVE STATE OVERRIDES */
+[data-theme="light"] .bg-gradient-to-r.from-red-600.to-slate-900 {
+  background-image: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%) !important;
 }
 
 [data-theme="light"] header nav {
@@ -185,9 +242,15 @@ a {
 
 [data-theme="light"] header div.bg-\[\#040711\] {
   background-color: #1e3a8a !important;
-  color: #f8fafc !important;
+  color: #ffffff !important;
 }
 
+/* Top bar icons & elements in Light Mode */
+[data-theme="light"] header div.bg-\[\#040711\] .text-red-500 {
+  color: #38bdf8 !important;
+}
+
+/* 6. GLOBAL CONTAINER BACKGROUND OVERRIDES */
 [data-theme="light"] .bg-\[\#070b18\],
 [data-theme="light"] .bg-\[\#080B16\],
 [data-theme="light"] .bg-\[\#040711\],
@@ -202,6 +265,7 @@ a {
   background-color: #f1f5f9 !important;
 }
 
+/* 7. TEXT COLOR OVERRIDES */
 [data-theme="light"] .text-slate-300,
 [data-theme="light"] .text-slate-400 {
   color: #475569 !important;
@@ -213,12 +277,14 @@ a {
   color: #0f172a !important;
 }
 
+/* 8. BORDER OVERRIDES */
 [data-theme="light"] .border-slate-800,
 [data-theme="light"] .border-white\/10,
 [data-theme="light"] .border-white\/5 {
   border-color: #e2e8f0 !important;
 }
 
+/* 9. FOOTER OVERRIDES */
 [data-theme="light"] footer {
   background-color: #0f172a !important;
   color: #f8fafc !important;
@@ -231,4 +297,9 @@ a {
 
 [data-theme="light"] footer .text-white {
   color: #ffffff !important;
+}
+
+[data-theme="light"] footer .text-red-400,
+[data-theme="light"] footer .text-red-500 {
+  color: #38bdf8 !important;
 }
