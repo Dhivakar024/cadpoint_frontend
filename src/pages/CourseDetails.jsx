@@ -305,27 +305,6 @@ export function CourseDetails() {
         </div>
       </section>
 
-      {/* REAL-WORLD PROJECTS */}
-      <section className="space-y-6">
-        <div className="flex items-center gap-2">
-          <Target className="w-5 h-5 text-amber-400" />
-          <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">
-            Projects Included
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {course.projects.map((project, idx) => (
-            <Card key={idx} className="p-6 border-slate-800 space-y-3 hover:border-amber-500/40 transition-colors">
-              <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs border border-amber-500/20">
-                P{idx + 1}
-              </div>
-              <h3 className="text-base font-bold text-white font-heading">{project.name || project.title}</h3>
-              <p className="text-xs text-slate-300 leading-relaxed">{project.description}</p>
-            </Card>
-          ))}
-        </div>
-      </section>
 
       {/* CAREER OPPORTUNITIES */}
       <section className="space-y-6">
