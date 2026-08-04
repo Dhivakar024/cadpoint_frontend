@@ -1,4 +1,113 @@
-export const COURSES = [
+// Helper function to generate clean, readable slugs
+export const generateSlug = (title, id) => {
+  const customSlugs = {
+    'it-python': 'python-programming',
+    'it-java': 'java-programming',
+    'it-c': 'c-programming',
+    'it-cpp': 'cpp-programming',
+    'it-js': 'javascript-essentials',
+    'it-htmlcss': 'html-css-web-design',
+    'it-react': 'react-basics',
+    'it-node': 'node-js-basics',
+    'it-mongodb': 'mongodb-database',
+    'it-aws': 'aws-essentials',
+    'it-docker': 'docker-containerization',
+    'it-k8s': 'kubernetes-devops',
+    'it-ml': 'machine-learning-python',
+    'it-powerbi': 'power-bi-analytics',
+    'it-prof-python': 'full-stack-python-react',
+    'it-prof-java': 'java-full-stack-spring-boot',
+    'it-prof-mern': 'mern-stack-development',
+    'it-prof-ds': 'data-science-ai',
+    'it-prof-devops': 'cloud-devops-engineering',
+    'it-master-fullstack': 'master-diploma-full-stack',
+    'it-master-ds': 'master-diploma-data-science',
+    'mm-photoshop': 'graphic-design-photoshop',
+    'mm-aftereffects': 'visual-effects-after-effects',
+    'mm-maya': 'maya-3d-modeling',
+    'mm-uiux': 'ui-ux-design-figma',
+    'mm-master-vfx': 'master-animation-vfx',
+    'acc-tally': 'tally-prime-gst',
+    'acc-excel': 'advanced-excel-analytics',
+    'acc-sap-fico': 'sap-erp-fico',
+    'acc-diploma-tax': 'financial-accounting-taxation',
+    'acc-master-sap': 'sap-erp-implementation',
+    'civil-cad-2d': 'autocad-2d-civil',
+    'civil-cad-3d': 'autocad-3d-civil',
+    'civil-microstation': 'microstation-civil',
+    'civil-archicad': 'archicad-bim',
+    'civil-revit-arch': 'revit-architecture',
+    'civil-bim-cert': 'building-information-modeling-bim',
+    'civil-3dsmax': '3ds-max-architectural-visualization',
+    'civil-staad': 'staad-pro-structural-design',
+    'civil-etabs': 'etabs-structural-analysis',
+    'civil-navisworks': 'navisworks-bim-coordination',
+    'civil-tekla-detail': 'tekla-structural-detailing',
+    'civil-vray': 'vray-rendering-architecture',
+    'civil-sketchup': 'sketchup-3d-modeling',
+    'civil-civil3d': 'civil-3d-land-survey',
+    'civil-ansys-fea': 'ansys-structural-fea',
+    'civil-dip-autocad': 'diploma-autocad-civil',
+    'civil-dip-bim': 'diploma-bim-design',
+    'civil-dip-rcc-etabs': 'diploma-rcc-structural-design',
+    'civil-dip-steel-tekla': 'diploma-steel-structure-tekla',
+    'civil-dip-interior': 'diploma-interior-designing',
+    'civil-dip-estimation': 'diploma-estimation-costing',
+    'civil-dip-roadway': 'diploma-roadway-design',
+    'civil-prof-arch': 'professional-architectural-design',
+    'civil-prof-building-staad': 'professional-building-design',
+    'civil-prof-transport': 'professional-transportation-design',
+    'civil-master-arch': 'master-diploma-architectural-design',
+    'civil-master-struct': 'master-diploma-structural-engineering',
+    'civil-master-bim': 'master-diploma-bim-engineering',
+    'mech-autocad-2d': 'autocad-2d-mechanical',
+    'mech-solidworks': 'solidworks-3d-design',
+    'mech-catia': 'catia-v5-design',
+    'mech-creo': 'creo-parametric',
+    'mech-ansys-wb': 'ansys-workbench-fea',
+    'mech-ansys-fluent': 'ansys-fluent-cfd',
+    'mech-hypermesh': 'hypermesh-fea',
+    'mech-inventor': 'autodesk-inventor',
+    'mech-gdt': 'gdt-standards',
+    'mech-pdms': 'pdms-piping-plant',
+    'mech-cnc-cam': 'cnc-cam-mastercam',
+    'mech-aero-cad': 'aeronautical-cad-design',
+    'mech-auto-cad': 'automobile-cad-design',
+    'mech-dip-draft-3d': 'diploma-mechanical-drafting-3d',
+    'mech-dip-cam': 'diploma-nx-cam-cnc',
+    'mech-dip-piping': 'diploma-piping-design',
+    'mech-prof-cam-cnc': 'professional-cam-cnc',
+    'mech-master-cad': 'master-diploma-mechanical-cad',
+    'mech-master-aero': 'master-diploma-aerospace-design',
+    'elec-autocad-elec': 'autocad-electrical',
+    'elec-revit-mep': 'revit-mep-electrical',
+    'elec-eplan': 'electrical-wiring-harness-eplan',
+    'elec-etap': 'etap-power-systems',
+    'elec-dialux': 'dialux-lighting-design',
+    'elec-plc-scada': 'plc-scada-automation',
+    'elec-dip-cad': 'diploma-electrical-cad',
+    'elec-dip-mep-hvac': 'diploma-hvac-mep-design',
+    'elec-dip-building': 'diploma-electrical-building-services',
+    'elec-prof-mep': 'professional-mep-designing',
+    'elec-master-mep-bim': 'master-diploma-mep-hvac'
+  };
+
+  if (customSlugs[id]) return customSlugs[id];
+
+  return title
+    .toLowerCase()
+    .replace(/certificate in /g, '')
+    .replace(/certification course on /g, '')
+    .replace(/certification course in /g, '')
+    .replace(/certification in /g, '')
+    .replace(/diploma in /g, '')
+    .replace(/professional in /g, '')
+    .replace(/master diploma in /g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
+const BASE_COURSES = [
   // ==========================================
   // 1. IT & NON-IT COURSES
   // ==========================================
@@ -10,9 +119,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Languages",
-    software: "Python",
+    software: "Python, VS Code, Git",
     image: "/images/python.jpg",
-    description: "Foundational Python programming concepts and hands-on exercises."
+    description: "Foundational Python programming concepts, object-oriented principles, and hands-on algorithm exercises."
   },
   {
     id: "it-java",
@@ -22,9 +131,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Languages",
-    software: "Java",
+    software: "Java, Eclipse, Maven",
     image: "/images/java.jpg",
-    description: "Java basics and core concepts for application development."
+    description: "Java basics, object-oriented concepts, multithreading, and core application development."
   },
   {
     id: "it-c",
@@ -34,9 +143,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Languages",
-    software: "C",
+    software: "C, GCC, Code::Blocks",
     image: "/images/c.jpg",
-    description: "C language fundamentals and procedural programming."
+    description: "C language fundamentals, pointers, memory management, and procedural programming."
   },
   {
     id: "it-cpp",
@@ -46,9 +155,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Languages",
-    software: "C++",
+    software: "C++, STL, CLion",
     image: "/images/cpp.jpg",
-    description: "C++ syntax, OOP basics, and standard library usage."
+    description: "C++ syntax, Object-Oriented Programming (OOP) principles, Templates, and Standard Template Library."
   },
   {
     id: "it-js",
@@ -58,9 +167,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Web Designing",
-    software: "JavaScript",
+    software: "JavaScript ES6+, DevTools, Node.js",
     image: "/images/javascript.jpg",
-    description: "Core JavaScript essentials for modern web development."
+    description: "Modern JavaScript (ES6+), DOM manipulation, asynchronous programming, and web app logic."
   },
   {
     id: "it-htmlcss",
@@ -70,9 +179,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Web Designing",
-    software: "HTML, CSS",
+    software: "HTML5, CSS3, Flexbox, Grid",
     image: "/images/htmlcss.jpg",
-    description: "Foundations of web layout, semantic tags, and modern responsive styling."
+    description: "Semantic HTML5, CSS3 styling, responsive layouts, Flexbox, Grid, and cross-browser design."
   },
   {
     id: "it-react",
@@ -82,9 +191,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Frameworks",
-    software: "React",
+    software: "React 19, Vite, JSX, Tailwind CSS",
     image: "/images/react.jpg",
-    description: "React fundamentals: component lifecycle, hooks, state, and props."
+    description: "React fundamentals: component lifecycle, hooks, state management, router, and SPA architecture."
   },
   {
     id: "it-node",
@@ -94,9 +203,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Frameworks",
-    software: "Node.js",
+    software: "Node.js, Express.js, REST APIs",
     image: "/images/node.jpg",
-    description: "Node.js runtime basics, event loop, REST APIs, and server-side JS."
+    description: "Node.js runtime, asynchronous event loop, Express backend routes, and REST API development."
   },
   {
     id: "it-mongodb",
@@ -106,9 +215,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Database",
-    software: "MongoDB",
+    software: "MongoDB, Compass, Mongoose",
     image: "/images/mongodb.jpg",
-    description: "NoSQL fundamentals with MongoDB CRUD operations, indexing, and aggregation."
+    description: "NoSQL document database design, CRUD operations, aggregation pipelines, and indexing."
   },
   {
     id: "it-aws",
@@ -118,9 +227,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Cloud Computing",
-    software: "AWS",
+    software: "AWS Console, EC2, S3, Lambda, IAM",
     image: "/images/aws.jpg",
-    description: "Core AWS cloud services: EC2, S3, IAM, Lambda, and VPC fundamentals."
+    description: "Core AWS cloud services: EC2 instances, S3 storage, IAM security, Lambda, and VPC networking."
   },
   {
     id: "it-docker",
@@ -130,9 +239,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "DevOps",
-    software: "Docker",
+    software: "Docker Engine, Dockerfile, Docker Compose",
     image: "/images/docker.jpg",
-    description: "Containerization fundamentals, Dockerfiles, images, containers, and Docker Compose."
+    description: "Containerization fundamentals, writing Dockerfiles, image building, container networking, and Compose."
   },
   {
     id: "it-k8s",
@@ -142,9 +251,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "DevOps",
-    software: "Kubernetes",
+    software: "Kubernetes, kubectl, Helm, Minikube",
     image: "/images/kubernetes.jpg",
-    description: "Container orchestration basics, deployments, pods, services, and cluster management."
+    description: "Container orchestration, Pods, Deployments, Services, ConfigMaps, and cluster management."
   },
   {
     id: "it-ml",
@@ -154,9 +263,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Database & AI",
-    software: "Python, Scikit-Learn",
+    software: "Python, Scikit-Learn, NumPy, Pandas",
     image: "/images/machine_learning.jpg",
-    description: "ML fundamentals, supervised & unsupervised learning, and model building basics."
+    description: "Machine Learning foundations, supervised and unsupervised algorithms, regression, and classification."
   },
   {
     id: "it-powerbi",
@@ -166,9 +275,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Database & AI",
-    software: "Power BI",
+    software: "Power BI Desktop, DAX, Query Editor",
     image: "/images/machine_learning.jpg",
-    description: "Power BI essentials for interactive dashboards, DAX queries, and reporting."
+    description: "Power BI essentials for business analytics, DAX formulas, interactive dashboards, and automated reports."
   },
   {
     id: "it-prof-python",
@@ -180,7 +289,7 @@ export const COURSES = [
     category: "Full Stack",
     software: "Python, Django, React, PostgreSQL, Git",
     image: "/images/python.jpg",
-    description: "Extensive full-stack professional program covering Python, Django, REST APIs, and React UI development."
+    description: "Complete full-stack engineering covering Python, Django REST framework, React UI, and PostgreSQL deployment."
   },
   {
     id: "it-prof-java",
@@ -192,7 +301,7 @@ export const COURSES = [
     category: "Full Stack",
     software: "Java, Spring Boot, Angular, MySQL",
     image: "/images/java.jpg",
-    description: "Professional Java full stack training with Spring Boot microservices and modern frontend."
+    description: "Enterprise Java full stack training with Spring Boot microservices, REST APIs, and Angular frontend."
   },
   {
     id: "it-prof-mern",
@@ -204,7 +313,7 @@ export const COURSES = [
     category: "Full Stack",
     software: "MongoDB, Express, React, Node.js",
     image: "/images/react.jpg",
-    description: "Complete MERN stack professional training with real-time projects and production deployment."
+    description: "Complete MERN stack professional development with real-time state management and production cloud deployment."
   },
   {
     id: "it-prof-ds",
@@ -216,7 +325,7 @@ export const COURSES = [
     category: "AI & Analytics",
     software: "Python, Pandas, TensorFlow, Tableau, SQL",
     image: "/images/machine_learning.jpg",
-    description: "In-depth data science and AI professional training with real-world case studies and predictive analytics."
+    description: "In-depth data science training covering data modeling, exploratory analysis, neural networks, and AI deployment."
   },
   {
     id: "it-prof-devops",
@@ -228,7 +337,7 @@ export const COURSES = [
     category: "DevOps",
     software: "AWS, Azure, Docker, Kubernetes, Jenkins, Terraform",
     image: "/images/kubernetes.jpg",
-    description: "Cloud and DevOps skills for production environments, CI/CD automation, and infrastructure as code."
+    description: "Cloud & DevOps engineering covering CI/CD pipelines, Infrastructure as Code, Kubernetes clusters, and security."
   },
   {
     id: "it-master-fullstack",
@@ -238,9 +347,9 @@ export const COURSES = [
     duration: "260 hours",
     mode: "Online / Offline",
     category: "Master Engineering",
-    software: "Full Stack Suite, Cloud, DevOps",
+    software: "Full Stack Suite, Cloud, Microservices, DevOps",
     image: "/images/node.jpg",
-    description: "Comprehensive master-level full-stack development program with system design, microservices, and live client projects."
+    description: "Master-level software engineering covering multi-tier architecture, system design, cloud microservices, and live client projects."
   },
   {
     id: "it-master-ds",
@@ -250,9 +359,9 @@ export const COURSES = [
     duration: "280 hours",
     mode: "Online / Offline",
     category: "Master Engineering",
-    software: "Python, Deep Learning, NLP, Big Data",
+    software: "Python, PyTorch, Deep Learning, Big Data, Spark",
     image: "/images/machine_learning.jpg",
-    description: "Deep dive into data science, machine learning models, neural networks, and big data ecosystems."
+    description: "Advanced master program in deep learning, neural networks, NLP, Computer Vision, and big data ecosystems."
   },
 
   // ==========================================
@@ -266,9 +375,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Graphic Design",
-    software: "Adobe Photoshop",
+    software: "Adobe Photoshop, Illustrator",
     image: "/images/htmlcss.jpg",
-    description: "Learn graphic design fundamentals, image manipulation, and digital artwork using Adobe Photoshop."
+    description: "Graphic design principles, image manipulation, digital branding, photo retouching, and poster creation."
   },
   {
     id: "mm-aftereffects",
@@ -278,9 +387,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "VFX & Motion",
-    software: "Adobe After Effects",
+    software: "Adobe After Effects, Premiere Pro",
     image: "/images/cpp.jpg",
-    description: "Learn VFX, compositing, motion graphics, and green screen keying using After Effects."
+    description: "Motion graphics, visual effects compositing, green screen keying, title animations, and video post-production."
   },
   {
     id: "mm-maya",
@@ -290,9 +399,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "3D & Animation",
-    software: "Autodesk Maya",
+    software: "Autodesk Maya, Arnold Renderer",
     image: "/images/c.jpg",
-    description: "3D modeling fundamentals, texturing, lighting, and asset creation in Autodesk Maya."
+    description: "3D polygon modeling, texturing, UV unwrapping, lighting, and asset generation in Autodesk Maya."
   },
   {
     id: "mm-uiux",
@@ -302,9 +411,9 @@ export const COURSES = [
     duration: "160 hours",
     mode: "Online / Offline",
     category: "UI/UX",
-    software: "Figma, Adobe XD, Photoshop",
+    software: "Figma, Adobe XD, Photoshop, Principle",
     image: "/images/javascript.jpg",
-    description: "UI/UX design with modern design systems, wireframing, interactive prototyping, and user testing."
+    description: "User experience research, wireframing, interactive mobile/web design systems, prototyping, and usability testing."
   },
   {
     id: "mm-master-vfx",
@@ -314,9 +423,9 @@ export const COURSES = [
     duration: "280 hours",
     mode: "Online / Offline",
     category: "Master Media",
-    software: "Maya, Blender, After Effects, Nuke",
+    software: "Maya, Blender, After Effects, Nuke, Premiere",
     image: "/images/react.jpg",
-    description: "Advanced animation & VFX master diploma preparing students for film, gaming, and commercial production."
+    description: "Complete master diploma in 3D character animation, VFX compositing, lighting, and film production pipelines."
   },
 
   // ==========================================
@@ -330,9 +439,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Accounting",
-    software: "Tally Prime",
+    software: "Tally Prime, GST Portal",
     image: "/images/mongodb.jpg",
-    description: "Practical accounting and GST workflows, e-way bills, inventory, and voucher entries using Tally Prime."
+    description: "Practical computerized accounting, GST filing, e-way bills, inventory control, and voucher entries using Tally Prime."
   },
   {
     id: "acc-excel",
@@ -342,9 +451,9 @@ export const COURSES = [
     duration: "60 hours",
     mode: "Online / Offline",
     category: "Finance",
-    software: "Excel, Power Query, Macros",
+    software: "Excel 365, Power Query, Pivot, VBA",
     image: "/images/machine_learning.jpg",
-    description: "Advanced Excel techniques for financial analysis, pivot tables, VLOOKUP/XLOOKUP, and report automation."
+    description: "Advanced Excel methods for financial modeling, data cleanup, XLOOKUP, pivot tables, and macro automation."
   },
   {
     id: "acc-sap-fico",
@@ -356,7 +465,7 @@ export const COURSES = [
     category: "ERP Systems",
     software: "SAP FICO S/4HANA",
     image: "/images/java.jpg",
-    description: "Introductory course on SAP FICO for general ledger, accounts payable, receivable, and financial controlling."
+    description: "SAP FICO module configuration, General Ledger, Accounts Payable, Receivable, and financial controlling."
   },
   {
     id: "acc-diploma-tax",
@@ -366,9 +475,9 @@ export const COURSES = [
     duration: "140 hours",
     mode: "Online / Offline",
     category: "Taxation",
-    software: "Tally Prime, GST Portal, Income Tax",
+    software: "Tally Prime, Excel, GST & IT Portals",
     image: "/images/python.jpg",
-    description: "Professional accounting and taxation program with practical exposure to GST returns, TDS, and balance sheets."
+    description: "Comprehensive accounting and direct/indirect taxation diploma covering GST returns, TDS calculation, and balance sheets."
   },
   {
     id: "acc-master-sap",
@@ -378,47 +487,37 @@ export const COURSES = [
     duration: "200 hours",
     mode: "Online / Offline",
     category: "ERP Master",
-    software: "SAP FICO, MM, SD, PP",
+    software: "SAP S/4HANA FICO, MM, SD",
     image: "/images/aws.jpg",
-    description: "Comprehensive SAP ERP implementation, configuration, business blueprinting, and end-to-end integration."
+    description: "Master level SAP ERP implementation diploma covering business blueprinting, cross-module integration, and enterprise reporting."
   },
 
   // ==========================================
-  // 4. CIVIL & ARCHITECTURE COURSES (NEW)
+  // 4. CIVIL & ARCHITECTURE COURSES
   // ==========================================
-  // Certifications
   {
     id: "civil-cad-2d",
-    title: "Certification Course on AutoCAD 2D / Foundation Course in Civil CAD",
+    title: "Certification Course on AutoCAD 2D",
     domain: "Civil & Architecture",
     level: "Certificate",
     duration: "64 hours",
     mode: "Online / Offline",
     category: "Drafting",
-    software: "AutoCAD 2D",
-    description: "Foundation-level civil drafting and architectural drawing using AutoCAD 2D."
+    software: "AutoCAD 2D Civil",
+    image: "/images/c.jpg",
+    description: "Foundational civil engineering drafting, architectural floor plans, sections, elevations, and CAD standards."
   },
   {
     id: "civil-cad-3d",
-    title: "Certification Course on AutoCAD 3D / Foundation Course in Civil CAD",
+    title: "Certification Course on AutoCAD 3D",
     domain: "Civil & Architecture",
     level: "Certificate",
     duration: "100 hours",
     mode: "Online / Offline",
     category: "Modeling",
-    software: "AutoCAD 3D",
-    description: "3D modeling and advanced structural drafting with AutoCAD 3D."
-  },
-  {
-    id: "civil-microstation",
-    title: "Certification Course on Microstation",
-    domain: "Civil & Architecture",
-    level: "Certificate",
-    duration: "64 hours",
-    mode: "Online / Offline",
-    category: "Drafting",
-    software: "Microstation",
-    description: "Microstation drafting, 2D/3D modeling, and infrastructure design."
+    software: "AutoCAD 3D Civil",
+    image: "/images/cpp.jpg",
+    description: "3D solid modeling, surface generation, rendering, and structural detailing in AutoCAD 3D."
   },
   {
     id: "civil-archicad",
@@ -428,41 +527,33 @@ export const COURSES = [
     duration: "80 hours",
     mode: "Online / Offline",
     category: "BIM",
-    software: "ArchiCAD",
-    description: "ArchiCAD for building information modeling and architectural workflows."
+    software: "Graphisoft ArchiCAD",
+    image: "/images/htmlcss.jpg",
+    description: "Building Information Modeling (BIM) using ArchiCAD for parametric architectural design and documentation."
   },
   {
     id: "civil-revit-arch",
-    title: "Certification Course on Revit Architecture / Architectural Designing",
+    title: "Certification Course on Revit Architecture",
     domain: "Civil & Architecture",
     level: "Certificate",
     duration: "80 hours",
     mode: "Online / Offline",
     category: "BIM",
-    software: "Revit Architecture",
-    description: "Revit Architecture training for BIM workflows, parametric modeling, and documentation."
-  },
-  {
-    id: "civil-bim-cert",
-    title: "Certificate Course in Building Information Modeling (BIM)",
-    domain: "Civil & Architecture",
-    level: "Certificate",
-    duration: "120 hours",
-    mode: "Online / Offline",
-    category: "BIM",
-    software: "Revit, Navisworks",
-    description: "Advanced BIM training using Revit, clash detection, and collaborative workflows."
+    software: "Autodesk Revit Architecture",
+    image: "/images/javascript.jpg",
+    description: "Revit Architecture BIM training covering 3D building components, parametric families, and construction drawings."
   },
   {
     id: "civil-3dsmax",
-    title: "Certificate Course in 3ds Max / Architectural Visualization",
+    title: "Certificate Course in 3ds Max Architectural Visualization",
     domain: "Civil & Architecture",
     level: "Certificate",
     duration: "80 hours",
     mode: "Online / Offline",
     category: "Visualization",
-    software: "3ds Max",
-    description: "3D visualization, camera setups, and photorealistic rendering using 3ds Max."
+    software: "Autodesk 3ds Max, V-Ray",
+    image: "/images/python.jpg",
+    description: "Photorealistic 3D architectural rendering, materials, camera setup, and interior/exterior lighting."
   },
   {
     id: "civil-staad",
@@ -472,199 +563,34 @@ export const COURSES = [
     duration: "80 hours",
     mode: "Online / Offline",
     category: "Structural",
-    software: "STAAD Pro",
-    description: "Structural analysis and RCC design using STAAD Pro."
+    software: "STAAD.Pro CONNECT Edition",
+    image: "/images/java.jpg",
+    description: "Structural analysis and Reinforced Concrete (RCC) & Steel structure design using STAAD.Pro."
   },
   {
     id: "civil-etabs",
-    title: "Certification Course on ETABS",
+    title: "Certification Course on ETABS Structural Analysis",
     domain: "Civil & Architecture",
     level: "Certificate",
     duration: "80 hours",
     mode: "Online / Offline",
     category: "Structural",
-    software: "ETABS",
-    description: "Structural modeling, seismic analysis, and design using ETABS."
+    software: "CSI ETABS",
+    image: "/images/node.jpg",
+    description: "High-rise building structural analysis, seismic load evaluation, shear wall design, and framing using ETABS."
   },
-  {
-    id: "civil-navisworks",
-    title: "Certification Course on BIM Coordination Using Navisworks",
-    domain: "Civil & Architecture",
-    level: "Certificate",
-    duration: "40 hours",
-    mode: "Online / Offline",
-    category: "BIM",
-    software: "Navisworks",
-    description: "BIM coordination, 4D simulation, and clash detection using Navisworks."
-  },
-  {
-    id: "civil-tekla-detail",
-    title: "Certification Course on Structural Detailing with Tekla Structures",
-    domain: "Civil & Architecture",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "Structural",
-    software: "Tekla Structures",
-    description: "Tekla Structures for steel detailing, rebar detailing, and concrete modeling."
-  },
-  {
-    id: "civil-vray",
-    title: "Certification Course on VRay Rendering",
-    domain: "Civil & Architecture",
-    level: "Certificate",
-    duration: "40 hours",
-    mode: "Online / Offline",
-    category: "Visualization",
-    software: "V-Ray",
-    description: "Photorealistic rendering and lighting with V-Ray for architecture."
-  },
-  {
-    id: "civil-sketchup",
-    title: "Certification Course on Architectural Modeling with SketchUp",
-    domain: "Civil & Architecture",
-    level: "Certificate",
-    duration: "40 hours",
-    mode: "Online / Offline",
-    category: "Visualization",
-    software: "SketchUp",
-    description: "3D architectural conceptual modeling and layout design using SketchUp."
-  },
-  {
-    id: "civil-civil3d",
-    title: "Certification Course on Civil 3D & Land Survey",
-    domain: "Civil & Architecture",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "Infrastructure",
-    software: "Civil 3D",
-    description: "Land survey drafting, surface modeling, and Civil 3D infrastructure workflows."
-  },
-  {
-    id: "civil-ansys-fea",
-    title: "Certification Course on Structural Analysis with FEA",
-    domain: "Civil & Architecture",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "Structural",
-    software: "Ansys Civil",
-    description: "Structural finite-element analysis (FEA) and stress distribution using Ansys."
-  },
-  // Diplomas
   {
     id: "civil-dip-autocad",
-    title: "Diploma in AutoCAD (Civil & Arch)",
+    title: "Diploma in AutoCAD Civil & Arch",
     domain: "Civil & Architecture",
     level: "Diploma",
     duration: "96 hours",
     mode: "Online / Offline",
     category: "Drafting",
-    software: "AutoCAD 2D & 3D",
-    description: "Comprehensive 2D & 3D civil drafting and architectural layouts diploma."
+    software: "AutoCAD 2D & 3D Civil",
+    image: "/images/c.jpg",
+    description: "Complete civil drafting diploma covering residential/commercial layouts, structural drawings, and 3D perspectives."
   },
-  {
-    id: "civil-dip-bim",
-    title: "Diploma in BIM (Building Information Modelling) Design",
-    domain: "Civil & Architecture",
-    level: "Diploma",
-    duration: "184 hours",
-    mode: "Online / Offline",
-    category: "BIM",
-    software: "Revit, Navisworks, Dynamo",
-    description: "Full spectrum BIM design diploma covering architecture, structure, and clash coordination."
-  },
-  {
-    id: "civil-dip-rcc-etabs",
-    title: "Diploma in RCC Structural Design",
-    domain: "Civil & Architecture",
-    level: "Diploma",
-    duration: "144 hours",
-    mode: "Online / Offline",
-    category: "Structural",
-    software: "ETABS, STAAD Pro",
-    description: "RCC structure design, load calculations, and framing layouts using ETABS."
-  },
-  {
-    id: "civil-dip-steel-tekla",
-    title: "Diploma in Steel Structure Drafting",
-    domain: "Civil & Architecture",
-    level: "Diploma",
-    duration: "144 hours",
-    mode: "Online / Offline",
-    category: "Structural",
-    software: "Tekla Structures",
-    description: "Steel structure drafting, connection detailing, and fabrication drawings using Tekla."
-  },
-  {
-    id: "civil-dip-interior",
-    title: "Diploma in Interior Designing",
-    domain: "Civil & Architecture",
-    level: "Diploma",
-    duration: "144 hours",
-    mode: "Online / Offline",
-    category: "Interior",
-    software: "3ds Max, SketchUp, V-Ray",
-    description: "Interior design drafting, 3D space planning, and photorealistic visualization."
-  },
-  {
-    id: "civil-dip-estimation",
-    title: "Diploma in Estimation & Costing",
-    domain: "Civil & Architecture",
-    level: "Diploma",
-    duration: "144 hours",
-    mode: "Online / Offline",
-    category: "Management",
-    software: "Quantity Takeoff, MS Excel",
-    description: "Estimation, quantity surveying (QTO), rate analysis, and project costing."
-  },
-  {
-    id: "civil-dip-roadway",
-    title: "Diploma in Roadway Design & Highway Engineering",
-    domain: "Civil & Architecture",
-    level: "Diploma",
-    duration: "160 hours",
-    mode: "Online / Offline",
-    category: "Infrastructure",
-    software: "Civil 3D, MX Road",
-    description: "Roadway design, corridor modeling, alignment, and highway structural simulation."
-  },
-  // Professional
-  {
-    id: "civil-prof-arch",
-    title: "Professional in Architectural Design",
-    domain: "Civil & Architecture",
-    level: "Professional",
-    duration: "240 hours",
-    mode: "Online / Offline",
-    category: "Architecture",
-    software: "AutoCAD, Revit, 3ds Max, V-Ray",
-    description: "Complete architectural planning, BIM modeling, 3D rendering, and visualization."
-  },
-  {
-    id: "civil-prof-building-staad",
-    title: "Professional in Building Design (STAAD & Ansys)",
-    domain: "Civil & Architecture",
-    level: "Professional",
-    duration: "240 hours",
-    mode: "Online / Offline",
-    category: "Structural",
-    software: "STAAD Pro, Ansys, AutoCAD",
-    description: "Comprehensive building design combining architectural modeling and structural FEA tools."
-  },
-  {
-    id: "civil-prof-transport",
-    title: "Professional in Transportation Design (Civil 3D + Primavera)",
-    domain: "Civil & Architecture",
-    level: "Professional",
-    duration: "340 hours",
-    mode: "Online / Offline",
-    category: "Infrastructure",
-    software: "Civil 3D, MX Road, Primavera",
-    description: "Advanced road engineering, infrastructure modeling, and Primavera project scheduling."
-  },
-  // Master Diploma
   {
     id: "civil-master-arch",
     title: "Master Diploma in Architectural Design",
@@ -673,46 +599,25 @@ export const COURSES = [
     duration: "380 hours",
     mode: "Online / Offline",
     category: "Master Civil",
-    software: "Revit, 3ds Max, Lumion, MS Projects",
-    description: "Advanced architectural master program with BIM, high-end rendering, and project management."
-  },
-  {
-    id: "civil-master-struct",
-    title: "Master Diploma in Structural Engineering with FEA",
-    domain: "Civil & Architecture",
-    level: "Master Diploma",
-    duration: "420 hours",
-    mode: "Online / Offline",
-    category: "Master Civil",
-    software: "STAAD Pro, ETABS, Ansys, SAFE",
-    description: "Comprehensive structural engineering, FEA analysis, and high-rise building simulation."
-  },
-  {
-    id: "civil-master-bim",
-    title: "Master Diploma in BIM Engineering",
-    domain: "Civil & Architecture",
-    level: "Master Diploma",
-    duration: "400 hours",
-    mode: "Online / Offline",
-    category: "Master Civil",
-    software: "Revit, Navisworks, Dynamo, SAP",
-    description: "Master level BIM program covering architecture, structural coordination, and automation."
+    software: "AutoCAD, Revit, 3ds Max, V-Ray, Lumion",
+    image: "/images/react.jpg",
+    description: "Master level architectural engineering diploma covering BIM, photorealistic rendering, walkthroughs, and project management."
   },
 
   // ==========================================
-  // 5. MECHANICAL & AERONAUTICAL COURSES (NEW)
+  // 5. MECHANICAL & AERONAUTICAL COURSES
   // ==========================================
-  // Certifications
   {
     id: "mech-autocad-2d",
-    title: "Certification in AutoCAD 2D (Mechanical)",
+    title: "Certification in AutoCAD 2D Mechanical",
     domain: "Mechanical & Aeronautical",
     level: "Certificate",
     duration: "64 hours",
     mode: "Online / Offline",
     category: "Drafting",
-    software: "AutoCAD 2D",
-    description: "AutoCAD 2D certification covering mechanical drafting and drawing fundamentals."
+    software: "AutoCAD Mechanical",
+    image: "/images/cpp.jpg",
+    description: "Mechanical component drafting, assembly drawings, geometric dimensioning, and CAD standards."
   },
   {
     id: "mech-solidworks",
@@ -722,19 +627,21 @@ export const COURSES = [
     duration: "80 hours",
     mode: "Online / Offline",
     category: "3D Design",
-    software: "SolidWorks",
-    description: "SolidWorks fundamentals, part modeling, sheet metal, assemblies, and drafting."
+    software: "Dassault SolidWorks",
+    image: "/images/python.jpg",
+    description: "SolidWorks 3D parametric modeling, complex sheet metal design, assembly creation, and technical drafting."
   },
   {
     id: "mech-catia",
-    title: "Certification in CATIA",
+    title: "Certification in CATIA V5",
     domain: "Mechanical & Aeronautical",
     level: "Certificate",
     duration: "80 hours",
     mode: "Online / Offline",
     category: "3D Design",
-    software: "CATIA V5",
-    description: "CATIA certification for surface modeling, solid modeling, and aerospace design."
+    software: "CATIA V5-6",
+    image: "/images/java.jpg",
+    description: "CATIA V5 surface modeling, generative shape design, aerospace components, and solid body modeling."
   },
   {
     id: "mech-creo",
@@ -744,153 +651,21 @@ export const COURSES = [
     duration: "80 hours",
     mode: "Online / Offline",
     category: "3D Design",
-    software: "Creo Parametric",
-    description: "Creo Parametric basics, part/assembly modeling, and engineering drawings."
+    software: "PTC Creo Parametric",
+    image: "/images/c.jpg",
+    description: "PTC Creo parametric modeling, mechanism design, sheet metal, and manufacturing drafting."
   },
   {
     id: "mech-ansys-wb",
-    title: "Certification in Ansys Workbench",
+    title: "Certification in Ansys Workbench FEA",
     domain: "Mechanical & Aeronautical",
     level: "Certificate",
     duration: "80 hours",
     mode: "Online / Offline",
     category: "FEA & Simulation",
-    software: "Ansys Workbench",
-    description: "Ansys Workbench for static structural FEA, thermal, and modal simulation workflows."
-  },
-  {
-    id: "mech-ansys-fluent",
-    title: "Certification in Ansys Fluent (CFD)",
-    domain: "Mechanical & Aeronautical",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "FEA & Simulation",
-    software: "Ansys Fluent",
-    description: "Computational Fluid Dynamics (CFD) fundamentals and aerodynamics using Ansys Fluent."
-  },
-  {
-    id: "mech-hypermesh",
-    title: "Certification in Altair HyperMesh",
-    domain: "Mechanical & Aeronautical",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "FEA & Simulation",
-    software: "HyperMesh",
-    description: "FEA preprocessing, 2D/3D meshing, and quality checks using Altair HyperMesh."
-  },
-  {
-    id: "mech-inventor",
-    title: "Certification in Autodesk Inventor",
-    domain: "Mechanical & Aeronautical",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "3D Design",
-    software: "Autodesk Inventor",
-    description: "Autodesk Inventor for parametric modeling, sheet metal, and mechanical assemblies."
-  },
-  {
-    id: "mech-gdt",
-    title: "Certification in GD&T (Geometric Dimensioning & Tolerancing)",
-    domain: "Mechanical & Aeronautical",
-    level: "Certificate",
-    duration: "24 hours",
-    mode: "Online / Offline",
-    category: "Quality Standards",
-    software: "GD&T Standards",
-    description: "Geometric Dimensioning & Tolerancing principles, datum references, and ASME standards."
-  },
-  {
-    id: "mech-pdms",
-    title: "Certification in PDMS (Plant Design Management System)",
-    domain: "Mechanical & Aeronautical",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "Piping & Plant",
-    software: "AVEVA PDMS",
-    description: "Plant design, piping equipment modeling, and layout drafting using PDMS tools."
-  },
-  {
-    id: "mech-cnc-cam",
-    title: "Certification in CNC & CAM Programming (PowerMill / Mastercam)",
-    domain: "Mechanical & Aeronautical",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "Manufacturing",
-    software: "Mastercam, PowerMill",
-    description: "G-code, M-code, manual CNC programming, and toolpath generation with Mastercam."
-  },
-  {
-    id: "mech-aero-cad",
-    title: "Certification in Aeronautical CAD Design",
-    domain: "Mechanical & Aeronautical",
-    level: "Certificate",
-    duration: "120 hours",
-    mode: "Online / Offline",
-    category: "Aerospace",
-    software: "CATIA V5",
-    description: "Aeronautical CAD design fundamentals, airframe surfaces, and wing modeling using CATIA."
-  },
-  {
-    id: "mech-auto-cad",
-    title: "Certification in Automobile CAD Design",
-    domain: "Mechanical & Aeronautical",
-    level: "Certificate",
-    duration: "120 hours",
-    mode: "Online / Offline",
-    category: "Automotive",
-    software: "SolidWorks, Creo",
-    description: "Automobile chassis, engine components, and body panel modeling using SolidWorks."
-  },
-  // Diplomas
-  {
-    id: "mech-dip-draft-3d",
-    title: "Diploma in Drafting & 3D Modeling",
-    domain: "Mechanical & Aeronautical",
-    level: "Diploma",
-    duration: "128 hours",
-    mode: "Online / Offline",
-    category: "3D Design",
-    software: "AutoCAD & Inventor",
-    description: "Comprehensive 2D drafting and 3D parametric modeling diploma."
-  },
-  {
-    id: "mech-dip-cam",
-    title: "Diploma in CAM Design (NX CAD & NX CAM)",
-    domain: "Mechanical & Aeronautical",
-    level: "Diploma",
-    duration: "160 hours",
-    mode: "Online / Offline",
-    category: "Manufacturing",
-    software: "NX CAD & NX CAM",
-    description: "CAM design workflows, multi-axis machining, and CNC simulation using Siemens NX."
-  },
-  {
-    id: "mech-dip-piping",
-    title: "Diploma in Piping Design & Drafting",
-    domain: "Mechanical & Aeronautical",
-    level: "Diploma",
-    duration: "144 hours",
-    mode: "Online / Offline",
-    category: "Piping & Plant",
-    software: "PDMS / SP3D",
-    description: "Piping design, isometric drawings, and process plant layout drafting."
-  },
-  // Professional & Master
-  {
-    id: "mech-prof-cam-cnc",
-    title: "Professional in CAM & CNC Programming",
-    domain: "Mechanical & Aeronautical",
-    level: "Professional",
-    duration: "280 hours",
-    mode: "Online / Offline",
-    category: "Manufacturing",
-    software: "NX-CAM, Mastercam, PowerMill",
-    description: "Advanced CAM workflows, toolpath optimization, and 5-axis CNC programming."
+    software: "Ansys Mechanical Workbench",
+    image: "/images/machine_learning.jpg",
+    description: "Finite Element Analysis (FEA), static structural stress distribution, thermal conduction, and modal analysis in Ansys."
   },
   {
     id: "mech-master-cad",
@@ -900,25 +675,14 @@ export const COURSES = [
     duration: "620 hours",
     mode: "Online / Offline",
     category: "Master Mechanical",
-    software: "SolidWorks, CATIA, Creo, Ansys, HyperMesh",
-    description: "Master-level program covering complete CAD design, FEA simulation, GD&T, and CAM."
-  },
-  {
-    id: "mech-master-aero",
-    title: "Master Diploma in Aerospace Design",
-    domain: "Mechanical & Aeronautical",
-    level: "Master Diploma",
-    duration: "500 hours",
-    mode: "Online / Offline",
-    category: "Master Mechanical",
-    software: "CATIA, Ansys Fluent, Nastran",
-    description: "Master-level aerospace CAD, CFD aerodynamics, FEA stress analysis, and structural theory."
+    software: "AutoCAD, SolidWorks, CATIA, Creo, Ansys",
+    image: "/images/node.jpg",
+    description: "Comprehensive master diploma in mechanical CAD/CAM/CAE engineering, GD&T tolerances, and automotive/aerospace design."
   },
 
   // ==========================================
-  // 6. ELECTRICAL & ELECTRONICS COURSES (NEW)
+  // 6. ELECTRICAL & ELECTRONICS COURSES
   // ==========================================
-  // Certifications
   {
     id: "elec-autocad-elec",
     title: "Certification Course on AutoCAD Electrical",
@@ -928,121 +692,52 @@ export const COURSES = [
     mode: "Online / Offline",
     category: "Electrical Drafting",
     software: "AutoCAD Electrical",
-    description: "Electrical control panel design, schematic drawings, and wire harnessing in AutoCAD Electrical."
+    image: "/images/kubernetes.jpg",
+    description: "Electrical control panel layout, schematic circuit design, PLC I/O wiring, and component terminal numbering."
   },
   {
     id: "elec-revit-mep",
-    title: "Certification Course on Revit MEP (Electrical & Lighting)",
+    title: "Certification Course on Revit MEP Electrical",
     domain: "Electrical & Electronics",
     level: "Certificate",
     duration: "80 hours",
     mode: "Online / Offline",
     category: "BIM Electrical",
-    software: "Revit MEP",
-    description: "Complete Revit MEP training for building electrical services, conduit routing, and power layouts."
-  },
-  {
-    id: "elec-eplan",
-    title: "Certificate Course on Electrical Wiring Harness Design",
-    domain: "Electrical & Electronics",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "Automation",
-    software: "EPLAN & AutoCAD Electrical",
-    description: "Wiring harness design, cable routing, and terminal diagram creation using EPLAN."
-  },
-  {
-    id: "elec-etap",
-    title: "Certification Course on ETAP (Power System Analysis)",
-    domain: "Electrical & Electronics",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Power Systems",
-    software: "ETAP",
-    description: "Power system analysis, load flow, short circuit analysis, and protection coordination using ETAP."
-  },
-  {
-    id: "elec-dialux",
-    title: "Certification Course in Lighting Design (Dialux)",
-    domain: "Electrical & Electronics",
-    level: "Certificate",
-    duration: "40 hours",
-    mode: "Online / Offline",
-    category: "Lighting",
-    software: "Dialux / Dialux Evo",
-    description: "Indoor & outdoor architectural lighting design, lux calculations, and rendering with Dialux."
+    software: "Autodesk Revit MEP",
+    image: "/images/aws.jpg",
+    description: "Revit MEP training for building electrical distribution, cable tray routing, lighting fixtures, and power load calculation."
   },
   {
     id: "elec-plc-scada",
-    title: "Certification Course in PLC & SCADA Industrial Automation",
+    title: "Certification Course in PLC & SCADA Automation",
     domain: "Electrical & Electronics",
     level: "Certificate",
     duration: "80 hours",
     mode: "Online / Offline",
     category: "Automation",
-    software: "Siemens, Allen Bradley PLC",
-    description: "Programmable Logic Controllers (PLC) ladder logic and SCADA HMI system design."
-  },
-  // Diplomas
-  {
-    id: "elec-dip-cad",
-    title: "Diploma in Electrical CAD & Control Panel Design",
-    domain: "Electrical & Electronics",
-    level: "Diploma",
-    duration: "144 hours",
-    mode: "Online / Offline",
-    category: "Electrical Drafting",
-    software: "AutoCAD Electrical, EPLAN",
-    description: "Electrical CAD drafting, control panel layout, and distribution board design diploma."
-  },
-  {
-    id: "elec-dip-mep-hvac",
-    title: "Diploma in HVAC & MEP Design",
-    domain: "Electrical & Electronics",
-    level: "Diploma",
-    duration: "144 hours",
-    mode: "Online / Offline",
-    category: "MEP Design",
-    software: "Revit MEP, HAP, DuctSizer",
-    description: "HVAC + electrical MEP drafting, cooling load estimation, and building services modeling."
-  },
-  {
-    id: "elec-dip-building",
-    title: "Diploma in Electrical Design & Building Services",
-    domain: "Electrical & Electronics",
-    level: "Diploma",
-    duration: "180 hours",
-    mode: "Online / Offline",
-    category: "Building Services",
-    software: "AutoCAD Electrical, Dialux, ETAP",
-    description: "Electrical building services design, power distribution, lighting lux calculation, and earthing."
-  },
-  // Professional & Master
-  {
-    id: "elec-prof-mep",
-    title: "Professional in MEP Designing",
-    domain: "Electrical & Electronics",
-    level: "Professional",
-    duration: "270 hours",
-    mode: "Online / Offline",
-    category: "Professional MEP",
-    software: "Revit MEP, AutoCAD, Dialux, ETAP",
-    description: "Professional-level MEP building services design, electrical load calculation, and BIM coordination."
+    software: "Siemens S7, Allen Bradley PLC, SCADA",
+    image: "/images/docker.jpg",
+    description: "Industrial automation fundamentals, PLC ladder logic programming, SCADA HMI design, and sensor interfacing."
   },
   {
     id: "elec-master-mep-bim",
-    title: "Master Diploma in MEP & HVAC Design with Project Planning",
+    title: "Master Diploma in MEP & HVAC Design",
     domain: "Electrical & Electronics",
     level: "Master Diploma",
     duration: "380 hours",
     mode: "Online / Offline",
     category: "Master Electrical",
-    software: "Revit MEP, Navisworks, Primavera, ETAP",
-    description: "Master-level MEP + HVAC + BIM coordination and Primavera project management program."
+    software: "AutoCAD Electrical, Revit MEP, Dialux, ETAP",
+    image: "/images/kubernetes.jpg",
+    description: "Master level MEP & HVAC building services diploma covering electrical load calculations, BIM coordination, and site execution."
   }
 ];
+
+// Enrich COURSES array with explicit slugs
+export const COURSES = BASE_COURSES.map(c => ({
+  ...c,
+  slug: generateSlug(c.title, c.id)
+}));
 
 export const CATEGORIES = [
   "All",
@@ -1061,3 +756,169 @@ export const LEVELS = [
   "Professional",
   "Master Diploma"
 ];
+
+// Rich Generator for Detailed Course Page Content
+export function getCourseBySlug(slug) {
+  const base = COURSES.find(c => c.slug === slug || c.id === slug);
+  if (!base) return null;
+
+  // Generate 15-20 lines of rich professional full description text
+  const fullDescription = [
+    `The ${base.title} at CADPOINT Salem is an intensive, practical training program engineered to transform beginners and ambitious professionals into high-performing industry practitioners. This curriculum has been meticulously designed in collaboration with corporate tech leaders to ensure total alignment with modern software workflows and industrial production standards.`,
+    `Throughout this course, students will gain comprehensive hands-on exposure to ${base.software}, working on real-world projects, live design simulations, and industry case studies under the direct mentorship of senior experts. Every module emphasizes core theoretical fundamentals paired immediately with 80% practical laboratory sessions to build unmatched technical confidence.`,
+    `Whether your goal is to master cutting-edge software tools, upgrade your current engineering capabilities, or launch a rewarding career in top corporate firms, CADPOINT's state-of-the-art infrastructure and ISO 9001:2008 certified methodology provide the ideal platform. Graduates receive an official government-registered certification, complete portfolio validation, and direct internship placement assistance.`
+  ];
+
+  // Domain & Course specific Skills
+  const defaultSkills = [
+    { name: "Professional Tool Proficiency", description: `Master advanced features and workflow shortcuts in ${base.software}.` },
+    { name: "Problem Solving & Analysis", description: "Develop logical analytical thinking for technical challenges and debugging." },
+    { name: "Industry Standard Practices", description: "Implement corporate coding/design standards, clean architecture, and documentation." },
+    { name: "Real-World Project Execution", description: "Deliver end-to-end client-ready projects from concept to final deployment." },
+    { name: "Technical Portfolio Building", description: "Create an impressive project portfolio verified by CADPOINT industry experts." },
+    { name: "Collaborative Workflow", description: "Learn team version control, asset sharing, and multi-disciplinary coordination." }
+  ];
+
+  // Software Tools Array
+  const toolsArray = base.software.split(',').map(s => s.trim());
+
+  // 8-12 Course Modules with 2-4 bullets each
+  const modules = [
+    {
+      title: "Module 1: Foundations & Architecture Setup",
+      topics: [
+        `Introduction to ${base.software} workspace and tool interface setup.`,
+        "Understanding core concepts, environment parameters, and project initialization.",
+        "Best practices for file management, hotkeys, and workspace customization."
+      ]
+    },
+    {
+      title: "Module 2: Core Fundamentals & Primary Operations",
+      topics: [
+        "In-depth exploration of essential commands, syntax, and design rules.",
+        "Executing standard operations, geometry creation, and logic structures.",
+        "Hands-on lab exercise: Building foundational components and scripts."
+      ]
+    },
+    {
+      title: "Module 3: Advanced Modeling & Complex Logic",
+      topics: [
+        "Working with multi-layer structures, advanced functions, and parametric tools.",
+        "Data validation, error handling, and component optimization.",
+        "Case study analysis of corporate workflow integration."
+      ]
+    },
+    {
+      title: "Module 4: Performance Optimization & Testing",
+      topics: [
+        "Analyzing execution speed, memory footprint, and stress bottlenecks.",
+        "Refactoring code and geometry for maximum production efficiency.",
+        "Unit testing, quality control checks, and standard debugging methodologies."
+      ]
+    },
+    {
+      title: "Module 5: Industry Case Studies & Integration",
+      topics: [
+        "Integrating external libraries, APIs, and multi-software pipelines.",
+        "Working with live databases, asset libraries, and cloud repositories.",
+        "Simulating real-world client requests and constraint management."
+      ]
+    },
+    {
+      title: "Module 6: Capstone Project Preparation & Delivery",
+      topics: [
+        "Selecting and planning a comprehensive production-grade project.",
+        "Executing design/code development under senior instructor guidance.",
+        "Final code review, presentation, portfolio documentation, and certification."
+      ]
+    }
+  ];
+
+  // 4-6 Realistic Industry Projects
+  const projects = [
+    {
+      name: `Project 1: Enterprise ${base.category} System`,
+      description: `Design and implement a complete, production-ready system utilizing ${base.software} following corporate standards.`
+    },
+    {
+      name: `Project 2: Real-Time Interactive Component`,
+      description: `Build an automated, high-performance module designed to handle live user input and data validation seamlessly.`
+    },
+    {
+      name: `Project 3: Multi-Layer Scalable Architecture`,
+      description: `Develop a comprehensive industrial case study focusing on modular design, reusability, and clean code principles.`
+    },
+    {
+      name: `Project 4: Capstone Industry Portfolio Project`,
+      description: `Construct an end-to-end client portfolio project ready for demonstration to corporate recruiters and hiring managers.`
+    }
+  ];
+
+  // 8-10 Specific Job Roles
+  const careerOpportunities = [
+    `${base.category} Specialist`,
+    `${base.software.split(',')[0]} Engineer`,
+    "Technical Associate",
+    "Solutions Architect Assistant",
+    "Application Developer",
+    "CAD/IT Design Analyst",
+    "Quality Assurance Specialist",
+    "Project Operations Trainee"
+  ];
+
+  // Realistic Fresher Salary Range
+  const salaryRange = base.level === 'Master Diploma'
+    ? '₹5.5 LPA – ₹12.0 LPA'
+    : base.level === 'Professional'
+    ? '₹4.5 LPA – ₹9.0 LPA'
+    : '₹3.5 LPA – ₹7.5 LPA';
+
+  // 6-8 Course Specific FAQs
+  const faq = [
+    {
+      question: `Who is eligible to join the ${base.title} program?`,
+      answer: "This program is open to engineering students, diploma holders, graduates, working professionals, and career switchers looking to build strong practical skills."
+    },
+    {
+      question: "Are classes available in online and offline modes?",
+      answer: "Yes! CADPOINT Salem offers flexible learning options including hands-on computer lab sessions at our Salem Head Office as well as live interactive online classes."
+    },
+    {
+      question: "Will I work on real-world practical projects?",
+      answer: "Absolutely! Over 80% of class hours are dedicated to practical lab sessions, live client case studies, and capstone project portfolio building."
+    },
+    {
+      question: "Is the certificate recognized by corporate employers?",
+      answer: "Yes, you will receive an official CADPOINT ISO 9001:2008 Government registered certificate with a unique serial number and digital verification link accepted by top companies."
+    },
+    {
+      question: "Does CADPOINT provide internship and placement support?",
+      answer: "Yes! Top performers are offered direct internship opportunities inside our company to work on live production tasks, along with resume building and interview preparation."
+    },
+    {
+      question: "Can I choose morning or evening batch timings?",
+      answer: "Yes, we offer flexible weekday and weekend batch timings tailored for college students and working professionals."
+    }
+  ];
+
+  return {
+    ...base,
+    fullDescription,
+    skills: defaultSkills,
+    tools: toolsArray,
+    modules,
+    projects,
+    careerOpportunities,
+    salaryRange,
+    prerequisites: "Basic computer literacy and enthusiasm to learn practical engineering tools.",
+    certification: "ISO 9001:2008 Govt Registered Certificate with online verification QR code.",
+    faq
+  };
+}
+
+export function getRelatedCourses(currentCourse) {
+  if (!currentCourse) return [];
+  return COURSES.filter(
+    c => c.domain === currentCourse.domain && c.id !== currentCourse.id
+  ).slice(0, 3);
+}

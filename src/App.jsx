@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
 import { Courses } from './pages/Courses';
+import { CourseDetails } from './pages/CourseDetails';
 import { Ecosystem } from './pages/Ecosystem';
 import { Registration } from './pages/Registration';
 import { Contact } from './pages/Contact';
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:slug" element={<CourseDetails />} />
           <Route path="/ecosystem" element={<Ecosystem />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/contact" element={<Contact />} />

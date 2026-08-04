@@ -136,12 +136,12 @@ export function Courses() {
               <div className="pt-4 border-t border-white/5 flex items-center justify-between mt-auto">
                 <span className="text-xs text-slate-400">{course.mode}</span>
                 <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setSelectedCourse(course)}
-                    className="text-xs text-slate-300 hover:text-white underline cursor-pointer"
+                  <Link
+                    to={`/courses/${course.slug}`}
+                    className="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-200 hover:text-white border border-white/10 transition-colors"
                   >
-                    Details
-                  </button>
+                    View Details
+                  </Link>
                   <Link to="/registration">
                     <Button variant="primary" size="sm" icon={ArrowRight}>
                       Enroll
