@@ -111,7 +111,7 @@ export function CourseDetails() {
           </p>
 
           {/* META SPECS GRID */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-2xl glass-card border border-white/10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4 rounded-2xl glass-card border border-white/10">
             <div className="space-y-1">
               <span className="text-[11px] text-slate-400 flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5 text-red-400" /> Duration
@@ -130,41 +130,16 @@ export function CourseDetails() {
               </span>
               <p className="text-sm font-bold text-white">{course.category}</p>
             </div>
-            <div className="space-y-1">
-              <span className="text-[11px] text-slate-400 flex items-center gap-1">
-                <DollarSign className="w-3.5 h-3.5 text-emerald-400" /> Avg Salary
-              </span>
-              <p className="text-sm font-bold text-emerald-400">{course.salaryRange}</p>
-            </div>
           </div>
 
           {/* CALL TO ACTION BUTTONS */}
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
             <Link to="/registration" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" className="w-full justify-center" icon={ArrowRight}>
+              <Button variant="primary" size="lg" className="w-full sm:w-auto justify-center px-8" icon={ArrowRight}>
                 Enroll Now Online
               </Button>
             </Link>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleDownloadSyllabus}
-              className="w-full sm:w-auto justify-center border-white/20 hover:bg-white/10 text-slate-200"
-              icon={Download}
-            >
-              {downloadSuccess ? 'Syllabus Dispatched!' : 'Download Syllabus PDF'}
-            </Button>
           </div>
-
-          {downloadSuccess && (
-            <motion.p
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-xs text-emerald-400 flex items-center gap-1.5"
-            >
-              <CheckCircle2 className="w-4 h-4" /> Official syllabus PDF curriculum overview has been requested for download!
-            </motion.p>
-          )}
         </motion.div>
 
         {/* HERO IMAGE CONTAINER */}
@@ -352,43 +327,25 @@ export function CourseDetails() {
         </div>
       </section>
 
-      {/* CAREER OPPORTUNITIES & SALARY */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <div className="lg:col-span-7 space-y-6">
-          <div className="flex items-center gap-2">
-            <Briefcase className="w-5 h-5 text-emerald-400" />
-            <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">
-              Career Opportunities
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {course.careerOpportunities.map((role, idx) => (
-              <div
-                key={idx}
-                className="p-3.5 rounded-xl glass-card border border-white/10 text-xs font-semibold text-slate-200 flex items-center gap-2 hover:border-emerald-500/30 transition-colors"
-              >
-                <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
-                <span>{role}</span>
-              </div>
-            ))}
-          </div>
+      {/* CAREER OPPORTUNITIES */}
+      <section className="space-y-6">
+        <div className="flex items-center gap-2">
+          <Briefcase className="w-5 h-5 text-emerald-400" />
+          <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">
+            Career Opportunities
+          </h2>
         </div>
 
-        <div className="lg:col-span-5">
-          <Card className="p-6 border-emerald-500/30 space-y-4 bg-emerald-950/20">
-            <h3 className="text-lg font-bold text-white font-heading flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-emerald-400" />
-              Fresher Salary Expectations
-            </h3>
-            <div className="p-4 rounded-xl bg-black/40 border border-emerald-500/30 text-center">
-              <span className="text-xs text-slate-400">Estimated Salary Range</span>
-              <p className="text-2xl font-extrabold text-emerald-400 font-heading mt-1">{course.salaryRange}</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {course.careerOpportunities.map((role, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-xl glass-card border border-white/10 text-xs font-semibold text-slate-200 flex items-center gap-2.5 hover:border-emerald-500/30 transition-colors"
+            >
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0" />
+              <span>{role}</span>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Salary growth scales rapidly with project portfolio, certification, and practical domain experience.
-            </p>
-          </Card>
+          ))}
         </div>
       </section>
 
