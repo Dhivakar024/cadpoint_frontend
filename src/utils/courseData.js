@@ -376,7 +376,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Graphic Design",
     software: "Adobe Photoshop, Illustrator",
-    image: "/images/htmlcss.jpg",
+    image: "/images/multimedia_vfx_course.jpg",
     description: "Graphic design principles, image manipulation, digital branding, photo retouching, and poster creation."
   },
   {
@@ -388,7 +388,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "VFX & Motion",
     software: "Adobe After Effects, Premiere Pro",
-    image: "/images/cpp.jpg",
+    image: "/images/multimedia_vfx_course.jpg",
     description: "Motion graphics, visual effects compositing, green screen keying, title animations, and video post-production."
   },
   {
@@ -400,7 +400,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "3D & Animation",
     software: "Autodesk Maya, Arnold Renderer",
-    image: "/images/c.jpg",
+    image: "/images/multimedia_vfx_course.jpg",
     description: "3D polygon modeling, texturing, UV unwrapping, lighting, and asset generation in Autodesk Maya."
   },
   {
@@ -412,7 +412,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "UI/UX",
     software: "Figma, Adobe XD, Photoshop, Principle",
-    image: "/images/javascript.jpg",
+    image: "/images/multimedia_vfx_course.jpg",
     description: "User experience research, wireframing, interactive mobile/web design systems, prototyping, and usability testing."
   },
   {
@@ -424,7 +424,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Master Media",
     software: "Maya, Blender, After Effects, Nuke, Premiere",
-    image: "/images/react.jpg",
+    image: "/images/multimedia_vfx_course.jpg",
     description: "Complete master diploma in 3D character animation, VFX compositing, lighting, and film production pipelines."
   },
 
@@ -440,7 +440,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Accounting",
     software: "Tally Prime, GST Portal",
-    image: "/images/mongodb.jpg",
+    image: "/images/tally_finance_course.jpg",
     description: "Practical computerized accounting, GST filing, e-way bills, inventory control, and voucher entries using Tally Prime."
   },
   {
@@ -452,7 +452,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Finance",
     software: "Excel 365, Power Query, Pivot, VBA",
-    image: "/images/machine_learning.jpg",
+    image: "/images/tally_finance_course.jpg",
     description: "Advanced Excel methods for financial modeling, data cleanup, XLOOKUP, pivot tables, and macro automation."
   },
   {
@@ -464,7 +464,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "ERP Systems",
     software: "SAP FICO S/4HANA",
-    image: "/images/java.jpg",
+    image: "/images/tally_finance_course.jpg",
     description: "SAP FICO module configuration, General Ledger, Accounts Payable, Receivable, and financial controlling."
   },
   {
@@ -476,7 +476,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Taxation",
     software: "Tally Prime, Excel, GST & IT Portals",
-    image: "/images/python.jpg",
+    image: "/images/tally_finance_course.jpg",
     description: "Comprehensive accounting and direct/indirect taxation diploma covering GST returns, TDS calculation, and balance sheets."
   },
   {
@@ -488,7 +488,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "ERP Master",
     software: "SAP S/4HANA FICO, MM, SD",
-    image: "/images/aws.jpg",
+    image: "/images/tally_finance_course.jpg",
     description: "Master level SAP ERP implementation diploma covering business blueprinting, cross-module integration, and enterprise reporting."
   },
 
