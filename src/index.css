@@ -13,14 +13,14 @@
   }
 
   [data-theme="light"] {
-    --bg-main: #f8fafc;
+    --bg-main: #f8fffc;
     --card-bg: #ffffff;
-    --border-card: #dcebff;
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --brand-red: #2563eb;
-    --brand-navy: #1e3a8a;
-    --brand-blue: #2563eb;
+    --border-card: #d1fae5;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --brand-red: #10b981;
+    --brand-navy: #064e3b;
+    --brand-blue: #059669;
   }
 
   html {
@@ -52,7 +52,7 @@
 
   [data-theme="light"] select option {
     background-color: #ffffff !important;
-    color: #0f172a !important;
+    color: #111827 !important;
   }
 }
 
@@ -128,31 +128,31 @@ a {
 }
 
 /* =========================================================================
-   LIGHT THEME REDESIGN: CORPORATE BLUE (#2563EB) & WHITE (#FFFFFF) PALETTE
+   LIGHT THEME REDESIGN: PREMIUM EMERALD GREEN (#10B981) & WHITE (#FFFFFF) PALETTE
    ========================================================================= */
 
 [data-theme="light"] {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 60%, #F1F5F9 100%) !important;
-  color: #0F172A !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F1FFF8 50%, #F8FFFC 100%) !important;
+  color: #111827 !important;
 }
 
-/* 1. HEADINGS: High-contrast Deep Slate (#0F172A) */
+/* 1. HEADINGS: High-contrast Dark Charcoal (#111827) */
 [data-theme="light"] h1,
 [data-theme="light"] h2,
 [data-theme="light"] h3,
 [data-theme="light"] h4,
 [data-theme="light"] h5,
 [data-theme="light"] h6 {
-  color: #0F172A !important;
+  color: #111827 !important;
   font-weight: 700 !important;
   opacity: 1 !important;
 }
 
-/* 2. BODY TEXT: Slate 600 (#475569) & Muted (#64748B) */
+/* 2. BODY TEXT: Slate 600 (#4B5563) & Muted (#6B7280) */
 [data-theme="light"] p,
 [data-theme="light"] li,
 [data-theme="light"] label {
-  color: #475569 !important;
+  color: #4B5563 !important;
   opacity: 1 !important;
 }
 
@@ -160,79 +160,79 @@ a {
 [data-theme="light"] .text-slate-200,
 [data-theme="light"] .text-slate-300,
 [data-theme="light"] .text-slate-400 {
-  color: #475569 !important;
+  color: #4B5563 !important;
   opacity: 1 !important;
 }
 
 [data-theme="light"] .text-slate-500 {
-  color: #64748B !important;
+  color: #6B7280 !important;
   opacity: 1 !important;
 }
 
 [data-theme="light"] .text-white {
-  color: #0F172A !important;
+  color: #111827 !important;
 }
 
-/* Crisp White Text for Buttons and Badges on Solid Dark/Blue Backgrounds */
+/* Crisp White Text for Buttons and Badges on Solid Dark/Green Backgrounds */
 [data-theme="light"] button.bg-gradient-to-r,
 [data-theme="light"] button.bg-red-600,
-[data-theme="light"] button.bg-blue-600,
+[data-theme="light"] button.bg-emerald-600,
 [data-theme="light"] .bg-gradient-to-r span,
 [data-theme="light"] .bg-red-600 span,
-[data-theme="light"] .bg-blue-600 span,
+[data-theme="light"] .bg-emerald-600 span,
 [data-theme="light"] .bg-gradient-to-r .text-white,
 [data-theme="light"] .bg-red-600 .text-white,
-[data-theme="light"] .bg-blue-600 .text-white {
+[data-theme="light"] .bg-emerald-600 .text-white {
   color: #ffffff !important;
 }
 
 /* 3. GRADIENTS IN LIGHT MODE */
 [data-theme="light"] .text-gradient {
-  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #1E293B 100%) !important;
+  background: linear-gradient(135deg, #111827 0%, #064E3B 50%, #1F2937 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 [data-theme="light"] .text-gradient-brand,
 [data-theme="light"] .text-gradient-red {
-  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #3B82F6 100%) !important;
+  background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
-/* 4. CARDS & PANELS: Pure White (#FFFFFF) with Soft Blue Border (#DCEBFF) */
+/* 4. CARDS & PANELS: Pure White (#FFFFFF), 22px Radius, Soft Emerald Border (#D1FAE5) */
 [data-theme="light"] .glass-card,
 [data-theme="light"] .glass-panel {
   background: #FFFFFF !important;
-  border-radius: 1.125rem !important;
-  border: 1px solid #DCEBFF !important;
-  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08) !important;
+  border-radius: 1.375rem !important;
+  border: 1px solid #D1FAE5 !important;
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.08) !important;
   backdrop-filter: blur(20px) !important;
 }
 
 [data-theme="light"] .glass-card:hover {
-  border-color: #93C5FD !important;
-  box-shadow: 0 16px 35px -10px rgba(37, 99, 235, 0.18) !important;
+  border-color: #6EE7B7 !important;
+  box-shadow: 0 18px 38px -10px rgba(16, 185, 129, 0.2) !important;
   transform: translateY(-4px) !important;
 }
 
 [data-theme="light"] .glass-input {
   background: #FFFFFF !important;
-  border: 1px solid #DCEBFF !important;
-  color: #0F172A !important;
+  border: 1px solid #D1FAE5 !important;
+  color: #111827 !important;
 }
 
 [data-theme="light"] .glass-input:focus {
-  border-color: #2563EB !important;
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.25) !important;
+  border-color: #10B981 !important;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.25) !important;
 }
 
-/* 5. BUTTONS & ALL ACCENTS: Royal Blue (#2563EB) & Sky Blue (#3B82F6) */
+/* 5. BUTTONS & ALL ACCENTS: Primary Emerald Green (#10B981) & Hover (#059669) */
 [data-theme="light"] .bg-red-600,
 [data-theme="light"] .bg-red-500,
 [data-theme="light"] .from-red-600 {
-  background-color: #2563EB !important;
-  background-image: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+  background-color: #10B981 !important;
+  background-image: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
   color: #ffffff !important;
 }
 
@@ -241,7 +241,7 @@ a {
 [data-theme="light"] .text-red-600,
 [data-theme="light"] .text-cyan-400,
 [data-theme="light"] .text-amber-400 {
-  color: #2563EB !important;
+  color: #10B981 !important;
 }
 
 [data-theme="light"] .bg-red-600\/20,
@@ -250,24 +250,24 @@ a {
 [data-theme="light"] .bg-white\/5,
 [data-theme="light"] .bg-slate-900\/60,
 [data-theme="light"] .bg-slate-900\/40 {
-  background-color: #EFF6FF !important;
+  background-color: #ECFDF5 !important;
 }
 
 [data-theme="light"] .border-slate-800,
 [data-theme="light"] .border-white\/10,
 [data-theme="light"] .border-white\/5 {
-  border-color: #DCEBFF !important;
+  border-color: #D1FAE5 !important;
 }
 
 /* 6. NAVBAR IN LIGHT MODE: Frosted White Glass */
 [data-theme="light"] header nav {
   background-color: rgba(255, 255, 255, 0.95) !important;
-  border-bottom: 1px solid #DCEBFF !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  border-bottom: 1px solid #D1FAE5 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
 }
 
 [data-theme="light"] header div.bg-\[\#040711\] {
-  background-color: #1E3A8A !important;
+  background-color: #064E3B !important;
   color: #ffffff !important;
 }
 
@@ -302,5 +302,5 @@ a {
 }
 
 [data-theme="light"] footer a:hover {
-  color: #38BDF8 !important;
+  color: #34D399 !important;
 }
