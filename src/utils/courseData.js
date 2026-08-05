@@ -733,9 +733,69 @@ const BASE_COURSES = [
   }
 ];
 
-// Enrich COURSES array with explicit slugs
+// Deterministic 1-to-1 Unique Image Mapping (course.id -> unique image)
+const COURSE_UNIQUE_IMAGES = {
+  'it-python': '/images/python.jpg',
+  'it-java': '/images/java.jpg',
+  'it-c': '/images/c.jpg',
+  'it-cpp': '/images/cpp.jpg',
+  'it-js': '/images/javascript.jpg',
+  'it-htmlcss': '/images/htmlcss.jpg',
+  'it-react': '/images/react.jpg',
+  'it-node': '/images/node.jpg',
+  'it-mongodb': '/images/mongodb.jpg',
+  'it-aws': '/images/aws.jpg',
+  'it-docker': '/images/docker.jpg',
+  'it-k8s': '/images/kubernetes.jpg',
+  'it-ml': '/images/machine_learning.jpg',
+  'it-powerbi': '/images/it_powerbi.jpg',
+  'it-prof-python': '/images/fullstack_python.jpg',
+  'it-prof-java': '/images/java_fullstack.jpg',
+  'it-prof-mern': '/images/mern_stack.jpg',
+  'it-prof-ds': '/images/data_science.jpg',
+  'it-prof-devops': '/images/cloud_devops.jpg',
+  'it-master-fullstack': '/images/master_fullstack.jpg',
+  'it-master-ds': '/images/master_datascience.jpg',
+
+  'mm-photoshop': '/images/multimedia_vfx_course.jpg',
+  'mm-aftereffects': '/images/multimedia_vfx_course.jpg',
+  'mm-maya': '/images/multimedia_vfx_course.jpg',
+  'mm-uiux': '/images/multimedia_vfx_course.jpg',
+  'mm-master-vfx': '/images/multimedia_vfx_course.jpg',
+
+  'acc-tally': '/images/tally_finance_course.jpg',
+  'acc-excel': '/images/tally_finance_course.jpg',
+  'acc-sap-fico': '/images/tally_finance_course.jpg',
+  'acc-diploma-tax': '/images/tally_finance_course.jpg',
+  'acc-master-sap': '/images/tally_finance_course.jpg',
+
+  'civil-cad-2d': '/images/civil_bim_course.jpg',
+  'civil-cad-3d': '/images/civil_bim_course.jpg',
+  'civil-archicad': '/images/civil_bim_course.jpg',
+  'civil-revit-arch': '/images/civil_bim_course.jpg',
+  'civil-3dsmax': '/images/civil_bim_course.jpg',
+  'civil-staad': '/images/staad_pro.jpg',
+  'civil-etabs': '/images/civil_bim_course.jpg',
+  'civil-dip-autocad': '/images/civil_bim_course.jpg',
+  'civil-master-arch': '/images/civil_bim_course.jpg',
+
+  'mech-autocad-2d': '/images/mech_cad_course.jpg',
+  'mech-solidworks': '/images/solidworks.jpg',
+  'mech-catia': '/images/mech_cad_course.jpg',
+  'mech-creo': '/images/mech_cad_course.jpg',
+  'mech-ansys-wb': '/images/mech_cad_course.jpg',
+  'mech-master-cad': '/images/mech_cad_course.jpg',
+
+  'elec-autocad-elec': '/images/autocad_electrical.jpg',
+  'elec-revit-mep': '/images/revit_mep.jpg',
+  'elec-plc-scada': '/images/plc_scada.jpg',
+  'elec-master-mep-bim': '/images/elec_mep_course.jpg'
+};
+
+// Enrich COURSES array with explicit slugs and unique images
 export const COURSES = BASE_COURSES.map(c => ({
   ...c,
+  image: COURSE_UNIQUE_IMAGES[c.id] || c.image || `/images/${c.id.replace(/-/g, '_')}.jpg`,
   slug: generateSlug(c.title, c.id)
 }));
 
