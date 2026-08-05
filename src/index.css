@@ -13,13 +13,13 @@
   }
 
   [data-theme="light"] {
-    --bg-main: #ffffff;
+    --bg-main: #f8fafc;
     --card-bg: #ffffff;
-    --border-card: #e2e8f0;
-    --text-main: #111827;
-    --text-muted: #4b5563;
+    --border-card: #dcebff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
     --brand-red: #2563eb;
-    --brand-navy: #123c8f;
+    --brand-navy: #1e3a8a;
     --brand-blue: #2563eb;
   }
 
@@ -52,7 +52,7 @@
 
   [data-theme="light"] select option {
     background-color: #ffffff !important;
-    color: #111827 !important;
+    color: #0f172a !important;
   }
 }
 
@@ -128,110 +128,112 @@ a {
 }
 
 /* =========================================================================
-   LIGHT THEME WCAG AA HIGH CONTRAST & FLUENT DESIGN ENGINE
+   LIGHT THEME REDESIGN: CORPORATE BLUE (#2563EB) & WHITE (#FFFFFF) PALETTE
    ========================================================================= */
 
 [data-theme="light"] {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 50%, #EEF5FF 100%) !important;
-  color: #111827 !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 60%, #F1F5F9 100%) !important;
+  color: #0F172A !important;
 }
 
-/* 1. HEADINGS: High Contrast Dark Charcoal (#111827) */
+/* 1. HEADINGS: High-contrast Deep Slate (#0F172A) */
 [data-theme="light"] h1,
 [data-theme="light"] h2,
 [data-theme="light"] h3,
 [data-theme="light"] h4,
 [data-theme="light"] h5,
 [data-theme="light"] h6 {
-  color: #111827 !important;
+  color: #0F172A !important;
   font-weight: 700 !important;
   opacity: 1 !important;
 }
 
-/* 2. PARAGRAPHS & BODY TEXT: High Contrast Slate (#374151 & #4B5563) */
-[data-theme="light"] p {
-  color: #374151 !important;
+/* 2. BODY TEXT: Slate 600 (#475569) & Muted (#64748B) */
+[data-theme="light"] p,
+[data-theme="light"] li,
+[data-theme="light"] label {
+  color: #475569 !important;
   opacity: 1 !important;
 }
 
-[data-theme="light"] .text-slate-200,
 [data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-slate-200,
 [data-theme="light"] .text-slate-300,
-[data-theme="light"] .text-slate-400,
+[data-theme="light"] .text-slate-400 {
+  color: #475569 !important;
+  opacity: 1 !important;
+}
+
 [data-theme="light"] .text-slate-500 {
-  color: #374151 !important;
+  color: #64748B !important;
   opacity: 1 !important;
 }
 
 [data-theme="light"] .text-white {
-  color: #111827 !important;
+  color: #0F172A !important;
 }
 
-/* Exception for buttons with dark backgrounds */
+/* Crisp White Text for Buttons and Badges on Solid Dark/Blue Backgrounds */
 [data-theme="light"] button.bg-gradient-to-r,
 [data-theme="light"] button.bg-red-600,
 [data-theme="light"] button.bg-blue-600,
+[data-theme="light"] .bg-gradient-to-r span,
+[data-theme="light"] .bg-red-600 span,
+[data-theme="light"] .bg-blue-600 span,
 [data-theme="light"] .bg-gradient-to-r .text-white,
 [data-theme="light"] .bg-red-600 .text-white,
-[data-theme="light"] .bg-blue-600 .text-white,
-[data-theme="light"] .bg-slate-900 .text-white,
-[data-theme="light"] .bg-red-600\/20 .text-white {
+[data-theme="light"] .bg-blue-600 .text-white {
   color: #ffffff !important;
 }
 
-/* 3. GRADIENT TEXT IN LIGHT MODE */
+/* 3. GRADIENTS IN LIGHT MODE */
 [data-theme="light"] .text-gradient {
-  background: linear-gradient(135deg, #111827 0%, #123c8f 50%, #1e293b 100%) !important;
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #1E293B 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  opacity: 1 !important;
 }
 
 [data-theme="light"] .text-gradient-brand,
 [data-theme="light"] .text-gradient-red {
-  background: linear-gradient(135deg, #123c8f 0%, #2563eb 50%, #0284c7 100%) !important;
+  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #3B82F6 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  opacity: 1 !important;
 }
 
-/* 4. CARDS & PANELS: Pure White, 18px Radius, Soft Blue Elevation Shadow */
+/* 4. CARDS & PANELS: Pure White (#FFFFFF) with Soft Blue Border (#DCEBFF) */
 [data-theme="light"] .glass-card,
 [data-theme="light"] .glass-panel {
-  background: #ffffff !important;
+  background: #FFFFFF !important;
   border-radius: 1.125rem !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 10px 30px -10px rgba(18, 60, 143, 0.08) !important;
+  border: 1px solid #DCEBFF !important;
+  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08) !important;
   backdrop-filter: blur(20px) !important;
-  opacity: 1 !important;
 }
 
 [data-theme="light"] .glass-card:hover {
-  border-color: #93c5fd !important;
-  box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.16) !important;
+  border-color: #93C5FD !important;
+  box-shadow: 0 16px 35px -10px rgba(37, 99, 235, 0.18) !important;
   transform: translateY(-4px) !important;
 }
 
 [data-theme="light"] .glass-input {
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #111827 !important;
-  opacity: 1 !important;
+  background: #FFFFFF !important;
+  border: 1px solid #DCEBFF !important;
+  color: #0F172A !important;
 }
 
 [data-theme="light"] .glass-input:focus {
-  border-color: #2563eb !important;
+  border-color: #2563EB !important;
   box-shadow: 0 0 15px rgba(37, 99, 235, 0.25) !important;
 }
 
-/* 5. BUTTONS & ACCENTS */
+/* 5. BUTTONS & ALL ACCENTS: Royal Blue (#2563EB) & Sky Blue (#3B82F6) */
 [data-theme="light"] .bg-red-600,
 [data-theme="light"] .bg-red-500,
 [data-theme="light"] .from-red-600 {
-  background-color: #2563eb !important;
-  background-image: linear-gradient(135deg, #2563eb 0%, #123c8f 100%) !important;
+  background-color: #2563EB !important;
+  background-image: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
   color: #ffffff !important;
-  opacity: 1 !important;
 }
 
 [data-theme="light"] .text-red-400,
@@ -239,8 +241,7 @@ a {
 [data-theme="light"] .text-red-600,
 [data-theme="light"] .text-cyan-400,
 [data-theme="light"] .text-amber-400 {
-  color: #2563eb !important;
-  opacity: 1 !important;
+  color: #2563EB !important;
 }
 
 [data-theme="light"] .bg-red-600\/20,
@@ -249,24 +250,24 @@ a {
 [data-theme="light"] .bg-white\/5,
 [data-theme="light"] .bg-slate-900\/60,
 [data-theme="light"] .bg-slate-900\/40 {
-  background-color: #f1f5f9 !important;
+  background-color: #EFF6FF !important;
 }
 
 [data-theme="light"] .border-slate-800,
 [data-theme="light"] .border-white\/10,
 [data-theme="light"] .border-white\/5 {
-  border-color: #e2e8f0 !important;
+  border-color: #DCEBFF !important;
 }
 
-/* 6. NAVBAR IN LIGHT MODE */
+/* 6. NAVBAR IN LIGHT MODE: Frosted White Glass */
 [data-theme="light"] header nav {
   background-color: rgba(255, 255, 255, 0.95) !important;
-  border-color: #e2e8f0 !important;
+  border-bottom: 1px solid #DCEBFF !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
 }
 
 [data-theme="light"] header div.bg-\[\#040711\] {
-  background-color: #123c8f !important;
+  background-color: #1E3A8A !important;
   color: #ffffff !important;
 }
 
@@ -276,10 +277,10 @@ a {
   color: #ffffff !important;
 }
 
-/* 7. FOOTER IN LIGHT MODE (Stays Crisp Dark Navy) */
+/* 7. FOOTER IN LIGHT MODE: Dark Navy (#0F172A) Anchor for High Contrast */
 [data-theme="light"] footer {
-  background-color: #0f172a !important;
-  color: #f8fafc !important;
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
 }
 
 [data-theme="light"] footer h1,
@@ -292,14 +293,14 @@ a {
 [data-theme="light"] footer span,
 [data-theme="light"] footer a,
 [data-theme="light"] footer div {
-  color: #f8fafc !important;
+  color: #F8FAFC !important;
 }
 
 [data-theme="light"] footer .text-slate-400,
 [data-theme="light"] footer .text-slate-300 {
-  color: #94a3b8 !important;
+  color: #94A3B8 !important;
 }
 
 [data-theme="light"] footer a:hover {
-  color: #38bdf8 !important;
+  color: #38BDF8 !important;
 }
