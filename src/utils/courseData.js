@@ -504,7 +504,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Drafting",
     software: "AutoCAD 2D Civil",
-    image: "/images/c.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "Foundational civil engineering drafting, architectural floor plans, sections, elevations, and CAD standards."
   },
   {
@@ -516,7 +516,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Modeling",
     software: "AutoCAD 3D Civil",
-    image: "/images/cpp.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "3D solid modeling, surface generation, rendering, and structural detailing in AutoCAD 3D."
   },
   {
@@ -528,7 +528,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "BIM",
     software: "Graphisoft ArchiCAD",
-    image: "/images/htmlcss.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "Building Information Modeling (BIM) using ArchiCAD for parametric architectural design and documentation."
   },
   {
@@ -540,7 +540,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "BIM",
     software: "Autodesk Revit Architecture",
-    image: "/images/javascript.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "Revit Architecture BIM training covering 3D building components, parametric families, and construction drawings."
   },
   {
@@ -552,7 +552,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Visualization",
     software: "Autodesk 3ds Max, V-Ray",
-    image: "/images/python.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "Photorealistic 3D architectural rendering, materials, camera setup, and interior/exterior lighting."
   },
   {
@@ -564,7 +564,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Structural",
     software: "STAAD.Pro CONNECT Edition",
-    image: "/images/java.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "Structural analysis and Reinforced Concrete (RCC) & Steel structure design using STAAD.Pro."
   },
   {
@@ -576,7 +576,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Structural",
     software: "CSI ETABS",
-    image: "/images/node.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "High-rise building structural analysis, seismic load evaluation, shear wall design, and framing using ETABS."
   },
   {
@@ -588,7 +588,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Drafting",
     software: "AutoCAD 2D & 3D Civil",
-    image: "/images/c.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "Complete civil drafting diploma covering residential/commercial layouts, structural drawings, and 3D perspectives."
   },
   {
@@ -600,7 +600,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Master Civil",
     software: "AutoCAD, Revit, 3ds Max, V-Ray, Lumion",
-    image: "/images/react.jpg",
+    image: "/images/civil_bim_course.jpg",
     description: "Master level architectural engineering diploma covering BIM, photorealistic rendering, walkthroughs, and project management."
   },
 
@@ -616,7 +616,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Drafting",
     software: "AutoCAD Mechanical",
-    image: "/images/cpp.jpg",
+    image: "/images/mech_cad_course.jpg",
     description: "Mechanical component drafting, assembly drawings, geometric dimensioning, and CAD standards."
   },
   {
@@ -628,7 +628,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "3D Design",
     software: "Dassault SolidWorks",
-    image: "/images/python.jpg",
+    image: "/images/mech_cad_course.jpg",
     description: "SolidWorks 3D parametric modeling, complex sheet metal design, assembly creation, and technical drafting."
   },
   {
@@ -640,7 +640,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "3D Design",
     software: "CATIA V5-6",
-    image: "/images/java.jpg",
+    image: "/images/mech_cad_course.jpg",
     description: "CATIA V5 surface modeling, generative shape design, aerospace components, and solid body modeling."
   },
   {
@@ -652,7 +652,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "3D Design",
     software: "PTC Creo Parametric",
-    image: "/images/c.jpg",
+    image: "/images/mech_cad_course.jpg",
     description: "PTC Creo parametric modeling, mechanism design, sheet metal, and manufacturing drafting."
   },
   {
@@ -664,7 +664,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "FEA & Simulation",
     software: "Ansys Mechanical Workbench",
-    image: "/images/machine_learning.jpg",
+    image: "/images/mech_cad_course.jpg",
     description: "Finite Element Analysis (FEA), static structural stress distribution, thermal conduction, and modal analysis in Ansys."
   },
   {
@@ -676,7 +676,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Master Mechanical",
     software: "AutoCAD, SolidWorks, CATIA, Creo, Ansys",
-    image: "/images/node.jpg",
+    image: "/images/mech_cad_course.jpg",
     description: "Comprehensive master diploma in mechanical CAD/CAM/CAE engineering, GD&T tolerances, and automotive/aerospace design."
   },
 
@@ -692,7 +692,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Electrical Drafting",
     software: "AutoCAD Electrical",
-    image: "/images/kubernetes.jpg",
+    image: "/images/elec_mep_course.jpg",
     description: "Electrical control panel layout, schematic circuit design, PLC I/O wiring, and component terminal numbering."
   },
   {
@@ -704,7 +704,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "BIM Electrical",
     software: "Autodesk Revit MEP",
-    image: "/images/aws.jpg",
+    image: "/images/elec_mep_course.jpg",
     description: "Revit MEP training for building electrical distribution, cable tray routing, lighting fixtures, and power load calculation."
   },
   {
@@ -716,7 +716,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Automation",
     software: "Siemens S7, Allen Bradley PLC, SCADA",
-    image: "/images/docker.jpg",
+    image: "/images/elec_mep_course.jpg",
     description: "Industrial automation fundamentals, PLC ladder logic programming, SCADA HMI design, and sensor interfacing."
   },
   {
@@ -728,7 +728,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Master Electrical",
     software: "AutoCAD Electrical, Revit MEP, Dialux, ETAP",
-    image: "/images/kubernetes.jpg",
+    image: "/images/elec_mep_course.jpg",
     description: "Master level MEP & HVAC building services diploma covering electrical load calculations, BIM coordination, and site execution."
   }
 ];
