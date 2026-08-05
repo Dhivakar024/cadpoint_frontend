@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { submitEnquiry } from '../services/api';
-import { sendContactEmailDirect, getWhatsAppShareUrl } from '../services/directResend';
+import { getWhatsAppShareUrl } from '../services/directResend';
 import { COMPANY_INFO } from '../utils/constants';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare, Building2, Navigation, ExternalLink } from 'lucide-react';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -34,19 +35,21 @@ export function Contact() {
 
   return (
     <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center pt-6">
-        <Badge variant="red" className="mb-4">Get In Touch</Badge>
+      {/* Header Badge */}
+      <div className="text-center pt-6 space-y-3">
+        <Badge variant="red" className="mb-2">Get In Touch</Badge>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
           We're Here to Help
         </h1>
-        <p className="mt-4 text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+        <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
           Send us your feedback or enquiries regarding our courses, corporate services, or project partnerships. We aim to respond quickly and ensure a smooth support experience.
         </p>
       </div>
 
+      {/* Main Grid: Form + Info */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <div className="lg:col-span-7">
-          <Card className="p-8 border-red-500/30">
+          <Card className="p-8 border-red-500/30 shadow-2xl">
             <h2 className="text-2xl font-bold text-white font-heading mb-2 flex items-center gap-2">
               <MessageSquare className="w-5 h-5 text-red-400" />
               Send Us a Message
@@ -119,7 +122,7 @@ export function Contact() {
                   />
                 </div>
 
-                <Button type="submit" variant="primary" size="lg" className="w-full" isLoading={isSubmitting} icon={Send}>
+                <Button type="submit" variant="primary" size="lg" className="w-full justify-center" isLoading={isSubmitting} icon={Send}>
                   Submit Enquiry
                 </Button>
               </form>
@@ -151,46 +154,153 @@ export function Contact() {
           </Card>
         </div>
 
+        {/* Right Info Quick Contacts */}
         <div className="lg:col-span-5 space-y-6">
-          <Card className="p-8 border-slate-800 space-y-6">
+          <Card className="p-8 border-slate-800 space-y-6 shadow-xl">
             <h3 className="text-xl font-bold text-white font-heading flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-red-400" />
-              Head Office (Salem)
+              <Building2 className="w-5 h-5 text-red-400" />
+              Corporate Contact Directory
             </h3>
-            <p className="text-slate-300 text-sm leading-relaxed">
-              {COMPANY_INFO.legalName} <br />
-              <strong className="text-white">{COMPANY_INFO.address}</strong>
-            </p>
-            <div className="space-y-3 pt-4 border-t border-white/10 text-xs text-slate-300">
-              <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-red-400" />
-                <span>Office: {COMPANY_INFO.phone}</span>
+            <div className="space-y-4 text-xs text-slate-300">
+              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+                <span className="text-[10px] uppercase font-bold text-slate-400">Head Office Location</span>
+                <p className="font-semibold text-white">{COMPANY_INFO.legalName}</p>
+                <p className="text-slate-300">{COMPANY_INFO.address}</p>
               </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-emerald-400" />
-                <span>Helpline: {COMPANY_INFO.helpline}</span>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
+                  <span className="text-[10px] text-slate-400 flex items-center gap-1">
+                    <Phone className="w-3 h-3 text-red-400" /> Office Line
+                  </span>
+                  <p className="font-bold text-white">{COMPANY_INFO.phone}</p>
+                </div>
+                <div className="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
+                  <span className="text-[10px] text-slate-400 flex items-center gap-1">
+                    <Phone className="w-3 h-3 text-emerald-400" /> Student Helpline
+                  </span>
+                  <p className="font-bold text-white">{COMPANY_INFO.helpline}</p>
+                </div>
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-red-400" />
-                <span>Email: {COMPANY_INFO.email}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Clock className="w-4 h-4 text-amber-400" />
-                <span>Hours: {COMPANY_INFO.hours}</span>
+
+              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+                <span className="text-[10px] text-slate-400 flex items-center gap-1">
+                  <Mail className="w-3 h-3 text-cyan-400" /> Official Email
+                </span>
+                <p className="font-bold text-white">{COMPANY_INFO.email}</p>
               </div>
             </div>
           </Card>
-
-          <Card className="p-4 border-white/10 text-center flex flex-col items-center justify-center h-52 relative overflow-hidden bg-white/5">
-            <MapPin className="w-10 h-10 text-red-400 mb-2 animate-bounce" />
-            <h4 className="text-sm font-bold text-white font-heading">Interactive Map View</h4>
-            <p className="text-slate-400 text-xs mt-1">Advaitha Ashram Rd, Fairlands, Salem - 636007</p>
-            <span className="mt-3 text-[10px] px-3 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">
-              GPS Coordinates Validated
-            </span>
-          </Card>
         </div>
       </div>
+
+      {/* =====================================================================
+          REDESIGNED PREMIUM GOOGLE MAP & FLOATING GLASS OVERLAY SECTION
+          ===================================================================== */}
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative w-full rounded-[20px] overflow-hidden shadow-2xl border border-white/10 glass-panel"
+      >
+        {/* Interactive Google Map Embed (Full Width) */}
+        <div className="relative w-full h-[350px] md:h-[450px] overflow-hidden rounded-[20px]">
+          <iframe
+            src="https://www.google.com/maps?q=1st+Floor,+CPS+Tower,+Advaitha+Ashram+Road,+Fairlands,+Salem+636007&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="CADPOINT Salem Office Location Google Map"
+            className="w-full h-full filter contrast-[1.05] brightness-[0.95]"
+          />
+        </div>
+
+        {/* Floating Glass Information Card Overlay */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          animate={{ y: [0, -4, 0] }}
+          transition={{
+            x: { duration: 0.6, delay: 0.2 },
+            y: { duration: 6, repeat: Infinity, ease: 'easeInOut' }
+          }}
+          className="relative md:absolute md:left-6 md:top-1/2 md:-translate-y-1/2 z-10 w-full md:max-w-md p-6 rounded-[20px] backdrop-blur-[18px] bg-[#0a0f25]/85 border border-white/15 shadow-2xl space-y-4 my-4 md:my-0 mx-auto"
+        >
+          {/* Header & Title */}
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-red-500 shrink-0 animate-bounce" />
+              <h3 className="text-base font-extrabold text-white font-heading">📍 CADPOINT Training Centre</h3>
+            </div>
+            <p className="text-xs font-semibold text-slate-300 flex items-center gap-1.5 pl-7">
+              <Building2 className="w-3.5 h-3.5 text-cyan-400" /> 🏢 Lax360 Private Limited
+            </p>
+          </div>
+
+          {/* Address */}
+          <div className="text-xs text-slate-300 leading-relaxed border-t border-white/10 pt-3 pl-7">
+            <p className="font-semibold text-white">📍 1st Floor, CPS Tower,</p>
+            <p>Advaitha Ashram Road, Fairlands,</p>
+            <p className="font-semibold text-emerald-400">Salem – 636007</p>
+          </div>
+
+          {/* Working Hours */}
+          <div className="space-y-1 text-xs border-t border-white/10 pt-3">
+            <div className="flex items-center gap-2 text-slate-300">
+              <Clock className="w-4 h-4 text-amber-400 shrink-0" />
+              <span className="font-bold text-white">🕒 Working Hours</span>
+            </div>
+            <p className="text-slate-300 text-[11px] pl-6">Monday – Saturday: <strong className="text-white">9:00 AM – 7:00 PM</strong></p>
+          </div>
+
+          {/* Contact Directory */}
+          <div className="space-y-2 text-xs border-t border-white/10 pt-3">
+            <div className="flex items-center gap-2.5 text-slate-300">
+              <Phone className="w-3.5 h-3.5 text-red-400 shrink-0" />
+              <span>📞 Office: <strong className="text-white">+91 95666 79928</strong></span>
+            </div>
+            <div className="flex items-center gap-2.5 text-slate-300">
+              <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span>📞 Helpline: <strong className="text-white">+91 95666 79958</strong></span>
+            </div>
+            <div className="flex items-center gap-2.5 text-slate-300">
+              <Mail className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+              <span className="truncate">✉ Email: <strong className="text-white">cadpointsalem001@gmail.com</strong></span>
+            </div>
+          </div>
+
+          {/* Two Action Buttons */}
+          <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=1st+Floor+CPS+Tower+Advaitha+Ashram+Road+Fairlands+Salem+636007"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto flex-1"
+              aria-label="Get Directions on Google Maps"
+            >
+              <Button variant="primary" size="sm" className="w-full justify-center gap-2 font-bold" icon={Navigation}>
+                Get Directions
+              </Button>
+            </a>
+            <a
+              href="https://www.google.com/maps?q=1st+Floor,+CPS+Tower,+Advaitha+Ashram+Road,+Fairlands,+Salem+636007"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto flex-1"
+              aria-label="View Larger Google Map"
+            >
+              <Button variant="outline" size="sm" className="w-full justify-center text-xs border-white/20 hover:bg-white/10">
+                View Larger Map
+              </Button>
+            </a>
+          </div>
+        </motion.div>
+      </motion.section>
     </div>
   );
 }
