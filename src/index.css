@@ -54,7 +54,7 @@
 
   [data-theme="light"] select option {
     background-color: #ffffff !important;
-    color: #0f172a !important;
+    color: #111827 !important;
   }
 }
 
@@ -130,7 +130,7 @@ a {
 }
 
 /* =========================================================================
-   PURE LIGHT THEME ENGINE (Master Root & Global Page Canvas background)
+   PURE LIGHT THEME ENGINE (Master Canvas & WCAG AA Typography System)
    ========================================================================= */
 
 [data-theme="light"],
@@ -146,26 +146,39 @@ body[data-theme="light"],
   color: #0F172A !important;
 }
 
-/* 1. HEADINGS: High-contrast Slate 900 (#0F172A) */
-[data-theme="light"] h1,
-[data-theme="light"] h2,
-[data-theme="light"] h3,
-[data-theme="light"] h4,
-[data-theme="light"] h5,
-[data-theme="light"] h6 {
+/* 1. MAIN HEADINGS (h1): #0F172A (Font Weight 700) */
+[data-theme="light"] h1 {
   color: #0F172A !important;
   font-weight: 700 !important;
   opacity: 1 !important;
 }
 
-/* 2. BODY TEXT: Slate 700 (#475569) & Muted (#64748B) */
-[data-theme="light"] p,
-[data-theme="light"] li,
-[data-theme="light"] label {
-  color: #475569 !important;
+/* 2. SECTION TITLES (h2): #111827 (Font Weight 700) */
+[data-theme="light"] h2 {
+  color: #111827 !important;
+  font-weight: 700 !important;
   opacity: 1 !important;
 }
 
+/* 3. SUB HEADINGS (h3, h4, h5, h6): #1E293B (Font Weight 700) */
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #1E293B !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+/* 4. BODY TEXT (p, li, label): #334155 (Slate 700) */
+[data-theme="light"] p,
+[data-theme="light"] li,
+[data-theme="light"] label {
+  color: #334155 !important;
+  opacity: 1 !important;
+}
+
+/* 5. DESCRIPTION TEXT: #475569 (Slate 600) */
 [data-theme="light"] .text-slate-100,
 [data-theme="light"] .text-slate-200,
 [data-theme="light"] .text-slate-300,
@@ -174,29 +187,51 @@ body[data-theme="light"],
   opacity: 1 !important;
 }
 
-[data-theme="light"] .text-slate-500 {
+/* 6. MUTED TEXT: #64748B (Slate 500) */
+[data-theme="light"] .text-slate-500,
+[data-theme="light"] .text-muted {
   color: #64748B !important;
   opacity: 1 !important;
 }
 
-[data-theme="light"] .text-white {
-  color: #0F172A !important;
+/* 7. INPUT TEXT: #111827 & PLACEHOLDER: #94A3B8 */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select,
+[data-theme="light"] .glass-input {
+  color: #111827 !important;
 }
 
-/* Crisp White Text for Buttons and Badges on Solid Dark/Green Backgrounds */
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder,
+[data-theme="light"] .glass-input::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* 8. LINKS: #059669 & LINK HOVER: #047857 */
+[data-theme="light"] a {
+  color: #059669;
+}
+
+[data-theme="light"] a:hover {
+  color: #047857;
+}
+
+/* 9. SOLID BUTTON TEXT: #FFFFFF (Pure White) */
 [data-theme="light"] button.bg-gradient-to-r,
 [data-theme="light"] button.bg-red-600,
 [data-theme="light"] button.bg-emerald-600,
+[data-theme="light"] button.bg-\[\#10B981\],
 [data-theme="light"] .bg-gradient-to-r span,
 [data-theme="light"] .bg-red-600 span,
 [data-theme="light"] .bg-emerald-600 span,
 [data-theme="light"] .bg-gradient-to-r .text-white,
 [data-theme="light"] .bg-red-600 .text-white,
 [data-theme="light"] .bg-emerald-600 .text-white {
-  color: #ffffff !important;
+  color: #FFFFFF !important;
 }
 
-/* 3. GRADIENTS IN LIGHT MODE */
+/* 10. GRADIENTS IN LIGHT MODE */
 [data-theme="light"] .text-gradient {
   background: linear-gradient(135deg, #0F172A 0%, #065F46 50%, #1E293B 100%) !important;
   -webkit-background-clip: text !important;
@@ -210,7 +245,7 @@ body[data-theme="light"],
   -webkit-text-fill-color: transparent !important;
 }
 
-/* 4. CARDS & PANELS: Pure White (#FFFFFF), 24px Radius, Soft Emerald Border (#D1FAE5) */
+/* 11. CARDS & PANELS: Pure White (#FFFFFF), 24px Radius, Soft Emerald Border (#D1FAE5) */
 [data-theme="light"] .glass-card,
 [data-theme="light"] .glass-panel {
   background: #FFFFFF !important;
@@ -230,7 +265,7 @@ body[data-theme="light"],
 [data-theme="light"] .glass-input {
   background: #FFFFFF !important;
   border: 1px solid #D1FAE5 !important;
-  color: #0F172A !important;
+  color: #111827 !important;
 }
 
 [data-theme="light"] .glass-input:focus {
@@ -238,7 +273,7 @@ body[data-theme="light"],
   box-shadow: 0 0 18px rgba(16, 185, 129, 0.25) !important;
 }
 
-/* 5. BUTTONS & ALL ACCENTS: Primary Emerald (#10B981) */
+/* 12. BUTTONS & ALL ACCENTS: Primary Emerald (#10B981) */
 [data-theme="light"] .bg-red-600,
 [data-theme="light"] .bg-red-500,
 [data-theme="light"] .from-red-600 {
@@ -270,14 +305,14 @@ body[data-theme="light"],
   border-color: #D1FAE5 !important;
 }
 
-/* 6. REMOVE ALL DARK SECTION BACKGROUND BREAKS IN LIGHT MODE */
+/* 13. REMOVE ALL DARK SECTION BACKGROUND BREAKS IN LIGHT MODE */
 [data-theme="light"] .bg-slate-900,
 [data-theme="light"] .bg-slate-950,
 [data-theme="light"] .bg-black\/40 {
   background-color: transparent !important;
 }
 
-/* 7. NAVBAR IN LIGHT MODE: White Glass */
+/* 14. NAVBAR IN LIGHT MODE: White Glass */
 [data-theme="light"] header nav {
   background-color: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: blur(18px) !important;
@@ -286,7 +321,7 @@ body[data-theme="light"],
   box-shadow: 0 4px 20px rgba(16, 185, 129, 0.05) !important;
 }
 
-/* 8. FOOTER IN LIGHT MODE: Dark Emerald (#065F46) */
+/* 15. FOOTER IN LIGHT MODE: Dark Emerald (#065F46) */
 [data-theme="light"] footer {
   background-color: #065F46 !important;
   color: #ECFDF5 !important;
