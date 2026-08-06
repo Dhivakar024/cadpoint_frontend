@@ -14,12 +14,12 @@
 
   [data-theme="light"] {
     --bg-main: #ffffff;
-    --card-bg: rgba(255, 255, 255, 0.72);
-    --border-card: rgba(16, 185, 129, 0.12);
-    --text-main: #111827;
-    --text-muted: #6b7280;
+    --card-bg: #ffffff;
+    --border-card: #d1fae5;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
     --brand-red: #10b981;
-    --brand-navy: #064e3b;
+    --brand-navy: #065f46;
     --brand-blue: #059669;
   }
 
@@ -52,7 +52,7 @@
 
   [data-theme="light"] select option {
     background-color: #ffffff !important;
-    color: #111827 !important;
+    color: #0f172a !important;
   }
 }
 
@@ -128,31 +128,31 @@ a {
 }
 
 /* =========================================================================
-   LIGHT THEME REDESIGN: ULTRA-PREMIUM EMERALD GREEN (#10B981) + WHITE ENGINE
+   PURE LIGHT THEME ENGINE (Apple / Freshworks / Zoho / Notion Aesthetics)
    ========================================================================= */
 
 [data-theme="light"] {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FFFC 35%, #F0F9FF 70%, #FFFFFF 100%) !important;
-  color: #111827 !important;
+  background: #FFFFFF !important;
+  color: #0F172A !important;
 }
 
-/* 1. HEADINGS: High-contrast Charcoal (#111827) */
+/* 1. HEADINGS: High-contrast Slate 900 (#0F172A) */
 [data-theme="light"] h1,
 [data-theme="light"] h2,
 [data-theme="light"] h3,
 [data-theme="light"] h4,
 [data-theme="light"] h5,
 [data-theme="light"] h6 {
-  color: #111827 !important;
+  color: #0F172A !important;
   font-weight: 700 !important;
   opacity: 1 !important;
 }
 
-/* 2. BODY TEXT: Slate 600 (#4B5563) & Muted (#6B7280) */
+/* 2. BODY TEXT: Slate 700 (#475569) & Muted (#64748B) */
 [data-theme="light"] p,
 [data-theme="light"] li,
 [data-theme="light"] label {
-  color: #4B5563 !important;
+  color: #475569 !important;
   opacity: 1 !important;
 }
 
@@ -160,20 +160,20 @@ a {
 [data-theme="light"] .text-slate-200,
 [data-theme="light"] .text-slate-300,
 [data-theme="light"] .text-slate-400 {
-  color: #4B5563 !important;
+  color: #475569 !important;
   opacity: 1 !important;
 }
 
 [data-theme="light"] .text-slate-500 {
-  color: #6B7280 !important;
+  color: #64748B !important;
   opacity: 1 !important;
 }
 
 [data-theme="light"] .text-white {
-  color: #111827 !important;
+  color: #0F172A !important;
 }
 
-/* Crisp White Text for Primary Buttons & Solid Badges */
+/* Crisp White Text for Buttons and Badges on Solid Dark/Green Backgrounds */
 [data-theme="light"] button.bg-gradient-to-r,
 [data-theme="light"] button.bg-red-600,
 [data-theme="light"] button.bg-emerald-600,
@@ -188,7 +188,7 @@ a {
 
 /* 3. GRADIENTS IN LIGHT MODE */
 [data-theme="light"] .text-gradient {
-  background: linear-gradient(135deg, #111827 0%, #064E3B 50%, #1F2937 100%) !important;
+  background: linear-gradient(135deg, #0F172A 0%, #065F46 50%, #1E293B 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -200,27 +200,27 @@ a {
   -webkit-text-fill-color: transparent !important;
 }
 
-/* 4. CARDS & PANELS: Pure White Glass (24px Radius, Soft Emerald Border & Glow) */
+/* 4. CARDS & PANELS: Pure White (#FFFFFF), 24px Radius, Soft Emerald Border (#D1FAE5) */
 [data-theme="light"] .glass-card,
 [data-theme="light"] .glass-panel {
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: #FFFFFF !important;
   border-radius: 1.5rem !important;
-  border: 1px solid rgba(16, 185, 129, 0.14) !important;
-  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.08) !important;
+  border: 1px solid #D1FAE5 !important;
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.08) !important;
   backdrop-filter: blur(18px) !important;
   -webkit-backdrop-filter: blur(18px) !important;
 }
 
 [data-theme="light"] .glass-card:hover {
-  border-color: #6EE7B7 !important;
-  box-shadow: 0 18px 42px rgba(16, 185, 129, 0.18) !important;
-  transform: translateY(-4px) scale(1.01) !important;
+  border-color: #10B981 !important;
+  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.18) !important;
+  transform: translateY(-8px) scale(1.01) !important;
 }
 
 [data-theme="light"] .glass-input {
   background: #FFFFFF !important;
-  border: 1px solid #E5E7EB !important;
-  color: #111827 !important;
+  border: 1px solid #D1FAE5 !important;
+  color: #0F172A !important;
 }
 
 [data-theme="light"] .glass-input:focus {
@@ -228,7 +228,7 @@ a {
   box-shadow: 0 0 18px rgba(16, 185, 129, 0.25) !important;
 }
 
-/* 5. BUTTONS & ACCENTS: Primary Emerald (#10B981) */
+/* 5. BUTTONS & ALL ACCENTS: Primary Emerald (#10B981) */
 [data-theme="light"] .bg-red-600,
 [data-theme="light"] .bg-red-500,
 [data-theme="light"] .from-red-600 {
@@ -257,34 +257,30 @@ a {
 [data-theme="light"] .border-slate-800,
 [data-theme="light"] .border-white\/10,
 [data-theme="light"] .border-white\/5 {
-  border-color: #E5E7EB !important;
+  border-color: #D1FAE5 !important;
 }
 
-/* 6. NAVBAR IN LIGHT MODE: White Glass with Blur */
+/* 6. FORCE ALL DARK BACKGROUND CONTAINERS TO BE BRIGHT IN LIGHT MODE */
+[data-theme="light"] .bg-slate-900,
+[data-theme="light"] .bg-slate-950,
+[data-theme="light"] .bg-black\/40 {
+  background-color: #FFFFFF !important;
+}
+
+/* 7. NAVBAR IN LIGHT MODE: White Glass */
 [data-theme="light"] header nav {
-  background-color: rgba(255, 255, 255, 0.88) !important;
+  background-color: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: blur(18px) !important;
   -webkit-backdrop-filter: blur(18px) !important;
-  border-bottom: 1px solid rgba(16, 185, 129, 0.12) !important;
-  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.05) !important;
+  border-bottom: 1px solid #D1FAE5 !important;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.05) !important;
 }
 
-[data-theme="light"] header div.bg-\[\#040711\] {
-  background-color: #064E3B !important;
-  color: #ffffff !important;
-}
-
-[data-theme="light"] header div.bg-\[\#040711\] .text-slate-300,
-[data-theme="light"] header div.bg-\[\#040711\] span,
-[data-theme="light"] header div.bg-\[\#040711\] a {
-  color: #ffffff !important;
-}
-
-/* 7. FOOTER IN LIGHT MODE: White + Soft Mint Gradient */
+/* 8. FOOTER IN LIGHT MODE: Dark Emerald (#065F46) */
 [data-theme="light"] footer {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F1FFF8 100%) !important;
-  border-top: 1px solid #D1FAE5 !important;
-  color: #4B5563 !important;
+  background-color: #065F46 !important;
+  color: #ECFDF5 !important;
+  border-top-color: #047857 !important;
 }
 
 [data-theme="light"] footer h1,
@@ -293,24 +289,19 @@ a {
 [data-theme="light"] footer h4,
 [data-theme="light"] footer h5,
 [data-theme="light"] footer h6 {
-  color: #111827 !important;
+  color: #FFFFFF !important;
 }
 
 [data-theme="light"] footer p,
 [data-theme="light"] footer span,
 [data-theme="light"] footer div {
-  color: #4B5563 !important;
+  color: #A7F3D0 !important;
 }
 
 [data-theme="light"] footer a {
-  color: #10B981 !important;
+  color: #6EE7B7 !important;
 }
 
 [data-theme="light"] footer a:hover {
-  color: #059669 !important;
-}
-
-[data-theme="light"] footer .text-slate-400,
-[data-theme="light"] footer .text-slate-300 {
-  color: #6B7280 !important;
+  color: #34D399 !important;
 }
