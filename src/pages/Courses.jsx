@@ -4,11 +4,11 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { CustomSelect } from '../components/ui/CustomSelect';
-import { Search, Clock, Laptop, ArrowRight, Filter, X, Sparkles, Layers, Box, Cpu } from 'lucide-react';
+import { Search, Clock, Laptop, ArrowRight, Filter, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
-const CourseHeroBanner = ({ course }) => {
-  // Map domain default 3D artwork images so NO card ever renders a plain gradient
+const CourseHeroBanner = ({ course, isDark }) => {
   const domainFallbackImages = {
     'IT & Non-IT': '/images/python.jpg',
     'Multimedia': '/images/htmlcss.jpg',
@@ -27,12 +27,16 @@ const CourseHeroBanner = ({ course }) => {
         alt={course.title}
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-black/30" />
-      <Badge variant="red" className="absolute top-3 left-3 shadow-lg backdrop-blur-md bg-red-600/90">
+      <div className={`absolute inset-0 bg-gradient-to-t ${
+        isDark ? 'from-[#0F172A] via-transparent to-black/30' : 'from-slate-900/60 via-transparent to-black/20'
+      }`} />
+      <Badge variant={isDark ? "red" : "emerald"} className={`absolute top-3 left-3 shadow-lg backdrop-blur-md ${
+        isDark ? 'bg-red-600/90' : 'bg-emerald-600/90'
+      }`}>
         {course.level}
       </Badge>
       <span className="absolute bottom-3 right-3 text-xs text-white font-medium flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
-        <Clock className="w-3.5 h-3.5 text-red-400" />
+        <Clock className={`w-3.5 h-3.5 ${isDark ? 'text-red-400' : 'text-emerald-400'}`} />
         {course.duration}
       </span>
     </div>
@@ -44,6 +48,8 @@ export function Courses() {
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const filteredCourses = COURSES.filter((course) => {
     const matchesCategory =
@@ -60,21 +66,23 @@ export function Courses() {
 
   return (
     <div className="space-y-12 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center pt-6">
-        <Badge variant="red" className="mb-4">Course Catalog</Badge>
+      <div className="text-center pt-6 space-y-3">
+        <Badge variant={isDark ? "red" : "emerald"} className="mb-2">Course Catalog</Badge>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
           Career & Technical Programs
         </h1>
-        <p className="mt-4 text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
+        <p className={`mt-4 text-base sm:text-lg max-w-3xl mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
           Explore industry-aligned certification, diploma, and master diploma programs across IT, Multimedia, CADD, and ERP domains.
         </p>
       </div>
 
       {/* FILTER BAR CARD */}
-      <div className="glass-card p-6 rounded-2xl space-y-6 relative z-30 overflow-visible">
+      <div className="glass-card p-6 rounded-[24px] space-y-6 relative z-30 overflow-visible">
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
           <div className="relative w-full md:w-96">
-            <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+            <Search className={`w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 ${
+              isDark ? 'text-slate-400' : 'text-slate-500'
+            }`} />
             <input
               type="text"
               value={searchQuery}
@@ -85,7 +93,7 @@ export function Courses() {
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto">
-            <Filter className="w-4 h-4 text-red-400 shrink-0" />
+            <Filter className={`w-4 h-4 shrink-0 ${isDark ? 'text-red-400' : 'text-emerald-600'}`} />
             <CustomSelect
               options={LEVELS}
               value={selectedLevel}
@@ -95,15 +103,21 @@ export function Courses() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2.5 pt-2 border-t border-white/5">
+        <div className={`flex flex-wrap gap-2.5 pt-4 border-t ${
+          isDark ? 'border-white/5' : 'border-[#D1FAE5]'
+        }`}>
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-gradient-to-r from-red-600 to-slate-900 text-white shadow-lg border border-red-500/30'
-                  : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+                  ? isDark
+                    ? 'bg-gradient-to-r from-red-600 to-slate-900 text-white shadow-lg border border-red-500/30'
+                    : 'bg-[#10B981] text-white shadow-lg border border-emerald-400'
+                  : isDark
+                    ? 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+                    : 'bg-[#ECFDF5] text-slate-700 hover:bg-[#D1FAE5] hover:text-[#0F172A]'
               }`}
             >
               {cat}
@@ -115,30 +129,42 @@ export function Courses() {
       {/* COURSE CARDS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
         {filteredCourses.map((course) => (
-          <Card key={course.id} className="flex flex-col justify-between h-full p-0 overflow-hidden group border-slate-800 hover:border-red-500/50">
-            {/* HERO COVER BANNER (GENERATED JPG OR CUSTOM 3D ENTERPRISE BANNER) */}
-            <CourseHeroBanner course={course} />
+          <Card key={course.id} className="flex flex-col justify-between h-full p-0 overflow-hidden group">
+            {/* HERO COVER BANNER */}
+            <CourseHeroBanner course={course} isDark={isDark} />
 
             <div className="p-6 flex flex-col justify-between flex-grow space-y-4">
               <div>
-                <h3 className="text-lg font-bold text-white font-heading mb-2 group-hover:text-red-400 transition-colors">
+                <h3 className={`text-lg font-bold font-heading mb-2 transition-colors ${
+                  isDark ? 'text-white group-hover:text-red-400' : 'text-slate-900 group-hover:text-emerald-600'
+                }`}>
                   {course.title}
                 </h3>
-                <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                <p className={`text-xs leading-relaxed mb-4 ${
+                  isDark ? 'text-slate-400' : 'text-slate-600'
+                }`}>
                   {course.description}
                 </p>
-                <div className="flex items-center gap-2 text-xs text-red-400 mb-2">
+                <div className={`flex items-center gap-2 text-xs mb-2 ${
+                  isDark ? 'text-red-400' : 'text-emerald-600'
+                }`}>
                   <Laptop className="w-3.5 h-3.5" />
                   <span>Tools: {course.software}</span>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between mt-auto">
-                <span className="text-xs text-slate-400">{course.mode}</span>
+              <div className={`pt-4 border-t flex items-center justify-between mt-auto ${
+                isDark ? 'border-white/5' : 'border-slate-100'
+              }`}>
+                <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{course.mode}</span>
                 <div className="flex items-center gap-2">
                   <Link
                     to={`/courses/${course.slug}`}
-                    className="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-200 hover:text-white border border-white/10 transition-colors"
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
+                      isDark
+                        ? 'bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white border-white/10'
+                        : 'bg-[#ECFDF5] hover:bg-[#D1FAE5] text-slate-700 hover:text-[#0F172A] border-[#D1FAE5]'
+                    }`}
                   >
                     View Details
                   </Link>
@@ -156,14 +182,16 @@ export function Courses() {
 
       {filteredCourses.length === 0 && (
         <div className="text-center py-16 glass-card rounded-2xl">
-          <p className="text-slate-400 text-base">No courses found matching your filter criteria.</p>
+          <p className={`text-base ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>No courses found matching your filter criteria.</p>
           <button
             onClick={() => {
               setSelectedCategory('All');
               setSelectedLevel('All Levels');
               setSearchQuery('');
             }}
-            className="mt-4 text-red-400 hover:underline text-sm font-semibold"
+            className={`mt-4 hover:underline text-sm font-semibold ${
+              isDark ? 'text-red-400' : 'text-emerald-600'
+            }`}
           >
             Reset Filters
           </button>
@@ -172,28 +200,30 @@ export function Courses() {
 
       {selectedCourse && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
-          <div className="glass-panel p-8 rounded-3xl max-w-lg w-full relative border border-red-500/40">
+          <div className={`glass-panel p-8 rounded-3xl max-w-lg w-full relative border ${
+            isDark ? 'border-red-500/40' : 'border-emerald-400/40'
+          }`}>
             <button
               onClick={() => setSelectedCourse(null)}
               className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white"
             >
               <X className="w-5 h-5" />
             </button>
-            <Badge variant="red" className="mb-3">{selectedCourse.domain}</Badge>
-            <h3 className="text-2xl font-bold text-white font-heading mb-3">{selectedCourse.title}</h3>
-            <p className="text-slate-300 text-sm mb-6">{selectedCourse.description}</p>
-            <div className="space-y-3 mb-8 text-xs text-slate-300">
-              <div className="flex justify-between py-2 border-b border-white/5">
-                <span className="text-slate-400">Duration:</span>
-                <span className="font-semibold text-white">{selectedCourse.duration}</span>
+            <Badge variant={isDark ? "red" : "emerald"} className="mb-3">{selectedCourse.domain}</Badge>
+            <h3 className={`text-2xl font-bold font-heading mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>{selectedCourse.title}</h3>
+            <p className={`text-sm mb-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{selectedCourse.description}</p>
+            <div className="space-y-3 mb-8 text-xs">
+              <div className={`flex justify-between py-2 border-b ${isDark ? 'border-white/5' : 'border-slate-100'}`}>
+                <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Duration:</span>
+                <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{selectedCourse.duration}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-white/5">
-                <span className="text-slate-400">Mode:</span>
-                <span className="font-semibold text-white">{selectedCourse.mode}</span>
+              <div className={`flex justify-between py-2 border-b ${isDark ? 'border-white/5' : 'border-slate-100'}`}>
+                <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Mode:</span>
+                <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{selectedCourse.mode}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-white/5">
-                <span className="text-slate-400">Software Covered:</span>
-                <span className="font-semibold text-red-400">{selectedCourse.software}</span>
+              <div className={`flex justify-between py-2 border-b ${isDark ? 'border-white/5' : 'border-slate-100'}`}>
+                <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Software Covered:</span>
+                <span className={`font-semibold ${isDark ? 'text-red-400' : 'text-emerald-600'}`}>{selectedCourse.software}</span>
               </div>
             </div>
             <div className="flex gap-4">
