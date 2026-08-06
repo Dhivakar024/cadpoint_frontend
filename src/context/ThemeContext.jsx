@@ -16,12 +16,21 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     const root = document.documentElement;
+    const body = document.body;
     if (theme === 'light') {
       root.setAttribute('data-theme', 'light');
       root.classList.add('light-theme');
+      if (body) {
+        body.setAttribute('data-theme', 'light');
+        body.classList.add('light-theme');
+      }
     } else {
       root.setAttribute('data-theme', 'dark');
       root.classList.remove('light-theme');
+      if (body) {
+        body.setAttribute('data-theme', 'dark');
+        body.classList.remove('light-theme');
+      }
     }
     localStorage.setItem('cadpoint_theme', theme);
   }, [theme]);
@@ -41,7 +50,7 @@ export function ThemeProvider({ children }) {
       {children}
       {/* Cinematic Transition Ambient Glow Sweep */}
       {isTransitioning && (
-        <div className="fixed inset-0 z-[9999] pointer-events-none transition-opacity duration-500 bg-gradient-to-r from-transparent via-red-500/10 to-transparent animate-pulse" />
+        <div className="fixed inset-0 z-[9999] pointer-events-none transition-opacity duration-500 bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent animate-pulse" />
       )}
     </ThemeContext.Provider>
   );

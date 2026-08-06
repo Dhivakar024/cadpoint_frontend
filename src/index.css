@@ -30,7 +30,9 @@
     text-rendering: optimizeLegibility;
   }
 
-  body {
+  html,
+  body,
+  #root {
     background-color: var(--bg-main);
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
@@ -128,16 +130,19 @@ a {
 }
 
 /* =========================================================================
-   PURE LIGHT THEME ENGINE (Master Seamless Flow Across Entire Website)
+   PURE LIGHT THEME ENGINE (Master Root & Global Page Canvas background)
    ========================================================================= */
 
-[data-theme="light"] {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FFFC 30%, #F3FFF9 60%, #ECFDF5 100%) !important;
-  color: #0F172A !important;
-}
-
-[data-theme="light"] body {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FFFC 30%, #F3FFF9 60%, #ECFDF5 100%) !important;
+[data-theme="light"],
+html[data-theme="light"],
+body[data-theme="light"],
+[data-theme="light"] #root,
+[data-theme="light"] .app,
+[data-theme="light"] .main-layout,
+[data-theme="light"] .page-wrapper,
+[data-theme="light"] main {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FFFC 40%, #F3FFF9 70%, #ECFDF5 100%) !important;
+  background-attachment: fixed !important;
   color: #0F172A !important;
 }
 
@@ -265,13 +270,9 @@ a {
   border-color: #D1FAE5 !important;
 }
 
-/* 6. ABSOLUTE ZERO DARK BACKGROUND OVERRIDE FOR LIGHT MODE */
+/* 6. REMOVE ALL DARK SECTION BACKGROUND BREAKS IN LIGHT MODE */
 [data-theme="light"] .bg-slate-900,
 [data-theme="light"] .bg-slate-950,
-[data-theme="light"] .bg-slate-800,
-[data-theme="light"] .bg-black,
-[data-theme="light"] .bg-black\/80,
-[data-theme="light"] .bg-black\/60,
 [data-theme="light"] .bg-black\/40 {
   background-color: transparent !important;
 }
