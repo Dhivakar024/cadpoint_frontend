@@ -6,16 +6,23 @@ import { ContactPopup } from '../ui/ContactPopup';
 import { WhatsAppButton } from '../ui/WhatsAppButton';
 import { AIChatbot } from '../ui/AIChatbot';
 import { WhyChooseUs } from '../sections/WhyChooseUs';
+import { useTheme } from '../../context/ThemeContext';
 
 export function Layout({ children }) {
   const { pathname } = useLocation();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#070B18] text-[#F8FAFC]">
+    <div className={`min-h-screen flex flex-col transition-colors duration-500 ${
+      isDark
+        ? 'bg-[#070B18] text-[#F8FAFC]'
+        : 'bg-gradient-to-b from-white via-[#f8fffc] via-[#f3fff9] to-[#ecfdf5] text-[#0F172A]'
+    }`}>
       <Navbar />
       <main className="flex-grow pt-24 sm:pt-28">{children}</main>
       
