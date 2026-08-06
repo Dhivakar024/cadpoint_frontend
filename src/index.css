@@ -128,11 +128,16 @@ a {
 }
 
 /* =========================================================================
-   PURE LIGHT THEME ENGINE (Apple / Freshworks / Zoho / Notion Aesthetics)
+   PURE LIGHT THEME ENGINE (Master Seamless Flow Across Entire Website)
    ========================================================================= */
 
 [data-theme="light"] {
-  background: #FFFFFF !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FFFC 30%, #F3FFF9 60%, #ECFDF5 100%) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] body {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FFFC 30%, #F3FFF9 60%, #ECFDF5 100%) !important;
   color: #0F172A !important;
 }
 
@@ -260,11 +265,11 @@ a {
   border-color: #D1FAE5 !important;
 }
 
-/* 6. FORCE ALL DARK BACKGROUND CONTAINERS TO BE BRIGHT IN LIGHT MODE */
+/* 6. REMOVE ALL DARK SECTION BACKGROUND BREAKS IN LIGHT MODE */
 [data-theme="light"] .bg-slate-900,
 [data-theme="light"] .bg-slate-950,
 [data-theme="light"] .bg-black\/40 {
-  background-color: #FFFFFF !important;
+  background-color: transparent !important;
 }
 
 /* 7. NAVBAR IN LIGHT MODE: White Glass */
