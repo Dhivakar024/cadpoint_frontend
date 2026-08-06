@@ -265,9 +265,13 @@ a {
   border-color: #D1FAE5 !important;
 }
 
-/* 6. REMOVE ALL DARK SECTION BACKGROUND BREAKS IN LIGHT MODE */
+/* 6. ABSOLUTE ZERO DARK BACKGROUND OVERRIDE FOR LIGHT MODE */
 [data-theme="light"] .bg-slate-900,
 [data-theme="light"] .bg-slate-950,
+[data-theme="light"] .bg-slate-800,
+[data-theme="light"] .bg-black,
+[data-theme="light"] .bg-black\/80,
+[data-theme="light"] .bg-black\/60,
 [data-theme="light"] .bg-black\/40 {
   background-color: transparent !important;
 }
