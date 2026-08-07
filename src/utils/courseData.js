@@ -1,29 +1,7 @@
 // Helper function to generate clean, readable slugs
 export const generateSlug = (title, id) => {
   const customSlugs = {
-    'it-python': 'python-programming',
-    'it-java': 'java-programming',
-    'it-c': 'c-programming',
-    'it-cpp': 'cpp-programming',
-    'it-js': 'javascript-essentials',
-    'it-htmlcss': 'html-css-web-design',
-    'it-react': 'react-basics',
-    'it-node': 'node-js-basics',
-    'it-mongodb': 'mongodb-database',
-    'it-aws': 'aws-essentials',
-    'it-docker': 'docker-containerization',
-    'it-k8s': 'kubernetes-devops',
-    'it-ml': 'machine-learning-python',
-    'it-powerbi': 'power-bi-analytics',
-    'it-prof-python': 'full-stack-python-react',
-    'it-prof-java': 'java-full-stack-spring-boot',
-    'it-prof-mern': 'mern-stack-development',
-    'it-prof-ds': 'data-science-ai',
-    'it-prof-devops': 'cloud-devops-engineering',
-    'it-master-fullstack': 'master-diploma-full-stack',
-    'it-master-ds': 'master-diploma-data-science',
-    
-    // Official IT & Software Slugs
+    // Official IT & Software Slugs (15 Professional + 10 Master Diploma)
     'it-prof-fullstack-python-react': 'professional-program-full-stack-python-react',
     'it-prof-java-fullstack': 'professional-program-java-full-stack',
     'it-prof-mean-stack': 'professional-program-mean-stack',
@@ -162,273 +140,20 @@ export const generateSlug = (title, id) => {
 
 const BASE_COURSES = [
   // ==========================================
-  // 1. IT & NON-IT COURSES
+  // 1. IT & NON-IT COURSES (EXACT 25 OFFICIAL IT COURSES)
   // ==========================================
+  // Professional Programs (15)
   {
-    id: "it-python",
-    title: "Certificate in Python Programming",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Languages",
-    software: "Python, VS Code, Git",
-    image: "/images/python.jpg",
-    description: "Foundational Python programming concepts, object-oriented principles, and hands-on algorithm exercises."
-  },
-  {
-    id: "it-java",
-    title: "Certificate in Java Programming",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Languages",
-    software: "Java, Eclipse, Maven",
-    image: "/images/java.jpg",
-    description: "Java basics, object-oriented concepts, multithreading, and core application development."
-  },
-  {
-    id: "it-c",
-    title: "Certificate in C Programming",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Languages",
-    software: "C, GCC, Code::Blocks",
-    image: "/images/c.jpg",
-    description: "C language fundamentals, pointers, memory management, and procedural programming."
-  },
-  {
-    id: "it-cpp",
-    title: "Certificate in C++ Programming",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Languages",
-    software: "C++, STL, CLion",
-    image: "/images/cpp.jpg",
-    description: "C++ syntax, Object-Oriented Programming (OOP) principles, Templates, and Standard Template Library."
-  },
-  {
-    id: "it-js",
-    title: "Certificate in JavaScript Essentials",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Web Designing",
-    software: "JavaScript ES6+, DevTools, Node.js",
-    image: "/images/javascript.jpg",
-    description: "Modern JavaScript (ES6+), DOM manipulation, asynchronous programming, and web app logic."
-  },
-  {
-    id: "it-htmlcss",
-    title: "Certificate in HTML & CSS",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Web Designing",
-    software: "HTML5, CSS3, Flexbox, Grid",
-    image: "/images/htmlcss.jpg",
-    description: "Semantic HTML5, CSS3 styling, responsive layouts, Flexbox, Grid, and cross-browser design."
-  },
-  {
-    id: "it-react",
-    title: "Certificate in React Basics",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Frameworks",
-    software: "React 19, Vite, JSX, Tailwind CSS",
-    image: "/images/react.jpg",
-    description: "React fundamentals: component lifecycle, hooks, state management, router, and SPA architecture."
-  },
-  {
-    id: "it-node",
-    title: "Certificate in Node.js Basics",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Frameworks",
-    software: "Node.js, Express.js, REST APIs",
-    image: "/images/node.jpg",
-    description: "Node.js runtime, asynchronous event loop, Express backend routes, and REST API development."
-  },
-  {
-    id: "it-mongodb",
-    title: "Certificate in MongoDB",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Database",
-    software: "MongoDB, Compass, Mongoose",
-    image: "/images/mongodb.jpg",
-    description: "NoSQL document database design, CRUD operations, aggregation pipelines, and indexing."
-  },
-  {
-    id: "it-aws",
-    title: "Certificate in AWS Essentials",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Cloud Computing",
-    software: "AWS Console, EC2, S3, Lambda, IAM",
-    image: "/images/aws.jpg",
-    description: "Core AWS cloud services: EC2 instances, S3 storage, IAM security, Lambda, and VPC networking."
-  },
-  {
-    id: "it-docker",
-    title: "Certificate in Docker",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "DevOps",
-    software: "Docker Engine, Dockerfile, Docker Compose",
-    image: "/images/docker.jpg",
-    description: "Containerization fundamentals, writing Dockerfiles, image building, container networking, and Compose."
-  },
-  {
-    id: "it-k8s",
-    title: "Certificate in Kubernetes",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "DevOps",
-    software: "Kubernetes, kubectl, Helm, Minikube",
-    image: "/images/kubernetes.jpg",
-    description: "Container orchestration, Pods, Deployments, Services, ConfigMaps, and cluster management."
-  },
-  {
-    id: "it-ml",
-    title: "Certificate in Machine Learning",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Database & AI",
-    software: "Python, Scikit-Learn, NumPy, Pandas",
-    image: "/images/machine_learning.jpg",
-    description: "Machine Learning foundations, supervised and unsupervised algorithms, regression, and classification."
-  },
-  {
-    id: "it-powerbi",
-    title: "Certificate in Power BI Basics",
-    domain: "IT & Non-IT",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Database & AI",
-    software: "Power BI Desktop, DAX, Query Editor",
-    image: "/images/machine_learning.jpg",
-    description: "Power BI essentials for business analytics, DAX formulas, interactive dashboards, and automated reports."
-  },
-  {
-    id: "it-prof-python",
+    id: "it-prof-fullstack-python-react",
     title: "Professional Program in Full Stack Development – Python & React",
     domain: "IT & Non-IT",
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Full Stack",
-    software: "Python, Django, React, PostgreSQL, Git",
-    image: "/images/python.jpg",
-    description: "Complete full-stack engineering covering Python, Django REST framework, React UI, and PostgreSQL deployment."
-  },
-  {
-    id: "it-prof-java",
-    title: "Professional Program in Java Full Stack",
-    domain: "IT & Non-IT",
-    level: "Professional",
-    duration: "200 hours",
-    mode: "Online / Offline",
-    category: "Full Stack",
-    software: "Java, Spring Boot, Angular, MySQL",
-    image: "/images/java.jpg",
-    description: "Enterprise Java full stack training with Spring Boot microservices, REST APIs, and Angular frontend."
-  },
-  {
-    id: "it-prof-mern",
-    title: "Professional Program in MERN Stack",
-    domain: "IT & Non-IT",
-    level: "Professional",
-    duration: "200 hours",
-    mode: "Online / Offline",
-    category: "Full Stack",
-    software: "MongoDB, Express, React, Node.js",
-    image: "/images/react.jpg",
-    description: "Complete MERN stack professional development with real-time state management and production cloud deployment."
-  },
-  {
-    id: "it-prof-ds",
-    title: "Professional Program in Data Science & AI",
-    domain: "IT & Non-IT",
-    level: "Professional",
-    duration: "200 hours",
-    mode: "Online / Offline",
-    category: "AI & Analytics",
-    software: "Python, Pandas, TensorFlow, Tableau, SQL",
-    image: "/images/machine_learning.jpg",
-    description: "In-depth data science training covering data modeling, exploratory analysis, neural networks, and AI deployment."
-  },
-  {
-    id: "it-prof-devops",
-    title: "Professional Program in Cloud & DevOps",
-    domain: "IT & Non-IT",
-    level: "Professional",
-    duration: "200 hours",
-    mode: "Online / Offline",
-    category: "DevOps",
-    software: "AWS, Azure, Docker, Kubernetes, Jenkins, Terraform",
-    image: "/images/kubernetes.jpg",
-    description: "Cloud & DevOps engineering covering CI/CD pipelines, Infrastructure as Code, Kubernetes clusters, and security."
-  },
-  {
-    id: "it-master-fullstack",
-    title: "Master Diploma in Full Stack Development",
-    domain: "IT & Non-IT",
-    level: "Master Diploma",
-    duration: "260 hours",
-    mode: "Online / Offline",
-    category: "Master Engineering",
-    software: "Full Stack Suite, Cloud, Microservices, DevOps",
-    image: "/images/node.jpg",
-    description: "Master-level software engineering covering multi-tier architecture, system design, cloud microservices, and live client projects."
-  },
-  {
-    id: "it-master-ds",
-    title: "Master Diploma in Data Science & AI",
-    domain: "IT & Non-IT",
-    level: "Master Diploma",
-    duration: "280 hours",
-    mode: "Online / Offline",
-    category: "Master Engineering",
-    software: "Python, PyTorch, Deep Learning, Big Data, Spark",
-    image: "/images/machine_learning.jpg",
-    description: "Advanced master program in deep learning, neural networks, NLP, Computer Vision, and big data ecosystems."
-  },
-
-  // Additional Official IT Professional Programs (15)
-  {
-    id: "it-prof-fullstack-python-react",
-    title: "Professional Program in Full Stack Development - Python & React",
-    domain: "IT & Non-IT",
-    level: "Professional",
-    duration: "200 hours",
-    mode: "Online / Offline",
-    category: "Full Stack",
-    software: "HTML, CSS, Javascript, Python, React",
-    image: "/images/python.jpg",
-    description: "Professional full stack development course covering HTML, CSS, JavaScript, Python backend logic, and React single-page frontend application building."
+    category: "Professional",
+    software: "HTML, CSS, JavaScript, Python, React",
+    image: "/images/it_prof_python_react.jpg",
+    description: "Professional full stack development course covering HTML, CSS, JavaScript, Python backend logic, and React single-page application development."
   },
   {
     id: "it-prof-java-fullstack",
@@ -437,10 +162,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Full Stack",
-    software: "HTML, CSS, Javascript, Java, Spring Boot",
-    image: "/images/java.jpg",
-    description: "Enterprise Java full stack engineering training with Spring Boot microservices, REST API integration, and web frontend interfaces."
+    category: "Professional",
+    software: "HTML, CSS, JavaScript, Java, Spring Boot",
+    image: "/images/it_prof_java_fullstack.jpg",
+    description: "Enterprise Java full stack engineering training with HTML, CSS, JavaScript, Java core principles, and Spring Boot microservices."
   },
   {
     id: "it-prof-mean-stack",
@@ -449,10 +174,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Full Stack",
+    category: "Professional",
     software: "MongoDB, Express.js, Angular, Node.js",
-    image: "/images/mongodb.jpg",
-    description: "Full stack web development using the MEAN stack: MongoDB database design, Express server, Angular TypeScript frontend, and Node runtime."
+    image: "/images/it_prof_mean_stack.jpg",
+    description: "Full stack web application development using MEAN stack: MongoDB database architecture, Express server, Angular frontend, and Node.js runtime."
   },
   {
     id: "it-prof-mern-stack",
@@ -461,10 +186,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Full Stack",
+    category: "Professional",
     software: "MongoDB, Express.js, React, Node.js",
-    image: "/images/react.jpg",
-    description: "Complete MERN stack professional engineering with MongoDB NoSQL, Express REST routing, React component UI, and Node backend deployment."
+    image: "/images/it_prof_mern_stack.jpg",
+    description: "Production-grade MERN stack engineering with MongoDB NoSQL storage, Express API framework, React component UI, and Node.js backend."
   },
   {
     id: "it-prof-web-design",
@@ -473,10 +198,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "180 hours",
     mode: "Online / Offline",
-    category: "Web Designing",
-    software: "HTML, CSS, Bootstrap, Javascript, jQuery",
-    image: "/images/htmlcss.jpg",
-    description: "Responsive web design masterclass covering HTML5 semantics, CSS3 grid systems, Bootstrap frameworks, JavaScript DOM, and jQuery interactions."
+    category: "Professional",
+    software: "HTML, CSS, Bootstrap, JavaScript, JQuery",
+    image: "/images/it_prof_web_design.jpg",
+    description: "Advanced responsive web design program mastering semantic HTML, CSS styling, Bootstrap layouts, JavaScript DOM, and JQuery interactive elements."
   },
   {
     id: "it-prof-software-testing",
@@ -485,10 +210,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "QA & Testing",
+    category: "Professional",
     software: "Manual Testing, Selenium, JMeter, QTP",
-    image: "/images/c.jpg",
-    description: "Software quality assurance engineering covering manual test case execution, automated Selenium WebDriver scripts, JMeter performance testing, and QTP/UFT."
+    image: "/images/it_prof_software_testing.jpg",
+    description: "Comprehensive software quality assurance covering manual test execution, Selenium test automation scripts, JMeter performance testing, and QTP/UFT."
   },
   {
     id: "it-prof-ds-ai",
@@ -497,10 +222,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "AI & Analytics",
+    category: "Professional",
     software: "Python, Machine Learning, Tableau, Power BI",
-    image: "/images/machine_learning.jpg",
-    description: "Data science and artificial intelligence course featuring Python algorithms, Machine Learning models, Tableau business intelligence, and Power BI dashboards."
+    image: "/images/it_prof_ds_ai.jpg",
+    description: "Data science and artificial intelligence curriculum covering Python analytics, Machine Learning predictive models, Tableau, and Power BI dashboards."
   },
   {
     id: "it-prof-cloud-devops",
@@ -509,10 +234,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "DevOps",
+    category: "Professional",
     software: "AWS, Azure, Docker, Jenkins",
-    image: "/images/kubernetes.jpg",
-    description: "Cloud computing and DevOps engineering with AWS cloud infrastructure, Azure administration, Docker containerization, and Jenkins CI/CD pipelines."
+    image: "/images/it_prof_cloud_devops.jpg",
+    description: "Cloud computing and DevOps engineering with AWS cloud infrastructure, Microsoft Azure administration, Docker containers, and Jenkins CI/CD automation."
   },
   {
     id: "it-prof-cybersecurity",
@@ -521,10 +246,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Cybersecurity",
+    category: "Professional",
     software: "Wireshark, Metasploit, Burp Suite, Mimikatz",
-    image: "/images/docker.jpg",
-    description: "Ethical hacking and network security professional diploma covering Wireshark packet capture, Metasploit exploitation, Burp Suite web audits, and Mimikatz."
+    image: "/images/it_prof_cybersecurity.jpg",
+    description: "Professional cybersecurity and ethical hacking program covering Wireshark network packet analysis, Metasploit exploitation, Burp Suite, and Mimikatz."
   },
   {
     id: "it-prof-rpa",
@@ -533,10 +258,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Automation",
+    category: "Professional",
     software: "UI Path, Blue Prism, Automation Anywhere",
-    image: "/images/aws.jpg",
-    description: "Robotic Process Automation (RPA) engineering with UiPath Studio workflows, Blue Prism enterprise bots, and Automation Anywhere digital workforce automation."
+    image: "/images/it_prof_rpa.jpg",
+    description: "Robotic Process Automation (RPA) diploma engineering workflows in UiPath Studio, enterprise Blue Prism bots, and Automation Anywhere platform."
   },
   {
     id: "it-prof-digital-marketing",
@@ -545,10 +270,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "180 hours",
     mode: "Online / Offline",
-    category: "Marketing",
+    category: "Professional",
     software: "SEO, Google Ads, Email Marketing, Analytics",
-    image: "/images/javascript.jpg",
-    description: "Digital marketing strategies covering Search Engine Optimization (SEO), Google Ads campaigns, automated email marketing, and Google Analytics conversion tracking."
+    image: "/images/it_prof_digital_marketing.jpg",
+    description: "Digital marketing strategies covering Search Engine Optimization (SEO), Google Ads PPC management, automated email marketing, and Analytics data tracking."
   },
   {
     id: "it-prof-db-management",
@@ -557,10 +282,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Database",
+    category: "Professional",
     software: "MySQL, MongoDB, Oracle, SQL Server",
-    image: "/images/mongodb.jpg",
-    description: "Database administration and SQL development covering MySQL relational schemas, MongoDB NoSQL collections, Oracle PL/SQL, and MS SQL Server query optimization."
+    image: "/images/it_prof_db_management.jpg",
+    description: "Database administration and SQL development mastering MySQL relational schemas, MongoDB NoSQL collections, Oracle PL/SQL, and SQL Server."
   },
   {
     id: "it-prof-game-dev",
@@ -569,10 +294,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Gaming",
+    category: "Professional",
     software: "Unity, Unreal Engine, C#, Blender",
-    image: "/images/cpp.jpg",
-    description: "Interactive 2D/3D game engineering using Unity engine C# scripting, Unreal Engine C++ blueprints, and Blender 3D asset creation."
+    image: "/images/it_prof_game_dev.jpg",
+    description: "Interactive 2D/3D game development utilizing Unity engine C# scripting, Unreal Engine C++ blueprints, and Blender 3D modeling pipelines."
   },
   {
     id: "it-prof-blockchain",
@@ -581,10 +306,10 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "Blockchain",
+    category: "Professional",
     software: "Blockchain, Solidity, Smart Contracts, Ethereum",
-    image: "/images/node.jpg",
-    description: "Decentralized blockchain engineering with Solidity smart contracts, Ethereum Virtual Machine (EVM), Web3 libraries, and decentralized applications (DApps)."
+    image: "/images/it_prof_blockchain.jpg",
+    description: "Decentralized blockchain engineering with Solidity smart contracts, Ethereum Virtual Machine (EVM), Web3 integration, and DApp development."
   },
   {
     id: "it-prof-ar-vr",
@@ -593,13 +318,13 @@ const BASE_COURSES = [
     level: "Professional",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "AR / VR",
+    category: "Professional",
     software: "Unity, ARKit, ARCore, 3D Modeling",
-    image: "/images/it_fullstack_course.jpg",
-    description: "Augmented and Virtual Reality development utilizing Unity AR Foundation, Apple ARKit, Google ARCore, spatial tracking, and 3D environment modeling."
+    image: "/images/it_prof_ar_vr.jpg",
+    description: "Augmented and Virtual Reality application development utilizing Unity AR Foundation, Apple ARKit, Google ARCore, and 3D environment modeling."
   },
 
-  // Additional Official IT Master Diploma Programs (10)
+  // Master Diploma Programs (10)
   {
     id: "it-master-fullstack-dev",
     title: "Master Diploma in Full Stack Development",
@@ -607,10 +332,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "260 hours",
     mode: "Online / Offline",
-    category: "Master Software",
+    category: "Master Diploma",
     software: "HTML, CSS, JavaScript, Python, Django, React, Node.js",
-    image: "/images/node.jpg",
-    description: "Postgraduate master software engineering diploma covering HTML/CSS/JS web UI, Python Django REST APIs, React SPA, Node microservices, and cloud deployment."
+    image: "/images/it_master_fullstack_dev.jpg",
+    description: "Postgraduate master software engineering diploma covering HTML, CSS, JavaScript, Python Django REST APIs, React SPA, and Node.js microservices."
   },
   {
     id: "it-master-software-eng",
@@ -619,10 +344,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "260 hours",
     mode: "Online / Offline",
-    category: "Master Software",
+    category: "Master Diploma",
     software: "Python, Java, C#, .NET, SQL Server, Git",
-    image: "/images/python.jpg",
-    description: "Master level software engineering curriculum covering multi-language programming in Python, Java, and C# .NET, enterprise SQL Server databases, and Git workflows."
+    image: "/images/it_master_software_eng.jpg",
+    description: "Master level software engineering curriculum covering multi-language programming in Python, Java, and C# .NET, enterprise SQL Server, and Git workflows."
   },
   {
     id: "it-master-cloud-devops",
@@ -631,10 +356,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "260 hours",
     mode: "Online / Offline",
-    category: "Master Cloud",
+    category: "Master Diploma",
     software: "AWS, Azure, Docker, Kubernetes, Jenkins, Ansible",
-    image: "/images/aws.jpg",
-    description: "Master diploma in multi-cloud architecture and DevOps automation featuring AWS, Azure, Docker containers, Kubernetes orchestration, Jenkins pipelines, and Ansible configuration."
+    image: "/images/it_master_cloud_devops.jpg",
+    description: "Master diploma in multi-cloud architecture and DevOps automation featuring AWS, Azure, Docker containers, Kubernetes, Jenkins, and Ansible."
   },
   {
     id: "it-master-ds-ai",
@@ -643,10 +368,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "280 hours",
     mode: "Online / Offline",
-    category: "Master AI",
+    category: "Master Diploma",
     software: "Python, Machine Learning, Deep Learning, Tableau, Power BI, Hadoop",
-    image: "/images/machine_learning.jpg",
-    description: "Advanced postgraduate master diploma in deep neural networks, Python Machine Learning, Big Data Hadoop ecosystems, Tableau, and Power BI executive analytics."
+    image: "/images/it_master_ds_ai.jpg",
+    description: "Advanced postgraduate master diploma in deep neural networks, Python Machine Learning, Big Data Hadoop ecosystems, Tableau, and Power BI analytics."
   },
   {
     id: "it-master-cybersecurity",
@@ -655,10 +380,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "260 hours",
     mode: "Online / Offline",
-    category: "Master Security",
+    category: "Master Diploma",
     software: "Wireshark, Metasploit, Mimikatz, Kali Linux, Burp Suite, Cryptography",
-    image: "/images/docker.jpg",
-    description: "Postgraduate master diploma in offensive and defensive cybersecurity, Kali Linux penetration testing, vulnerability auditing, cryptography, and network forensics."
+    image: "/images/it_master_cybersecurity.jpg",
+    description: "Postgraduate master diploma in offensive and defensive cybersecurity, Kali Linux penetration testing, vulnerability auditing, and network cryptography."
   },
   {
     id: "it-master-rpa-automation",
@@ -667,10 +392,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "240 hours",
     mode: "Online / Offline",
-    category: "Master Automation",
+    category: "Master Diploma",
     software: "UI Path, Blue Prism, Automation Anywhere, Power Automate",
-    image: "/images/kubernetes.jpg",
-    description: "Master level robotic process automation diploma covering enterpriseUiPath bot architecture, Blue Prism control rooms, Automation Anywhere, and Microsoft Power Automate."
+    image: "/images/it_master_rpa_automation.jpg",
+    description: "Master level robotic process automation diploma covering enterprise UiPath bot architecture, Blue Prism control rooms, Automation Anywhere, and Power Automate."
   },
   {
     id: "it-master-digital-marketing",
@@ -679,10 +404,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "240 hours",
     mode: "Online / Offline",
-    category: "Master Marketing",
+    category: "Master Diploma",
     software: "SEO, Google Ads, Email Marketing, Analytics, Social Media Marketing, HubSpot",
-    image: "/images/javascript.jpg",
-    description: "Postgraduate master diploma in multi-channel digital marketing, advanced SEO strategies, Google Ads PPC management, HubSpot CRM inbound marketing, and web analytics."
+    image: "/images/it_master_digital_marketing.jpg",
+    description: "Postgraduate master diploma in multi-channel digital marketing, advanced SEO strategies, Google Ads PPC management, Social Media, and HubSpot CRM."
   },
   {
     id: "it-master-web-app",
@@ -691,10 +416,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "260 hours",
     mode: "Online / Offline",
-    category: "Master App Dev",
+    category: "Master Diploma",
     software: "HTML, CSS, Bootstrap, Angular, React Native, Firebase",
-    image: "/images/react.jpg",
-    description: "Master level web and cross-platform mobile application development with Angular TypeScript, React Native mobile UIs, Bootstrap, and Google Firebase cloud backend."
+    image: "/images/it_master_web_app.jpg",
+    description: "Master level web and cross-platform mobile application development with HTML, CSS, Bootstrap, Angular TypeScript, React Native, and Google Firebase."
   },
   {
     id: "it-master-adv-programming",
@@ -703,10 +428,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "260 hours",
     mode: "Online / Offline",
-    category: "Master Programming",
+    category: "Master Diploma",
     software: "Python, Java, C++, Go, Swift, Git, Docker",
-    image: "/images/cpp.jpg",
-    description: "Master diploma in polyglot software engineering covering high-performance system programming in C++, Go, Swift iOS, Python, Java, Git, and Docker containers."
+    image: "/images/it_master_adv_programming.jpg",
+    description: "Master diploma in polyglot software engineering covering high-performance system programming in Python, Java, C++, Go, Swift, Git, and Docker containers."
   },
   {
     id: "it-master-game-ar-vr",
@@ -715,10 +440,10 @@ const BASE_COURSES = [
     level: "Master Diploma",
     duration: "280 hours",
     mode: "Online / Offline",
-    category: "Master Gaming",
+    category: "Master Diploma",
     software: "Unity, Unreal Engine, Blender, ARKit, ARCore, C#",
-    image: "/images/it_fullstack_course.jpg",
-    description: "Complete postgraduate master diploma in 3D game engine development, Unreal Engine C++ blueprints, Blender 3D modeling, Unity C# scripting, and ARKit/ARCore spatial experiences."
+    image: "/images/it_master_game_ar_vr.jpg",
+    description: "Complete postgraduate master diploma in 3D game engine development, Unreal Engine C++ blueprints, Blender 3D modeling, Unity C# scripting, and ARKit/ARCore."
   },
 
   // ==========================================
@@ -1299,57 +1024,35 @@ const BASE_COURSES = [
   }
 ];
 
-// Deterministic 1-to-1 Unique Image Mapping (course.id -> unique image)
+// Deterministic 1-to-1 Unique Image Mapping (course.id -> unique dedicated image)
 const COURSE_UNIQUE_IMAGES = {
-  // IT & Software
-  'it-python': '/images/python.jpg',
-  'it-java': '/images/java.jpg',
-  'it-c': '/images/c.jpg',
-  'it-cpp': '/images/cpp.jpg',
-  'it-js': '/images/javascript.jpg',
-  'it-htmlcss': '/images/htmlcss.jpg',
-  'it-react': '/images/react.jpg',
-  'it-node': '/images/node.jpg',
-  'it-mongodb': '/images/mongodb.jpg',
-  'it-aws': '/images/aws.jpg',
-  'it-docker': '/images/docker.jpg',
-  'it-k8s': '/images/kubernetes.jpg',
-  'it-ml': '/images/machine_learning.jpg',
-  'it-powerbi': '/images/it_fullstack_course.jpg',
-  'it-prof-python': '/images/python.jpg',
-  'it-prof-java': '/images/java.jpg',
-  'it-prof-mern': '/images/react.jpg',
-  'it-prof-ds': '/images/machine_learning.jpg',
-  'it-prof-devops': '/images/kubernetes.jpg',
-  'it-master-fullstack': '/images/node.jpg',
-  'it-master-ds': '/images/machine_learning.jpg',
+  // IT & Software (25 Dedicated Images)
+  'it-prof-fullstack-python-react': '/images/it_prof_python_react.jpg',
+  'it-prof-java-fullstack': '/images/it_prof_java_fullstack.jpg',
+  'it-prof-mean-stack': '/images/it_prof_mean_stack.jpg',
+  'it-prof-mern-stack': '/images/it_prof_mern_stack.jpg',
+  'it-prof-web-design': '/images/it_prof_web_design.jpg',
+  'it-prof-software-testing': '/images/it_prof_software_testing.jpg',
+  'it-prof-ds-ai': '/images/it_prof_ds_ai.jpg',
+  'it-prof-cloud-devops': '/images/it_prof_cloud_devops.jpg',
+  'it-prof-cybersecurity': '/images/it_prof_cybersecurity.jpg',
+  'it-prof-rpa': '/images/it_prof_rpa.jpg',
+  'it-prof-digital-marketing': '/images/it_prof_digital_marketing.jpg',
+  'it-prof-db-management': '/images/it_prof_db_management.jpg',
+  'it-prof-game-dev': '/images/it_prof_game_dev.jpg',
+  'it-prof-blockchain': '/images/it_prof_blockchain.jpg',
+  'it-prof-ar-vr': '/images/it_prof_ar_vr.jpg',
 
-  'it-prof-fullstack-python-react': '/images/python.jpg',
-  'it-prof-java-fullstack': '/images/java.jpg',
-  'it-prof-mean-stack': '/images/mongodb.jpg',
-  'it-prof-mern-stack': '/images/react.jpg',
-  'it-prof-web-design': '/images/htmlcss.jpg',
-  'it-prof-software-testing': '/images/c.jpg',
-  'it-prof-ds-ai': '/images/machine_learning.jpg',
-  'it-prof-cloud-devops': '/images/kubernetes.jpg',
-  'it-prof-cybersecurity': '/images/docker.jpg',
-  'it-prof-rpa': '/images/aws.jpg',
-  'it-prof-digital-marketing': '/images/javascript.jpg',
-  'it-prof-db-management': '/images/mongodb.jpg',
-  'it-prof-game-dev': '/images/cpp.jpg',
-  'it-prof-blockchain': '/images/node.jpg',
-  'it-prof-ar-vr': '/images/it_fullstack_course.jpg',
-
-  'it-master-fullstack-dev': '/images/node.jpg',
-  'it-master-software-eng': '/images/python.jpg',
-  'it-master-cloud-devops': '/images/aws.jpg',
-  'it-master-ds-ai': '/images/machine_learning.jpg',
-  'it-master-cybersecurity': '/images/docker.jpg',
-  'it-master-rpa-automation': '/images/kubernetes.jpg',
-  'it-master-digital-marketing': '/images/javascript.jpg',
-  'it-master-web-app': '/images/react.jpg',
-  'it-master-adv-programming': '/images/cpp.jpg',
-  'it-master-game-ar-vr': '/images/it_fullstack_course.jpg',
+  'it-master-fullstack-dev': '/images/it_master_fullstack_dev.jpg',
+  'it-master-software-eng': '/images/it_master_software_eng.jpg',
+  'it-master-cloud-devops': '/images/it_master_cloud_devops.jpg',
+  'it-master-ds-ai': '/images/it_master_ds_ai.jpg',
+  'it-master-cybersecurity': '/images/it_master_cybersecurity.jpg',
+  'it-master-rpa-automation': '/images/it_master_rpa_automation.jpg',
+  'it-master-digital-marketing': '/images/it_master_digital_marketing.jpg',
+  'it-master-web-app': '/images/it_master_web_app.jpg',
+  'it-master-adv-programming': '/images/it_master_adv_programming.jpg',
+  'it-master-game-ar-vr': '/images/it_master_game_ar_vr.jpg',
 
   // Multimedia CADD
   'mm-uiux': '/images/javascript.jpg',
