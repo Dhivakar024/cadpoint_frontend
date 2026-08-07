@@ -141,12 +141,9 @@ export const generateSlug = (title, id) => {
     'mech-prof-cam-cnc': 'professional-cam-cnc',
     'mech-master-cad': 'master-diploma-mechanical-cad',
     'mech-master-aero': 'master-diploma-aerospace-design',
-    'elec-autocad-elec': 'autocad-electrical',
-    'elec-revit-mep': 'revit-mep-electrical',
     'elec-eplan': 'electrical-wiring-harness-eplan',
     'elec-etap': 'etap-power-systems',
     'elec-dialux': 'dialux-lighting-design',
-    'elec-plc-scada': 'plc-scada-automation',
     'elec-dip-cad': 'diploma-electrical-cad',
     'elec-dip-mep-hvac': 'diploma-hvac-mep-design',
     'elec-dip-building': 'diploma-electrical-building-services',
@@ -1296,42 +1293,6 @@ const BASE_COURSES = [
   // 6. ELECTRICAL & ELECTRONICS COURSES
   // ==========================================
   {
-    id: "elec-autocad-elec",
-    title: "Certification Course on AutoCAD Electrical",
-    domain: "Electrical & Electronics",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "Electrical Drafting",
-    software: "AutoCAD Electrical",
-    image: "/images/autocad_electrical.jpg",
-    description: "Electrical control panel layout, schematic circuit design, PLC I/O wiring, and component terminal numbering."
-  },
-  {
-    id: "elec-revit-mep",
-    title: "Certification Course on Revit MEP Electrical",
-    domain: "Electrical & Electronics",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "BIM Electrical",
-    software: "Autodesk Revit MEP",
-    image: "/images/revit_mep.jpg",
-    description: "Revit MEP training for building electrical distribution, cable tray routing, lighting fixtures, and power load calculation."
-  },
-  {
-    id: "elec-plc-scada",
-    title: "Certification Course in PLC & SCADA Automation",
-    domain: "Electrical & Electronics",
-    level: "Certificate",
-    duration: "80 hours",
-    mode: "Online / Offline",
-    category: "Automation",
-    software: "Siemens S7, Allen Bradley PLC, SCADA",
-    image: "/images/plc_scada.jpg",
-    description: "Industrial automation fundamentals, PLC ladder logic programming, SCADA HMI design, and sensor interfacing."
-  },
-  {
     id: "elec-prof-mep-msp",
     title: "Professional in MEP Designing",
     domain: "Electrical & Electronics",
@@ -1523,9 +1484,6 @@ const COURSE_UNIQUE_IMAGES = {
   'mech-master-cad': '/images/node.jpg',
 
   // Electrical & Electronics / MEP (Distinct Unique Images)
-  'elec-autocad-elec': '/images/autocad_electrical.jpg',
-  'elec-revit-mep': '/images/revit_mep.jpg',
-  'elec-plc-scada': '/images/plc_scada.jpg',
   'elec-prof-mep-msp': '/images/mep_designing_msp.jpg',
   'elec-prof-mep-primavera': '/images/mep_designing_primavera.jpg',
   'elec-prof-electrical-system': '/images/electrical_system_design.jpg',
