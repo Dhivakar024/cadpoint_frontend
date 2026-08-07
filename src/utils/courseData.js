@@ -53,7 +53,6 @@ export const generateSlug = (title, id) => {
 
     // Official Multimedia CADD Slugs
     'mm-uiux': 'ui-ux-design-figma',
-    'mm-dip-arch-walkthrough': 'diploma-architectural-walkthrough',
     'mm-prof-graphic-web': 'professional-course-graphic-web-design',
     'mm-prof-video-prod': 'professional-course-digital-video-production',
     'mm-prof-2d-anim': 'professional-course-2d-animation-editing',
@@ -737,19 +736,6 @@ const BASE_COURSES = [
     image: "/images/multimedia_vfx_course.jpg",
     description: "User experience research, wireframing, interactive mobile/web design systems, prototyping, and usability testing."
   },
-  // Diploma Courses
-  {
-    id: "mm-dip-arch-walkthrough",
-    title: "Diploma in Architectural Walkthrough",
-    domain: "Multimedia",
-    level: "Diploma",
-    duration: "120 hours",
-    mode: "Online / Offline",
-    category: "Visualization",
-    software: "3ds Max, Premiere Pro",
-    image: "/images/3ds_max.jpg",
-    description: "Architectural 3D camera walkthrough animation, video editing, and post-production using 3ds Max and Premiere Pro."
-  },
   // Professional Courses
   {
     id: "mm-prof-graphic-web",
@@ -1367,7 +1353,6 @@ const COURSE_UNIQUE_IMAGES = {
 
   // Multimedia CADD
   'mm-uiux': '/images/javascript.jpg',
-  'mm-dip-arch-walkthrough': '/images/3ds_max.jpg',
   'mm-prof-graphic-web': '/images/htmlcss.jpg',
   'mm-prof-video-prod': '/images/javascript.jpg',
   'mm-prof-2d-anim': '/images/cpp.jpg',
