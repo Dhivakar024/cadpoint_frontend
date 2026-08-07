@@ -122,48 +122,42 @@ export const SERVICES_PAGE_DATA = [
   },
   {
     id: 3,
-    title: "Placement Assistance",
-    subtitle: "We connect skilled candidates with top recruiters.",
-    content: "Our placement assistance program prepares candidates with end-to-end job readiness training to face technical and HR interviews with confidence. We focus on both hard skills and soft skills to make you interview-ready. You will get resume optimization, aptitude and coding practice, mock technical interviews, HR round preparation, and personalized feedback after every mock session. We also run workshops on communication, group discussions, and interview strategies. This training improves presentation, problem-solving speed, and confidence levels."
-  },
-  {
-    id: 4,
     title: "Corporate Training",
     subtitle: "Upskill your team with custom corporate IT training.",
     content: "Our corporate training programs are tailored to company goals and current technologies to quickly uplift team capabilities. Courses are customized to match role-specific needs and project pipelines for maximum impact. Training includes hands-on labs, real-case studies, live demos, and practical assignments designed to reinforce learning. We provide assessments, progress reports, and follow-up materials so the knowledge sticks and is immediately applicable."
   },
   {
-    id: 5,
+    id: 4,
     title: "Software Development",
     subtitle: "We develop custom software and applications.",
     content: "We deliver end-to-end software development services for web and mobile platforms, focusing on scalable architecture and maintainable code. Projects start with requirement analysis and end with deployment and support. Our services include UI/UX design, API development, testing, CI/CD setup, and cloud deployment to ensure reliable, production-ready applications. We follow iterative development processes and provide regular demos and feedback loops."
   },
   {
-    id: 6,
+    id: 5,
     title: "Internship Programs",
     subtitle: "Gain hands-on experience with structured internships.",
     content: "Our internships combine mentorship, real tasks, and practical learning to prepare students for real job roles. Every intern is paired with an industry mentor who supervises the project and guides daily progress. During the internship you will work on real modules, participate in stand-ups, submit deliverables, and attend learning sessions that teach tools and best practices."
   },
   {
-    id: 7,
+    id: 6,
     title: "Digital Marketing Services",
     subtitle: "Grow your brand with our online marketing solutions.",
     content: "We offer data-driven digital marketing services to increase brand visibility and attract qualified leads. Campaigns are built on research, audience insights, and measurable KPIs that align with your business goals. Our work includes SEO, paid ads, social media strategy, content planning, and analytics reporting to optimize performance continuously."
   },
   {
-    id: 8,
+    id: 7,
     title: "Web & App Design",
     subtitle: "Modern and responsive UI/UX design.",
     content: "We craft clean, user-focused designs for websites and mobile apps that balance aesthetics and usability. Our process begins with research, user flows, and wireframes to map the best experiences for your users. Design deliverables include high-fidelity mockups, interactive prototypes, responsive layouts, and style guides."
   },
   {
-    id: 9,
+    id: 8,
     title: "CAD & Design Services",
     subtitle: "Expert CAD solutions for engineering domains.",
     content: "Our CAD and design services provide accurate engineering drawings, 3D models, and simulations for manufacturing and product development. We follow industry standards to ensure compatibility and precision. Services include 2D drafting, 3D modelling, assembly drawings, BOM creation, and simulation-driven optimization using AutoCAD, SolidWorks, CATIA, and Revit."
   },
   {
-    id: 10,
+    id: 9,
     title: "Academic Research & Paper Assistance",
     subtitle: "Guidance for research, thesis, and journal papers.",
     content: "We assist students and researchers in planning and preparing academic work with a focus on rigorous methodology and correct formatting. From topic refinement to literature review, we guide each step carefully. Our services include structure building, statistical guidance, editing and proofreading, reference management, and plagiarism checks to ensure the work meets journal standards."
@@ -188,14 +182,6 @@ export const ECOSYSTEM_DATA = {
       projects: 90,
       clients: 50,
       url: "https://lax360.com"
-    },
-    {
-      name: "Lax Venture",
-      tags: ["AI", "Automation", "Innovation"],
-      desc: "LaxVenture drives AI innovation to solve complex business challenges. We build intelligent ecosystems optimizing operations and efficiency.",
-      projects: 60,
-      clients: 40,
-      url: "#"
     }
   ],
   partnerBrands: [
