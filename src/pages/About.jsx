@@ -55,11 +55,6 @@ export function About() {
       year: "Pillar 3",
       title: "Internships & Live Projects",
       desc: "Production experience working on live client modules and enterprise workflows."
-    },
-    {
-      year: "Pillar 4",
-      title: "Career & Placement Drive",
-      desc: "Resume optimization, mock interviews, and direct referral drives with partner companies."
     }
   ];
 
@@ -142,10 +137,10 @@ export function About() {
       <section className="space-y-10">
         <SectionHeader
           eyebrow="Educational Framework"
-          title="The 4 Pillars of CADPOINT Excellence"
+          title="The 3 Pillars of CADPOINT Excellence"
           subtitle="Our proven learning methodology designed to transform beginners into confident industry professionals."
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {milestones.map((item, index) => (
             <Card key={index} className="p-6 relative overflow-hidden">
               <span className={`text-xs font-bold uppercase tracking-wider block mb-2 ${
