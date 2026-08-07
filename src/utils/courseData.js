@@ -22,11 +22,28 @@ export const generateSlug = (title, id) => {
     'it-prof-devops': 'cloud-devops-engineering',
     'it-master-fullstack': 'master-diploma-full-stack',
     'it-master-ds': 'master-diploma-data-science',
+    
+    // Official Multimedia CADD Slugs
     'mm-photoshop': 'graphic-design-photoshop',
     'mm-aftereffects': 'visual-effects-after-effects',
     'mm-maya': 'maya-3d-modeling',
     'mm-uiux': 'ui-ux-design-figma',
     'mm-master-vfx': 'master-animation-vfx',
+    'mm-dip-multimedia-design': 'diploma-multimedia-design',
+    'mm-dip-arch-walkthrough': 'diploma-architectural-walkthrough',
+    'mm-prof-graphic-web': 'professional-course-graphic-web-design',
+    'mm-prof-video-prod': 'professional-course-digital-video-production',
+    'mm-prof-2d-anim': 'professional-course-2d-animation-editing',
+    'mm-prof-print-pub': 'professional-course-print-publishing',
+    'mm-prof-uiux-figma': 'professional-course-ui-ux-design-figma',
+    'mm-prof-3d-anim': 'professional-course-3d-design-animation',
+    'mm-prof-arch-vis': 'professional-course-architectural-visualization',
+    'mm-master-graphic-mm': 'master-diploma-graphic-multimedia-design',
+    'mm-master-anim-vfx': 'master-diploma-animation-vfx-flash',
+    'mm-master-digital-media': 'master-diploma-digital-media-production',
+    'mm-master-mm-web': 'master-diploma-multimedia-web',
+    'mm-master-3d-game': 'master-diploma-3d-animation-game-art',
+    'mm-master-arch-eng-anim': 'master-diploma-architectural-engineering-animation',
     
     // Official Accounting, Finance & ERP Slugs
     'acc-prof-taxation': 'professional-diploma-financial-accounting-taxation',
@@ -40,7 +57,7 @@ export const generateSlug = (title, id) => {
     'acc-master-mis-analytics': 'pg-diploma-financial-control-mis-analytics',
     'acc-master-global': 'pg-diploma-global-finance-erp',
 
-    // New Official MEP & Electrical Slugs
+    // Official MEP & Electrical Slugs
     'elec-prof-mep-msp': 'professional-mep-designing-ms-project',
     'elec-prof-mep-primavera': 'professional-mep-designing-primavera',
     'elec-prof-electrical-system': 'professional-electrical-system-design',
@@ -443,6 +460,189 @@ const BASE_COURSES = [
     software: "Maya, Blender, After Effects, Nuke, Premiere",
     image: "/images/multimedia_vfx_course.jpg",
     description: "Complete master diploma in 3D character animation, VFX compositing, lighting, and film production pipelines."
+  },
+  // Diploma Courses
+  {
+    id: "mm-dip-multimedia-design",
+    title: "Diploma in Multimedia Design",
+    domain: "Multimedia",
+    level: "Diploma",
+    duration: "120 hours",
+    mode: "Online / Offline",
+    category: "Graphic & Media",
+    software: "Photoshop, After Effects",
+    image: "/images/multimedia_vfx_course.jpg",
+    description: "Foundational diploma in multimedia design covering image editing, graphic composition, and visual effects in Photoshop and After Effects."
+  },
+  {
+    id: "mm-dip-arch-walkthrough",
+    title: "Diploma in Architectural Walkthrough",
+    domain: "Multimedia",
+    level: "Diploma",
+    duration: "120 hours",
+    mode: "Online / Offline",
+    category: "Visualization",
+    software: "3ds Max, Premiere Pro",
+    image: "/images/3ds_max.jpg",
+    description: "Architectural 3D camera walkthrough animation, video editing, and post-production using 3ds Max and Premiere Pro."
+  },
+  // Professional Courses
+  {
+    id: "mm-prof-graphic-web",
+    title: "Professional Course in Graphic & Web Design",
+    domain: "Multimedia",
+    level: "Professional",
+    duration: "160 hours",
+    mode: "Online / Offline",
+    category: "Web & Print",
+    software: "Photoshop, Illustrator, CorelDRAW, HTML/CSS",
+    image: "/images/htmlcss.jpg",
+    description: "Professional training in vector illustration, print graphic design, CorelDRAW layout, and responsive HTML/CSS web design."
+  },
+  {
+    id: "mm-prof-video-prod",
+    title: "Professional Course in Digital Video Production",
+    domain: "Multimedia",
+    level: "Professional",
+    duration: "180 hours",
+    mode: "Online / Offline",
+    category: "Video Editing",
+    software: "Premiere Pro, After Effects, Audition, Photoshop",
+    image: "/images/javascript.jpg",
+    description: "Digital video editing masterclass featuring Premiere Pro timeline editing, After Effects motion graphics, Audition audio mastering, and Photoshop graphics."
+  },
+  {
+    id: "mm-prof-2d-anim",
+    title: "Professional Course in 2D Animation & Editing",
+    domain: "Multimedia",
+    level: "Professional",
+    duration: "160 hours",
+    mode: "Online / Offline",
+    category: "2D Animation",
+    software: "Flash, Photoshop, Sound Forge, Premiere Pro",
+    image: "/images/cpp.jpg",
+    description: "2D character animation, keyframing, audio editing, and video post-production using Adobe Flash, Sound Forge, and Premiere Pro."
+  },
+  {
+    id: "mm-prof-print-pub",
+    title: "Professional Course in Print & Publishing",
+    domain: "Multimedia",
+    level: "Professional",
+    duration: "160 hours",
+    mode: "Online / Offline",
+    category: "Publishing",
+    software: "Photoshop, InDesign, PageMaker, Illustrator",
+    image: "/images/c.jpg",
+    description: "Desktop publishing, magazine layout, book typography, vector design, and commercial printing prepress workflows."
+  },
+  {
+    id: "mm-prof-uiux-figma",
+    title: "Professional Course in UI/UX Design",
+    domain: "Multimedia",
+    level: "Professional",
+    duration: "160 hours",
+    mode: "Online / Offline",
+    category: "UI/UX",
+    software: "Photoshop, Figma, Illustrator, InDesign",
+    image: "/images/react.jpg",
+    description: "User interface and experience design covering Figma interactive wireframing, component design systems, prototyping, and layout publishing."
+  },
+  {
+    id: "mm-prof-3d-anim",
+    title: "Professional Course in 3D Design & Animation",
+    domain: "Multimedia",
+    level: "Professional",
+    duration: "180 hours",
+    mode: "Online / Offline",
+    category: "3D Animation",
+    software: "Maya, After Effects, Photoshop, Premiere",
+    image: "/images/it_fullstack_course.jpg",
+    description: "3D character modeling, texturing, animation rigging, motion compositing, and video editing using Autodesk Maya and After Effects."
+  },
+  {
+    id: "mm-prof-arch-vis",
+    title: "Professional Course in Architectural Visualization",
+    domain: "Multimedia",
+    level: "Professional",
+    duration: "180 hours",
+    mode: "Online / Offline",
+    category: "Visualization",
+    software: "3ds Max, V-Ray, Photoshop, Premiere Pro",
+    image: "/images/3ds_max.jpg",
+    description: "Photorealistic 3D architectural rendering, V-Ray raytracing lighting, post-processing retouching, and walkthrough video creation."
+  },
+  // Master Diploma Courses
+  {
+    id: "mm-master-graphic-mm",
+    title: "Master Diploma in Graphic & Multimedia Design",
+    domain: "Multimedia",
+    level: "Master Diploma",
+    duration: "240 hours",
+    mode: "Online / Offline",
+    category: "Master Media",
+    software: "Photoshop, Illustrator, CorelDRAW, InDesign, After Effects",
+    image: "/images/multimedia_vfx_course.jpg",
+    description: "Master diploma in digital graphic branding, publication layout, vector art, and motion graphics design."
+  },
+  {
+    id: "mm-master-anim-vfx",
+    title: "Master Diploma in Animation & VFX",
+    domain: "Multimedia",
+    level: "Master Diploma",
+    duration: "280 hours",
+    mode: "Online / Offline",
+    category: "Master VFX",
+    software: "Maya, After Effects, Premiere Pro, Flash, Photoshop",
+    image: "/images/cpp.jpg",
+    description: "Complete postgraduate master diploma in 3D animation, VFX visual effects keying, 2D animation, and film editing pipelines."
+  },
+  {
+    id: "mm-master-digital-media",
+    title: "Master Diploma in Digital Media Production",
+    domain: "Multimedia",
+    level: "Master Diploma",
+    duration: "260 hours",
+    mode: "Online / Offline",
+    category: "Master Media",
+    software: "Premiere, After Effects, Audition, Photoshop, Illustrator",
+    image: "/images/javascript.jpg",
+    description: "Master level film and digital broadcast media production covering non-linear editing, motion graphics, audio mastering, and graphic design."
+  },
+  {
+    id: "mm-master-mm-web",
+    title: "Master Diploma in Multimedia and Web",
+    domain: "Multimedia",
+    level: "Master Diploma",
+    duration: "250 hours",
+    mode: "Online / Offline",
+    category: "Master Web",
+    software: "Photoshop, Illustrator, HTML/CSS, JavaScript, Figma",
+    image: "/images/htmlcss.jpg",
+    description: "Comprehensive multimedia web engineering diploma combining graphic design, Figma UI prototyping, HTML/CSS, and interactive JavaScript."
+  },
+  {
+    id: "mm-master-3d-game",
+    title: "Master Diploma in 3D Animation & Game Art",
+    domain: "Multimedia",
+    level: "Master Diploma",
+    duration: "300 hours",
+    mode: "Online / Offline",
+    category: "Master Gaming",
+    software: "Maya, Unity, Photoshop, Blender, Substance Painter",
+    image: "/images/react.jpg",
+    description: "Master 3D game art diploma covering character modeling in Maya/Blender, PBR texturing in Substance Painter, and real-time Unity engine integration."
+  },
+  {
+    id: "mm-master-arch-eng-anim",
+    title: "Master Diploma in Architectural & Engineering Animation",
+    domain: "Multimedia",
+    level: "Master Diploma",
+    duration: "280 hours",
+    mode: "Online / Offline",
+    category: "Master Engineering",
+    software: "3ds Max, V-Ray, AutoCAD, Photoshop, Premiere Pro",
+    image: "/images/3ds_max.jpg",
+    description: "Postgraduate master diploma in CAD architectural modeling, V-Ray photorealistic rendering, engineering fly-through animation, and video editing."
   },
 
   // ==========================================
@@ -910,12 +1110,27 @@ const COURSE_UNIQUE_IMAGES = {
   'it-master-fullstack': '/images/node.jpg',
   'it-master-ds': '/images/machine_learning.jpg',
 
-  // Multimedia
+  // Multimedia CADD
   'mm-photoshop': '/images/multimedia_vfx_course.jpg',
   'mm-aftereffects': '/images/cpp.jpg',
   'mm-maya': '/images/c.jpg',
   'mm-uiux': '/images/javascript.jpg',
   'mm-master-vfx': '/images/react.jpg',
+  'mm-dip-multimedia-design': '/images/multimedia_vfx_course.jpg',
+  'mm-dip-arch-walkthrough': '/images/3ds_max.jpg',
+  'mm-prof-graphic-web': '/images/htmlcss.jpg',
+  'mm-prof-video-prod': '/images/javascript.jpg',
+  'mm-prof-2d-anim': '/images/cpp.jpg',
+  'mm-prof-print-pub': '/images/c.jpg',
+  'mm-prof-uiux-figma': '/images/react.jpg',
+  'mm-prof-3d-anim': '/images/it_fullstack_course.jpg',
+  'mm-prof-arch-vis': '/images/3ds_max.jpg',
+  'mm-master-graphic-mm': '/images/multimedia_vfx_course.jpg',
+  'mm-master-anim-vfx': '/images/cpp.jpg',
+  'mm-master-digital-media': '/images/javascript.jpg',
+  'mm-master-mm-web': '/images/htmlcss.jpg',
+  'mm-master-3d-game': '/images/react.jpg',
+  'mm-master-arch-eng-anim': '/images/3ds_max.jpg',
 
   // Accounting & ERP (100% Unique High-Res Image per Course)
   'acc-prof-taxation': '/images/financial_accounting_taxation.jpg',
