@@ -1186,8 +1186,6 @@ export const CATEGORIES = [
 
 export const LEVELS = [
   "All Levels",
-  "Certificate",
-  "Diploma",
   "Professional",
   "Master Diploma"
 ];
