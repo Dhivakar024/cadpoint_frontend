@@ -27,11 +27,19 @@ export const generateSlug = (title, id) => {
     'mm-maya': 'maya-3d-modeling',
     'mm-uiux': 'ui-ux-design-figma',
     'mm-master-vfx': 'master-animation-vfx',
-    'acc-tally': 'tally-prime-gst',
-    'acc-excel': 'advanced-excel-analytics',
-    'acc-sap-fico': 'sap-erp-fico',
-    'acc-diploma-tax': 'financial-accounting-taxation',
-    'acc-master-sap': 'sap-erp-implementation',
+    
+    // Official Accounting, Finance & ERP Slugs
+    'acc-prof-taxation': 'professional-diploma-financial-accounting-taxation',
+    'acc-prof-data': 'professional-diploma-data-driven-accounting',
+    'acc-prof-sap': 'professional-diploma-sap-functional-modules',
+    'acc-prof-mis': 'professional-diploma-mis-business-reporting',
+    'acc-prof-foreign': 'professional-diploma-indian-foreign-accounting',
+    'acc-master-practical': 'pg-diploma-professional-practical-accounting',
+    'acc-master-intl': 'pg-diploma-international-accounting-taxation',
+    'acc-master-sap-impl': 'pg-diploma-sap-erp-implementation',
+    'acc-master-mis-analytics': 'pg-diploma-financial-control-mis-analytics',
+    'acc-master-global': 'pg-diploma-global-finance-erp',
+
     'civil-cad-2d': 'autocad-2d-civil',
     'civil-cad-3d': 'autocad-3d-civil',
     'civil-microstation': 'microstation-civil',
@@ -429,67 +437,130 @@ const BASE_COURSES = [
   },
 
   // ==========================================
-  // 3. ACCOUNTING, FINANCE, AND ERP
+  // 3. OFFICIAL ACCOUNTING, FINANCE, AND ERP COURSES (EXACT 10 COURSES)
   // ==========================================
+  // Category 1: Professional Courses (5)
   {
-    id: "acc-tally",
-    title: "Certificate in Tally Prime",
-    domain: "Accounting & ERP",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Accounting",
-    software: "Tally Prime, GST Portal",
-    image: "/images/tally_finance_course.jpg",
-    description: "Practical computerized accounting, GST filing, e-way bills, inventory control, and voucher entries using Tally Prime."
-  },
-  {
-    id: "acc-excel",
-    title: "Certificate in Microsoft Excel – Advanced",
-    domain: "Accounting & ERP",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Finance",
-    software: "Excel 365, Power Query, Pivot, VBA",
-    image: "/images/tally_finance_course.jpg",
-    description: "Advanced Excel methods for financial modeling, data cleanup, XLOOKUP, pivot tables, and macro automation."
-  },
-  {
-    id: "acc-sap-fico",
-    title: "Certificate in SAP ERP – Financials (FICO)",
-    domain: "Accounting & ERP",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "ERP Systems",
-    software: "SAP FICO S/4HANA",
-    image: "/images/tally_finance_course.jpg",
-    description: "SAP FICO module configuration, General Ledger, Accounts Payable, Receivable, and financial controlling."
-  },
-  {
-    id: "acc-diploma-tax",
+    id: "acc-prof-taxation",
     title: "Professional Diploma in Financial Accounting & Taxation",
     domain: "Accounting & ERP",
     level: "Professional",
     duration: "140 hours",
     mode: "Online / Offline",
     category: "Taxation",
-    software: "Tally Prime, Excel, GST & IT Portals",
-    image: "/images/tally_finance_course.jpg",
-    description: "Comprehensive accounting and direct/indirect taxation diploma covering GST returns, TDS calculation, and balance sheets."
+    software: "Tally Prime, GST, Taxation, Excel",
+    image: "/images/financial_accounting_taxation.jpg",
+    description: "Comprehensive financial accounting diploma covering Tally Prime operations, GST return filing, direct taxation, and balance sheet finalization."
   },
   {
-    id: "acc-master-sap",
+    id: "acc-prof-data",
+    title: "Professional Diploma in Data-Driven Accounting",
+    domain: "Accounting & ERP",
+    level: "Professional",
+    duration: "140 hours",
+    mode: "Online / Offline",
+    category: "Analytics",
+    software: "Advanced Excel, Power BI, QuickBooks",
+    image: "/images/data_driven_accounting.jpg",
+    description: "Modern data-driven accounting using Advanced Excel financial modeling, interactive Power BI dashboards, and cloud QuickBooks."
+  },
+  {
+    id: "acc-prof-sap",
+    title: "Professional Diploma in SAP Functional Modules",
+    domain: "Accounting & ERP",
+    level: "Professional",
+    duration: "150 hours",
+    mode: "Online / Offline",
+    category: "ERP Systems",
+    software: "SAP FICO, SAP MM, SAP SD, SAP PP",
+    image: "/images/sap_functional_modules.jpg",
+    description: "Functional module expertise across SAP FICO financial controlling, Materials Management (MM), Sales & Distribution (SD), and Production Planning (PP)."
+  },
+  {
+    id: "acc-prof-mis",
+    title: "Professional Diploma in MIS & Business Reporting",
+    domain: "Accounting & ERP",
+    level: "Professional",
+    duration: "140 hours",
+    mode: "Online / Offline",
+    category: "Reporting",
+    software: "Excel, Advanced Excel, Power BI, Zoho Books",
+    image: "/images/mis_business_reporting.jpg",
+    description: "Executive MIS report generation, Power BI data analytics, financial forecasting models, and Zoho Books accounting software."
+  },
+  {
+    id: "acc-prof-foreign",
+    title: "Professional Diploma in Indian & Foreign Accounting",
+    domain: "Accounting & ERP",
+    level: "Professional",
+    duration: "140 hours",
+    mode: "Online / Offline",
+    category: "Global Finance",
+    software: "Tally, QuickBooks, Indian + Gulf Tax",
+    image: "/images/indian_foreign_accounting.jpg",
+    description: "Dual accounting standards training covering Indian statutory tax regulations, Gulf VAT compliance, Tally, and QuickBooks global accounting."
+  },
+
+  // Category 2: Master Diploma Courses (5)
+  {
+    id: "acc-master-practical",
+    title: "PG Diploma in Professional & Practical Accounting",
+    domain: "Accounting & ERP",
+    level: "Master Diploma",
+    duration: "180 hours",
+    mode: "Online / Offline",
+    category: "Master Accounting",
+    software: "MS Office, Advanced Excel, Tally, Taxation, GST, Payroll",
+    image: "/images/practical_accounting_master.jpg",
+    description: "Postgraduate master program covering practical corporate accounting, payroll processing, statutory GST filing, Tally, and MS Office suites."
+  },
+  {
+    id: "acc-master-intl",
+    title: "PG Diploma in International Accounting & Taxation",
+    domain: "Accounting & ERP",
+    level: "Master Diploma",
+    duration: "200 hours",
+    mode: "Online / Offline",
+    category: "Master Finance",
+    software: "International Taxation, Sage 50, Zoho Books, Gulf VAT, QuickBooks",
+    image: "/images/international_accounting_taxation.jpg",
+    description: "Master international accounting diploma with Sage 50, Gulf VAT laws, US/UK taxation principles, and multi-currency cloud accounting."
+  },
+  {
+    id: "acc-master-sap-impl",
     title: "PG Diploma in SAP ERP Implementation",
     domain: "Accounting & ERP",
     level: "Master Diploma",
     duration: "200 hours",
     mode: "Online / Offline",
-    category: "ERP Master",
-    software: "SAP S/4HANA FICO, MM, SD",
-    image: "/images/tally_finance_course.jpg",
-    description: "Master level SAP ERP implementation diploma covering business blueprinting, cross-module integration, and enterprise reporting."
+    category: "Master ERP",
+    software: "SAP FICO, SAP MM, SAP SD, SAP PP, Logistics",
+    image: "/images/sap_erp_implementation.jpg",
+    description: "Enterprise SAP ERP implementation diploma covering business blueprinting, S/4HANA module integration, logistics, and corporate controlling."
+  },
+  {
+    id: "acc-master-mis-analytics",
+    title: "PG Diploma in Financial Control & MIS Analytics",
+    domain: "Accounting & ERP",
+    level: "Master Diploma",
+    duration: "200 hours",
+    mode: "Online / Offline",
+    category: "Master Analytics",
+    software: "Excel, Power BI, Tally, GST, Payroll, MIS Reports",
+    image: "/images/financial_control_mis_analytics.jpg",
+    description: "Master financial control diploma integrating statutory GST audit, corporate payroll, DAX Power BI business intelligence, and executive MIS reporting."
+  },
+  {
+    id: "acc-master-global",
+    title: "PG Diploma in Global Finance & ERP",
+    domain: "Accounting & ERP",
+    level: "Master Diploma",
+    duration: "220 hours",
+    mode: "Online / Offline",
+    category: "Master Global",
+    software: "SAP ERP, Tally Prime, QuickBooks, Zoho Books, Foreign Accounting",
+    image: "/images/global_finance_erp.jpg",
+    description: "Ultimate postgraduate master diploma in global financial engineering, multi-country tax compliance, enterprise SAP ERP, and multi-ledger systems."
   },
 
   // ==========================================
@@ -765,12 +836,17 @@ const COURSE_UNIQUE_IMAGES = {
   'mm-uiux': '/images/javascript.jpg',
   'mm-master-vfx': '/images/react.jpg',
 
-  // Accounting & ERP
-  'acc-tally': '/images/tally_finance_course.jpg',
-  'acc-excel': '/images/machine_learning.jpg',
-  'acc-sap-fico': '/images/java.jpg',
-  'acc-diploma-tax': '/images/python.jpg',
-  'acc-master-sap': '/images/aws.jpg',
+  // Accounting & ERP (100% Unique High-Res Image per Course)
+  'acc-prof-taxation': '/images/financial_accounting_taxation.jpg',
+  'acc-prof-data': '/images/data_driven_accounting.jpg',
+  'acc-prof-sap': '/images/sap_functional_modules.jpg',
+  'acc-prof-mis': '/images/mis_business_reporting.jpg',
+  'acc-prof-foreign': '/images/indian_foreign_accounting.jpg',
+  'acc-master-practical': '/images/practical_accounting_master.jpg',
+  'acc-master-intl': '/images/international_accounting_taxation.jpg',
+  'acc-master-sap-impl': '/images/sap_erp_implementation.jpg',
+  'acc-master-mis-analytics': '/images/financial_control_mis_analytics.jpg',
+  'acc-master-global': '/images/global_finance_erp.jpg',
 
   // Civil & Architecture (Distinct Unique Images)
   'civil-cad-2d': '/images/autocad_2d_civil.jpg',
@@ -923,13 +999,13 @@ export function getCourseBySlug(slug) {
   // 8-10 Specific Job Roles
   const careerOpportunities = [
     `${base.category} Specialist`,
-    `${base.software.split(',')[0]} Engineer`,
-    "Technical Associate",
+    `${base.software.split(',')[0]} Analyst`,
+    "Financial & ERP Associate",
     "Solutions Architect Assistant",
-    "Application Developer",
-    "CAD/IT Design Analyst",
-    "Quality Assurance Specialist",
-    "Project Operations Trainee"
+    "Application Specialist",
+    "CAD/IT & ERP Consultant",
+    "Quality Assurance Analyst",
+    "Corporate Operations Trainee"
   ];
 
   // Realistic Fresher Salary Range
