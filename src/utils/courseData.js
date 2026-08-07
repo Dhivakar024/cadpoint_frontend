@@ -52,12 +52,7 @@ export const generateSlug = (title, id) => {
     'it-master-game-ar-vr': 'master-diploma-game-ar-vr-development',
 
     // Official Multimedia CADD Slugs
-    'mm-photoshop': 'graphic-design-photoshop',
-    'mm-aftereffects': 'visual-effects-after-effects',
-    'mm-maya': 'maya-3d-modeling',
     'mm-uiux': 'ui-ux-design-figma',
-    'mm-master-vfx': 'master-animation-vfx',
-    'mm-dip-multimedia-design': 'diploma-multimedia-design',
     'mm-dip-arch-walkthrough': 'diploma-architectural-walkthrough',
     'mm-prof-graphic-web': 'professional-course-graphic-web-design',
     'mm-prof-video-prod': 'professional-course-digital-video-production',
@@ -731,42 +726,6 @@ const BASE_COURSES = [
   // 2. MULTIMEDIA COURSES
   // ==========================================
   {
-    id: "mm-photoshop",
-    title: "Certificate in Graphic Design with Photoshop",
-    domain: "Multimedia",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "Graphic Design",
-    software: "Adobe Photoshop, Illustrator",
-    image: "/images/multimedia_vfx_course.jpg",
-    description: "Graphic design principles, image manipulation, digital branding, photo retouching, and poster creation."
-  },
-  {
-    id: "mm-aftereffects",
-    title: "Certificate in Visual Effects with After Effects",
-    domain: "Multimedia",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "VFX & Motion",
-    software: "Adobe After Effects, Premiere Pro",
-    image: "/images/multimedia_vfx_course.jpg",
-    description: "Motion graphics, visual effects compositing, green screen keying, title animations, and video post-production."
-  },
-  {
-    id: "mm-maya",
-    title: "Certificate in Maya 3D Modeling",
-    domain: "Multimedia",
-    level: "Certificate",
-    duration: "60 hours",
-    mode: "Online / Offline",
-    category: "3D & Animation",
-    software: "Autodesk Maya, Arnold Renderer",
-    image: "/images/multimedia_vfx_course.jpg",
-    description: "3D polygon modeling, texturing, UV unwrapping, lighting, and asset generation in Autodesk Maya."
-  },
-  {
     id: "mm-uiux",
     title: "Professional Course in UI/UX Design",
     domain: "Multimedia",
@@ -778,31 +737,7 @@ const BASE_COURSES = [
     image: "/images/multimedia_vfx_course.jpg",
     description: "User experience research, wireframing, interactive mobile/web design systems, prototyping, and usability testing."
   },
-  {
-    id: "mm-master-vfx",
-    title: "Master Diploma in Animation & VFX",
-    domain: "Multimedia",
-    level: "Master Diploma",
-    duration: "280 hours",
-    mode: "Online / Offline",
-    category: "Master Media",
-    software: "Maya, Blender, After Effects, Nuke, Premiere",
-    image: "/images/multimedia_vfx_course.jpg",
-    description: "Complete master diploma in 3D character animation, VFX compositing, lighting, and film production pipelines."
-  },
   // Diploma Courses
-  {
-    id: "mm-dip-multimedia-design",
-    title: "Diploma in Multimedia Design",
-    domain: "Multimedia",
-    level: "Diploma",
-    duration: "120 hours",
-    mode: "Online / Offline",
-    category: "Graphic & Media",
-    software: "Photoshop, After Effects",
-    image: "/images/multimedia_vfx_course.jpg",
-    description: "Foundational diploma in multimedia design covering image editing, graphic composition, and visual effects in Photoshop and After Effects."
-  },
   {
     id: "mm-dip-arch-walkthrough",
     title: "Diploma in Architectural Walkthrough",
@@ -1431,12 +1366,7 @@ const COURSE_UNIQUE_IMAGES = {
   'it-master-game-ar-vr': '/images/it_fullstack_course.jpg',
 
   // Multimedia CADD
-  'mm-photoshop': '/images/multimedia_vfx_course.jpg',
-  'mm-aftereffects': '/images/cpp.jpg',
-  'mm-maya': '/images/c.jpg',
   'mm-uiux': '/images/javascript.jpg',
-  'mm-master-vfx': '/images/react.jpg',
-  'mm-dip-multimedia-design': '/images/multimedia_vfx_course.jpg',
   'mm-dip-arch-walkthrough': '/images/3ds_max.jpg',
   'mm-prof-graphic-web': '/images/htmlcss.jpg',
   'mm-prof-video-prod': '/images/javascript.jpg',
