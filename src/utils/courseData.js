@@ -40,6 +40,15 @@ export const generateSlug = (title, id) => {
     'acc-master-mis-analytics': 'pg-diploma-financial-control-mis-analytics',
     'acc-master-global': 'pg-diploma-global-finance-erp',
 
+    // New Official MEP & Electrical Slugs
+    'elec-prof-mep-msp': 'professional-mep-designing-ms-project',
+    'elec-prof-mep-primavera': 'professional-mep-designing-primavera',
+    'elec-prof-electrical-system': 'professional-electrical-system-design',
+    'elec-prof-hvac-fire': 'professional-hvac-firefighting-design',
+    'elec-master-mep-hvac-plan': 'master-diploma-mep-hvac-design-project-planning',
+    'elec-master-electrical-building': 'master-diploma-electrical-building-system-design',
+    'elec-master-mep-bim-coordination': 'master-diploma-mep-coordination-bim',
+
     'civil-cad-2d': 'autocad-2d-civil',
     'civil-cad-3d': 'autocad-3d-civil',
     'civil-microstation': 'microstation-civil',
@@ -575,7 +584,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Drafting",
     software: "AutoCAD 2D Civil",
-    image: "/images/civil_bim_course.jpg",
+    image: "/images/autocad_2d_civil.jpg",
     description: "Foundational civil engineering drafting, architectural floor plans, sections, elevations, and CAD standards."
   },
   {
@@ -599,7 +608,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "BIM",
     software: "Graphisoft ArchiCAD",
-    image: "/images/civil_bim_course.jpg",
+    image: "/images/htmlcss.jpg",
     description: "Building Information Modeling (BIM) using ArchiCAD for parametric architectural design and documentation."
   },
   {
@@ -611,7 +620,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "BIM",
     software: "Autodesk Revit Architecture",
-    image: "/images/civil_bim_course.jpg",
+    image: "/images/revit_architecture.jpg",
     description: "Revit Architecture BIM training covering 3D building components, parametric families, and construction drawings."
   },
   {
@@ -623,7 +632,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Visualization",
     software: "Autodesk 3ds Max, V-Ray",
-    image: "/images/civil_bim_course.jpg",
+    image: "/images/3ds_max.jpg",
     description: "Photorealistic 3D architectural rendering, materials, camera setup, and interior/exterior lighting."
   },
   {
@@ -635,7 +644,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Structural",
     software: "STAAD.Pro CONNECT Edition",
-    image: "/images/civil_bim_course.jpg",
+    image: "/images/staad_pro.jpg",
     description: "Structural analysis and Reinforced Concrete (RCC) & Steel structure design using STAAD.Pro."
   },
   {
@@ -647,7 +656,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Structural",
     software: "CSI ETABS",
-    image: "/images/civil_bim_course.jpg",
+    image: "/images/etabs_analysis.jpg",
     description: "High-rise building structural analysis, seismic load evaluation, shear wall design, and framing using ETABS."
   },
   {
@@ -659,7 +668,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Drafting",
     software: "AutoCAD 2D & 3D Civil",
-    image: "/images/civil_bim_course.jpg",
+    image: "/images/c.jpg",
     description: "Complete civil drafting diploma covering residential/commercial layouts, structural drawings, and 3D perspectives."
   },
   {
@@ -671,7 +680,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Master Civil",
     software: "AutoCAD, Revit, 3ds Max, V-Ray, Lumion",
-    image: "/images/civil_bim_course.jpg",
+    image: "/images/react.jpg",
     description: "Master level architectural engineering diploma covering BIM, photorealistic rendering, walkthroughs, and project management."
   },
 
@@ -699,7 +708,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "3D Design",
     software: "Dassault SolidWorks",
-    image: "/images/mech_cad_course.jpg",
+    image: "/images/solidworks.jpg",
     description: "SolidWorks 3D parametric modeling, complex sheet metal design, assembly creation, and technical drafting."
   },
   {
@@ -711,7 +720,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "3D Design",
     software: "CATIA V5-6",
-    image: "/images/mech_cad_course.jpg",
+    image: "/images/catia_v5.jpg",
     description: "CATIA V5 surface modeling, generative shape design, aerospace components, and solid body modeling."
   },
   {
@@ -723,7 +732,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "3D Design",
     software: "PTC Creo Parametric",
-    image: "/images/mech_cad_course.jpg",
+    image: "/images/c.jpg",
     description: "PTC Creo parametric modeling, mechanism design, sheet metal, and manufacturing drafting."
   },
   {
@@ -735,7 +744,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "FEA & Simulation",
     software: "Ansys Mechanical Workbench",
-    image: "/images/mech_cad_course.jpg",
+    image: "/images/ansys_workbench.jpg",
     description: "Finite Element Analysis (FEA), static structural stress distribution, thermal conduction, and modal analysis in Ansys."
   },
   {
@@ -747,7 +756,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Master Mechanical",
     software: "AutoCAD, SolidWorks, CATIA, Creo, Ansys",
-    image: "/images/mech_cad_course.jpg",
+    image: "/images/node.jpg",
     description: "Comprehensive master diploma in mechanical CAD/CAM/CAE engineering, GD&T tolerances, and automotive/aerospace design."
   },
 
@@ -763,7 +772,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Electrical Drafting",
     software: "AutoCAD Electrical",
-    image: "/images/elec_mep_course.jpg",
+    image: "/images/autocad_electrical.jpg",
     description: "Electrical control panel layout, schematic circuit design, PLC I/O wiring, and component terminal numbering."
   },
   {
@@ -775,7 +784,7 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "BIM Electrical",
     software: "Autodesk Revit MEP",
-    image: "/images/elec_mep_course.jpg",
+    image: "/images/revit_mep.jpg",
     description: "Revit MEP training for building electrical distribution, cable tray routing, lighting fixtures, and power load calculation."
   },
   {
@@ -787,20 +796,92 @@ const BASE_COURSES = [
     mode: "Online / Offline",
     category: "Automation",
     software: "Siemens S7, Allen Bradley PLC, SCADA",
-    image: "/images/elec_mep_course.jpg",
+    image: "/images/plc_scada.jpg",
     description: "Industrial automation fundamentals, PLC ladder logic programming, SCADA HMI design, and sensor interfacing."
   },
   {
-    id: "elec-master-mep-bim",
-    title: "Master Diploma in MEP & HVAC Design",
+    id: "elec-prof-mep-msp",
+    title: "Professional in MEP Designing",
+    domain: "Electrical & Electronics",
+    level: "Professional",
+    duration: "270 hours",
+    mode: "Online / Offline",
+    category: "MEP Design",
+    software: "AutoCAD 2D + Revit MEP + Microsoft Projects + PPM Concepts",
+    image: "/images/mep_designing_msp.jpg",
+    description: "Professional MEP building services design with AutoCAD 2D drafting, Revit MEP 3D modeling, MS Project timeline scheduling, and PPM concepts."
+  },
+  {
+    id: "elec-prof-mep-primavera",
+    title: "Professional in MEP Designing",
+    domain: "Electrical & Electronics",
+    level: "Professional",
+    duration: "270 hours",
+    mode: "Online / Offline",
+    category: "MEP Design",
+    software: "AutoCAD 2D + Revit MEP + Primavera + PPM Concepts",
+    image: "/images/mep_designing_primavera.jpg",
+    description: "Advanced professional MEP design program covering AutoCAD 2D, Revit MEP, Primavera P6 project control, and PPM principles."
+  },
+  {
+    id: "elec-prof-electrical-system",
+    title: "Professional in Electrical System Design",
+    domain: "Electrical & Electronics",
+    level: "Professional",
+    duration: "240 hours",
+    mode: "Online / Offline",
+    category: "Electrical System",
+    software: "AutoCAD Electrical + Revit MEP + Dialux + ETAP",
+    image: "/images/electrical_system_design.jpg",
+    description: "Comprehensive electrical system design diploma featuring AutoCAD Electrical schematics, Revit MEP, Dialux lighting, and ETAP power simulation."
+  },
+  {
+    id: "elec-prof-hvac-fire",
+    title: "Professional in HVAC & Firefighting Design",
+    domain: "Electrical & Electronics",
+    level: "Professional",
+    duration: "240 hours",
+    mode: "Online / Offline",
+    category: "HVAC & Fire Protection",
+    software: "AutoCAD 2D + HVAC + HAP + Revit MEP + Fire Systems",
+    image: "/images/elec_mep_course.jpg",
+    description: "Specialized HVAC ductwork and firefighting protection system design using AutoCAD 2D, HAP cooling analysis, Revit MEP, and fire codes."
+  },
+  {
+    id: "elec-master-mep-hvac-plan",
+    title: "Master Diploma in MEP & HVAC Design with Project Planning",
     domain: "Electrical & Electronics",
     level: "Master Diploma",
     duration: "380 hours",
     mode: "Online / Offline",
+    category: "Master MEP",
+    software: "AutoCAD 2D + Revit MEP + HVAC + HAP + Microsoft Project / Primavera + PPM Concepts",
+    image: "/images/revit_mep.jpg",
+    description: "Master diploma program in complete building MEP services, HVAC load estimation, HAP analysis, Revit BIM, and MS Project / Primavera controls."
+  },
+  {
+    id: "elec-master-electrical-building",
+    title: "Master Diploma in Electrical Building System Design",
+    domain: "Electrical & Electronics",
+    level: "Master Diploma",
+    duration: "420 hours",
+    mode: "Online / Offline",
     category: "Master Electrical",
-    software: "AutoCAD Electrical, Revit MEP, Dialux, ETAP",
-    image: "/images/elec_mep_course.jpg",
-    description: "Master level MEP & HVAC building services diploma covering electrical load calculations, BIM coordination, and site execution."
+    software: "AutoCAD Electrical + Revit MEP + ETAP + Dialux + Navisworks + MS Project",
+    image: "/images/autocad_electrical.jpg",
+    description: "Advanced master program in electrical building distribution, ETAP power simulation, Dialux lighting design, Navisworks 3D clash detection, and MS Project."
+  },
+  {
+    id: "elec-master-mep-bim-coordination",
+    title: "Master Diploma in MEP Coordination with BIM",
+    domain: "Electrical & Electronics",
+    level: "Master Diploma",
+    duration: "320 hours",
+    mode: "Online / Offline",
+    category: "Master BIM",
+    software: "Revit MEP + Navisworks + AutoCAD 2D + Microsoft Project / Primavera + PPM Concepts",
+    image: "/images/plc_scada.jpg",
+    description: "Postgraduate master diploma in multi-disciplinary MEP BIM coordination, Navisworks clash resolution, Revit 3D modeling, and PPM project controls."
   }
 ];
 
@@ -867,11 +948,17 @@ const COURSE_UNIQUE_IMAGES = {
   'mech-ansys-wb': '/images/ansys_workbench.jpg',
   'mech-master-cad': '/images/node.jpg',
 
-  // Electrical & Electronics (Distinct Unique Images)
+  // Electrical & Electronics / MEP (Distinct Unique Images)
   'elec-autocad-elec': '/images/autocad_electrical.jpg',
   'elec-revit-mep': '/images/revit_mep.jpg',
   'elec-plc-scada': '/images/plc_scada.jpg',
-  'elec-master-mep-bim': '/images/elec_mep_course.jpg'
+  'elec-prof-mep-msp': '/images/mep_designing_msp.jpg',
+  'elec-prof-mep-primavera': '/images/mep_designing_primavera.jpg',
+  'elec-prof-electrical-system': '/images/electrical_system_design.jpg',
+  'elec-prof-hvac-fire': '/images/elec_mep_course.jpg',
+  'elec-master-mep-hvac-plan': '/images/revit_mep.jpg',
+  'elec-master-electrical-building': '/images/autocad_electrical.jpg',
+  'elec-master-mep-bim-coordination': '/images/plc_scada.jpg'
 };
 
 // Enrich COURSES array with explicit slugs and unique images
