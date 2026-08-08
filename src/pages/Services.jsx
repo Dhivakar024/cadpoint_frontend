@@ -21,8 +21,8 @@ export function Services() {
       <div className="space-y-4 pt-2">
         <p className="text-slate-300 text-sm leading-relaxed">{service.content}</p>
         <div className="pt-3 border-t border-white/5 flex items-center justify-between">
-          <span className="text-xs text-red-500 font-medium flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-red-500" />
+          <span className="text-xs text-red-400 font-medium flex items-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             Industry Standard Deliverable
           </span>
           <Link to="/contact">
