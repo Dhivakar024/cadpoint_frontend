@@ -130,7 +130,7 @@ a {
 }
 
 /* =========================================================================
-   PURE LIGHT THEME ENGINE (Master Canvas & WCAG AA Typography System)
+   PURE LIGHT THEME ENGINE (Clean Corporate & Neutral Shadow System)
    ========================================================================= */
 
 [data-theme="light"],
@@ -141,26 +141,24 @@ body[data-theme="light"],
 [data-theme="light"] .main-layout,
 [data-theme="light"] .page-wrapper,
 [data-theme="light"] main {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FFFC 40%, #F3FFF9 70%, #ECFDF5 100%) !important;
+  background: #F8FAFC !important;
   background-attachment: fixed !important;
   color: #0F172A !important;
 }
 
-/* 1. MAIN HEADINGS (h1): #0F172A (Font Weight 700) */
+/* 1. HEADINGS & TYPOGRAPHY SYSTEM */
 [data-theme="light"] h1 {
   color: #0F172A !important;
   font-weight: 700 !important;
   opacity: 1 !important;
 }
 
-/* 2. SECTION TITLES (h2): #111827 (Font Weight 700) */
 [data-theme="light"] h2 {
   color: #111827 !important;
   font-weight: 700 !important;
   opacity: 1 !important;
 }
 
-/* 3. SUB HEADINGS (h3, h4, h5, h6): #1E293B (Font Weight 700) */
 [data-theme="light"] h3,
 [data-theme="light"] h4,
 [data-theme="light"] h5,
@@ -170,7 +168,6 @@ body[data-theme="light"],
   opacity: 1 !important;
 }
 
-/* 4. BODY TEXT (p, li, label): #334155 (Slate 700) */
 [data-theme="light"] p,
 [data-theme="light"] li,
 [data-theme="light"] label {
@@ -178,7 +175,6 @@ body[data-theme="light"],
   opacity: 1 !important;
 }
 
-/* 5. DESCRIPTION TEXT: #475569 (Slate 600) */
 [data-theme="light"] .text-slate-100,
 [data-theme="light"] .text-slate-200,
 [data-theme="light"] .text-slate-300,
@@ -187,19 +183,21 @@ body[data-theme="light"],
   opacity: 1 !important;
 }
 
-/* 6. MUTED TEXT: #64748B (Slate 500) */
 [data-theme="light"] .text-slate-500,
 [data-theme="light"] .text-muted {
   color: #64748B !important;
   opacity: 1 !important;
 }
 
-/* 7. INPUT TEXT: #111827 & PLACEHOLDER: #94A3B8 */
+/* 2. INPUTS & FORM CONTROLS: Soft Neutral Shadow & Clean Border */
 [data-theme="light"] input,
 [data-theme="light"] textarea,
 [data-theme="light"] select,
 [data-theme="light"] .glass-input {
-  color: #111827 !important;
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
 }
 
 [data-theme="light"] input::placeholder,
@@ -208,124 +206,127 @@ body[data-theme="light"],
   color: #94A3B8 !important;
 }
 
-/* 8. LINKS: #059669 & LINK HOVER: #047857 */
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus,
+[data-theme="light"] .glass-input:focus {
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* 3. LINKS & BRAND RED ACCENTS */
 [data-theme="light"] a {
-  color: #059669;
+  color: #DC2626;
 }
 
 [data-theme="light"] a:hover {
-  color: #047857;
+  color: #B91C1C;
 }
 
-/* 9. SOLID BUTTON TEXT: #FFFFFF (Pure White) */
+/* 4. SOLID BUTTON TEXT & CADPOINT RED BRANDING */
 [data-theme="light"] button.bg-gradient-to-r,
 [data-theme="light"] button.bg-red-600,
-[data-theme="light"] button.bg-emerald-600,
-[data-theme="light"] button.bg-\[\#10B981\],
-[data-theme="light"] .bg-gradient-to-r span,
-[data-theme="light"] .bg-red-600 span,
-[data-theme="light"] .bg-emerald-600 span,
-[data-theme="light"] .bg-gradient-to-r .text-white,
-[data-theme="light"] .bg-red-600 .text-white,
-[data-theme="light"] .bg-emerald-600 .text-white {
+[data-theme="light"] .bg-red-600 {
+  background-color: #DC2626 !important;
+  background-image: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%) !important;
   color: #FFFFFF !important;
+  border-color: rgba(220, 38, 38, 0.3) !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.2) !important;
 }
 
-/* 10. GRADIENTS IN LIGHT MODE */
+[data-theme="light"] button.bg-gradient-to-r:hover,
+[data-theme="light"] button.bg-red-600:hover,
+[data-theme="light"] .bg-red-600:hover {
+  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.3) !important;
+}
+
+[data-theme="light"] .text-red-400,
+[data-theme="light"] .text-red-500,
+[data-theme="light"] .text-red-600 {
+  color: #DC2626 !important;
+}
+
+[data-theme="light"] .bg-red-600\/20,
+[data-theme="light"] .bg-red-500\/10,
+[data-theme="light"] .bg-red-500\/20 {
+  background-color: #FEF2F2 !important;
+  color: #DC2626 !important;
+  border-color: #FCA5A5 !important;
+}
+
+/* 5. GRADIENTS IN LIGHT MODE */
 [data-theme="light"] .text-gradient {
-  background: linear-gradient(135deg, #0F172A 0%, #065F46 50%, #1E293B 100%) !important;
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 [data-theme="light"] .text-gradient-brand,
 [data-theme="light"] .text-gradient-red {
-  background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%) !important;
+  background: linear-gradient(135deg, #DC2626 0%, #EF4444 50%, #B91C1C 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
-/* 11. CARDS & PANELS: Pure White (#FFFFFF), 24px Radius, Soft Emerald Border (#D1FAE5) */
+/* 6. CARDS & PANELS: Pure White (#FFFFFF), 20px Radius, Soft Neutral Shadow */
 [data-theme="light"] .glass-card,
 [data-theme="light"] .glass-panel {
   background: #FFFFFF !important;
-  border-radius: 1.5rem !important;
-  border: 1px solid #D1FAE5 !important;
-  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.08) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
+  border-radius: 1.25rem !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
 }
 
 [data-theme="light"] .glass-card:hover {
-  border-color: #10B981 !important;
-  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.18) !important;
-  transform: translateY(-8px) scale(1.01) !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.09) !important;
+  transform: translateY(-4px) !important;
 }
 
-[data-theme="light"] .glass-input {
-  background: #FFFFFF !important;
-  border: 1px solid #D1FAE5 !important;
-  color: #111827 !important;
+/* 7. REMOVE EXCESSIVE AMBIENT RED BLURS & HAZE IN LIGHT MODE */
+[data-theme="light"] .animate-pulse-glow,
+[data-theme="light"] .blur-\[140px\],
+[data-theme="light"] .blur-\[160px\],
+[data-theme="light"] .blur-\[130px\],
+[data-theme="light"] .blur-\[150px\],
+[data-theme="light"] .blur-\[110px\] {
+  opacity: 0.1 !important;
 }
 
-[data-theme="light"] .glass-input:focus {
-  border-color: #10B981 !important;
-  box-shadow: 0 0 18px rgba(16, 185, 129, 0.25) !important;
-}
-
-/* 12. BUTTONS & ALL ACCENTS: Primary Emerald (#10B981) */
-[data-theme="light"] .bg-red-600,
-[data-theme="light"] .bg-red-500,
-[data-theme="light"] .from-red-600 {
-  background-color: #10B981 !important;
-  background-image: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
-  color: #ffffff !important;
-}
-
-[data-theme="light"] .text-red-400,
-[data-theme="light"] .text-red-500,
-[data-theme="light"] .text-red-600,
-[data-theme="light"] .text-cyan-400,
-[data-theme="light"] .text-amber-400 {
-  color: #10B981 !important;
-}
-
-[data-theme="light"] .bg-red-600\/20,
-[data-theme="light"] .bg-red-500\/10,
-[data-theme="light"] .bg-red-500\/20,
-[data-theme="light"] .bg-white\/5,
-[data-theme="light"] .bg-slate-900\/60,
-[data-theme="light"] .bg-slate-900\/40 {
-  background-color: #ECFDF5 !important;
-}
-
-[data-theme="light"] .border-slate-800,
-[data-theme="light"] .border-white\/10,
-[data-theme="light"] .border-white\/5 {
-  border-color: #D1FAE5 !important;
-}
-
-/* 13. REMOVE ALL DARK SECTION BACKGROUND BREAKS IN LIGHT MODE */
+/* 8. REMOVE DARK SECTION OVERRIDES IN LIGHT MODE */
 [data-theme="light"] .bg-slate-900,
 [data-theme="light"] .bg-slate-950,
 [data-theme="light"] .bg-black\/40 {
   background-color: transparent !important;
 }
 
-/* 14. NAVBAR IN LIGHT MODE: White Glass */
+/* 9. NAVBAR IN LIGHT MODE: Crisp White Glass & Subtle Shadow */
 [data-theme="light"] header nav {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
-  border-bottom: 1px solid #D1FAE5 !important;
-  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.05) !important;
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04) !important;
 }
 
-/* 15. FOOTER IN LIGHT MODE: Dark Emerald (#065F46) */
+[data-theme="light"] header nav .bg-slate-900\/60 {
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] header nav a.bg-gradient-to-r {
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25) !important;
+}
+
+/* 10. FOOTER IN LIGHT MODE: Corporate Slate Navy (#0F172A) */
 [data-theme="light"] footer {
-  background-color: #065F46 !important;
-  color: #ECFDF5 !important;
-  border-top-color: #047857 !important;
+  background-color: #0F172A !important;
+  color: #94A3B8 !important;
+  border-top: 1px solid #1E293B !important;
 }
 
 [data-theme="light"] footer h1,
@@ -340,13 +341,13 @@ body[data-theme="light"],
 [data-theme="light"] footer p,
 [data-theme="light"] footer span,
 [data-theme="light"] footer div {
-  color: #A7F3D0 !important;
+  color: #94A3B8 !important;
 }
 
 [data-theme="light"] footer a {
-  color: #6EE7B7 !important;
+  color: #CBD5E1 !important;
 }
 
 [data-theme="light"] footer a:hover {
-  color: #34D399 !important;
+  color: #EF4444 !important;
 }

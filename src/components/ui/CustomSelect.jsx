@@ -24,24 +24,24 @@ export function CustomSelect({ options, value, onChange, className = '' }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-[18px] text-sm cursor-pointer transition-all shadow-md ${
+        className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-[18px] text-sm cursor-pointer transition-all shadow-sm ${
           isDark
             ? 'bg-[#0F172A] border border-slate-700 hover:border-red-500/50 text-white'
-            : 'bg-white border border-[#D1FAE5] hover:border-[#10B981] text-[#0F172A]'
+            : 'bg-white border border-slate-200 hover:border-red-500/40 text-[#0F172A]'
         }`}
       >
         <span className="truncate">{value}</span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
-          isDark ? 'text-red-400' : 'text-emerald-600'
+          isDark ? 'text-red-400' : 'text-red-600'
         } ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Custom Floating Dropdown Menu */}
       {isOpen && (
-        <div className={`absolute right-0 top-full mt-2 w-full min-w-[170px] max-h-64 py-1.5 rounded-[18px] shadow-2xl backdrop-blur-2xl z-[100] overflow-y-auto ${
+        <div className={`absolute right-0 top-full mt-2 w-full min-w-[170px] max-h-64 py-1.5 rounded-[18px] shadow-xl backdrop-blur-2xl z-[100] overflow-y-auto ${
           isDark
             ? 'bg-[#0F172A] border border-red-500/40 text-white'
-            : 'bg-white border border-[#D1FAE5] text-[#0F172A]'
+            : 'bg-white border border-slate-200 text-[#0F172A] shadow-lg shadow-slate-900/10'
         }`}>
           {options.map((opt) => {
             const isSelected = value === opt;
@@ -57,10 +57,10 @@ export function CustomSelect({ options, value, onChange, className = '' }) {
                   isSelected
                     ? isDark
                       ? 'bg-gradient-to-r from-red-600 to-slate-900 text-white font-bold'
-                      : 'bg-[#10B981] text-white font-bold'
+                      : 'bg-red-600 text-white font-bold'
                     : isDark
                       ? 'text-slate-300 hover:bg-red-600/20 hover:text-white'
-                      : 'text-slate-700 hover:bg-[#ECFDF5] hover:text-[#0F172A]'
+                      : 'text-slate-700 hover:bg-red-50 hover:text-red-600'
                 }`}
               >
                 <span>{opt}</span>

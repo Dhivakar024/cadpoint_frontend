@@ -93,7 +93,7 @@ export function Courses() {
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto">
-            <Filter className={`w-4 h-4 shrink-0 ${isDark ? 'text-red-400' : 'text-emerald-600'}`} />
+            <Filter className={`w-4 h-4 shrink-0 ${isDark ? 'text-red-400' : 'text-red-600'}`} />
             <CustomSelect
               options={LEVELS}
               value={selectedLevel}
@@ -104,7 +104,7 @@ export function Courses() {
         </div>
 
         <div className={`flex flex-wrap gap-2.5 pt-4 border-t ${
-          isDark ? 'border-white/5' : 'border-[#D1FAE5]'
+          isDark ? 'border-white/5' : 'border-slate-200'
         }`}>
           {CATEGORIES.map((cat) => (
             <button
@@ -114,10 +114,10 @@ export function Courses() {
                 selectedCategory === cat
                   ? isDark
                     ? 'bg-gradient-to-r from-red-600 to-slate-900 text-white shadow-lg border border-red-500/30'
-                    : 'bg-[#10B981] text-white shadow-lg border border-emerald-400'
+                    : 'bg-red-600 text-white shadow-sm border border-red-500/30'
                   : isDark
                     ? 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
-                    : 'bg-[#ECFDF5] text-slate-700 hover:bg-[#D1FAE5] hover:text-[#0F172A]'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 border border-slate-200'
               }`}
             >
               {cat}
@@ -136,7 +136,7 @@ export function Courses() {
             <div className="p-6 flex flex-col justify-between flex-grow space-y-4">
               <div>
                 <h3 className={`text-lg font-bold font-heading mb-2 transition-colors ${
-                  isDark ? 'text-white group-hover:text-red-400' : 'text-slate-900 group-hover:text-emerald-600'
+                  isDark ? 'text-white group-hover:text-red-400' : 'text-slate-900 group-hover:text-red-600'
                 }`}>
                   {course.title}
                 </h3>
@@ -146,7 +146,7 @@ export function Courses() {
                   {course.description}
                 </p>
                 <div className={`flex items-center gap-2 text-xs mb-2 ${
-                  isDark ? 'text-red-400' : 'text-emerald-600'
+                  isDark ? 'text-red-400' : 'text-red-600'
                 }`}>
                   <Laptop className="w-3.5 h-3.5" />
                   <span>Tools: {course.software}</span>
@@ -163,7 +163,7 @@ export function Courses() {
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
                       isDark
                         ? 'bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white border-white/10'
-                        : 'bg-[#ECFDF5] hover:bg-[#D1FAE5] text-slate-700 hover:text-[#0F172A] border-[#D1FAE5]'
+                        : 'bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border-slate-200'
                     }`}
                   >
                     View Details
@@ -190,7 +190,7 @@ export function Courses() {
               setSearchQuery('');
             }}
             className={`mt-4 hover:underline text-sm font-semibold ${
-              isDark ? 'text-red-400' : 'text-emerald-600'
+              isDark ? 'text-red-400' : 'text-red-600'
             }`}
           >
             Reset Filters
@@ -201,7 +201,7 @@ export function Courses() {
       {selectedCourse && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
           <div className={`glass-panel p-8 rounded-3xl max-w-lg w-full relative border ${
-            isDark ? 'border-red-500/40' : 'border-emerald-400/40'
+            isDark ? 'border-red-500/40' : 'border-slate-200 shadow-2xl'
           }`}>
             <button
               onClick={() => setSelectedCourse(null)}
@@ -209,7 +209,7 @@ export function Courses() {
             >
               <X className="w-5 h-5" />
             </button>
-            <Badge variant={isDark ? "red" : "emerald"} className="mb-3">{selectedCourse.domain}</Badge>
+            <Badge variant={isDark ? "red" : "red"} className="mb-3">{selectedCourse.domain}</Badge>
             <h3 className={`text-2xl font-bold font-heading mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>{selectedCourse.title}</h3>
             <p className={`text-sm mb-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{selectedCourse.description}</p>
             <div className="space-y-3 mb-8 text-xs">
@@ -223,7 +223,7 @@ export function Courses() {
               </div>
               <div className={`flex justify-between py-2 border-b ${isDark ? 'border-white/5' : 'border-slate-100'}`}>
                 <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Software Covered:</span>
-                <span className={`font-semibold ${isDark ? 'text-red-400' : 'text-emerald-600'}`}>{selectedCourse.software}</span>
+                <span className={`font-semibold ${isDark ? 'text-red-400' : 'text-red-600'}`}>{selectedCourse.software}</span>
               </div>
             </div>
             <div className="flex gap-4">

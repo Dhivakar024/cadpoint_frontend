@@ -128,13 +128,13 @@ export function Home() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold backdrop-blur-md mb-6 shadow-lg ${
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold backdrop-blur-md mb-6 shadow-sm ${
                 isDark 
                   ? 'bg-white/5 border border-red-500/30 text-red-300 shadow-red-950/30'
-                  : 'bg-white border border-emerald-300 text-emerald-800 shadow-md'
+                  : 'bg-white border border-slate-200 text-red-600 shadow-sm'
               }`}
             >
-              <Sparkles className={`w-4 h-4 animate-spin ${isDark ? 'text-red-400' : 'text-emerald-600'}`} style={{ animationDuration: '8s' }} />
+              <Sparkles className={`w-4 h-4 animate-spin ${isDark ? 'text-red-400' : 'text-red-600'}`} style={{ animationDuration: '8s' }} />
               <span>ISO Certified Premier Training & IT Services</span>
               <ChevronRight className={`w-3.5 h-3.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`} />
             </motion.div>
@@ -149,7 +149,7 @@ export function Home() {
               }`}
             >
               Welcome to the Future of <br />
-              <span className={isDark ? 'text-gradient-red' : 'text-gradient-brand'}>
+              <span className={isDark ? 'text-gradient-red' : 'text-gradient-red'}>
                 Tech, Design & Business
               </span> Excellence
             </motion.h1>
@@ -174,7 +174,7 @@ export function Home() {
               className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto"
             >
               <Link to="/courses" className="w-full sm:w-auto">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-xl" icon={ArrowRight}>
+                <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-md" icon={ArrowRight}>
                   Explore Courses
                 </Button>
               </Link>
@@ -191,7 +191,7 @@ export function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className={`mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-8 border-t ${
-                isDark ? 'border-white/10' : 'border-emerald-200'
+                isDark ? 'border-white/10' : 'border-slate-200'
               }`}
             >
               {HERO_STATS.map((stat, idx) => (
@@ -228,13 +228,13 @@ export function Home() {
               <Card key={dept.id} className="flex flex-col justify-between h-full p-8 group">
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${dept.color} flex items-center justify-center text-white shadow-lg`}>
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${dept.color} flex items-center justify-center text-white shadow-md`}>
                       <Icon className="w-7 h-7" />
                     </div>
-                    <Badge variant={isDark ? "red" : "emerald"}>{dept.badge}</Badge>
+                    <Badge variant={isDark ? "red" : "red"}>{dept.badge}</Badge>
                   </div>
                   <h3 className={`text-xl font-bold font-heading mb-3 transition-colors ${
-                    isDark ? 'text-white group-hover:text-red-400' : 'text-slate-900 group-hover:text-emerald-600'
+                    isDark ? 'text-white group-hover:text-red-400' : 'text-slate-900 group-hover:text-red-600'
                   }`}>
                     {dept.title}
                   </h3>
@@ -245,7 +245,7 @@ export function Home() {
                   </p>
                 </div>
                 <Link to="/courses" className={`inline-flex items-center gap-2 font-semibold text-sm transition-colors ${
-                  isDark ? 'text-red-400 hover:text-red-300' : 'text-emerald-600 hover:text-emerald-700'
+                  isDark ? 'text-red-400 hover:text-red-300' : 'text-red-600 hover:text-red-700'
                 }`}>
                   <span>Explore Department</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -261,7 +261,7 @@ export function Home() {
         <Card className="p-8 sm:p-12 relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge variant={isDark ? "red" : "emerald"} className="mb-4">About CADPOINT</Badge>
+              <Badge variant={isDark ? "red" : "red"} className="mb-4">About CADPOINT</Badge>
               <h2 className={`text-3xl sm:text-4xl font-extrabold font-heading mb-6 ${
                 isDark ? 'text-white' : 'text-slate-900'
               }`}>
@@ -277,7 +277,7 @@ export function Home() {
                   <div key={i} className={`flex items-center gap-3 font-semibold text-sm ${
                     isDark ? 'text-slate-200' : 'text-slate-800'
                   }`}>
-                    <ShieldCheck className={`w-5 h-5 shrink-0 ${isDark ? 'text-red-400' : 'text-emerald-600'}`} />
+                    <ShieldCheck className={`w-5 h-5 shrink-0 ${isDark ? 'text-red-400' : 'text-red-600'}`} />
                     <span>{h}</span>
                   </div>
                 ))}
@@ -290,10 +290,10 @@ export function Home() {
             </div>
             <div className="relative flex justify-center">
               <div className="w-full h-80 rounded-2xl glass-panel p-6 flex flex-col justify-center items-center text-center relative overflow-hidden">
-                <div className={`w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl font-extrabold font-heading mb-4 shadow-xl border ${
+                <div className={`w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl font-extrabold font-heading mb-4 shadow-md border ${
                   isDark
                     ? 'bg-gradient-to-tr from-red-600 to-slate-900 border-red-500/30'
-                    : 'bg-gradient-to-tr from-emerald-600 to-teal-600 border-emerald-400/30'
+                    : 'bg-gradient-to-tr from-red-600 to-red-700 border-red-500/30'
                 }`}>
                   CP
                 </div>
@@ -326,7 +326,7 @@ export function Home() {
                 <div className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-5 ${
                   isDark
                     ? 'bg-red-500/10 border-red-500/20 text-red-400'
-                    : 'bg-emerald-50 border-emerald-200 text-emerald-600'
+                    : 'bg-red-50 border-red-200 text-red-600'
                 }`}>
                   <Icon className="w-6 h-6" />
                 </div>
@@ -353,7 +353,7 @@ export function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Card className="p-8 sm:p-12">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <Badge variant="emerald" className="mb-3">Career Advancement</Badge>
+            <Badge variant="red" className="mb-3">Career Advancement</Badge>
             <h2 className={`text-3xl sm:text-4xl font-extrabold font-heading ${
               isDark ? 'text-white' : 'text-slate-900'
             }`}>
@@ -368,7 +368,7 @@ export function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="glass-card p-6 rounded-2xl">
               <div className={`w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4 font-bold text-xl ${
-                isDark ? 'bg-red-600/20 text-red-400' : 'bg-emerald-100 text-emerald-800'
+                isDark ? 'bg-red-600/20 text-red-400' : 'bg-red-100 text-red-700'
               }`}>1</div>
               <h3 className={`text-lg font-bold font-heading mb-2 ${
                 isDark ? 'text-white' : 'text-slate-900'
@@ -377,7 +377,7 @@ export function Home() {
             </div>
             <div className="glass-card p-6 rounded-2xl">
               <div className={`w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4 font-bold text-xl ${
-                isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-sky-100 text-sky-800'
+                isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-slate-100 text-slate-800'
               }`}>2</div>
               <h3 className={`text-lg font-bold font-heading mb-2 ${
                 isDark ? 'text-white' : 'text-slate-900'
@@ -386,7 +386,7 @@ export function Home() {
             </div>
             <div className="glass-card p-6 rounded-2xl">
               <div className={`w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4 font-bold text-xl ${
-                isDark ? 'bg-emerald-600/20 text-emerald-400' : 'bg-teal-100 text-teal-800'
+                isDark ? 'bg-emerald-600/20 text-emerald-400' : 'bg-red-100 text-red-700'
               }`}>3</div>
               <h3 className={`text-lg font-bold font-heading mb-2 ${
                 isDark ? 'text-white' : 'text-slate-900'
@@ -399,10 +399,10 @@ export function Home() {
 
       {/* 6. CALL TO ACTION SECTION (WITH HIGH READABILITY LIGHT/DARK THEMES) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`relative rounded-3xl p-10 sm:p-16 overflow-hidden shadow-2xl text-center flex flex-col items-center border ${
+        <div className={`relative rounded-3xl p-10 sm:p-16 overflow-hidden shadow-xl text-center flex flex-col items-center border ${
           isDark
             ? 'bg-gradient-to-r from-red-600 via-red-700 to-slate-900 border-red-500/30'
-            : 'bg-gradient-to-br from-[#059669] to-[#10B981] border-emerald-400/30 text-white'
+            : 'bg-gradient-to-r from-red-600 via-red-700 to-slate-900 border-red-500/30 text-white'
         }`}>
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none" />
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl">
@@ -413,16 +413,9 @@ export function Home() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
             <Link to="/registration">
-              {isDark ? (
-                <Button variant="accent" size="lg" icon={ArrowRight}>
-                  Register Now Online
-                </Button>
-              ) : (
-                <button className="px-8 py-4 rounded-xl bg-white text-[#059669] font-bold text-base shadow-xl hover:bg-slate-50 transition-all flex items-center gap-2 cursor-pointer">
-                  <span>Register Now Online</span>
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              )}
+              <Button variant="accent" size="lg" icon={ArrowRight}>
+                Register Now Online
+              </Button>
             </Link>
             <Link to="/contact">
               <button className="px-8 py-4 rounded-xl bg-transparent text-white font-bold text-base border border-white hover:bg-white/10 transition-all flex items-center gap-2 cursor-pointer">
