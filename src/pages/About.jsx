@@ -114,7 +114,7 @@ export function About() {
             <h2 className={`text-2xl font-bold font-heading ${isDark ? 'text-white' : 'text-slate-900'}`}>Our Mission</h2>
           </div>
           <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-            To empower aspiring engineers, creators, and professionals with world-class technical education, hands-on software mastery, and live industry project training. We aim to bridge the skill gap and create day-one ready talent for global opportunities.
+            Education for All. Our mission is to guide students on the right path, foster their growth, and empower them with the knowledge and skills needed to contribute to an educated and progressive society.
           </p>
         </Card>
 
@@ -128,7 +128,7 @@ export function About() {
             <h2 className={`text-2xl font-bold font-heading ${isDark ? 'text-white' : 'text-slate-900'}`}>Our Vision</h2>
           </div>
           <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-            To remain India's most trusted educational ecosystem for CADD, IT, and Creative Engineering — continuously evolving our curriculum with emerging technologies like AI, IoT, Cloud, and Automation to shape tomorrow's industry leaders.
+            Our vision is to create a futuristic learning environment that empowers students at all levels, including those from lower- and middle-income and underprivileged backgrounds, by providing access to knowledge and current technologies.
           </p>
         </Card>
       </section>
