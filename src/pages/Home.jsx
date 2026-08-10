@@ -28,6 +28,8 @@ import { SectionHeader } from '../components/ui/SectionHeader';
 import { AnimatedCounter } from '../components/ui/AnimatedCounter';
 import { KnowledgeCore } from '../components/ui/KnowledgeCore/KnowledgeCore';
 import { useTheme } from '../context/ThemeContext';
+import { SEO } from '../components/common/SEO';
+import { getOrganizationSchema, getWebSiteSchema, getBreadcrumbSchema, getFAQSchema } from '../utils/seoSchemas';
 import {
   DEPARTMENTS,
   HERO_HIGHLIGHTS,
@@ -62,8 +64,34 @@ export function Home() {
     { label: "Hiring Partners", value: 100, suffix: "+", icon: "Building" }
   ];
 
+  const homeFaqs = [
+    {
+      question: "What courses does CADPOINT offer?",
+      answer: "CADPOINT Authorized Training Centre offers career programs in Civil CADD, Revit BIM, Mechanical Design, AutoCAD, Electrical Automation, IT & AI Full Stack Development, Accounts, and Digital Marketing."
+    },
+    {
+      question: "Are CADPOINT certificates globally recognized?",
+      answer: "Yes, CADPOINT provides ISO Certified Professional Certificates with direct verification credentials accepted by top engineering and technology employers worldwide."
+    }
+  ];
+
+  const homeJsonLd = [
+    getOrganizationSchema(),
+    getWebSiteSchema(),
+    getBreadcrumbSchema([{ name: 'Home', url: '/' }]),
+    getFAQSchema(homeFaqs)
+  ];
+
   return (
-    <div className="space-y-24 sm:space-y-32 pb-16">
+    <>
+      <SEO
+        title="CADPOINT – Authorized Training Centre | CAD, IT, AI & Multimedia Courses"
+        description="CADPOINT Authorized Training Centre offers industry-focused CAD, BIM, IT, AI, Multimedia and professional training programs with certification, practical training and placement assistance."
+        keywords="CADPOINT, CADPOINT Authorized Training Centre, CADPOINT Courses, CAD Training Centre, AutoCAD Training, Revit Training, CAD Courses, BIM Training, Salem"
+        canonical="/"
+        jsonLd={homeJsonLd}
+      />
+      <div className="space-y-24 sm:space-y-32 pb-16">
       {/* =====================================================
           HERO SECTION (DARK MODE: 3D FUTURISTIC | LIGHT MODE: BRIGHT EMERALD MESH)
          ===================================================== */}
@@ -478,5 +506,6 @@ export function Home() {
         </div>
       </section>
     </div>
-  );
+  </>
+);
 }

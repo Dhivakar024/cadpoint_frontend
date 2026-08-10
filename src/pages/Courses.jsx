@@ -7,6 +7,8 @@ import { CustomSelect } from '../components/ui/CustomSelect';
 import { Search, Clock, Laptop, ArrowRight, Filter, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { SEO } from '../components/common/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
 
 const CourseHeroBanner = ({ course, isDark }) => {
   const domainFallbackImages = {
@@ -65,13 +67,28 @@ export function Courses() {
     return matchesCategory && matchesLevel && matchesSearch;
   });
 
+  const coursesJsonLd = [
+    getBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Courses', url: '/courses' }
+    ])
+  ];
+
   return (
-    <div className="space-y-12 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center pt-6 space-y-3">
-        <Badge variant={isDark ? "red" : "emerald"} className="mb-2">Course Catalog</Badge>
-        <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
-          Career & Technical Programs
-        </h1>
+    <>
+      <SEO
+        title="Official CADPOINT Courses | AutoCAD, Revit, Python, SolidWorks & Digital Marketing"
+        description="Explore official CADPOINT courses across Civil CADD, Mechanical Design, Electrical Automation, IT & AI Full Stack, Accounts & Digital Marketing with hands-on lab training."
+        keywords="CADPOINT Courses, CAD Courses, AutoCAD Training, Revit Training, BIM Courses, SolidWorks Training, Python Full Stack Course, Tally Prime"
+        canonical="/courses"
+        jsonLd={coursesJsonLd}
+      />
+      <div className="space-y-12 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center pt-6 space-y-3">
+          <Badge variant={isDark ? "red" : "emerald"} className="mb-2">Course Catalog</Badge>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
+            OFFICIAL CADPOINT COURSES
+          </h1>
         <p className={`mt-4 text-base sm:text-lg max-w-3xl mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
           Explore industry-aligned certification, diploma, and master diploma programs across IT, Multimedia, CADD, and ERP domains.
         </p>
@@ -238,5 +255,6 @@ export function Courses() {
         </div>
       )}
     </div>
-  );
+  </>
+);
 }

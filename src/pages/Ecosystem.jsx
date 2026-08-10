@@ -5,14 +5,32 @@ import { Button } from '../components/ui/Button';
 import { ECOSYSTEM_DATA } from '../utils/constants';
 import { ExternalLink, Building, Sparkles } from 'lucide-react';
 
+import { SEO } from '../components/common/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+
 export function Ecosystem() {
+  const ecosystemJsonLd = [
+    getBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Ecosystem', url: '/ecosystem' }
+    ])
+  ];
+
   return (
-    <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center pt-6">
-        <Badge variant="red" className="mb-4">Corporate Network</Badge>
-        <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
-          CADPOINT Ecosystem
-        </h1>
+    <>
+      <SEO
+        title="CADPOINT Group Ecosystem | Educational & Technological Ventures"
+        description="Explore CADPOINT Group's ecosystem of authorized training centers, engineering solutions, multimedia studios, and technology initiatives."
+        keywords="CADPOINT Ecosystem, CADPOINT Ventures, CADPOINT Group Companies"
+        canonical="/ecosystem"
+        jsonLd={ecosystemJsonLd}
+      />
+      <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center pt-6">
+          <Badge variant="red" className="mb-4">Corporate Network</Badge>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
+            CADPOINT GROUP ECOSYSTEM
+          </h1>
         <p className="mt-4 text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
           {ECOSYSTEM_DATA.intro}
         </p>
@@ -104,5 +122,6 @@ export function Ecosystem() {
         </div>
       </section>
     </div>
+  </>
   );
 }

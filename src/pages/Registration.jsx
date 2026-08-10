@@ -7,18 +7,9 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { submitRegistration } from '../services/api';
 import { sendRegistrationEmailDirect, getWhatsAppShareUrl } from '../services/directResend';
-import {
-  User,
-  Mail,
-  BookOpen,
-  GraduationCap,
-  Briefcase,
-  FileCheck,
-  CheckCircle2,
-  ArrowRight,
-  ArrowLeft,
-  Upload
-} from 'lucide-react';
+import { User, Mail, BookOpen, GraduationCap, Briefcase, FileCheck, CheckCircle2, ArrowRight, ArrowLeft, Upload } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
 
 const formSchema = z.object({
   fullName: z.string().min(2, 'Full name is required'),
@@ -131,13 +122,28 @@ export function Registration() {
     }
   };
 
+  const registrationJsonLd = [
+    getBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Registration', url: '/registration' }
+    ])
+  ];
+
   return (
-    <div className="space-y-12 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center pt-6">
-        <Badge variant="purple" className="mb-4">Official Admissions 2026</Badge>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-gradient font-heading tracking-tight">
-          Student Registration Form
-        </h1>
+    <>
+      <SEO
+        title="Online Course Registration | Enrol at CADPOINT Salem"
+        description="Register online for CADPOINT professional diploma courses in CAD, Revit, Python, Tally, SolidWorks, and Digital Marketing. Get instant confirmation."
+        keywords="CADPOINT Registration, Enrol CAD Course Salem, CADPOINT Online Admission, CADPOINT Application Form"
+        canonical="/registration"
+        jsonLd={registrationJsonLd}
+      />
+      <div className="space-y-12 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center pt-6">
+          <Badge variant="purple" className="mb-4">Official Admissions 2026</Badge>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-gradient font-heading tracking-tight">
+            CADPOINT ONLINE REGISTRATION FORM
+          </h1>
         <p className="mt-3 text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
           Complete our multi-step registration to enroll in CADPOINT career courses & live project mentorship.
         </p>
@@ -580,5 +586,6 @@ export function Registration() {
         )}
       </Card>
     </div>
+  </>
   );
 }

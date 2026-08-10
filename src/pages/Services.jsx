@@ -6,8 +6,18 @@ import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Search } from 'lucide-react';
 
+import { SEO } from '../components/common/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+
 export function Services() {
   const [searchTerm, setSearchTerm] = useState('');
+
+  const servicesJsonLd = [
+    getBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Services', url: '/services' }
+    ])
+  ];
 
   const filteredServices = SERVICES_PAGE_DATA.filter((s) =>
     s.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -36,12 +46,20 @@ export function Services() {
   }));
 
   return (
-    <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center pt-6">
-        <Badge variant="red" className="mb-4">Professional Services</Badge>
-        <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
-          Services & Technical Solutions
-        </h1>
+    <>
+      <SEO
+        title="CAD, IT & Engineering Services | CADPOINT Authorized Centre"
+        description="Professional 2D drafting, 3D BIM architectural modeling, mechanical product engineering, full stack web development and digital transformation services by CADPOINT."
+        keywords="CAD Services, BIM Modeling Services, Engineering Design Salem, Software Development CADPOINT"
+        canonical="/services"
+        jsonLd={servicesJsonLd}
+      />
+      <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center pt-6">
+          <Badge variant="red" className="mb-4">Professional Services</Badge>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
+            CAD, IT & ENGINEERING SERVICES
+          </h1>
         <p className="mt-4 text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
           We provide custom software development, student project mentorship, corporate upskilling, CAD drafting, and academic research support.
         </p>
@@ -67,6 +85,7 @@ export function Services() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }

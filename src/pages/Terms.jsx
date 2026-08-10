@@ -3,9 +3,17 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { COMPANY_INFO } from '../utils/constants';
 
+import { SEO } from '../components/common/SEO';
+
 export function Terms() {
   return (
-    <div className="space-y-10 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      <SEO
+        title="Terms & Conditions | CADPOINT Authorized Training Centre"
+        description="Read CADPOINT's official terms of service, admission guidelines, courseware policies, and placement assistance terms."
+        canonical="/terms"
+      />
+      <div className="space-y-10 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center pt-6">
         <Badge variant="cyan" className="mb-4">Legal Document</Badge>
         <h1 className="text-4xl font-extrabold text-gradient font-heading">
@@ -36,5 +44,6 @@ export function Terms() {
         </p>
       </Card>
     </div>
+  </>
   );
 }

@@ -5,9 +5,20 @@ import { Badge } from '../components/ui/Badge';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { useTheme } from '../context/ThemeContext';
 
+import { SEO } from '../components/common/SEO';
+import { getOrganizationSchema, getBreadcrumbSchema } from '../utils/seoSchemas';
+
 export function About() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+
+  const aboutJsonLd = [
+    getOrganizationSchema(),
+    getBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'About Us', url: '/about' }
+    ])
+  ];
 
   const aboutPoints = [
     {
@@ -59,13 +70,21 @@ export function About() {
   ];
 
   return (
-    <div className="space-y-20 sm:space-y-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* HEADER SECTION */}
-      <div className="text-center pt-6 space-y-3">
-        <Badge variant={isDark ? "red" : "emerald"} className="mb-2">Get More About Us</Badge>
-        <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
-          ABOUT CADPOINT
-        </h1>
+    <>
+      <SEO
+        title="About CADPOINT | 32+ Years Authorized CAD & IT Training Institute"
+        description="Learn about CADPOINT Authorized Training Centre's 32-year legacy of educational excellence, empowering over 50,000+ students with ISO-certified CAD, BIM, IT and Multimedia training."
+        keywords="About CADPOINT, CADPOINT Salem, CAD Training Institute, ISO Certified CAD Center"
+        canonical="/about"
+        jsonLd={aboutJsonLd}
+      />
+      <div className="space-y-20 sm:space-y-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* HEADER SECTION */}
+        <div className="text-center pt-6 space-y-3">
+          <Badge variant={isDark ? "red" : "emerald"} className="mb-2">Get More About Us</Badge>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
+            ABOUT CADPOINT AUTHORIZED TRAINING CENTRE
+          </h1>
         <p className={`mt-4 text-base sm:text-lg max-w-3xl mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
           CADPOINT ® Engineering Solutions Pvt. Ltd is a premier ISO Certified company with 32 years of track record in CAD/CAM/CAE, Multimedia, IT, and Engineering Solutions.
         </p>
@@ -159,5 +178,6 @@ export function About() {
         </div>
       </section>
     </div>
-  );
+  </>
+);
 }

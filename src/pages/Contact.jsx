@@ -7,6 +7,8 @@ import { submitEnquiry } from '../services/api';
 import { getWhatsAppShareUrl } from '../services/directResend';
 import { COMPANY_INFO } from '../utils/constants';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare, Building2, Navigation, ExternalLink } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
+import { getOrganizationSchema, getBreadcrumbSchema, getFAQSchema } from '../utils/seoSchemas';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -33,14 +35,42 @@ export function Contact() {
     }
   };
 
+  const contactFaqs = [
+    {
+      question: "Where is CADPOINT Salem located?",
+      answer: "CADPOINT Salem Head Office is located at 1st Floor, CPS Tower, Advaitha Ashram Road, Fairlands, Salem - 636007, Tamil Nadu."
+    },
+    {
+      question: "How can I contact CADPOINT Salem for admissions?",
+      answer: "Call (+91) 95666 79928 or email cadpointsalem001@gmail.com for instant course counselor guidance."
+    }
+  ];
+
+  const contactJsonLd = [
+    getOrganizationSchema(),
+    getBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Contact', url: '/contact' }
+    ]),
+    getFAQSchema(contactFaqs)
+  ];
+
   return (
-    <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Header Badge */}
-      <div className="text-center pt-6 space-y-3">
-        <Badge variant="red" className="mb-2">Get In Touch</Badge>
-        <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
-          We're Here to Help
-        </h1>
+    <>
+      <SEO
+        title="Contact CADPOINT Salem | Phone, Address & Admission Helpline"
+        description="Contact CADPOINT Salem Head Office at CPS Tower, Advaitha Ashram Road, Fairlands. Call (+91) 95666 79928 for course inquiries and counselor advice."
+        keywords="Contact CADPOINT, CADPOINT Salem Address, CADPOINT Phone Number, CAD Institute Fairlands Salem, CADPOINT Admission Helpline"
+        canonical="/contact"
+        jsonLd={contactJsonLd}
+      />
+      <div className="space-y-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Badge */}
+        <div className="text-center pt-6 space-y-3">
+          <Badge variant="red" className="mb-2">Get In Touch</Badge>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
+            CONTACT CADPOINT SALEM
+          </h1>
         <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
           Send us your feedback or enquiries regarding our courses, corporate services, or project partnerships. We aim to respond quickly and ensure a smooth support experience.
         </p>
@@ -302,5 +332,6 @@ export function Contact() {
         </motion.div>
       </motion.section>
     </div>
+  </>
   );
 }

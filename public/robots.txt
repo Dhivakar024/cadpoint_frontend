@@ -1,0 +1,24 @@
+# CADPOINT Authorized Training Centre - Robots.txt
+# https://cadpoint.in/robots.txt
+
+User-agent: *
+Allow: /
+Allow: /images/
+Allow: /courses/
+Allow: /about
+Allow: /contact
+Allow: /services
+Allow: /registration
+Allow: /ecosystem
+
+# Disallow private, administrative, user-specific, and checkout endpoints
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /student/
+Disallow: /login/
+Disallow: /checkout/
+Disallow: /api/
+Disallow: /*?*search=
+
+# XML Sitemap Location
+Sitemap: https://cadpoint.in/sitemap.xml

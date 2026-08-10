@@ -3,9 +3,17 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { COMPANY_INFO } from '../utils/constants';
 
+import { SEO } from '../components/common/SEO';
+
 export function PrivacyPolicy() {
   return (
-    <div className="space-y-10 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      <SEO
+        title="Privacy Policy | CADPOINT Authorized Training Centre"
+        description="Read CADPOINT's official privacy policy regarding data protection, student registration privacy, and cloud security."
+        canonical="/privacy-policy"
+      />
+      <div className="space-y-10 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center pt-6">
         <Badge variant="purple" className="mb-4">Legal Document</Badge>
         <h1 className="text-4xl font-extrabold text-gradient font-heading">
@@ -43,5 +51,6 @@ export function PrivacyPolicy() {
         </p>
       </Card>
     </div>
+  </>
   );
 }

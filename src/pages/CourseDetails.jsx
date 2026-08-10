@@ -27,6 +27,8 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { getCourseBySlug, getRelatedCourses } from '../utils/courseData';
+import { SEO } from '../components/common/SEO';
+import { getCourseSchema, getBreadcrumbSchema, getFAQSchema } from '../utils/seoSchemas';
 
 export function CourseDetails() {
   const { slug } = useParams();
@@ -69,8 +71,27 @@ export function CourseDetails() {
     setTimeout(() => setDownloadSuccess(false), 4000);
   };
 
+  const courseJsonLd = [
+    getCourseSchema(course),
+    getBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Courses', url: '/courses' },
+      { name: course.title, url: `/courses/${course.slug}` }
+    ]),
+    course.faqs ? getFAQSchema(course.faqs) : null
+  ].filter(Boolean);
+
   return (
-    <div className="space-y-16 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      <SEO
+        title={`${course.title} | CADPOINT Authorized Training Centre`}
+        description={`${course.title} course at CADPOINT. Software covered: ${course.software}. Industry-aligned curriculum, ISO certification, and practical training.`}
+        keywords={`${course.title}, ${course.software}, CADPOINT ${course.category}, ${course.software} course Salem, CADPOINT Authorized Training Centre`}
+        canonical={`/courses/${course.slug}`}
+        ogImage={course.image}
+        jsonLd={courseJsonLd}
+      />
+      <div className="space-y-16 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* BREADCRUMB & BACK BUTTON */}
       <div className="flex items-center justify-between pt-6 border-b border-white/5 pb-4">
         <div className="flex items-center gap-2 text-xs text-slate-400 overflow-x-auto">
@@ -481,7 +502,8 @@ export function CourseDetails() {
             </Link>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
