@@ -27,6 +27,7 @@ export function AIChatbot() {
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [lastTopic, setLastTopic] = useState(null);
   
   // Lead Capture State inside chat
   const [leadMode, setLeadMode] = useState(false);
@@ -47,15 +48,27 @@ export function AIChatbot() {
 
   // Language & Intent Processing Engine
   const processQuery = (rawQuery) => {
-    const q = rawQuery.toLowerCase().trim();
+    let q = rawQuery.toLowerCase().trim();
     
-    // Language Detection: Tamil Unicode, Tanglish, or English
+    // Language & Tone Detection
     const isTamil = /[\u0B80-\u0BFF]/.test(rawQuery);
-    const isTanglish = /\b(machi|vanakkam|da|bro|sapttiya|eppo|nalla|epdi|pannu|teriyuma|venum|iruku|aagum|kudu|kaattu|enna|solllu|irukinga|vaanga|theriyum|soldu|thara|kattuka)\b/i.test(rawQuery);
+    const isTanglish = /\b(machi|vanakkam|da|bro|sapttiya|eppo|nalla|epdi|pannu|teriyuma|venum|iruku|aagum|kudu|kaattu|enna|solllu|irukinga|vaanga|theriyum|soldu|thara|kattuka|idha|panradhu)\b/i.test(rawQuery);
+    const usesMachi = /\b(machi|da)\b/i.test(rawQuery);
     const lang = isTamil ? 'tamil' : isTanglish ? 'tanglish' : 'english';
 
     // ===================================================
-    // 1. EXPLICIT HUMAN COUNSELOR / CONTACT INTENT
+    // RULE 9: CONVERSATION CONTEXT MEMORY
+    // Detect context references ("idha", "this", "it", "that", "learn this", "courses for this")
+    // ===================================================
+    const isContextualFollowup = /\b(idha|this|it|that|for this|learn this|learn panna|course for this|courses for this)\b/i.test(q);
+
+    if (isContextualFollowup && lastTopic) {
+      q = `${lastTopic} courses`;
+    }
+
+    // ===================================================
+    // 1. EXPLICIT HUMAN COUNSELOR / CONTACT REDIRECTION (RULE 8)
+    // Only suggest human contact when explicitly requested
     // ===================================================
     const isExplicitContact = /\b(call|callback|phone|contact|number|address|location|reach|talk to|speak|expert|counselor|human|admission|register|enroll|fees|cost|salem|office)\b/i.test(q);
 
@@ -64,130 +77,159 @@ export function AIChatbot() {
         return "CADPOINT சேலம் மையத்தை தொடர்பு கொள்ள அல்லது ஆலோசகர் அழைப்பைப் பெற:\n\n📍 முகவரி: 1st Floor, CPS Tower, Advaitha Ashram Road, Fairlands, Salem - 636007.\n📞 தொலைபேசி: (+91) 95666 79928\n✉️ மின்னஞ்சல்: cadpointsalem001@gmail.com\n⏰ அலுவலக நேரம்: திங்கள் – சனி (காலை 9:00 – மாலை 7:00)\n\nஆலோசகரிடம் பேச உங்கள் பெயர் மற்றும் தொலைபேசி எண்ணைப் பகிர விரும்புகிறீர்களா?";
       }
       if (lang === 'tanglish') {
-        return "Machi! CADPOINT Salem Counselor உனக்கு Call பண்ணி விவரங்கள் சொல்ல:\n\n📍 Address: 1st Floor, CPS Tower, Advaitha Ashram Road, Fairlands, Salem.\n📞 Call / WhatsApp: (+91) 95666 79928\n⏰ Office Hours: Mon – Sat (9:00 AM – 7:00 PM)\n\nஉன்னோட Name & Phone Number குடுடா, ஆலோசகர் உடனே தொடர்பு கொள்வாங்க! 🚀";
+        const greeting = usesMachi ? "Machi! " : "";
+        return `${greeting}CADPOINT Salem Counselor உனக்கு Call பண்ணி விவரங்கள் சொல்ல:\n\n📍 Address: 1st Floor, CPS Tower, Advaitha Ashram Road, Fairlands, Salem.\n📞 Call / WhatsApp: (+91) 95666 79928\n⏰ Office Hours: Mon – Sat (9:00 AM – 7:00 PM)\n\nஉன்னோட Name & Phone Number குடுத்தா, ஆலோசகர் உடனே தொடர்பு கொள்வாங்க! 🚀`;
       }
       return "You can reach CADPOINT Salem Admissions Team directly:\n\n📍 Address: 1st Floor, CPS Tower, Advaitha Ashram Road, Fairlands, Salem - 636007, Tamil Nadu.\n📞 Helpline: (+91) 95666 79928\n✉️ Email: cadpointsalem001@gmail.com\n⏰ Office Hours: Monday – Saturday (9:00 AM – 7:00 PM)\n\nWould you like to share your details for a counselor callback?";
     }
 
     // ===================================================
-    // 2. DIRECT CONCEPTUAL EDUCATIONAL ANSWERS (ANSWER FIRST RULE)
+    // 2. DIRECT CONCEPTUAL EDUCATIONAL ANSWERS (RULES 1, 2, 4, 7, 10, 13)
+    // Priority: 1. Answer Directly -> 2. Explain -> 3. Example -> 4. Connect CADPOINT only if relevant -> 5. Specific Follow-Up
     // ===================================================
 
-    // Question: What is Software?
+    // Question: Python (Rule 2)
+    if (q.includes('what is python') || q.includes('python programming') || q === 'python' || q.includes('python enna') || q.includes('meaning of python') || q.includes('python na enna')) {
+      setLastTopic('python');
+      if (lang === 'tanglish') {
+        const daSuffix = usesMachi ? " da" : "";
+        return `Python na oru high-level programming language${daSuffix}. 🐍\n\nIdha Web Development, AI & Machine Learning, Data Science, Automation and Software Development-ku use pannuvanga.\n\nSimple-aa sonna, computer-ku instructions kudukka Python use pannuvom.\n\nExample:\nprint('Hello World')\n\nIdhu screen-la Hello World nu print pannum.\n\nIf you're interested in learning Python, CADPOINT's relevant Python/full-stack/AI courses can be shown.\n\nUnakku Python basics mattum venuma, illa AI/Data Science side-la Python use panradhu theriyanuma?`;
+      }
+      if (lang === 'tamil') {
+        return "பைதான் (Python) என்பது மிக எளிமையாகவும் தெளிவாகவும் படிக்கக்கூடிய ஒரு பிரபல உயர்நிலை நிரலாக்க மொழியாகும் (High-level Programming Language). 🐍\n\nபயன்கள்:\n- Web Development (Django / Flask)\n- Data Science & Machine Learning\n- Artificial Intelligence & Automation\n- Software Engineering\n\nஉதாரணம்:\nprint('Hello World')\n\nஇது திரையில் Hello World என்று அச்சிடும்.\n\nநீங்கள் பைதான் கற்க விரும்பினால், CADPOINT-ன் தொடர்புடைய Python / Full Stack / AI பயிற்சிகளைக் காணலாம்.\n\nஉங்களுக்கு Python அடிப்படைகள் மட்டும் போதுமா அல்லது AI/Data Science பிரிவில் படிக்க விரும்புகிறீர்களா?";
+      }
+      return "Python is a versatile, high-level programming language known for its clean, easy-to-read syntax. 🐍\n\nIt is widely used for:\n- Web Development (Django, Flask)\n- Artificial Intelligence & Machine Learning\n- Data Science & Analytics\n- Automation scripts and software engineering\n\nExample:\nprint('Hello World')\n\nThis simple line prints 'Hello World' to the screen.\n\nIf you're interested in learning Python, CADPOINT's relevant Python/full-stack/AI courses can be shown.\n\nAre you interested in Python for web development or Data Science & AI?";
+    }
+
+    // Question: Software (Rule 1)
     if (q.includes('what is software') || q === 'software' || q.includes('software definition')) {
+      setLastTopic('software');
+      if (lang === 'tanglish') {
+        const daSuffix = usesMachi ? " machi" : "";
+        return `Software-னா கம்ப்யூட்டர் அல்லது மொபைலுக்கு என்ன செய்யணும்னு சொல்லுற Instructions & Programs கூட்டம் தான்${daSuffix}.\n\nFor example, Windows, Chrome, WhatsApp, Python, AutoCAD, Revit and Photoshop are software.\n\nSoftware எதுக்கெல்லாம் பயன்படுது:\n- Application development\n- Web development\n- Data analysis and AI\n- Design and multimedia\n- CAD and BIM modeling\n- Mobile application development\n\nAt CADPOINT, students can learn different software and technologies through practical training.\n\nUnakku Software Development, CAD/BIM software, இல்ல AI software பற்றி தெரிஞ்சுக்கனுமா?`;
+      }
       if (lang === 'tamil') {
         return "மென்பொருள் (Software) என்பது கணினி அல்லது சாதனத்திற்கு என்ன செய்ய வேண்டும் என்று கட்டளையிடும் நிரல்கள் (programs) மற்றும் வழிமுறைகளின் தொகுப்பாகும்.\n\nஎடுத்துக்காட்டுகள்: Windows, Google Chrome, WhatsApp, Python, AutoCAD, Revit மற்றும் Photoshop.\n\nமென்பொருள் முக்கியமாக பின்வருவனவற்றிற்கு பயன்படுகிறது:\n- பயன்பாட்டு வளர்ச்சி (Application development)\n- இணையதள உருவாக்கம் (Web development)\n- தரவு பகுப்பாய்வு மற்றும் AI\n- வடிவமைப்பு மற்றும் மல்டிமீடியா\n- CAD மற்றும் BIM மாதிரியாக்கம்\n- மொபைல் பயன்பாட்டு வளர்ச்சி\n\nCADPOINT-ல் மாணவர்கள் பல்வேறு மென்பொருள்களை செய்முறைப் பயிற்சியுடன் கற்றுக்கொள்ளலாம்.\n\nSoftware Development, CAD/BIM மென்பொருள் அல்லது AI மென்பொருள் பற்றி அறிய விரும்புகிறீர்களா?";
       }
-      if (lang === 'tanglish') {
-        return "Software-னா கம்ப்யூட்டர் அல்லது மொபைலுக்கு என்ன செய்யணும்னு சொல்லுற Instructions & Programs கூட்டம் தான் machi.\n\nExamples: Windows, Google Chrome, WhatsApp, Python, AutoCAD, Revit, Photoshop.\n\nSoftware எதுக்கெல்லாம் பயன்படுது:\n- Web & App Development\n- Data Science & AI\n- Design & Multimedia\n- CAD & BIM Modeling\n- Mobile Application Development\n\nCADPOINT-ல இந்த Software-களை Practical-ஆ கத்துக்கலாம்டா.\n\nஉனக்கு Software Development, CAD/BIM, இல்ல AI Software பற்றி தெரிஞ்சுக்கனுமா?";
-      }
-      return "Software is a set of programs and instructions that tells a computer or device what to do.\n\nExamples include Windows, Google Chrome, WhatsApp, Python, AutoCAD, Revit and Photoshop.\n\nSoftware is commonly used for:\n- Application development\n- Web development\n- Data analysis and AI\n- Design and multimedia\n- CAD and BIM modeling\n- Mobile application development\n\nAt CADPOINT, students can learn different software and technologies through practical, industry-oriented training.\n\nWould you like to know about Software Development, CAD/BIM software, or AI software?";
+      return "Software is a set of programs and instructions that tells a computer what to do.\n\nFor example, Windows, Chrome, WhatsApp, Python, AutoCAD, Revit and Photoshop are software.\n\nSoftware is commonly used for:\n- Application development\n- Web development\n- Data analysis and AI\n- Design and multimedia\n- CAD and BIM modeling\n- Mobile application development\n\nAt CADPOINT, students can learn different software and technologies through practical training.\n\nWould you like to know about Software Development, CAD/BIM software, or AI software?";
     }
 
-    // Question: What is Python?
-    if (q.includes('what is python') || q.includes('python programming') || q === 'python') {
+    // Question: HTML
+    if (q.includes('what is html') || q === 'html' || q.includes('html definition')) {
+      setLastTopic('html');
+      if (lang === 'tanglish') {
+        const daSuffix = usesMachi ? " da" : "";
+        return `HTML (HyperText Markup Language)-னா Websites-ோட Basic Structure-அ உருவாக்க பயன்படும் Standard Markup Language${daSuffix}.\n\nWeb page-ல இருக்கிற Headings, Paragraphs, Images, Links, & Buttons எல்லாமே HTML மூலமா தான் Structure பண்ணுவோம்.\n\nExample:\n<h1>Hello World</h1>\n\nIdhu Web Page-ல ஒரு பெரிய Heading-ஆ Display ஆகும்.\n\nIf you're interested in web design, CADPOINT offers Web Designing & Full Stack Development tracks.\n\nUnakku HTML & Web Design basics பத்தி பாக்கனுமா, இல்ல Full Stack Development வேணுமா?`;
+      }
       if (lang === 'tamil') {
-        return "பைதான் (Python) என்பது மிக எளிமையாகவும் தெளிவாகவும் படிக்கக்கூடிய ஒரு பிரபல உயர்நிலை நிரலாக்க மொழியாகும் (High-level Programming Language).\n\nபயன்கள்:\n- Web Development (Django / Flask)\n- Data Science & Machine Learning\n- Artificial Intelligence & Automation\n\nCADPOINT-ல் Python 기초 முதல் AI & Full Stack வரை செய்முறைப் பயிற்சியாகக் கற்றுத் தரப்படுகிறது.\n\nPython Full Stack அல்லது Data Science படிப்புகள் பற்றி தெரிந்துகொள்ள விரும்புகிறீர்களா?";
+        return "HTML (HyperText Markup Language) என்பது இணையதளங்களின் அடிப்படை கட்டமைப்பை (Structure) உருவாக்க பயன்படும் நிலையான மொழியாகும்.\n\nஇணைய பக்கத்தில் உள்ள தலைப்புகள் (Headings), பத்திகள் (Paragraphs), படங்கள், இணைப்புகள் மற்றும் பொத்தான்கள் அனைத்தும் HTML மூலம் கட்டமைக்கப்படுகின்றன.\n\nஉதாரணம்:\n<h1>Hello World</h1>\n\nஇது இணைய பக்கத்தில் பெரிய தலைப்பாக அச்சிடும்.\n\nCADPOINT-ல் Web Designing & Full Stack Development பிரிவுகளில் HTML கற்பிக்கப்படுகிறது.\n\nஉங்களுக்கு Web Designing அல்லது Full Stack Development படிப்புகள் பற்றி தெரிய வேண்டுமா?";
       }
-      if (lang === 'tanglish') {
-        return "Python-னா ரொம்ப சுலபமா படிக்கக்கூடிய ஒரு popular-ஆன Programming Language machi.\n\nMain Uses:\n- Web Development (Django / Flask)\n- Data Science & AI\n- Automation Scripts\n\nCADPOINT-ல Python Basic-ல இருந்து Advanced Full Stack & AI வரை Practical-ஆ கத்துத்தர்றாங்க.\n\nஉனக்கு Python Web Dev வேணுமா இல்ல Data Science வேணுமாடா?";
-      }
-      return "Python is a versatile, high-level programming language known for its clean, easy-to-read syntax.\n\nKey applications include:\n- Web development (Django, Flask)\n- Data science, analytics, and Machine Learning\n- Artificial Intelligence and Automation\n- Scripting and backend APIs\n\nAt CADPOINT, Python is taught from fundamentals to advanced Full Stack and AI applications.\n\nWould you like details on Python Full Stack Development or Data Science & AI?";
+      return "HTML (HyperText Markup Language) is the standard markup language used to create the structure of web pages.\n\nIt defines elements like headings, paragraphs, images, links, forms, and buttons on a website.\n\nExample:\n<h1>Hello World</h1>\n\nThis line creates a prominent heading on a web page.\n\nAt CADPOINT, HTML is taught as part of Web Designing and Full Stack Development programs.\n\nWould you like to know about Web Designing or Full Stack Development courses?";
     }
 
-    // Question: What is CAD?
-    if (q.includes('what is cad') || q === 'cad' || q.includes('computer aided design')) {
+    // Question: AutoCAD
+    if (q.includes('what is autocad') || q === 'autocad') {
+      setLastTopic('autocad');
+      if (lang === 'tanglish') {
+        const daSuffix = usesMachi ? " da" : "";
+        return `AutoCAD-னா Architects & Engineers accurate-ஆ 2D Drawings & 3D Models உருவாக்க பயன்படும் Computer-Aided Design (CAD) Software${daSuffix}.\n\nCivil blueprints, Mechanical machine parts, Electrical panel layouts உருவாக்க AutoCAD தான் Industry Standard.\n\nExample: Building floor plan 2D layouts, structural drafting, mechanical component designs.\n\nCADPOINT-ல Civil, Mechanical, & Electrical AutoCAD-க்கு Practical Lab Training இருக்கு.\n\nUnakku Civil CADD, Mechanical CADD, இல்ல Electrical CADD பத்தி தெரிஞ்சுக்கனுமா?`;
+      }
       if (lang === 'tamil') {
-        return "CAD (Computer-Aided Design) என்பது பொறியாளர்கள் மற்றும் வடிவமைப்பாளர்கள் 2D வரைபடங்கள் மற்றும் 3D டிஜிட்டல் மாதிரிகளை உருவாக்கப் பயன்படுத்தும் தொழில்நுட்பமாகும்.\n\nமுக்கிய மென்பொருள்கள்: AutoCAD, SolidWorks, CATIA, Creo.\n\nபயன்கள்:\n- கட்டிட வரைபடங்கள் (Civil Drafting)\n- இயந்திர பாக வடிவமைப்பு (Mechanical Product Design)\n- மின்சார வயரிங் சிஸ்டம்ஸ் (Electrical Panel Design)\n\nCADPOINT-ல் சிவில், மெக்கானிக்கல் மற்றும் எலக்ட்ரிக்கல் பிரிவுகளுக்கு பிரத்யேக CAD பயிற்சிகள் வழங்கப்படுகின்றன.\n\nCivil CADD, Mechanical CADD, அல்லது Electrical CADD பற்றி அறிய விரும்புகிறீர்களா?";
+        return "AutoCAD என்பது கட்டிடக் கலைஞர்கள் மற்றும் பொறியாளர்கள் துல்லியமான 2D வரைபடங்கள் மற்றும் 3D மாதிரிகளை உருவாக்கப் பயன்படுத்தும் கணினி உதவி வடிவமைப்பு (CAD) மென்பொருளாகும்.\n\nஇது கட்டிட வரைபடங்கள் (floor plans), இயந்திர பாகங்கள் மற்றும் மின்சார வரைபடங்களை வரைவதற்கான உலகளாவிய தரநிலையாகும்.\n\nஎடுத்துக்காட்டு: 2D கட்டிட வரைபடம் வரைதல், இயந்திர பாக வரைபடம் தயாரித்தல்.\n\nCADPOINT-ல் சிவில், மெக்கானிக்கல் மற்றும் எலக்ட்ரிக்கல் பிரிவுகளுக்கு பிரத்யேக AutoCAD பயிற்சிகள் உள்ளன.\n\nCivil CADD, Mechanical CADD அல்லது Electrical CADD பற்றி அறிய விரும்புகிறீர்களா?";
       }
-      if (lang === 'tanglish') {
-        return "CAD (Computer-Aided Design)-னா Engineers & Designers accurate 2D Drawings & 3D Models உருவாக்க பயன்படும் Tech machi.\n\nPopular CAD Tools: AutoCAD, SolidWorks, CATIA, Creo.\n\nCADPOINT-ல Civil, Mechanical, & Electrical CAD-க்கு 80% Practical Training இருக்குடா.\n\nஉனக்கு Civil CADD, Mechanical CADD, இல்ல Electrical CADD பத்தி தெரிஞ்சுக்கனுமா?";
-      }
-      return "CAD (Computer-Aided Design) is technology used by engineers, architects, and designers to create precise 2D drawings and 3D digital models.\n\nPopular CAD software includes AutoCAD, SolidWorks, CATIA, and Creo.\n\nCAD is used for:\n- Architectural & Civil drafting\n- Mechanical machine & product design\n- Electrical schematic & panel layout\n\nAt CADPOINT, students learn specialized CAD workflows for Civil, Mechanical, and Electrical domains.\n\nWould you like details on Civil CADD, Mechanical CADD, or Electrical CADD?";
+      return "AutoCAD is a Computer-Aided Design (CAD) software used by architects, engineers, and construction professionals to create precise 2D drawings and 3D models.\n\nIt is the industry standard for architectural blueprints, mechanical component drawings, and electrical schematics.\n\nExample: Drafting 2D building floor plans, structural details, and machine parts.\n\nAt CADPOINT, AutoCAD is taught across Civil, Mechanical, and Electrical design tracks.\n\nAre you interested in Civil CADD, Mechanical CADD, or Electrical CADD?";
     }
 
-    // Question: What is BIM?
-    if (q.includes('what is bim') || q === 'bim' || q.includes('building information modeling')) {
+    // Question: Revit
+    if (q.includes('what is revit') || q === 'revit') {
+      setLastTopic('revit');
+      if (lang === 'tanglish') {
+        const daSuffix = usesMachi ? " da" : "";
+        return `Revit-னா Buildings-அ 3D Model-ஆ Design பண்ண பயன்படும் Building Information Modeling (BIM) Software${daSuffix}.\n\n3D Plan-ல ஒரு சின்ன Change பண்ணினாலும் Elevation & Section Views தானாகவே Update ஆகிடும்.\n\nExample: Architectural 3D building modeling & MEP ductwork design.\n\nIf you want to learn Revit, CADPOINT offers Civil Revit Architecture & Revit MEP BIM courses.\n\nUnakku Revit Architecture வேணுமா இல்ல Revit MEP பத்தி பாக்கனுமா?`;
+      }
       if (lang === 'tamil') {
-        return "BIM (Building Information Modeling) என்பது 3D டிஜிட்டல் மாதிரிகள் மூலம் கட்டிடங்களின் வடிவமைப்பு, கட்டமைப்பு மற்றும் நிர்வாகத்தை துல்லியமாக திட்டமிடும் தொழில்நுட்பமாகும்.\n\nமுக்கிய கருவிகள்: Revit Architecture, Revit MEP, Navisworks.\n\nபயன்கள்:\n- 3D parametric மாதிரியாக்கம்\n- Clash detection (பிழைகளைக் கண்டறிதல்)\n- திட்ட நேர நிர்வாகம் மற்றும் செலவு மதிப்பீடு\n\nCADPOINT-ல் Civil & MEP BIM சான்றிதழ் படிப்புகள் உள்ளன.\n\nCivil BIM அல்லது MEP BIM படிப்புகள் பற்றி அறிய விரும்புகிறீர்களா?";
+        return "Revit என்பது 3D டிஜிட்டல் மாதிரிகள் மூலம் கட்டிடங்களை வடிவமைக்கப் பயன்படும் Building Information Modeling (BIM) மென்பொருளாகும்.\n\nவரைபடத்தில் மாற்றங்கள் செய்தால், Elevations மற்றும் 3D Views தானாகவே புதுப்பிக்கப்படும்.\n\nஎடுத்துக்காட்டு: முப்பரிமாண கட்டிட வடிவமைப்பு மற்றும் MEP குழாய் வடிவமைப்பு.\n\nCADPOINT-ல் Civil Revit Architecture மற்றும் Revit MEP BIM படிப்புகள் உள்ளன.\n\nRevit Architecture அல்லது Revit MEP பற்றி அறிய விரும்புகிறீர்களா?";
       }
-      if (lang === 'tanglish') {
-        return "BIM (Building Information Modeling)-னா Buildings-அ 3D Model வழியா accurately Plan, Design, & Manage பண்ணுற Modern Construction Technology machi.\n\nKey Tools: Revit Architecture, Revit MEP, Navisworks.\n\nCADPOINT-ல Civil BIM & MEP BIM Programs இருக்குடா.\n\nஉனக்கு Civil BIM வேணுமா இல்ல MEP BIM வேணுமாடா?";
-      }
-      return "BIM (Building Information Modeling) is an intelligent 3D model-based process that gives architecture, engineering, and construction professionals tools to plan, design, construct, and manage buildings efficiently.\n\nKey BIM software includes Revit Architecture, Revit MEP, and Navisworks.\n\nBIM is used for:\n- 3D parametric building design\n- MEP clash detection and coordination\n- Cost estimation and project scheduling\n\nAt CADPOINT, BIM programs offer hands-on training with real-site project simulation.\n\nWould you like to explore Civil BIM or MEP BIM programs?";
+      return "Revit is a 3D Building Information Modeling (BIM) software developed by Autodesk for architects, structural engineers, and MEP designers.\n\nIt allows professionals to model a building in 3D, automatically updating floor plans, elevations, and section views whenever changes are made.\n\nExample: Creating a complete 3D digital model of a building with structural elements.\n\nAt CADPOINT, Revit is taught in Civil BIM and MEP BIM programs.\n\nWould you like to explore Revit Architecture or Revit MEP?";
     }
 
-    // Question: What is Full Stack?
-    if (q.includes('what is full stack') || q.includes('fullstack') || q === 'full stack') {
+    // Question: AI
+    if (q.includes('what is ai') || q === 'ai' || q.includes('artificial intelligence')) {
+      setLastTopic('ai');
+      if (lang === 'tanglish') {
+        const daSuffix = usesMachi ? " da" : "";
+        return `AI (Artificial Intelligence)-னா மனிதர்கள் மாதிரியே யோசித்து, கத்துக்கிட்டு, Decisions எடுக்கக்கூடிய Computer Systems தான்${daSuffix}.\n\nExamples: ChatGPT, self-driving cars, image generators, recommendation algorithms.\n\nIdha Machine Learning algorithms & Python code வழியா Develop பண்ணுவாங்க.\n\nCADPOINT-ல Python Data Science & AI Programs இருக்கு.\n\nUnakku Python AI Programming பத்தி தெரிஞ்சுக்கனுமா, இல்ல AI Full Stack Development வேணுமா?`;
+      }
       if (lang === 'tamil') {
-        return "Full Stack Development என்பது ஒரு இணையதளத்தின் பயனர் பகுதி (Frontend) மற்றும் சேவையகப் பகுதி (Backend + Database) இரண்டையும் முழுமையாக உருவாக்குவதாகும்.\n\nதொழில்நுட்பங்கள்:\n- Frontend: HTML, CSS, JavaScript, React\n- Backend: Python (Django), Java (Spring Boot), Node.js\n- Database: MongoDB, MySQL\n\nCADPOINT-ல் Python React, Java Full Stack மற்றும் MERN Stack படிப்புகள் உள்ளன.\n\nஎந்த Full Stack படிப்பு பற்றி அறிய விரும்புகிறீர்களா?";
+        return "செயற்கை நுண்ணறிவு (Artificial Intelligence - AI) என்பது மனிதர்களின் கற்றல், சிந்தனை மற்றும் முடிவெடுக்கும் திறன்களை கணினி அமைப்புகள் மூலம் செயலாக்குவதாகும்.\n\nஎடுத்துக்காட்டுகள்: ChatGPT, தானியங்கி வாகனங்கள், குரல் உதவியாளர்கள்.\n\nஇவை Python மற்றும் Machine Learning வழிமுறைகள் மூலம் உருவாக்கப்படுகின்றன.\n\nCADPOINT-ல் Data Science & AI மற்றும் AI Full Stack படிப்புகள் உள்ளன.\n\nPython AI Programming அல்லது AI Full Stack பற்றி அறிய விரும்புகிறீர்களா?";
       }
-      if (lang === 'tanglish') {
-        return "Full Stack Development-னா ஒரு Web App-ஓட Frontend (User UI) & Backend (Server + Database) இரண்டையுமே Develop பண்ணுறது தான் machi.\n\nMain Stacks:\n- Python & React Full Stack\n- Java Full Stack\n- MERN Stack (MongoDB, Express, React, Node)\n\nCADPOINT-ல இந்த 3 Stacks-க்கும் Practical Training இருக்குடா.\n\nஉனக்கு எந்த Stack பத்தி தெரிஞ்சுக்கனும்?";
-      }
-      return "Full Stack Development involves building both the frontend (user interface) and backend (server logic and database) of web applications.\n\nCore technologies include:\n- Frontend: HTML, CSS, JavaScript, React\n- Backend: Python (Django), Java (Spring Boot), Node.js\n- Database: MongoDB, MySQL\n\nAt CADPOINT, Full Stack tracks include Python & React, Java Full Stack, MERN Stack, and MEAN Stack.\n\nWhich Full Stack stream would you like to explore?";
+      return "Artificial Intelligence (AI) refers to computer systems engineered to perform tasks that typically require human intelligence, such as visual perception, speech recognition, decision-making, and learning.\n\nExamples include ChatGPT, recommendation engines, facial recognition, and autonomous systems.\n\nAI applications are primarily built using Python, Machine Learning algorithms, and neural networks.\n\nAt CADPOINT, AI concepts are integrated into Data Science & AI and Full Stack Development programs.\n\nAre you interested in Python for Data Science & AI or AI Full Stack applications?";
     }
 
-    // Question: What is SEO?
+    // Question: SEO
     if (q.includes('what is seo') || q === 'seo' || q.includes('search engine optimization')) {
-      if (lang === 'tamil') {
-        return "SEO (Search Engine Optimization) என்பது ஒரு இணையதளத்தை Google போன்ற தேடுபொறிகளில் இலவசமாக (Organic) முதலிடத்தில் கொண்டு வருவதற்கான உத்தியாகும்.\n\nமுக்கிய கூறுகள்:\n- Keyword Research (முக்கிய வார்த்தைகள் ஆய்வு)\n- On-page & Technical SEO\n- Link Building (பேக்லிங்க்கள்)\n- Web Analytics\n\nCADPOINT-ல் 'Professional in Search Engine Optimization (SEO)' படிப்பு உள்ளது.\n\nஇதைப் பற்றி மேலும் அறிய விரும்புகிறீர்களா?";
-      }
+      setLastTopic('seo');
       if (lang === 'tanglish') {
-        return "SEO (Search Engine Optimization)-னா Google-ல நம்ம Website-அ Organic-ஆ Top Ranking-ல கொண்டு வர்ற Strategy தான் machi.\n\nKey Components:\n- Keyword Research\n- On-Page & Technical SEO\n- Backlink Strategies\n\nCADPOINT-ல 'Professional in Search Engine Optimization (SEO)' Course இருக்குடா.\n\nஇதோட Course Details பாக்கலாமா?";
+        const daSuffix = usesMachi ? " da" : "";
+        return `SEO (Search Engine Optimization)-னா Google-ல நம்ம Website-அ Organic-ஆ Top Ranking-ல கொண்டு வர்ற Strategy தான்${daSuffix}.\n\nKey Components:\n- Keyword Research\n- On-Page & Technical SEO\n- Backlink Strategies & Web Analytics\n\nCADPOINT offers a dedicated 'Professional in Search Engine Optimization (SEO)' course.\n\nUnakku SEO Course details பாக்கனுமா, இல்ல Digital Marketing & Google Ads பத்தி பாக்கனுமா?`;
       }
-      return "SEO (Search Engine Optimization) is the practice of optimizing websites to rank higher on search engine results pages (like Google) organically to attract free, targeted traffic.\n\nKey components include:\n- Keyword research and content optimization\n- On-page and technical SEO auditing\n- Backlink strategies and domain authority building\n- Search engine traffic analytics\n\nAt CADPOINT, we offer the 'Professional in Search Engine Optimization (SEO)' course.\n\nWould you like to view the details for this course?";
+      if (lang === 'tamil') {
+        return "SEO (Search Engine Optimization) என்பது ஒரு இணையதளத்தை Google போன்ற தேடுபொறிகளில் இலவசமாக (Organic) முதலிடத்தில் கொண்டு வருவதற்கான உத்தியாகும்.\n\nமுக்கிய கூறுகள்:\n- Keyword Research (முக்கிய வார்த்தைகள் ஆய்வு)\n- On-page & Technical SEO\n- Link Building & Web Analytics\n\nCADPOINT-ல் 'Professional in Search Engine Optimization (SEO)' படிப்பு உள்ளது.\n\nஉங்களுக்கு SEO பாடவிவரங்கள் பார்க்க வேண்டுமா அல்லது Digital Marketing பற்றி தெரிய வேண்டுமா?";
+      }
+      return "SEO (Search Engine Optimization) is the practice of optimizing websites to rank higher on search engine results pages (like Google) organically to attract free, targeted traffic.\n\nKey components include:\n- Keyword research and content optimization\n- On-page and technical SEO auditing\n- Backlink strategies and domain authority building\n- Search engine traffic analytics\n\nAt CADPOINT, we offer the 'Professional in Search Engine Optimization (SEO)' course.\n\nWould you like to view details for the SEO course or explore Digital Marketing?";
     }
 
-    // Question: What is Digital Marketing?
-    if (q.includes('digital marketing') || q === 'marketing') {
-      if (lang === 'tamil') {
-        return "Digital Marketing என்பது இணையம், தேடுபொறிகள், சமூக ஊடகங்கள் மற்றும் மின்னஞ்சல் மூலம் தயாரிப்புகள் அல்லது சேவைகளை விளம்பரப்படுத்துவதாகும்.\n\nமுக்கிய பிரிவுகள்:\n- Search Engine Optimization (SEO)\n- Google Ads (PPC)\n- Meta Advertising (Facebook & Instagram)\n- Email & Social Media Marketing\n\nCADPOINT டிஜிட்டல் மார்க்கெட்டிங் பிரிவில் 9 பிரத்யேக தொழில்முறை படிப்புகளை வழங்குகிறது.\n\nSEO, Google Ads அல்லது Meta Ads பற்றி அறிய விரும்புகிறீர்களா?";
-      }
+    // Question: Digital Marketing
+    if (q.includes('what is digital marketing') || q === 'digital marketing') {
+      setLastTopic('digital_marketing');
       if (lang === 'tanglish') {
-        return "Digital Marketing-னா Internet, Google, Social Media & Email வழியா Business-அ Promote பண்ணுறது தான் machi.\n\nMain Areas:\n- SEO & Web Analytics\n- Google Ads (PPC)\n- Meta Ads (FB & Insta)\n- Email & Social Media Marketing\n\nCADPOINT-ல 9 Specific Professional Courses இருக்குடா.\n\nஉனக்கு SEO, Google Ads, இல்ல Meta Ads பத்தி பாக்கனுமா?";
+        const daSuffix = usesMachi ? " da" : "";
+        return `Digital Marketing-னா Internet, Google, Social Media & Email வழியா Business & Products-அ Promote பண்ணுறது தான்${daSuffix}.\n\nMain Areas:\n- SEO & Web Analytics\n- Google Ads (PPC)\n- Meta Ads (FB & Insta)\n- Email & Social Media Marketing\n\nCADPOINT offers 9 specialized Professional courses in Digital Marketing & SEO.\n\nUnakku SEO, Google Ads, இல்ல Meta Ads-ல எது பத்தி பாக்கனும்?`;
       }
-      return "Digital Marketing is the promotion of products or services using digital channels such as search engines, social media, email, and websites.\n\nCore areas include:\n- Search Engine Optimization (SEO)\n- Google Ads & PPC Advertising\n- Meta Advertising (Facebook & Instagram)\n- Email Marketing & Web Analytics\n- Social Media Marketing & HubSpot CRM\n\nCADPOINT offers 9 specialized Professional courses in Digital Marketing & SEO.\n\nWhich digital marketing track would you like to explore?";
-    }
-
-    // ===================================================
-    // 3. DATABASE GROUNDED COURSE LOOKUP (SINGLE SOURCE OF TRUTH)
-    // ===================================================
-    const matchingCourses = COURSES.filter(c => 
-      c.title.toLowerCase().includes(q) ||
-      c.software.toLowerCase().includes(q) ||
-      c.id.toLowerCase().includes(q)
-    );
-
-    if (matchingCourses.length > 0 && matchingCourses.length <= 6) {
-      const listStr = matchingCourses.map(c => 
-        `• ${c.title}\n  - Category: ${c.category}\n  - Software: ${c.software}\n  - Duration: ${c.duration}`
-      ).join('\n\n');
-
       if (lang === 'tamil') {
-        return `CADPOINT அதிகாரப்பூர்வ தரவுத்தளத்தில் உள்ள தொடர்புடைய படிப்புகள்:\n\n${listStr}\n\nமேலும் விவரங்களை அறிய எந்த படிப்பைத் தேர்ந்தெடுக்க விரும்புகிறீர்கள்?`;
+        return "Digital Marketing என்பது இணையம், தேடுபொறிகள், சமூக ஊடகங்கள் மற்றும் மின்னஞ்சல் மூலம் தயாரிப்புகள் அல்லது சேவைகளை விளம்பரப்படுத்துவதாகும்.\n\nமுக்கிய பிரிவுகள்:\n- Search Engine Optimization (SEO)\n- Google Ads (PPC)\n- Meta Advertising (Facebook & Instagram)\n- Email & Social Media Marketing\n\nCADPOINT டிஜிட்டல் மார்க்கெட்டிங் பிரிவில் 9 பிரத்யேக தொழில்முறை படிப்புகளை வழங்குகிறது.\n\nஉங்களுக்கு SEO, Google Ads அல்லது Meta Ads பற்றி அறிய விரும்புகிறீர்களா?";
       }
-      if (lang === 'tanglish') {
-        return `CADPOINT Official Database-ல இருக்கிற Matching Courses இதோ machi:\n\n${listStr}\n\nஉனக்கு இதில எந்த Course பற்றி விவரம் வேணும்டா?`;
-      }
-      return `Here are the matching official courses from CADPOINT database:\n\n${listStr}\n\nWhich course would you like to know more about?`;
+      return "Digital Marketing is the promotion of products or services using digital channels such as search engines, social media, email, and websites.\n\nCore areas include:\n- Search Engine Optimization (SEO)\n- Google Ads & PPC Advertising\n- Meta Advertising (Facebook & Instagram)\n- Email Marketing & Web Analytics\n- Social Media Marketing & HubSpot CRM\n\nCADPOINT offers 9 specialized Professional courses in Digital Marketing & SEO.\n\nWhich digital marketing area would you like to explore?";
     }
 
     // ===================================================
-    // 4. DEPARTMENT OVERVIEW (WHEN ASKING ABOUT CATALOG / DEPARTMENTS)
+    // 3. EXPLICIT COURSE SEARCH & DATABASE LOOKUP (RULES 5 & 6)
+    // Single Source of Truth: COURSES in courseData.js
     // ===================================================
-    if (q.includes('department') || q.includes('category') || q.includes('courses list') || q.includes('available courses') || q.includes('catalog')) {
-      if (lang === 'tamil') {
-        return "CADPOINT சேலம் மையத்தில் உள்ள அதிகாரப்பூர்வ 7 துறைகள்:\n\n1. 💻 IT & Non-IT (Python, Full Stack, Java, Data Science & AI, AWS)\n2. 🎨 Multimedia (Photoshop, Premiere, Maya 3D, UI/UX)\n3. 📊 Accounts & Finance (Tally Prime GST, Advanced Excel, SAP FICO)\n4. 🏗️ Civil & Architecture (AutoCAD, Revit, STAAD Pro, ETABS, BIM)\n5. ⚙️ Mechanical & Aeronautical (SolidWorks, CATIA, Creo, Ansys)\n6. ⚡ Electrical & Electronics (AutoCAD Electrical, Revit MEP, PLC & SCADA)\n7. 📈 Digital Marketing & SEO (SEO, Google Ads, Meta Ads, Email Marketing)\n\nஎந்தத் துறை பற்றி அறிய விரும்புகிறீர்கள்?";
+    const isExplicitCourseQuery = /\b(courses|course|programs|program|diploma|learn|study|offer|classes|training|show me|list)\b/i.test(q) ||
+      q.includes('python course') || q.includes('revit course') || q.includes('autocad course') || q.includes('mep course') || q.includes('mechanical course') || q.includes('electrical course') || q.includes('digital marketing');
+
+    if (isExplicitCourseQuery) {
+      const searchKey = q.replace(/\b(courses|course|programs|program|diploma|learn|study|offer|classes|training|show me|list|have|do you|in cadpoint)\b/gi, '').trim();
+
+      const matching = COURSES.filter(c => 
+        (searchKey && c.title.toLowerCase().includes(searchKey)) ||
+        (searchKey && c.software.toLowerCase().includes(searchKey)) ||
+        (searchKey && c.category.toLowerCase().includes(searchKey)) ||
+        (searchKey && c.domain.toLowerCase().includes(searchKey))
+      );
+
+      if (matching.length > 0) {
+        const listStr = matching.map(c => 
+          `• ${c.title}\n  - Level: ${c.level}\n  - Software: ${c.software}\n  - Duration: ${c.duration}`
+        ).join('\n\n');
+
+        if (lang === 'tamil') {
+          return `CADPOINT அதிகாரப்பூர்வ பாடவுத்தரவுத்தளத்திலிருந்து (${matching.length} படிப்புகள்):\n\n${listStr}\n\nஇதில் எந்த படிப்பு பற்றிய மேலும் தகவல்கள் வேண்டும்?`;
+        }
+        if (lang === 'tanglish') {
+          const greeting = usesMachi ? "Machi! " : "";
+          return `${greeting}CADPOINT Official Database-ல இருக்கிற Matching Courses இதோ:\n\n${listStr}\n\nஉனக்கு இதில எந்த Course பற்றி விவரம் வேணும்?`;
+        }
+        return `Here are the official matching courses from the CADPOINT database:\n\n${listStr}\n\nWhich of these courses would you like to know more about?`;
+      } else if (searchKey.length > 2) {
+        // RULE 11: Accuracy & No Hallucination
+        return "I don't have that information in the current CADPOINT data.";
       }
-      if (lang === 'tanglish') {
-        return "CADPOINT-ல இருக்கிற 7 Main Departments இதோ machi:\n\n1. 💻 IT & Non-IT: Python, Java Full Stack, Data Science, AWS\n2. 🎨 Multimedia: Photoshop, After Effects, Maya 3D, UI/UX\n3. 📊 Accounts & Finance: Tally Prime GST, Advanced Excel, SAP FICO\n4. 🏗️ Civil & Architecture: AutoCAD, Revit, STAAD Pro, ETABS\n5. ⚙️ Mechanical: SolidWorks, CATIA V5, Creo, Ansys\n6. ⚡ Electrical: AutoCAD Electrical, Revit MEP, PLC & SCADA\n7. 📈 Digital Marketing & SEO: SEO, Google Ads, Meta Ads\n\nஉனக்கு எந்த Department பத்தி பாக்கனும்டா?";
-      }
-      return "CADPOINT Salem offers official career programs across 7 main departments:\n\n1. 💻 IT & Non-IT (Python AI, Full Stack, Java, Data Science, AWS)\n2. 🎨 Multimedia (Photoshop, After Effects, Maya 3D, UI/UX)\n3. 📊 Accounts & Finance (Tally Prime GST, Advanced Excel, SAP FICO)\n4. 🏗️ Civil & Architecture (AutoCAD, Revit, STAAD Pro, ETABS, BIM)\n5. ⚙️ Mechanical & Aeronautical (SolidWorks, CATIA V5, Creo, Ansys)\n6. ⚡ Electrical & Electronics (AutoCAD Electrical, Revit MEP, PLC & SCADA)\n7. 📈 Digital Marketing & SEO (SEO, Google Ads, Meta Ads, HubSpot)\n\nWhich department would you like to explore?";
     }
 
     // ===================================================
-    // 5. UNRELATED GENERAL KNOWLEDGE QUESTIONS (ANSWER DIRECTLY)
+    // 4. UNRELATED GENERAL KNOWLEDGE QUESTIONS (RULES 9 & 13)
     // ===================================================
     if (q.includes('photosynthesis')) {
       return "Photosynthesis is the biological process by which green plants and certain organisms convert sunlight into chemical energy, using water and carbon dioxide to produce oxygen and glucose.";
@@ -198,30 +240,35 @@ export function AIChatbot() {
     if (q.includes('capital of tamil nadu') || q.includes('tamilnadu capital')) {
       return "The capital of Tamil Nadu is Chennai.";
     }
+    if (q.includes('speed of light')) {
+      return "The speed of light in a vacuum is approximately 299,792,458 meters per second (about 300,000 km/s).";
+    }
 
     // ===================================================
-    // 6. AMBIGUOUS / SHORT INPUT HANDLING
+    // 5. AMBIGUOUS / SHORT INPUT HANDLING
     // ===================================================
-    if (q.length < 4 || q === 'help' || q === 'details') {
+    if (q.length < 4 || q === 'hi' || q === 'hello' || q === 'hey' || q === 'vanakkam') {
       if (lang === 'tamil') {
-        return "வணக்கம்! நீங்கள் எந்தத் துறை அல்லது பாடம் குறித்து அறிய விரும்புகிறீர்கள்? (உதாரணம்: IT, சிவில், மெக்கானிக்கல், எலக்ட்ரிக்கல், மல்டிமீடியா, அக்கவுண்டிங் அல்லது டிஜிட்டல் மார்க்கெட்டிங்)";
+        return "வணக்கம்! CADPOINT AI உதவியாளருக்கு நல்வரவு. எந்த பாடம் அல்லது தொழில்நுட்பம் பற்றி அறிய விரும்புகிறீர்கள்?";
       }
       if (lang === 'tanglish') {
-        return "Hello Machi! உனக்கு எந்த துறை பற்றி விவரம் வேணும்டா? (IT, Civil, Mechanical, Electrical, Multimedia, Accounts, இல்ல Digital Marketing)";
+        const daSuffix = usesMachi ? " machi" : "";
+        return `Hello${daSuffix}! CADPOINT AI Assistant தயாராக இருக்கு. உனக்கு எந்த Software இல்ல Course பற்றி விவரம் வேணும்?`;
       }
-      return "Hello! Which department or course would you like information about? (Options: IT & Software, Civil CADD, Mechanical Design, Electrical, Multimedia, Accounting, or Digital Marketing)";
+      return "Hello! 👋 Welcome to CADPOINT AI Assistant. How can I help you today?";
     }
 
     // ===================================================
-    // 7. CLEAN DIRECT FALLBACK (NO FLUFF OR FAKE CLAIMS)
+    // 6. DEFAULT FALLBACK
     // ===================================================
     if (lang === 'tamil') {
-      return `நீங்கள் கேட்ட "${rawQuery}" குறித்த தகவல்களுக்கு: CADPOINT சேலம் மையத்தில் IT & Software, CADD, Multimedia, Accounts மற்றும் Digital Marketing துறைகளில் செய்முறைப் பயிற்சிகள் வழங்கப்படுகின்றன.\n\nமேற்கண்ட துறைகளில் எது பற்றி அறிய விரும்புகிறீர்கள்?`;
+      return `நீங்கள் கேட்ட "${rawQuery}" குறித்த தகவல்களுக்கு: CADPOINT சேலத்தில் IT, CADD, Multimedia, Accounts மற்றும் Digital Marketing துறைகளில் செய்முறைப் பயிற்சிகள் வழங்கப்படுகின்றன.\n\nஎந்தத் துறை அல்லது தொழில்நுட்பம் பற்றி அறிய விரும்புகிறீர்கள்?`;
     }
     if (lang === 'tanglish') {
-      return `Machi! நீ கேட்ட "${rawQuery}" பற்றிய விவரங்கள்: இதற்கான Practical Software Training CADPOINT-ல இருக்குடா.\n\nஉனக்கு IT, CADD, Multimedia, Accounts இல்ல Digital Marketing-ல எது பத்தி பாக்கனும்டா?`;
+      const daSuffix = usesMachi ? " da" : "";
+      return `"${rawQuery}" பற்றிய விவரங்களுக்கு CADPOINT-ல Practical Training இருக்கு${daSuffix}.\n\nUnakku IT, CADD, Multimedia, Accounts இல்ல Digital Marketing-ல எது பத்தி பாக்கனும்?`;
     }
-    return `Regarding "${rawQuery}": CADPOINT provides practical software and technical training across multiple engineering and technology disciplines.\n\nWould you like information on IT & Software, Civil CADD, Mechanical Design, Electrical, Multimedia, Accounting, or Digital Marketing?`;
+    return `Regarding "${rawQuery}": CADPOINT provides practical software training across IT, CADD, Multimedia, Accounts, and Digital Marketing disciplines.\n\nWhich software or technology area would you like to explore?`;
   };
 
   const handleSend = (textToSend) => {
@@ -266,27 +313,27 @@ export function AIChatbot() {
       
       const confirmMsg = {
         sender: 'bot',
-        text: `🎉 Thank you ${leadData.name}! Your callback request has been submitted to CADPOINT Salem Admissions Team.\n\nOur counselor will call you at ${leadData.phone} shortly!`,
+        text: `Thank you ${leadData.name}! 🎉 Your request for ${leadData.course} has been submitted.\n\nOur Salem career counselor will call you on ${leadData.phone} shortly.`,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages((prev) => [...prev, confirmMsg]);
+      setLeadMode(false);
     } catch (err) {
-      setLeadSubmitted(true);
+      console.error(err);
     }
   };
 
   return (
     <>
-      {/* FLOATING AI CHATBOT TRIGGER BUTTON */}
+      {/* Floating Toggle Button */}
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.15, y: -2 }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-red-600 via-red-700 to-slate-900 text-white flex items-center justify-center shadow-2xl shadow-red-950/50 hover:shadow-red-900/70 border border-red-500/40 cursor-pointer group backdrop-blur-md"
-        aria-label="Open CADPOINT Hybrid AI Assistant"
-        title="CADPOINT Hybrid AI Assistant & Counselor"
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-24 right-4 sm:right-6 z-[100] w-14 h-14 rounded-full bg-gradient-to-tr from-red-600 via-slate-900 to-red-950 text-white shadow-2xl flex items-center justify-center cursor-pointer border-2 border-red-500/50 group"
+        aria-label="Toggle AI Assistant"
       >
         <span className="absolute -inset-1.5 rounded-full bg-red-500/30 animate-ping pointer-events-none" />
 
