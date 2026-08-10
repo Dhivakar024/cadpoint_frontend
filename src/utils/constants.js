@@ -36,7 +36,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "accounts",
-    title: "Accounts & Office Management",
+    title: "Accounts & Finance",
     desc: "Train in Tally Prime, GST Filing, Payroll, Billing Systems and Advanced Excel for corporate financial roles.",
     icon: "FileSpreadsheet",
     badge: "Business",
