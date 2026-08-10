@@ -5,7 +5,7 @@ export const COMPANY_INFO = {
   phone: "(+91) 95666 79928",
   helpline: "(+91) 95666 79958",
   email: "cadpointsalem001@gmail.com",
-  hours: "Mon – Sat (9 AM – 7 PM)",
+  hours: "Monday – Sunday (9 AM – 7 PM)",
   address: "1st Floor, CPS Tower, Advaitha Ashram Rd, Fairlands, Salem - 636007",
   location: "Salem, Tamil Nadu, India",
   copyright: "© 2026 CADPOINT Authorized Training Centre — All Rights Reserved",
