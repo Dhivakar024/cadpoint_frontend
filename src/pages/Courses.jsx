@@ -16,6 +16,7 @@ const CourseHeroBanner = ({ course, isDark }) => {
     'Civil & Architecture': '/images/c.jpg',
     'Mechanical & Aeronautical': '/images/cpp.jpg',
     'Electrical & Electronics': '/images/kubernetes.jpg',
+    'Digital Marketing & SEO': '/images/dm_prof_seo.jpg',
   };
 
   const imageSrc = course.image || domainFallbackImages[course.domain] || '/images/python.jpg';

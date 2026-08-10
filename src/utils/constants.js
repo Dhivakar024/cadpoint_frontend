@@ -65,6 +65,14 @@ export const DEPARTMENTS = [
     icon: "Zap",
     badge: "Automation",
     color: "from-violet-500 to-purple-600"
+  },
+  {
+    id: "digital_marketing",
+    title: "Digital Marketing & SEO",
+    desc: "Master SEO, Google Ads PPC, Meta Ads, Email Marketing, Web Analytics, Social Media, and HubSpot Automation.",
+    icon: "TrendingUp",
+    badge: "Trending",
+    color: "from-blue-500 to-indigo-600"
   }
 ];
 

@@ -98,7 +98,18 @@ export const generateSlug = (title, id) => {
     'elec-dip-mep-hvac': 'diploma-hvac-mep-design',
     'elec-dip-building': 'diploma-electrical-building-services',
     'elec-prof-mep': 'professional-mep-designing',
-    'elec-master-mep-bim': 'master-diploma-mep-hvac'
+    'elec-master-mep-bim': 'master-diploma-mep-hvac',
+
+    // Official Digital Marketing & SEO Slugs (9 Courses)
+    'dm-prof-seo': 'professional-in-search-engine-optimization-seo',
+    'dm-prof-google-ads': 'professional-in-google-ads-ppc-advertising',
+    'dm-prof-meta-ads': 'professional-in-meta-advertising',
+    'dm-prof-email-marketing': 'professional-in-email-marketing',
+    'dm-prof-web-analytics': 'professional-in-web-analytics',
+    'dm-prof-social-media': 'professional-in-social-media-marketing',
+    'dm-prof-hubspot': 'professional-in-hubspot-marketing',
+    'dm-prof-sem': 'professional-in-search-engine-marketing-sem',
+    'dm-prof-display-video': 'professional-in-display-video-advertising'
   };
 
   if (customSlugs[id]) return customSlugs[id];
@@ -1071,6 +1082,118 @@ const BASE_COURSES = [
     software: "Revit MEP + Navisworks + AutoCAD 2D + Microsoft Project / Primavera + PPM Concepts",
     image: "/images/plc_scada.jpg",
     description: "Postgraduate master diploma in multi-disciplinary MEP BIM coordination, Navisworks clash resolution, Revit 3D modeling, and PPM project controls."
+  },
+
+  // ==========================================
+  // 6. DIGITAL MARKETING & SEO COURSES (EXACT 9 COURSES)
+  // ==========================================
+  {
+    id: "dm-prof-seo",
+    title: "Professional in Search Engine Optimization (SEO)",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "SEO",
+    image: "/images/dm_prof_seo.jpg",
+    description: "Professional search engine optimization training mastering organic keyword research, technical SEO auditing, on-page optimization, backlink strategies, and search engine analytics."
+  },
+  {
+    id: "dm-prof-google-ads",
+    title: "Professional in Google Ads & PPC Advertising",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "Google Ads",
+    image: "/images/dm_prof_google_ads.jpg",
+    description: "Pay-per-click advertising program covering Google Ads Search campaigns, Keyword Planner bidding, quality score optimization, conversion tracking, and PPC analytics."
+  },
+  {
+    id: "dm-prof-meta-ads",
+    title: "Professional in Meta Advertising",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "Meta Ads",
+    image: "/images/dm_prof_meta_ads.jpg",
+    description: "Comprehensive social media advertising mastering Meta Ads Manager, Facebook & Instagram custom audience targeting, pixel tracking, retargeting campaigns, and ad creative optimization."
+  },
+  {
+    id: "dm-prof-email-marketing",
+    title: "Professional in Email Marketing",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "Email Marketing",
+    image: "/images/dm_prof_email_marketing.jpg",
+    description: "Strategic email marketing and drip automation covering audience segmentation, newsletter copy design, deliverability optimization, A/B testing, and campaign analytics."
+  },
+  {
+    id: "dm-prof-web-analytics",
+    title: "Professional in Web Analytics",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "Web Analytics",
+    image: "/images/dm_prof_web_analytics.jpg",
+    description: "Data-driven web analytics and traffic tracking mastering Google Analytics 4 (GA4), event tagging, user behavior funnels, custom reporting, and marketing attribution models."
+  },
+  {
+    id: "dm-prof-social-media",
+    title: "Professional in Social Media Marketing",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "Social Media Marketing",
+    image: "/images/dm_prof_social_media.jpg",
+    description: "Organic social media marketing and brand engagement strategies across LinkedIn, Instagram, Facebook, and Twitter covering content calendars, community management, and growth analytics."
+  },
+  {
+    id: "dm-prof-hubspot",
+    title: "Professional in HubSpot Marketing",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "HubSpot",
+    image: "/images/dm_prof_hubspot.jpg",
+    description: "Inbound marketing and CRM automation mastering HubSpot Marketing Hub workflows, lead scoring, contact lifecycle management, landing page design, and deal funnel tracking."
+  },
+  {
+    id: "dm-prof-sem",
+    title: "Professional in Search Engine Marketing (SEM)",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "Search Engine Marketing",
+    image: "/images/dm_prof_sem.jpg",
+    description: "Search engine marketing masterclass integrating paid search advertising, Bing & Google ad strategy, competitor keyword analysis, landing page conversion optimization, and ROI tracking."
+  },
+  {
+    id: "dm-prof-display-video",
+    title: "Professional in Display & Video Advertising",
+    domain: "Digital Marketing & SEO",
+    level: "Professional",
+    duration: "Duration not specified",
+    mode: "Online / Offline",
+    category: "Digital Marketing & SEO",
+    software: "Display Advertising + Video Advertising",
+    image: "/images/dm_prof_display_video.jpg",
+    description: "Digital display banner and YouTube video advertising course covering Google Display Network (GDN) placement, video ad sequencing, audience retargeting, and rich media campaign analytics."
   }
 ];
 
@@ -1164,7 +1287,18 @@ const COURSE_UNIQUE_IMAGES = {
   'elec-prof-hvac-fire': '/images/elec_mep_course.jpg',
   'elec-master-mep-hvac-plan': '/images/revit_mep.jpg',
   'elec-master-electrical-building': '/images/autocad_electrical.jpg',
-  'elec-master-mep-bim-coordination': '/images/plc_scada.jpg'
+  'elec-master-mep-bim-coordination': '/images/plc_scada.jpg',
+
+  // Digital Marketing & SEO (9 Dedicated Unique Images)
+  'dm-prof-seo': '/images/dm_prof_seo.jpg',
+  'dm-prof-google-ads': '/images/dm_prof_google_ads.jpg',
+  'dm-prof-meta-ads': '/images/dm_prof_meta_ads.jpg',
+  'dm-prof-email-marketing': '/images/dm_prof_email_marketing.jpg',
+  'dm-prof-web-analytics': '/images/dm_prof_web_analytics.jpg',
+  'dm-prof-social-media': '/images/dm_prof_social_media.jpg',
+  'dm-prof-hubspot': '/images/dm_prof_hubspot.jpg',
+  'dm-prof-sem': '/images/dm_prof_sem.jpg',
+  'dm-prof-display-video': '/images/dm_prof_display_video.jpg'
 };
 
 // Enrich COURSES array with explicit slugs and unique images
@@ -1181,7 +1315,8 @@ export const CATEGORIES = [
   "Accounting & ERP",
   "Civil & Architecture",
   "Mechanical & Aeronautical",
-  "Electrical & Electronics"
+  "Electrical & Electronics",
+  "Digital Marketing & SEO"
 ];
 
 export const LEVELS = [
