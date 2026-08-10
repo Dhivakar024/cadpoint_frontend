@@ -13,7 +13,7 @@ export const COMPANY_INFO = {
 
 export const SOCIAL_LINKS = [
   { name: "Instagram", url: "https://www.instagram.com/cadpoint_salem?igsh=MWpwdGIwdjE5M2g3Nw%3D%3D", icon: "Instagram" },
-  { name: "Facebook", url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02Ez7ePib8JTS39Hrx3dZpiEkxLzdcGzgrH5vvTj3wfEdt4Gtinh53AXzYRqox2PEql&id=61583800739756&rdid=qQiAc9pFR30kfeLv&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1BauKWFCSr%2F#", icon: "Facebook" },
+  { name: "Facebook", url: "https://www.facebook.com/share/1BYbdNUpC5/", icon: "Facebook" },
   { name: "WhatsApp", url: "https://wa.me/919566679928?text=Hi%20CADPOINT%2C%20I%20would%20like%20to%20inquire%20about%20your%20courses%20and%20services.", icon: "MessageCircle" }
 ];
 
