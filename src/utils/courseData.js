@@ -2,10 +2,10 @@
 export const generateSlug = (title, id) => {
   const customSlugs = {
     // Official IT & Software Slugs (15 Professional + 10 Master Diploma)
-    'it-prof-fullstack-python-react': 'professional-program-full-stack-python-react',
-    'it-prof-java-fullstack': 'professional-program-java-full-stack',
-    'it-prof-mean-stack': 'professional-program-mean-stack',
-    'it-prof-mern-stack': 'professional-program-mern-stack',
+    'it-prof-fullstack-python-react': 'professional-program-ai-in-full-stack-development-python-react',
+    'it-prof-java-fullstack': 'professional-program-ai-in-java-full-stack',
+    'it-prof-mean-stack': 'professional-program-ai-in-mean-stack',
+    'it-prof-mern-stack': 'professional-program-ai-in-mern-stack',
     'it-prof-web-design': 'professional-program-advanced-web-designing',
     'it-prof-software-testing': 'professional-program-software-testing',
     'it-prof-ds-ai': 'professional-program-data-science-ai',
@@ -18,7 +18,7 @@ export const generateSlug = (title, id) => {
     'it-prof-blockchain': 'professional-program-blockchain-development',
     'it-prof-ar-vr': 'professional-program-ar-vr-development',
 
-    'it-master-fullstack-dev': 'master-diploma-full-stack-development',
+    'it-master-fullstack-dev': 'master-diploma-ai-in-full-stack-development',
     'it-master-software-eng': 'master-diploma-software-engineering',
     'it-master-cloud-devops': 'master-diploma-cloud-computing-devops',
     'it-master-ds-ai': 'master-diploma-data-science-ai',
@@ -123,7 +123,7 @@ const BASE_COURSES = [
   // Professional Programs (15)
   {
     id: "it-prof-fullstack-python-react",
-    title: "Professional Program in Full Stack Development – Python & React",
+    title: "Professional Program AI in Full Stack Development – Python & React",
     domain: "IT & Non-IT",
     level: "Professional",
     duration: "200 hours",
@@ -135,7 +135,7 @@ const BASE_COURSES = [
   },
   {
     id: "it-prof-java-fullstack",
-    title: "Professional Program in Java Full Stack",
+    title: "Professional Program AI in Java Full Stack",
     domain: "IT & Non-IT",
     level: "Professional",
     duration: "200 hours",
@@ -147,7 +147,7 @@ const BASE_COURSES = [
   },
   {
     id: "it-prof-mean-stack",
-    title: "Professional Program in MEAN Stack",
+    title: "Professional Program AI in MEAN Stack",
     domain: "IT & Non-IT",
     level: "Professional",
     duration: "200 hours",
@@ -159,7 +159,7 @@ const BASE_COURSES = [
   },
   {
     id: "it-prof-mern-stack",
-    title: "Professional Program in MERN Stack",
+    title: "Professional Program AI in MERN Stack",
     domain: "IT & Non-IT",
     level: "Professional",
     duration: "200 hours",
@@ -305,7 +305,7 @@ const BASE_COURSES = [
   // Master Diploma Programs (10)
   {
     id: "it-master-fullstack-dev",
-    title: "Master Diploma in Full Stack Development",
+    title: "Master Diploma AI in Full Stack Development",
     domain: "IT & Non-IT",
     level: "Master Diploma",
     duration: "260 hours",

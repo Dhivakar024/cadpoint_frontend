@@ -349,50 +349,95 @@ export function Home() {
         </div>
       </section>
 
-      {/* 5. INTERNSHIP & PLACEMENT SECTION */}
+      {/* 5. PLACEMENT SUPPORT SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Card className="p-8 sm:p-12">
-          <div className="text-center max-w-3xl mx-auto mb-12">
+        <Card className="p-8 sm:p-12 relative overflow-hidden">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <Badge variant="emerald" className="mb-3">Career Advancement</Badge>
             <h2 className={`text-3xl sm:text-4xl font-extrabold font-heading ${
               isDark ? 'text-white' : 'text-slate-900'
             }`}>
-              Internship Opportunities & Live Project Exposure
+              Placement Support
             </h2>
-            <p className={`text-base mt-4 ${
+            <p className={`text-base mt-3 ${
               isDark ? 'text-slate-300' : 'text-slate-600'
             }`}>
-              Best performers are offered direct internships in our company. Work with our team on real-world production tasks and gain hands-on practical experience!
+              Build your career with structured placement support, career guidance and preparation for industry opportunities.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="glass-card p-6 rounded-2xl">
-              <div className={`w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4 font-bold text-xl ${
-                isDark ? 'bg-red-600/20 text-red-400' : 'bg-emerald-100 text-emerald-800'
-              }`}>1</div>
-              <h3 className={`text-lg font-bold font-heading mb-2 ${
-                isDark ? 'text-white' : 'text-slate-900'
-              }`}>Hands-on Practical Training</h3>
-              <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Learn industry-standard software tools through practical exercises and real-world case studies.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            <div className="glass-card p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
+                  isDark ? 'bg-red-600/20 text-red-400' : 'bg-emerald-100 text-emerald-800'
+                }`}>
+                  <Briefcase className="w-5 h-5" />
+                </div>
+                <h3 className={`text-base font-bold font-heading mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  Career Guidance
+                </h3>
+                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  One-on-one career counseling to align your learned technical skills with relevant industry roles.
+                </p>
+              </div>
             </div>
-            <div className="glass-card p-6 rounded-2xl">
-              <div className={`w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4 font-bold text-xl ${
-                isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-sky-100 text-sky-800'
-              }`}>2</div>
-              <h3 className={`text-lg font-bold font-heading mb-2 ${
-                isDark ? 'text-white' : 'text-slate-900'
-              }`}>Live Project Exposure</h3>
-              <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Work with our senior dev teams on real-world client production tasks and architecture.</p>
+
+            <div className="glass-card p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
+                  isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-sky-100 text-sky-800'
+                }`}>
+                  <Award className="w-5 h-5" />
+                </div>
+                <h3 className={`text-base font-bold font-heading mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  Resume / Profile Guidance
+                </h3>
+                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  Professional portfolio building and resume optimization highlighting verified project work.
+                </p>
+              </div>
             </div>
-            <div className="glass-card p-6 rounded-2xl">
-              <div className={`w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-4 font-bold text-xl ${
-                isDark ? 'bg-emerald-600/20 text-emerald-400' : 'bg-teal-100 text-teal-800'
-              }`}>3</div>
-              <h3 className={`text-lg font-bold font-heading mb-2 ${
-                isDark ? 'text-white' : 'text-slate-900'
-              }`}>Direct Internship Support</h3>
-              <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Top performers get direct internship opportunities in our company with live project certification.</p>
+
+            <div className="glass-card p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
+                  isDark ? 'bg-emerald-600/20 text-emerald-400' : 'bg-teal-100 text-teal-800'
+                }`}>
+                  <GraduationCap className="w-5 h-5" />
+                </div>
+                <h3 className={`text-base font-bold font-heading mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  Interview Preparation
+                </h3>
+                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  Mock technical interviews, coding challenges, and HR assessment readiness sessions.
+                </p>
+              </div>
             </div>
+
+            <div className="glass-card p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
+                  isDark ? 'bg-purple-600/20 text-purple-400' : 'bg-purple-100 text-purple-800'
+                }`}>
+                  <Building className="w-5 h-5" />
+                </div>
+                <h3 className={`text-base font-bold font-heading mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  Industry Opportunity Support
+                </h3>
+                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  Connecting job-ready learners with opening drives across our corporate partner ecosystem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link to="/services">
+              <Button variant="primary" icon={ArrowRight}>
+                Explore Placement Support
+              </Button>
+            </Link>
           </div>
         </Card>
       </section>

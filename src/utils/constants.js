@@ -159,6 +159,12 @@ export const SERVICES_PAGE_DATA = [
     title: "Academic Research & Paper Assistance",
     subtitle: "Guidance for research, thesis, and journal papers.",
     content: "We assist students and researchers in planning and preparing academic work with a focus on rigorous methodology and correct formatting. From topic refinement to literature review, we guide each step carefully. Our services include structure building, statistical guidance, editing and proofreading, reference management, and plagiarism checks to ensure the work meets journal standards."
+  },
+  {
+    id: 10,
+    title: "Placement",
+    subtitle: "Placement support to help students prepare for career opportunities and connect their skills with relevant industry roles.",
+    content: "Our placement support program helps learners transition smoothly from skill acquisition to career opportunities. We offer resume building guidance, portfolio reviews, interview preparation workshops, and career counseling to help candidates showcase their technical competencies effectively. We assist students by connecting their verified skills with relevant industry openings across our hiring partner network and client ecosystem, ensuring candidates are well-prepared for technical assessments and HR interviews."
   }
 ];
 

@@ -53,7 +53,7 @@ export function Services() {
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search services (e.g. CAD, Software)..."
+          placeholder="Search services (e.g. CAD, Placement, Software)..."
           className="w-full pl-12 pr-4 py-3.5 rounded-xl glass-input text-sm"
         />
       </div>
