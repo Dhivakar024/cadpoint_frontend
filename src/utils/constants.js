@@ -8,7 +8,7 @@ export const COMPANY_INFO = {
   hours: "Mon – Sat (9 AM – 7 PM)",
   address: "1st Floor, CPS Tower, Advaitha Ashram Rd, Fairlands, Salem - 636007",
   location: "Salem, Tamil Nadu, India",
-  copyright: "© 2026 Lax360 Private Limited — All Rights Reserved",
+  copyright: "© 2026 CADPOINT Authorized Training Centre — All Rights Reserved",
 };
 
 export const SOCIAL_LINKS = [
