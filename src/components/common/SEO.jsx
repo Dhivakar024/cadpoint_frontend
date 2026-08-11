@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const DEFAULT_SITE_URL = 'https://cadpoint.in';
+const DEFAULT_SITE_URL = 'https://cadpoint.co.in';
 const DEFAULT_SITE_NAME = 'CADPOINT Authorized Training Centre';
 const DEFAULT_IMAGE = `${DEFAULT_SITE_URL}/cadpoint_logo.svg`;
 

@@ -1,6 +1,6 @@
 import { COMPANY_INFO, SOCIAL_LINKS } from './constants';
 
-const SITE_URL = 'https://cadpoint.in';
+const SITE_URL = 'https://cadpoint.co.in';
 
 /**
  * Organization & EducationalOrganization Schema

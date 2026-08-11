@@ -85,9 +85,9 @@ export function Home() {
   return (
     <>
       <SEO
-        title="CADPOINT – Authorized Training Centre | CAD, IT, AI & Multimedia Courses"
-        description="CADPOINT Authorized Training Centre offers industry-focused CAD, BIM, IT, AI, Multimedia and professional training programs with certification, practical training and placement assistance."
-        keywords="CADPOINT, CADPOINT Authorized Training Centre, CADPOINT Courses, CAD Training Centre, AutoCAD Training, Revit Training, CAD Courses, BIM Training, Salem"
+        title="CADPOINT Authorized Training Centre | IT, AI, CAD & Engineering Courses"
+        description="CADPOINT Authorized Training Centre offers professional and master diploma courses in IT, AI, Digital Marketing, Civil, Architecture, Mechanical, Aeronautical, Electrical, Multimedia and other technical disciplines."
+        keywords="CADPOINT, CADPOINT Authorized Training Centre, CAD training centre, IT training courses, AI courses, Full Stack Development courses, Civil CAD courses, Architecture courses, Mechanical CAD courses, Aeronautical courses, Electrical design courses, Digital Marketing courses, Multimedia courses, BIM courses, Professional courses, Master Diploma courses, training centre in Salem, CAD training centre in Salem"
         canonical="/"
         jsonLd={homeJsonLd}
       />

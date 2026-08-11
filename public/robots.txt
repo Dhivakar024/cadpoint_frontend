@@ -1,5 +1,5 @@
 # CADPOINT Authorized Training Centre - Robots.txt
-# https://cadpoint.in/robots.txt
+# https://cadpoint.co.in/robots.txt
 
 User-agent: *
 Allow: /
@@ -21,4 +21,4 @@ Disallow: /api/
 Disallow: /*?*search=
 
 # XML Sitemap Location
-Sitemap: https://cadpoint.in/sitemap.xml
+Sitemap: https://cadpoint.co.in/sitemap.xml

@@ -84,9 +84,9 @@ export function CourseDetails() {
   return (
     <>
       <SEO
-        title={`${course.title} | CADPOINT Authorized Training Centre`}
-        description={`${course.title} course at CADPOINT. Software covered: ${course.software}. Industry-aligned curriculum, ISO certification, and practical training.`}
-        keywords={`${course.title}, ${course.software}, CADPOINT ${course.category}, ${course.software} course Salem, CADPOINT Authorized Training Centre`}
+        title={`${course.title} | CADPOINT`}
+        description={`${course.title} course at CADPOINT Authorized Training Centre. Software covered: ${course.software}. Industry-aligned curriculum, ISO certification, and practical training.`}
+        keywords={`${course.title}, ${course.software}, CADPOINT ${course.category}, ${course.software} course Salem, CADPOINT Authorized Training Centre, CAD training centre`}
         canonical={`/courses/${course.slug}`}
         ogImage={course.image}
         jsonLd={courseJsonLd}
@@ -173,8 +173,9 @@ export function CourseDetails() {
           <div className="relative rounded-3xl overflow-hidden border border-red-500/30 shadow-2xl group">
             <img
               src={course.image}
-              alt={course.title}
+              alt={`${course.title} course at CADPOINT Authorized Training Centre`}
               className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#070B18] via-transparent to-transparent" />
             

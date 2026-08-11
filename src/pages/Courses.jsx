@@ -27,8 +27,9 @@ const CourseHeroBanner = ({ course, isDark }) => {
     <div className="relative h-44 w-full overflow-hidden bg-slate-950">
       <img
         src={imageSrc}
-        alt={course.title}
+        alt={`${course.title} course at CADPOINT`}
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
       />
       <div className={`absolute inset-0 bg-gradient-to-t ${
         isDark ? 'from-[#0F172A] via-transparent to-black/30' : 'from-slate-900/60 via-transparent to-black/20'

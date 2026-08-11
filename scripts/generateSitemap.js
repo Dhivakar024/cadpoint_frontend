@@ -6,7 +6,7 @@ import { COURSES } from '../src/utils/courseData.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const BASE_URL = 'https://cadpoint.in';
+const BASE_URL = 'https://cadpoint.co.in';
 
 const staticPages = [
   { url: '/', priority: '1.0', changefreq: 'daily' },
