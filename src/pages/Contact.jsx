@@ -268,7 +268,7 @@ export function Contact() {
               <h3 className="text-base font-extrabold text-white font-heading">📍 CADPOINT Training Centre</h3>
             </div>
             <p className="text-xs font-semibold text-slate-300 flex items-center gap-1.5 pl-7">
-              <Building2 className="w-3.5 h-3.5 text-cyan-400" /> 🏢 Lax360 Private Limited
+              <Building2 className="w-3.5 h-3.5 text-cyan-400" /> 🏢 CADPOINT Authorized Training Centre
             </p>
           </div>
 

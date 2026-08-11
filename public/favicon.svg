@@ -1,5 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <rect width="100" height="100" rx="20" fill="#0F172A" />
-  <text x="50" y="58" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="52" fill="#EE1D23">CP</text>
-  <rect x="10" y="70" width="80" height="12" rx="2" fill="#EE1D23" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Rounded Dark Navy Background (#0F172A) -->
+  <rect width="512" height="512" rx="96" fill="#0F172A" stroke="#1E3A8A" stroke-width="4" />
+  
+  <!-- "CP" Monogram Text in Vibrant Red (#EE1D23) -->
+  <text x="256" y="240" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="190" fill="#EE1D23" letter-spacing="-2">CP</text>
+  
+  <!-- Dark Navy Bar for "CADPOINT" -->
+  <rect x="56" y="290" width="400" height="72" rx="14" fill="#0A0F1E" stroke="#EE1D23" stroke-width="2.5" />
+  <text x="256" y="340" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="42" fill="#FFFFFF" letter-spacing="4">CADPOINT</text>
+
+  <!-- Authorized Training Centre Subtitle -->
+  <text x="256" y="405" text-anchor="middle" font-family="'Arial Black', 'Helvetica', sans-serif" font-weight="900" font-size="20" fill="#E2E8F0" letter-spacing="2">AUTHORIZED TRAINING CENTRE</text>
+  
+  <!-- Bottom Red Accent Line -->
+  <rect x="70" y="435" width="372" height="8" rx="4" fill="#EE1D23" />
 </svg>

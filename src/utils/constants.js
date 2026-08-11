@@ -1,6 +1,6 @@
 export const COMPANY_INFO = {
   name: "CADPOINT",
-  legalName: "Lax360 Private Limited",
+  legalName: "CADPOINT Authorized Training Centre",
   tagline: "Welcome to the Future of Tech, Design & Multimedia Excellence",
   phone: "(+91) 95666 79928",
   helpline: "(+91) 95666 79958",
@@ -188,12 +188,12 @@ export const ECOSYSTEM_DATA = {
       url: "#"
     },
     {
-      name: "Lax360 Private Limited",
+      name: "CADPOINT Creative Media & Design",
       tags: ["Animation", "Web Design", "Multimedia"],
-      desc: "Lax360 crafts stunning animations, websites, and multimedia projects. We combine creativity and technology to make your brand unforgettable.",
+      desc: "CADPOINT Creative Media crafts stunning animations, websites, and multimedia projects. We combine creativity and technology to make your brand unforgettable.",
       projects: 90,
       clients: 50,
-      url: "https://lax360.com"
+      url: "#"
     }
   ],
   partnerBrands: [
