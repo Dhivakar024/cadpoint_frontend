@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, CheckCircle2, PhoneCall, Sparkles } from 'lucide-react';
+import { X, Send, CheckCircle2, PhoneCall, ClipboardCheck } from 'lucide-react';
 import { Button } from './Button';
 import { submitEnquiry } from '../../services/api';
 
@@ -75,7 +75,7 @@ export function ContactPopup() {
                 {/* Header */}
                 <div className="flex items-center gap-2 mb-1">
                   <span className="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/30">
-                    <Sparkles className="w-4 h-4" />
+                    <ClipboardCheck className="w-4 h-4" />
                   </span>
                   <span className="text-xs font-semibold uppercase tracking-widest text-cyan-400">
                     Quick Admission Enquiry
