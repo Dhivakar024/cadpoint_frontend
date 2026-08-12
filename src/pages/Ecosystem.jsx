@@ -46,7 +46,7 @@ export function Ecosystem() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
           {ECOSYSTEM_DATA.ownBrands.map((brand, i) => (
             <Card key={i} className="p-8 flex flex-col justify-between border-red-500/20 group hover:border-red-500/50">
               <div>
@@ -69,8 +69,8 @@ export function Ecosystem() {
                   <span>Corporate Clients: <strong className="text-white">{brand.clients}+</strong></span>
                 </div>
                 <a href={brand.url} target="_blank" rel="noopener noreferrer" className="block w-full">
-                  <Button variant="primary" size="sm" className="w-full justify-center" icon={ExternalLink}>
-                    Visit Official Website
+                  <Button variant="primary" size="sm" className="w-full justify-center gap-2 cursor-pointer" icon={ExternalLink}>
+                    Visit Our Website
                   </Button>
                 </a>
               </div>

@@ -185,15 +185,15 @@ export const ECOSYSTEM_DATA = {
       desc: "FatCatWealthy empowers clients with smart financial strategies and technologies. We secure and grow wealth, transforming financial independence into reality.",
       projects: 120,
       clients: 80,
-      url: "#"
+      url: "https://fatcatwealthy.com/"
     },
     {
-      name: "CADPOINT Creative Media & Design",
-      tags: ["Animation", "Web Design", "Multimedia"],
-      desc: "CADPOINT Creative Media crafts stunning animations, websites, and multimedia projects. We combine creativity and technology to make your brand unforgettable.",
+      name: "LAX360",
+      tags: ["Digital Agency", "IT Solutions", "Software Development"],
+      desc: "LAX360 delivers state-of-the-art digital experiences, web development, branding, and enterprise technology solutions empowering modern businesses.",
       projects: 90,
       clients: 50,
-      url: "#"
+      url: "https://www.lax360.in/"
     }
   ],
   partnerBrands: [
