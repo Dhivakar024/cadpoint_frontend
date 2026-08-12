@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400">
+  <defs>
+    <!-- Soft Red & Blue Aura Glow Filter -->
+    <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="14" flood-color="#EF4444" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="0" stdDeviation="20" flood-color="#1E3A8A" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- TRANSPARENT BACKGROUND (No White Box) -->
+  <g transform="translate(0, 10)">
+    <!-- 1. RED CADPOINT TYPOGRAPHY -->
+    <text x="460" y="150" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="160" fill="#EE1D23" letter-spacing="1">CADPOINT</text>
+    
+    <!-- 2. DARK NAVY BAR (840px width with 40px margin on both sides) -->
+    <rect x="40" y="182" width="840" height="68" fill="#0F172A" rx="8" stroke="rgba(30, 58, 138, 0.4)" stroke-width="1.5" />
+    
+    <!-- WHITE AUTHORIZED TRAINING CENTRE (Font size: 28) -->
+    <text x="460" y="228" text-anchor="middle" font-family="'Arial Black', 'Helvetica', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" letter-spacing="2.5">AUTHORIZED TRAINING CENTRE</text>
+    
+    <!-- 3. ISO SUBTITLE (Font size: 28, crisp dark navy text #0F172A for light theme background) -->
+    <text x="460" y="320" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="28" fill="#0F172A" letter-spacing="3">ISO 9001 : 2008 CERTIFIED COMPANY</text>
+  </g>
+</svg>

@@ -67,7 +67,7 @@ export function Navbar() {
           {/* OFFICIAL CADPOINT LOGO WITH WHITE GLOW ON CURSOR HOVER / TOUCH */}
           <Link to="/" className="flex items-center group">
             <img
-              src="/cadpoint_logo.svg"
+              src={theme === 'light' ? "/cadpoint_logo_light.svg" : "/cadpoint_logo.svg"}
               alt="CADPOINT Authorized Training Centre - ISO Certified"
               className="w-[125px] sm:w-[150px] md:w-[170px] h-auto object-contain shrink-0 filter drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] logo-white-glow cursor-pointer"
               style={{ preserveAspectRatio: 'xMidYMid meet' }}

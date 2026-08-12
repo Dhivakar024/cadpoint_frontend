@@ -45,7 +45,7 @@ export function Footer() {
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
               <img
-                src="/cadpoint_logo.svg"
+                src={theme === 'light' ? "/cadpoint_logo_light.svg" : "/cadpoint_logo.svg"}
                 alt="CADPOINT Authorized Training Centre - ISO Certified"
                 className="w-[170px] sm:w-[210px] h-auto object-contain shrink-0 filter drop-shadow-[0_0_12px_rgba(16,185,129,0.15)] logo-white-glow cursor-pointer"
                 style={{ preserveAspectRatio: 'xMidYMid meet' }}
