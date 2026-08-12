@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Briefcase,
   Award,
@@ -21,6 +21,17 @@ import { useTheme } from '../../context/ThemeContext';
 export function WhyChooseUs() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const location = useLocation();
+
+  const handleContactClick = (e) => {
+    if (location.pathname === '/contact') {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   const features = [
     {
@@ -198,8 +209,8 @@ export function WhyChooseUs() {
                   Explore Courses
                 </Button>
               </Link>
-              <Link to="/contact">
-                <Button variant="secondary" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-white/20">
+              <Link to="/contact" onClick={handleContactClick}>
+                <Button variant="secondary" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-white/20 cursor-pointer">
                   Contact Us
                 </Button>
               </Link>
