@@ -151,21 +151,22 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-2xl flex flex-col items-start text-left">
             
-            {/* Small Premium Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold backdrop-blur-md mb-6 shadow-lg ${
-                isDark 
-                  ? 'bg-white/5 border border-red-500/30 text-red-300 shadow-red-950/30'
-                  : 'bg-white border border-emerald-300 text-emerald-800 shadow-md'
-              }`}
-            >
-              <Sparkles className={`w-4 h-4 animate-spin ${isDark ? 'text-red-400' : 'text-emerald-600'}`} style={{ animationDuration: '8s' }} />
-              <span>ISO Certified Premier Training & IT Services</span>
-              <ChevronRight className={`w-3.5 h-3.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`} />
-            </motion.div>
+            {/* Small Premium Badge - Clickable link to Services page */}
+            <Link to="/services">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold backdrop-blur-md mb-6 shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer group ${
+                  isDark 
+                    ? 'bg-white/5 border border-red-500/30 text-red-300 shadow-red-950/30 hover:bg-white/10 hover:border-red-500/60'
+                    : 'bg-white border border-emerald-300 text-emerald-800 shadow-md hover:bg-emerald-50/80 hover:border-emerald-400'
+                }`}
+              >
+                <span>ISO Certified Premier Training & IT Services</span>
+                <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 ${isDark ? 'text-slate-400 group-hover:text-red-400' : 'text-slate-500 group-hover:text-emerald-600'}`} />
+              </motion.div>
+            </Link>
 
             {/* Large Heading */}
             <motion.h1
