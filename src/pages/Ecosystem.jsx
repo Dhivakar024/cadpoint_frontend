@@ -112,8 +112,8 @@ export function Ecosystem() {
                   <span>Enterprise Clients: <strong className="text-white">{brand.clients}+</strong></span>
                 </div>
                 <a href={brand.url} target="_blank" rel="noopener noreferrer" className="block w-full">
-                  <Button variant="secondary" size="sm" className="w-full justify-center" icon={ExternalLink}>
-                    Visit Partner Website
+                  <Button variant="secondary" size="sm" className="w-full justify-center gap-2 cursor-pointer" icon={ExternalLink}>
+                    Visit Official Website
                   </Button>
                 </a>
               </div>

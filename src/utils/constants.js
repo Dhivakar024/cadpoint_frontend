@@ -198,28 +198,28 @@ export const ECOSYSTEM_DATA = {
   ],
   partnerBrands: [
     {
-      name: "Skimitter Private Limited",
-      tags: ["Mechanical", "Electrical", "Engineering"],
-      desc: "Skimitter excels in mechanical and electrical engineering solutions. They deliver projects with unmatched quality, reliability, and innovation.",
-      projects: 70,
-      clients: 35,
-      url: "#"
+      name: "Fatcat Wealthy",
+      tags: ["Finance", "Investment", "Wealth Management"],
+      desc: "Empowering clients with smart financial strategies, wealth management, and growth technologies.",
+      projects: 120,
+      clients: 80,
+      url: "https://fatcatwealthy.com/"
     },
     {
-      name: "Alan Tech Soft",
-      tags: ["Software", "Tech", "Digital Transformation"],
-      desc: "Alan empowers businesses with smart software and digital solutions. They create intelligent technology for impactful digital experiences.",
-      projects: 80,
-      clients: 50,
-      url: "#"
+      name: "Zion Builder",
+      tags: ["Construction", "Architecture", "Real Estate"],
+      desc: "Pioneering civil engineering, modern architectural construction, infrastructure design, and property developments.",
+      projects: 95,
+      clients: 60,
+      url: "https://www.ziongroups.com/"
     },
     {
-      name: "Nexon Gen Tech",
-      tags: ["AI & IT Solutions", "Cybersecurity", "Enterprise"],
-      desc: "NexonTech provides AI powered, IT solutions and Enterprise-grade platforms. They deliver scalable and reliable solutions for modern business needs.",
-      projects: 100,
-      clients: 70,
-      url: "#"
+      name: "Think Inov Solution",
+      tags: ["Software Development", "IT Solutions", "Innovation"],
+      desc: "Delivering scalable software architectures, IT consulting, enterprise web apps, and next-gen digital transformation.",
+      projects: 110,
+      clients: 75,
+      url: "https://thinkinnovsolution.com/"
     }
   ]
 };
