@@ -13,8 +13,22 @@ import { Contact } from './pages/Contact';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Terms } from './pages/Terms';
 import { RefundPolicy } from './pages/RefundPolicy';
-import { Admin } from './pages/Admin';
 import { NotFound } from './pages/NotFound';
+
+function AdminRedirect() {
+  React.useEffect(() => {
+    window.location.href = 'https://admin.cadpoint.co.in/login';
+  }, []);
+
+  return (
+    <div className="min-h-screen flex items-center justify-center text-center p-6 space-y-4">
+      <div className="space-y-2">
+        <h2 className="text-xl font-bold font-heading text-white">Redirecting to Admin Portal...</h2>
+        <p className="text-xs text-slate-400">Taking you to https://admin.cadpoint.co.in/login</p>
+      </div>
+    </div>
+  );
+}
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -40,7 +54,7 @@ export default function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<AdminRedirect />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
