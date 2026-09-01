@@ -175,7 +175,7 @@ export function Contact() {
                     if (privacyError) setPrivacyError(false);
                   }}
                   error={privacyError}
-                  errorMessage="Please acknowledge the Privacy Notice to submit your enquiry."
+                  errorMessage="Please review the Privacy Notice and provide your consent before submitting."
                 />
 
                 <Button type="submit" variant="primary" size="lg" className="w-full justify-center" isLoading={isSubmitting} icon={Send}>

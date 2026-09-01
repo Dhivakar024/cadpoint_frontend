@@ -9,6 +9,7 @@ import { WhyChooseUs } from '../sections/WhyChooseUs';
 import { useTheme } from '../../context/ThemeContext';
 import { CookieConsentBanner } from '../common/CookieConsentBanner';
 import { CookiePreferencesModal } from '../common/CookiePreferencesModal';
+import { PrivacyNoticeModal } from '../common/PrivacyNoticeModal';
 
 export function Layout({ children }) {
   const { pathname } = useLocation();
@@ -33,16 +34,17 @@ export function Layout({ children }) {
       
       <Footer />
 
-      {/* Automatic 1-second Lead Popup */}
+      {/* Automatic 1.5-second Lead Popup */}
       <ContactPopup />
       {/* Floating AI Chatbot Assistant */}
       <AIChatbot />
       {/* Floating Circular WhatsApp Icon Button */}
       <WhatsAppButton />
 
-      {/* DPDP 2025 Cookie Consent Banner & Preferences Center */}
+      {/* Cookie Consent Banner, Preferences Modal & Privacy Notice Modal */}
       <CookieConsentBanner />
       <CookiePreferencesModal />
+      <PrivacyNoticeModal />
     </div>
   );
 }

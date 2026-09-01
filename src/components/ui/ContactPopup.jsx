@@ -21,19 +21,15 @@ export function ContactPopup() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    // Check if popup was already closed in this session
-    const hasSeenPopup = sessionStorage.getItem('cadpoint_popup_seen');
-    if (!hasSeenPopup) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 1000); // 1 second trigger
-      return () => clearTimeout(timer);
-    }
+    // 1.5 second natural delay on page load / reload
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleClose = () => {
     setIsOpen(false);
-    sessionStorage.setItem('cadpoint_popup_seen', 'true');
   };
 
   const handleSubmit = async (e) => {
@@ -180,7 +176,7 @@ export function ContactPopup() {
                       if (privacyError) setPrivacyError(false);
                     }}
                     error={privacyError}
-                    errorMessage="Please acknowledge the Privacy Notice to submit your enquiry."
+                    errorMessage="Please review the Privacy Notice and provide your consent before submitting."
                   />
 
                   <Button

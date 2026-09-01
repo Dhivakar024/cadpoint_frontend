@@ -43,7 +43,7 @@ const formSchema = z.object({
 
   idType: z.enum(['Aadhar', 'PAN', 'Other']),
   agreeTerms: z.boolean().refine((val) => val === true, 'You must agree to terms'),
-  privacyAcknowledged: z.boolean().refine((val) => val === true, 'Please read and accept the Privacy Notice before submitting'),
+  privacyAcknowledged: z.boolean().refine((val) => val === true, 'Please review the Privacy Notice and provide your consent before submitting'),
 });
 
 export function Registration() {
