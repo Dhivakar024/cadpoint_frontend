@@ -7,7 +7,7 @@ const adminApi = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 20000,
+  timeout: 60000, // 60s timeout to allow Render free tier cold starts
 });
 
 adminApi.interceptors.request.use((config) => {

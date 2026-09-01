@@ -7,7 +7,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 20000,
+  timeout: 60000,
 });
 
 export const submitRegistration = async (registrationData) => {
@@ -32,7 +32,6 @@ export const getCourses = async (params = {}) => {
   return response.data;
 };
 
-// PRIVACY ENDPOINTS
 export const fetchMyPersonalData = async (email, phone) => {
   const response = await api.post('/privacy/view-data', { email, phone });
   return response.data;
@@ -43,7 +42,6 @@ export const submitPrivacyDeletionRequest = async (deletionData) => {
   return response.data;
 };
 
-// ADMIN DASHBOARD ENDPOINTS
 export const fetchDashboardStats = async () => {
   const response = await api.get('/admin/dashboard-stats');
   return response.data;

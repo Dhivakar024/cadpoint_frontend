@@ -34,13 +34,14 @@ export function AdminAuthProvider({ children }) {
       }
       try {
         const res = await axios.get(`${API_BASE_URL}/admin/me`, {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: `Bearer ${token}` },
+          timeout: 60000,
         });
         if (res.data && res.data.user) {
           setUser(res.data.user);
         }
       } catch (err) {
-        console.warn('Admin session expired or invalid');
+        console.warn('Admin session expired or invalid', err);
         logout();
       } finally {
         setLoading(false);
@@ -50,28 +51,44 @@ export function AdminAuthProvider({ children }) {
   }, [token]);
 
   const login = async (username, password, remember = true) => {
-    const res = await axios.post(`${API_BASE_URL}/admin/login`, { username, password });
-    if (res.data && res.data.token) {
-      const authToken = res.data.token;
-      const userData = res.data.user || { username: 'admin', email: 'admin@cadpoint.co.in', role: 'admin' };
+    try {
+      const res = await axios.post(
+        `${API_BASE_URL}/admin/login`,
+        { username, password },
+        { timeout: 60000 }
+      );
+      if (res.data && res.data.token) {
+        const authToken = res.data.token;
+        const userData = res.data.user || { username: 'admin', email: 'admin@cadpoint.co.in', role: 'admin' };
 
-      setToken(authToken);
-      setUser(userData);
+        setToken(authToken);
+        setUser(userData);
 
-      try {
-        if (remember) {
-          localStorage.setItem(AUTH_TOKEN_KEY, authToken);
-          localStorage.setItem('cadpoint_admin_user', JSON.stringify(userData));
-        } else {
-          sessionStorage.setItem(AUTH_TOKEN_KEY, authToken);
-          sessionStorage.setItem('cadpoint_admin_user', JSON.stringify(userData));
+        try {
+          if (remember) {
+            localStorage.setItem(AUTH_TOKEN_KEY, authToken);
+            localStorage.setItem('cadpoint_admin_user', JSON.stringify(userData));
+          } else {
+            sessionStorage.setItem(AUTH_TOKEN_KEY, authToken);
+            sessionStorage.setItem('cadpoint_admin_user', JSON.stringify(userData));
+          }
+        } catch (e) {
+          console.warn('Unable to persist token in browser storage', e);
         }
-      } catch (e) {
-        console.warn('Unable to persist token in browser storage', e);
+        return res.data;
+      } else {
+        throw new Error(res.data?.error || 'Invalid admin credentials');
       }
-      return res.data;
-    } else {
-      throw new Error(res.data?.error || 'Invalid admin credentials');
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.error) {
+        throw new Error(err.response.data.error);
+      } else if (err.code === 'ECONNABORTED' || err.message?.includes('timeout')) {
+        throw new Error('Backend server is starting up (cold start). Please wait 10 seconds and click Sign In again.');
+      } else if (err.message === 'Network Error' || !err.response) {
+        throw new Error('Unable to connect to CADPOINT API Server. Please check your network connection or try again in a few seconds.');
+      } else {
+        throw err;
+      }
     }
   };
 
