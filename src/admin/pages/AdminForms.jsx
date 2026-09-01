@@ -1,0 +1,328 @@
+import React, { useState, useEffect } from 'react';
+import { MessageSquare, UserCheck, Zap, Search, Eye, Trash2, X } from 'lucide-react';
+import {
+  fetchAdminEnquiries,
+  updateEnquiryStatus,
+  deleteEnquiryRecord,
+  fetchAdminRegistrations,
+  updateRegistrationStatus,
+  deleteRegistrationRecord
+} from '../services/adminApi';
+
+export function AdminForms() {
+  const [activeTab, setActiveTab] = useState('contact'); // 'contact' | 'registration' | 'quick'
+  const [enquiries, setEnquiries] = useState([]);
+  const [registrations, setRegistrations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [viewModal, setViewModal] = useState(null);
+
+  const loadData = async () => {
+    setLoading(true);
+    try {
+      const [enqRes, regRes] = await Promise.all([
+        fetchAdminEnquiries().catch(() => ({ enquiries: [] })),
+        fetchAdminRegistrations().catch(() => ({ registrations: [] }))
+      ]);
+      setEnquiries(enqRes.enquiries || []);
+      setRegistrations(regRes.registrations || []);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const contactOnly = enquiries.filter(e => e.formSource !== 'quick-admission-enquiry');
+  const quickAdmissionOnly = enquiries.filter(e => e.formSource === 'quick-admission-enquiry');
+
+  const handleEnquiryStatus = async (id, status) => {
+    try {
+      await updateEnquiryStatus(id, status);
+      setEnquiries(prev => prev.map(e => (e.id === id || e.email === id) ? { ...e, status } : e));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeleteEnquiry = async (id) => {
+    try {
+      await deleteEnquiryRecord(id);
+      setEnquiries(prev => prev.filter(e => (e.id || e.email) !== id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleRegStatus = async (id, status) => {
+    try {
+      await updateRegistrationStatus(id, status);
+      setRegistrations(prev => prev.map(r => r.registrationId === id ? { ...r, status } : r));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeleteReg = async (id) => {
+    try {
+      await deleteRegistrationRecord(id);
+      setRegistrations(prev => prev.filter(r => r.registrationId !== id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const filteredContact = contactOnly.filter(e => (e.name || '').toLowerCase().includes(search.toLowerCase()) || (e.email || '').toLowerCase().includes(search.toLowerCase()));
+  const filteredQuick = quickAdmissionOnly.filter(q => (q.name || '').toLowerCase().includes(search.toLowerCase()) || (q.email || '').toLowerCase().includes(search.toLowerCase()));
+  const filteredRegs = registrations.filter(r => (r.fullName || r.name || '').toLowerCase().includes(search.toLowerCase()) || (r.email || '').toLowerCase().includes(search.toLowerCase()) || (r.registrationId || '').toLowerCase().includes(search.toLowerCase()));
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+        <div>
+          <h1 className="text-2xl font-extrabold font-heading text-gradient">Forms & Submissions Hub</h1>
+          <p className="text-xs text-slate-400">All submissions from Contact Us, Quick Admissions, and Course Registration</p>
+        </div>
+        <div className="relative w-full sm:w-72">
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search leads & applications..."
+            className="w-full pl-9 pr-3 py-2 rounded-xl glass-input text-xs"
+          />
+        </div>
+      </div>
+
+      {/* TABS */}
+      <div className="flex items-center gap-2 border-b border-white/10 pb-2">
+        <button
+          onClick={() => setActiveTab('contact')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            activeTab === 'contact' ? 'bg-purple-600 text-white shadow-md' : 'bg-white/5 text-slate-400 hover:text-white'
+          }`}
+        >
+          <MessageSquare className="w-3.5 h-3.5" />
+          <span>Contact Enquiries ({contactOnly.length})</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('registration')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            activeTab === 'registration' ? 'bg-purple-600 text-white shadow-md' : 'bg-white/5 text-slate-400 hover:text-white'
+          }`}
+        >
+          <UserCheck className="w-3.5 h-3.5" />
+          <span>Register Now ({registrations.length})</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('quick')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            activeTab === 'quick' ? 'bg-purple-600 text-white shadow-md' : 'bg-white/5 text-slate-400 hover:text-white'
+          }`}
+        >
+          <Zap className="w-3.5 h-3.5 text-cyan-400" />
+          <span>Quick Admissions ({quickAdmissionOnly.length})</span>
+        </button>
+      </div>
+
+      {/* TAB CONTENTS */}
+      {loading ? (
+        <div className="text-center py-16 text-xs text-slate-400">Loading submission records...</div>
+      ) : (
+        <div className="overflow-x-auto custom-scrollbar">
+          {activeTab === 'contact' && (
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <th className="py-3 px-4">Contact</th>
+                  <th className="py-3 px-4">Subject & Message</th>
+                  <th className="py-3 px-4">Date</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {filteredContact.map((enq, i) => (
+                  <tr key={i} className="hover:bg-white/5 transition-colors">
+                    <td className="py-3 px-4">
+                      <strong className="text-white block">{enq.name}</strong>
+                      <span className="text-slate-400 text-[11px]">{enq.email} | {enq.phone}</span>
+                    </td>
+                    <td className="py-3 px-4 max-w-xs">
+                      <strong className="text-cyan-400 block">{enq.subject || 'Enquiry'}</strong>
+                      <p className="text-slate-300 truncate text-[11px]">{enq.message}</p>
+                    </td>
+                    <td className="py-3 px-4 text-slate-400 whitespace-nowrap">
+                      {enq.createdAt ? new Date(enq.createdAt).toLocaleDateString() : 'N/A'}
+                    </td>
+                    <td className="py-3 px-4">
+                      <select
+                        value={enq.status || 'New'}
+                        onChange={(e) => handleEnquiryStatus(enq.id || enq.email, e.target.value)}
+                        className="px-2 py-1 rounded-lg glass-input text-[11px] bg-[#0F172A]"
+                      >
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Resolved">Resolved</option>
+                      </select>
+                    </td>
+                    <td className="py-3 px-4 text-right space-x-2 whitespace-nowrap">
+                      <button onClick={() => setViewModal({ type: 'enquiry', data: enq })} className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-cyan-400 cursor-pointer">
+                        <Eye className="w-3.5 h-3.5" />
+                      </button>
+                      <button onClick={() => handleDeleteEnquiry(enq.id || enq.email)} className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer">
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
+          {activeTab === 'registration' && (
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <th className="py-3 px-4">Ref ID & Student</th>
+                  <th className="py-3 px-4">Course Applied</th>
+                  <th className="py-3 px-4">Qualification</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {filteredRegs.map((reg, i) => (
+                  <tr key={i} className="hover:bg-white/5 transition-colors">
+                    <td className="py-3 px-4">
+                      <span className="text-purple-400 font-bold text-[11px] block">{reg.registrationId}</span>
+                      <strong className="text-white block">{reg.fullName || reg.name}</strong>
+                      <span className="text-slate-400 text-[11px]">{reg.email} | {reg.phone}</span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <strong className="text-cyan-400 block">{reg.courseName}</strong>
+                      <span className="text-slate-300 text-[11px]">{reg.mode} ({reg.batchPreference || 'Morning'})</span>
+                    </td>
+                    <td className="py-3 px-4 text-slate-300">
+                      {reg.qualification} ({reg.passoutYear})
+                    </td>
+                    <td className="py-3 px-4">
+                      <select
+                        value={reg.status || 'Pending'}
+                        onChange={(e) => handleRegStatus(reg.registrationId, e.target.value)}
+                        className="px-2 py-1 rounded-lg glass-input text-[11px] bg-[#0F172A]"
+                      >
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Completed">Completed</option>
+                      </select>
+                    </td>
+                    <td className="py-3 px-4 text-right space-x-2 whitespace-nowrap">
+                      <button onClick={() => setViewModal({ type: 'registration', data: reg })} className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-cyan-400 cursor-pointer">
+                        <Eye className="w-3.5 h-3.5" />
+                      </button>
+                      <button onClick={() => handleDeleteReg(reg.registrationId)} className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer">
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
+          {activeTab === 'quick' && (
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <th className="py-3 px-4">Student & Contact</th>
+                  <th className="py-3 px-4">Course Interested</th>
+                  <th className="py-3 px-4">Date</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {filteredQuick.map((qa, i) => (
+                  <tr key={i} className="hover:bg-white/5 transition-colors">
+                    <td className="py-3 px-4">
+                      <strong className="text-white block">{qa.name}</strong>
+                      <span className="text-slate-400 text-[11px]">{qa.email} | {qa.phone}</span>
+                    </td>
+                    <td className="py-3 px-4 text-cyan-400 font-semibold">{qa.subject}</td>
+                    <td className="py-3 px-4 text-slate-400 whitespace-nowrap">
+                      {qa.createdAt ? new Date(qa.createdAt).toLocaleDateString() : 'N/A'}
+                    </td>
+                    <td className="py-3 px-4">
+                      <select
+                        value={qa.status || 'New'}
+                        onChange={(e) => handleEnquiryStatus(qa.id || qa.email, e.target.value)}
+                        className="px-2 py-1 rounded-lg glass-input text-[11px] bg-[#0F172A]"
+                      >
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Resolved">Resolved</option>
+                      </select>
+                    </td>
+                    <td className="py-3 px-4 text-right space-x-2 whitespace-nowrap">
+                      <button onClick={() => setViewModal({ type: 'enquiry', data: qa })} className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-cyan-400 cursor-pointer">
+                        <Eye className="w-3.5 h-3.5" />
+                      </button>
+                      <button onClick={() => handleDeleteEnquiry(qa.id || qa.email)} className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer">
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      )}
+
+      {viewModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <div className="relative w-full max-w-md rounded-3xl p-6 glass-panel border border-cyan-500/40 space-y-4 text-xs">
+            <div className="flex justify-between items-center pb-2 border-b border-white/10">
+              <h3 className="text-sm font-bold font-heading text-white">Submission Details</h3>
+              <button onClick={() => setViewModal(null)} className="p-1 text-slate-400 hover:text-white cursor-pointer">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="space-y-2 text-slate-300">
+              {viewModal.type === 'enquiry' && (
+                <>
+                  <p><strong>Name:</strong> {viewModal.data.name}</p>
+                  <p><strong>Email:</strong> {viewModal.data.email}</p>
+                  <p><strong>Phone:</strong> {viewModal.data.phone}</p>
+                  <p><strong>Subject / Course:</strong> {viewModal.data.subject}</p>
+                  <p><strong>Message:</strong> {viewModal.data.message || 'No additional message.'}</p>
+                </>
+              )}
+              {viewModal.type === 'registration' && (
+                <>
+                  <p><strong>Ref ID:</strong> {viewModal.data.registrationId}</p>
+                  <p><strong>Student Name:</strong> {viewModal.data.fullName || viewModal.data.name}</p>
+                  <p><strong>Email:</strong> {viewModal.data.email}</p>
+                  <p><strong>Phone / WhatsApp:</strong> {viewModal.data.phone} / {viewModal.data.whatsapp}</p>
+                  <p><strong>Course Applied:</strong> {viewModal.data.courseName} ({viewModal.data.mode})</p>
+                  <p><strong>Qualification & College:</strong> {viewModal.data.qualification} — {viewModal.data.institution}</p>
+                </>
+              )}
+            </div>
+            <button onClick={() => setViewModal(null)} className="w-full py-2 rounded-xl bg-white/10 text-white font-semibold text-xs cursor-pointer">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

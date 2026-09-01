@@ -14,21 +14,7 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Terms } from './pages/Terms';
 import { RefundPolicy } from './pages/RefundPolicy';
 import { NotFound } from './pages/NotFound';
-
-function AdminRedirect() {
-  React.useEffect(() => {
-    window.location.href = 'https://admin.cadpoint.co.in/login';
-  }, []);
-
-  return (
-    <div className="min-h-screen flex items-center justify-center text-center p-6 space-y-4">
-      <div className="space-y-2">
-        <h2 className="text-xl font-bold font-heading text-white">Redirecting to Admin Portal...</h2>
-        <p className="text-xs text-slate-400">Taking you to https://admin.cadpoint.co.in/login</p>
-      </div>
-    </div>
-  );
-}
+import { AdminRoutes } from './admin/AdminRoutes';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -41,23 +27,33 @@ export default function App() {
     <>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
 
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/:slug" element={<CourseDetails />} />
-          <Route path="/ecosystem" element={<Ecosystem />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/admin" element={<AdminRedirect />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {/* DEDICATED ADMIN PANEL ROUTE (NO PUBLIC NAVBAR / FOOTER / HERO) */}
+        <Route path="/admin/*" element={<AdminRoutes />} />
+
+        {/* PUBLIC CADPOINT WEBSITE ROUTES (WITH PUBLIC NAVBAR & FOOTER LAYOUT) */}
+        <Route
+          path="/*"
+          element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/courses" element={<Courses />} />
+                <Route path="/courses/:slug" element={<CourseDetails />} />
+                <Route path="/ecosystem" element={<Ecosystem />} />
+                <Route path="/registration" element={<Registration />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/refund-policy" element={<RefundPolicy />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
     </>
   );
 }
