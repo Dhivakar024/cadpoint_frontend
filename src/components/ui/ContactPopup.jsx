@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, CheckCircle2, PhoneCall, ClipboardCheck } from 'lucide-react';
 import { Button } from './Button';
 import { submitEnquiry } from '../../services/api';
+import { sendContactEmailDirect } from '../../services/directResend';
+import { PrivacyAcknowledgement, getPrivacyMetadata } from '../common/PrivacyAcknowledgement';
 
 export function ContactPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +15,8 @@ export function ContactPopup() {
     subject: 'Website Popup Lead',
     message: '',
   });
+  const [privacyChecked, setPrivacyChecked] = useState(false);
+  const [privacyError, setPrivacyError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -34,12 +38,24 @@ export function ContactPopup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!privacyChecked) {
+      setPrivacyError(true);
+      return;
+    }
+
     setIsSubmitting(true);
+    const payload = {
+      ...formData,
+      ...getPrivacyMetadata('quick-admission-enquiry'),
+    };
+
     try {
-      await submitEnquiry(formData);
+      await submitEnquiry(payload);
+      sendContactEmailDirect(payload);
       setSubmitted(true);
     } catch (err) {
       console.error(err);
+      sendContactEmailDirect(payload);
       setSubmitted(true);
     } finally {
       setIsSubmitting(false);
@@ -155,6 +171,17 @@ export function ContactPopup() {
                       className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs"
                     />
                   </div>
+
+                  <PrivacyAcknowledgement
+                    id="popup-privacy"
+                    checked={privacyChecked}
+                    onChange={(e) => {
+                      setPrivacyChecked(e.target.checked);
+                      if (privacyError) setPrivacyError(false);
+                    }}
+                    error={privacyError}
+                    errorMessage="Please acknowledge the Privacy Notice to submit your enquiry."
+                  />
 
                   <Button
                     type="submit"

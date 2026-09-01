@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, ShieldCheck, Instagram, Facebook, MessageCircle, Linkedin, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ShieldCheck, Cookie, Instagram, Facebook, MessageCircle, Linkedin, Youtube } from 'lucide-react';
 import { COMPANY_INFO, DEPARTMENTS, SOCIAL_LINKS } from '../../utils/constants';
 import { useTheme } from '../../context/ThemeContext';
+import { useCookieConsent } from '../../context/CookieConsentContext';
 
 export function Footer() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const { openPreferencesModal } = useCookieConsent();
 
   const getSocialIcon = (name) => {
     switch (name) {
@@ -171,8 +173,25 @@ export function Footer() {
           isDark ? 'border-slate-800/80 text-slate-400' : 'border-emerald-200 text-slate-600'
         }`}>
           <p>{COMPANY_INFO.copyright}</p>
-          <div className={`flex items-center gap-6 ${isDark ? 'text-slate-500' : 'text-slate-600'}`}>
-            <Link to="/privacy-policy" className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-emerald-600'}`}>Privacy Policy</Link>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+            <Link
+              to="/privacy-policy"
+              className={`font-semibold transition-colors flex items-center gap-1.5 ${
+                isDark ? 'text-red-400 hover:text-white' : 'text-emerald-600 hover:text-emerald-800'
+              }`}
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Privacy Center</span>
+            </Link>
+            <button
+              onClick={openPreferencesModal}
+              className={`transition-colors cursor-pointer flex items-center gap-1.5 hover:underline ${
+                isDark ? 'hover:text-white' : 'hover:text-emerald-600'
+              }`}
+            >
+              <Cookie className="w-3.5 h-3.5" />
+              <span>Cookie Settings</span>
+            </button>
             <Link to="/terms" className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-emerald-600'}`}>Terms of Service</Link>
             <Link to="/refund-policy" className={`transition-colors ${isDark ? 'hover:text-white' : 'hover:text-emerald-600'}`}>Refund Policy</Link>
           </div>

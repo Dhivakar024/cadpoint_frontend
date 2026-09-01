@@ -7,6 +7,8 @@ import { WhatsAppButton } from '../ui/WhatsAppButton';
 import { AIChatbot } from '../ui/AIChatbot';
 import { WhyChooseUs } from '../sections/WhyChooseUs';
 import { useTheme } from '../../context/ThemeContext';
+import { CookieConsentBanner } from '../common/CookieConsentBanner';
+import { CookiePreferencesModal } from '../common/CookiePreferencesModal';
 
 export function Layout({ children }) {
   const { pathname } = useLocation();
@@ -37,6 +39,10 @@ export function Layout({ children }) {
       <AIChatbot />
       {/* Floating Circular WhatsApp Icon Button */}
       <WhatsAppButton />
+
+      {/* DPDP 2025 Cookie Consent Banner & Preferences Center */}
+      <CookieConsentBanner />
+      <CookiePreferencesModal />
     </div>
   );
 }

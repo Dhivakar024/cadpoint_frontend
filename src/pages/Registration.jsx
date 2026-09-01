@@ -11,6 +11,8 @@ import { User, Mail, BookOpen, GraduationCap, Briefcase, FileCheck, CheckCircle2
 import { SEO } from '../components/common/SEO';
 import { getBreadcrumbSchema } from '../utils/seoSchemas';
 
+import { PrivacyAcknowledgement, getPrivacyMetadata } from '../components/common/PrivacyAcknowledgement';
+
 const formSchema = z.object({
   fullName: z.string().min(2, 'Full name is required'),
   dob: z.string().min(1, 'Date of birth is required'),
@@ -41,6 +43,7 @@ const formSchema = z.object({
 
   idType: z.enum(['Aadhar', 'PAN', 'Other']),
   agreeTerms: z.boolean().refine((val) => val === true, 'You must agree to terms'),
+  privacyAcknowledged: z.boolean().refine((val) => val === true, 'Please read and accept the Privacy Notice before submitting'),
 });
 
 export function Registration() {
@@ -101,17 +104,21 @@ export function Registration() {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     const regId = 'CAD-2026-' + Math.floor(100000 + Math.random() * 900000);
+    const payloadData = {
+      ...data,
+      ...getPrivacyMetadata('registration'),
+    };
     try {
       const formData = new FormData();
-      Object.keys(data).forEach((key) => {
-        formData.append(key, data[key]);
+      Object.keys(payloadData).forEach((key) => {
+        formData.append(key, payloadData[key]);
       });
 
       // 1. Try backend API submission
       submitRegistration(formData).catch(() => {});
 
       // 2. Direct Resend API dispatch for 100% guaranteed email delivery to cadpointsalem001@gmail.com
-      await sendRegistrationEmailDirect(data, regId);
+      await sendRegistrationEmailDirect(payloadData, regId);
 
       setSubmitSuccess(regId);
     } catch (err) {
@@ -526,6 +533,14 @@ export function Registration() {
                   </label>
                 </div>
                 {errors.agreeTerms && <p className="text-red-400 text-xs">{errors.agreeTerms.message}</p>}
+
+                <PrivacyAcknowledgement
+                  id="registration-privacy"
+                  checked={watch('privacyAcknowledged')}
+                  onChange={(e) => setValue('privacyAcknowledged', e.target.checked, { shouldValidate: true })}
+                  error={Boolean(errors.privacyAcknowledged)}
+                  errorMessage={errors.privacyAcknowledged?.message}
+                />
               </div>
             )}
 
