@@ -34,7 +34,11 @@ export function AdminLogin() {
       navigate('/admin/dashboard', { replace: true });
     } catch (err) {
       console.error(err);
-      setError(err?.response?.data?.error || err.message || 'Invalid username or password.');
+      let errMsg = err?.response?.data?.error || err.message || 'Invalid username or password.';
+      if (errMsg === 'Network Error') {
+        errMsg = 'Unable to connect to CADPOINT Server. The backend service may be waking up — please click Sign In again.';
+      }
+      setError(errMsg);
     } finally {
       setIsSubmitting(false);
     }

@@ -26,6 +26,11 @@ export function AdminAuthProvider({ children }) {
 
   const [loading, setLoading] = useState(true);
 
+  // Background warmup ping to wake up Render backend container if sleeping
+  useEffect(() => {
+    axios.get(`${API_BASE_URL}/health`, { timeout: 15000 }).catch(() => {});
+  }, []);
+
   useEffect(() => {
     const verifySession = async () => {
       if (!token) {
@@ -83,9 +88,9 @@ export function AdminAuthProvider({ children }) {
       if (err.response && err.response.data && err.response.data.error) {
         throw new Error(err.response.data.error);
       } else if (err.code === 'ECONNABORTED' || err.message?.includes('timeout')) {
-        throw new Error('Backend server is starting up (cold start). Please wait 10 seconds and click Sign In again.');
+        throw new Error('Backend server is starting up (cold start). Please wait a few seconds and click Sign In again.');
       } else if (err.message === 'Network Error' || !err.response) {
-        throw new Error('Unable to connect to CADPOINT API Server. Please check your network connection or try again in a few seconds.');
+        throw new Error('Unable to connect to CADPOINT API Server. Please check your connection or click Sign In again.');
       } else {
         throw err;
       }
