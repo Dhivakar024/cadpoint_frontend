@@ -13,6 +13,7 @@ import { Contact } from './pages/Contact';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Terms } from './pages/Terms';
 import { RefundPolicy } from './pages/RefundPolicy';
+import { Admin } from './pages/Admin';
 import { NotFound } from './pages/NotFound';
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

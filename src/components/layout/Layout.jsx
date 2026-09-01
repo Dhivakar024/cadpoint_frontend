@@ -10,6 +10,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { CookieConsentBanner } from '../common/CookieConsentBanner';
 import { CookiePreferencesModal } from '../common/CookiePreferencesModal';
 import { PrivacyNoticeModal } from '../common/PrivacyNoticeModal';
+import { PrivacyCenterModal } from '../common/PrivacyCenterModal';
 
 export function Layout({ children }) {
   const { pathname } = useLocation();
@@ -41,10 +42,11 @@ export function Layout({ children }) {
       {/* Floating Circular WhatsApp Icon Button */}
       <WhatsAppButton />
 
-      {/* Cookie Consent Banner, Preferences Modal & Privacy Notice Modal */}
+      {/* Cookie Consent Banner, Preferences Modal, Privacy Notice Modal & Privacy Center Modal */}
       <CookieConsentBanner />
       <CookiePreferencesModal />
       <PrivacyNoticeModal />
+      <PrivacyCenterModal />
     </div>
   );
 }

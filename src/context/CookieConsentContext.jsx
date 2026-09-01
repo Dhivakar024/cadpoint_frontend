@@ -35,6 +35,7 @@ export function CookieConsentProvider({ children }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPrivacyNoticeModalOpen, setIsPrivacyNoticeModalOpen] = useState(false);
+  const [isPrivacyCenterModalOpen, setIsPrivacyCenterModalOpen] = useState(false);
   const [hasReadPrivacyNotice, setHasReadPrivacyNotice] = useState(false);
 
   const saveConsent = (categories, status) => {
@@ -96,6 +97,14 @@ export function CookieConsentProvider({ children }) {
     setIsPrivacyNoticeModalOpen(false);
   };
 
+  const openPrivacyCenterModal = () => {
+    setIsPrivacyCenterModalOpen(true);
+  };
+
+  const closePrivacyCenterModal = () => {
+    setIsPrivacyCenterModalOpen(false);
+  };
+
   const markPrivacyNoticeAsRead = () => {
     setHasReadPrivacyNotice(true);
   };
@@ -113,6 +122,7 @@ export function CookieConsentProvider({ children }) {
         categories: consent.categories,
         isModalOpen,
         isPrivacyNoticeModalOpen,
+        isPrivacyCenterModalOpen,
         hasReadPrivacyNotice,
         acceptAll,
         rejectOptional,
@@ -121,6 +131,8 @@ export function CookieConsentProvider({ children }) {
         closePreferencesModal,
         openPrivacyNoticeModal,
         closePrivacyNoticeModal,
+        openPrivacyCenterModal,
+        closePrivacyCenterModal,
         markPrivacyNoticeAsRead,
         isCategoryConsented,
       }}

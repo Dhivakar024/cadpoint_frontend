@@ -8,7 +8,7 @@ import { useCookieConsent } from '../../context/CookieConsentContext';
 export function Footer() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-  const { openPreferencesModal, openPrivacyNoticeModal } = useCookieConsent();
+  const { openPreferencesModal, openPrivacyCenterModal } = useCookieConsent();
 
   const getSocialIcon = (name) => {
     switch (name) {
@@ -176,7 +176,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <button
               type="button"
-              onClick={openPrivacyNoticeModal}
+              onClick={openPrivacyCenterModal}
               className={`font-semibold transition-colors flex items-center gap-1.5 cursor-pointer ${
                 isDark ? 'text-red-400 hover:text-white' : 'text-emerald-600 hover:text-emerald-800'
               }`}
