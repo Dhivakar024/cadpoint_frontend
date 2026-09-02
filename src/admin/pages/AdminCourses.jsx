@@ -5,7 +5,7 @@ import { fetchAdminCourses, deleteAdminCourse } from '../services/adminApi';
 
 const ITEMS_PER_PAGE = 18;
 
-// Requirement 3: Exact 7 Department / Course Section Options
+// Requirement 2: Exact Canonical Department Options
 const DEPARTMENT_OPTIONS = [
   'All Departments',
   'IT & Non-IT',
@@ -17,12 +17,27 @@ const DEPARTMENT_OPTIONS = [
   'Digital Marketing & SEO',
 ];
 
-// Requirement 3: Exact Program Type Options
+// Requirement 6: Program Type Options
 const PROGRAM_OPTIONS = [
   'All Categories',
   'Professional Programs',
   'Master Diploma Programs',
 ];
+
+// Canonical Alias Mapping Table for 100% Exact Matching
+const CANONICAL_DEPT_MAP = {
+  'IT & Non-IT': 'IT & Non-IT',
+  'IT & Software': 'IT & Non-IT',
+  'Multimedia': 'Multimedia',
+  'Accounting & ERP': 'Accounts & Finance',
+  'Accounts & Finance': 'Accounts & Finance',
+  'Civil & Architecture': 'Civil & Architecture',
+  'Mechanical & Aeronautical': 'Mechanical & Aeronautical Designing',
+  'Mechanical & Aeronautical Designing': 'Mechanical & Aeronautical Designing',
+  'Electrical & Electronics': 'Electrical & Electronics Designing',
+  'Electrical & Electronics Designing': 'Electrical & Electronics Designing',
+  'Digital Marketing & SEO': 'Digital Marketing & SEO',
+};
 
 export function AdminCourses() {
   const [courses, setCourses] = useState([]);
@@ -76,7 +91,7 @@ export function AdminCourses() {
     setCurrentPage(1);
   };
 
-  // Filter Matching Logic aligned with Public Website
+  // Requirement 3 & 5 & 7: Exact Canonical Filter Matching Logic
   const filteredCourses = useMemo(() => {
     return courses.filter(c => {
       // 1. Program Type Filter
@@ -88,34 +103,18 @@ export function AdminCourses() {
         matchesProgram = catLower.includes('master');
       }
 
-      // 2. Department / Section Filter
+      // 2. Department Filter — EXACT Canonical Comparison
       let matchesDepartment = true;
       if (department !== 'All Departments') {
-        const domLower = (c.domain || c.category || '').toLowerCase();
-        const deptLower = department.toLowerCase();
-
-        if (deptLower.includes('it') && (domLower.includes('it') || domLower.includes('software'))) {
-          matchesDepartment = true;
-        } else if (deptLower.includes('multimedia') && domLower.includes('multimedia')) {
-          matchesDepartment = true;
-        } else if ((deptLower.includes('account') || deptLower.includes('finance')) && (domLower.includes('account') || domLower.includes('finance') || domLower.includes('erp'))) {
-          matchesDepartment = true;
-        } else if (deptLower.includes('civil') && (domLower.includes('civil') || domLower.includes('arch'))) {
-          matchesDepartment = true;
-        } else if (deptLower.includes('mechanical') && (domLower.includes('mech') || domLower.includes('aero'))) {
-          matchesDepartment = true;
-        } else if (deptLower.includes('electrical') && (domLower.includes('electr') || domLower.includes('mep'))) {
-          matchesDepartment = true;
-        } else if (deptLower.includes('digital marketing') && (domLower.includes('digital') || domLower.includes('seo') || domLower.includes('marketing'))) {
-          matchesDepartment = true;
-        } else {
-          matchesDepartment = domLower.includes(deptLower) || deptLower.includes(domLower);
-        }
+        const rawDept = (c.domain || c.department || c.category || '').trim();
+        const canonDept = CANONICAL_DEPT_MAP[rawDept] || rawDept;
+        matchesDepartment = (canonDept === department);
       }
 
       // 3. Search Query
       const softwareStr = Array.isArray(c.softwareTools) ? c.softwareTools.join(' ') : (c.softwareTools || c.software || '');
       const matchesSearch =
+        !search ||
         (c.title || '').toLowerCase().includes(search.toLowerCase()) ||
         (c.category || '').toLowerCase().includes(search.toLowerCase()) ||
         (c.domain || '').toLowerCase().includes(search.toLowerCase()) ||
@@ -151,7 +150,7 @@ export function AdminCourses() {
         </Link>
       </div>
 
-      {/* REQUIREMENT 4: ALIGNED RESPONSIVE FILTER ROW */}
+      {/* ALIGNED RESPONSIVE FILTER ROW */}
       <div className="p-4 rounded-2xl glass-panel border border-white/10 space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
           {/* SEARCH INPUT */}
@@ -234,7 +233,7 @@ export function AdminCourses() {
         </div>
       ) : filteredCourses.length === 0 ? (
         <div className="text-center py-16 text-xs text-slate-400 italic p-6 rounded-3xl glass-panel border border-white/10 space-y-3">
-          <p className="text-sm font-semibold text-white">No courses found matching criteria.</p>
+          <p className="text-sm font-semibold text-white">No courses found for {department !== 'All Departments' ? department : 'selected criteria'}.</p>
           <p className="text-slate-400">Try adjusting your Department, Program Type, or search keyword.</p>
           <button
             onClick={handleResetFilters}
@@ -251,8 +250,8 @@ export function AdminCourses() {
               <div key={crs.id || i} className="p-5 rounded-3xl glass-panel border border-white/10 space-y-4 flex flex-col justify-between hover:border-purple-500/40 transition-all">
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 truncate max-w-[150px]">
-                      {crs.domain || crs.category}
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 truncate max-w-[170px]">
+                      {CANONICAL_DEPT_MAP[crs.domain || crs.department || crs.category] || crs.domain || crs.category}
                     </span>
                     <span className="text-[10px] text-slate-400 font-mono shrink-0">{crs.duration}</span>
                   </div>
@@ -327,7 +326,7 @@ export function AdminCourses() {
               </button>
             </div>
             <div className="space-y-2 text-xs text-slate-300">
-              <p><strong>Department / Domain:</strong> {viewModal.domain || viewModal.category}</p>
+              <p><strong>Department / Domain:</strong> {CANONICAL_DEPT_MAP[viewModal.domain || viewModal.department || viewModal.category] || viewModal.domain || viewModal.category}</p>
               <p><strong>Program Type:</strong> {viewModal.category || viewModal.level}</p>
               <p><strong>Duration:</strong> {viewModal.duration}</p>
               <p><strong>Software Tools:</strong> {Array.isArray(viewModal.softwareTools) ? viewModal.softwareTools.join(', ') : (viewModal.softwareTools || viewModal.software)}</p>

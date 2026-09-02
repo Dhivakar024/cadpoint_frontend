@@ -11,7 +11,7 @@ export function AdminLogin() {
   const isDark = theme === 'dark';
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('admin@cadpoint.co.in');
+  const [username, setUsername] = useState('cadpointsalem001@gmail.com');
   const [password, setPassword] = useState('cadpoint@123');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
