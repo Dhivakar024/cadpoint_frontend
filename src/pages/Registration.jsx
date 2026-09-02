@@ -51,6 +51,7 @@ export function Registration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(null);
   const [fileNames, setFileNames] = useState({ photo: '', resume: '', idProof: '' });
+  const [resumeFile, setResumeFile] = useState(null);
 
   const {
     register,
@@ -113,6 +114,9 @@ export function Registration() {
       Object.keys(payloadData).forEach((key) => {
         formData.append(key, payloadData[key]);
       });
+      if (resumeFile) {
+        formData.append('resume', resumeFile);
+      }
 
       // 1. Try backend API submission
       submitRegistration(formData).catch(() => {});
@@ -463,10 +467,17 @@ export function Registration() {
                   <div className="p-6 rounded-2xl bg-white/5 border border-dashed border-white/20 text-center flex flex-col items-center">
                     <Upload className="w-8 h-8 text-cyan-400 mb-2" />
                     <span className="text-xs font-bold text-white mb-1">Resume / CV</span>
-                    <span className="text-[10px] text-slate-400 mb-3">PDF (Max 5MB)</span>
+                    <span className="text-[10px] text-slate-400 mb-3">PDF / DOC / DOCX (Max 10MB)</span>
                     <input
                       type="file"
-                      onChange={(e) => setFileNames((prev) => ({ ...prev, resume: e.target.files[0]?.name || '' }))}
+                      accept=".pdf,.doc,.docx"
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          setResumeFile(file);
+                          setFileNames((prev) => ({ ...prev, resume: file.name }));
+                        }
+                      }}
                       className="text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-cyan-600/30 file:text-cyan-200 cursor-pointer"
                     />
                     {fileNames.resume && <span className="text-[10px] text-emerald-400 mt-2">✓ {fileNames.resume}</span>}

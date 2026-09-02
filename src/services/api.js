@@ -11,14 +11,15 @@ const api = axios.create({
 });
 
 export const submitRegistration = async (registrationData) => {
-  let payload = registrationData;
   if (registrationData instanceof FormData) {
-    payload = {};
-    registrationData.forEach((value, key) => {
-      payload[key] = value;
+    const response = await api.post('/registration', registrationData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     });
+    return response.data;
   }
-  const response = await api.post('/registration', payload);
+  const response = await api.post('/registration', registrationData);
   return response.data;
 };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, UserCheck, Zap, Search, Eye, Trash2, X } from 'lucide-react';
+import { MessageSquare, UserCheck, Zap, Search, Eye, Trash2, X, Download, FileText } from 'lucide-react';
 import {
   fetchAdminEnquiries,
   updateEnquiryStatus,
@@ -155,9 +155,9 @@ export function AdminForms() {
                       <strong className="text-white block">{enq.name}</strong>
                       <span className="text-slate-400 text-[11px]">{enq.email} | {enq.phone}</span>
                     </td>
-                    <td className="py-3 px-4 max-w-xs">
+                    <td className="py-3 px-4">
                       <strong className="text-cyan-400 block">{enq.subject || 'Enquiry'}</strong>
-                      <p className="text-slate-300 truncate text-[11px]">{enq.message}</p>
+                      <p className="text-slate-300 text-[11px] line-clamp-1">{enq.message}</p>
                     </td>
                     <td className="py-3 px-4 text-slate-400 whitespace-nowrap">
                       {enq.createdAt ? new Date(enq.createdAt).toLocaleDateString() : 'N/A'}
@@ -193,6 +193,7 @@ export function AdminForms() {
                 <tr className="border-b border-white/10 text-slate-400 uppercase text-[10px] tracking-wider">
                   <th className="py-3 px-4">Ref ID & Student</th>
                   <th className="py-3 px-4">Course Applied</th>
+                  <th className="py-3 px-4">Resume / CV</th>
                   <th className="py-3 px-4">Qualification</th>
                   <th className="py-3 px-4">Status</th>
                   <th className="py-3 px-4 text-right">Actions</th>
@@ -209,6 +210,22 @@ export function AdminForms() {
                     <td className="py-3 px-4">
                       <strong className="text-cyan-400 block">{reg.courseName}</strong>
                       <span className="text-slate-300 text-[11px]">{reg.mode} ({reg.batchPreference || 'Morning'})</span>
+                    </td>
+                    <td className="py-3 px-4">
+                      {reg.resumeUrl ? (
+                        <a
+                          href={reg.resumeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download={reg.resumeOriginalName || 'resume.pdf'}
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[11px] font-semibold transition-colors cursor-pointer"
+                        >
+                          <FileText className="w-3.5 h-3.5 shrink-0" />
+                          <span className="truncate max-w-[120px]">{reg.resumeOriginalName || 'Download Resume'}</span>
+                        </a>
+                      ) : (
+                        <span className="text-slate-500 text-[11px] italic">No Resume Uploaded</span>
+                      )}
                     </td>
                     <td className="py-3 px-4 text-slate-300">
                       {reg.qualification} ({reg.passoutYear})
@@ -296,7 +313,7 @@ export function AdminForms() {
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <div className="space-y-2 text-slate-300">
+            <div className="space-y-2.5 text-slate-300">
               {viewModal.type === 'enquiry' && (
                 <>
                   <p><strong>Name:</strong> {viewModal.data.name}</p>
@@ -314,6 +331,36 @@ export function AdminForms() {
                   <p><strong>Phone / WhatsApp:</strong> {viewModal.data.phone} / {viewModal.data.whatsapp}</p>
                   <p><strong>Course Applied:</strong> {viewModal.data.courseName} ({viewModal.data.mode})</p>
                   <p><strong>Qualification & College:</strong> {viewModal.data.qualification} — {viewModal.data.institution}</p>
+                  
+                  {/* RESUME DOWNLOAD SECTION */}
+                  <div className="pt-2 border-t border-white/10">
+                    <strong className="block text-slate-200 mb-1.5">Resume / CV Document:</strong>
+                    {viewModal.data.resumeUrl ? (
+                      <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 space-y-2">
+                        <div className="flex items-center justify-between text-[11px]">
+                          <span className="text-cyan-300 font-bold flex items-center gap-1.5">
+                            <FileText className="w-3.5 h-3.5" />
+                            Resume Available
+                          </span>
+                          <span className="text-slate-400 font-mono text-[10px] truncate max-w-[150px]">
+                            {viewModal.data.resumeOriginalName || 'resume.pdf'}
+                          </span>
+                        </div>
+                        <a
+                          href={viewModal.data.resumeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download={viewModal.data.resumeOriginalName || 'resume.pdf'}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-md transition-all cursor-pointer"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          <span>Download Resume</span>
+                        </a>
+                      </div>
+                    ) : (
+                      <p className="text-slate-400 text-xs italic">No Resume Uploaded</p>
+                    )}
+                  </div>
                 </>
               )}
             </div>
