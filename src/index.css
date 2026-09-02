@@ -13,14 +13,14 @@
   }
 
   [data-theme="light"] {
-    --bg-main: #ffffff;
-    --card-bg: #ffffff;
-    --border-card: #d1fae5;
+    --bg-main: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --border-card: rgba(226, 232, 240, 0.9);
     --text-main: #0f172a;
-    --text-muted: #64748b;
-    --brand-red: #10b981;
-    --brand-navy: #065f46;
-    --brand-blue: #059669;
+    --text-muted: #475569;
+    --brand-red: #ef4444;
+    --brand-navy: #1e3a8a;
+    --brand-blue: #2563eb;
   }
 
   html {
@@ -54,7 +54,7 @@
 
   [data-theme="light"] select option {
     background-color: #ffffff !important;
-    color: #111827 !important;
+    color: #0f172a !important;
   }
 }
 
@@ -168,8 +168,14 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
+.text-gradient-brand {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 40%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* =========================================================================
-   PURE LIGHT THEME ENGINE (Master Canvas & WCAG AA Typography System)
+   RESTORED ORIGINAL LIGHT THEME DESIGN (Clean White/Slate/Navy Palette)
    ========================================================================= */
 
 [data-theme="light"],
@@ -180,101 +186,101 @@ body[data-theme="light"],
 [data-theme="light"] .main-layout,
 [data-theme="light"] .page-wrapper,
 [data-theme="light"] main {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FFFC 40%, #F3FFF9 70%, #ECFDF5 100%) !important;
-  background-attachment: fixed !important;
-  color: #0F172A !important;
-}
-
-[data-theme="light"] h1 {
-  color: #0F172A !important;
-  font-weight: 700 !important;
-  opacity: 1 !important;
-}
-
-[data-theme="light"] h2 {
-  color: #111827 !important;
-  font-weight: 700 !important;
-  opacity: 1 !important;
-}
-
-[data-theme="light"] h3,
-[data-theme="light"] h4,
-[data-theme="light"] h5,
-[data-theme="light"] h6 {
-  color: #1E293B !important;
-  font-weight: 700 !important;
-  opacity: 1 !important;
-}
-
-[data-theme="light"] p,
-[data-theme="light"] li,
-[data-theme="light"] label {
-  color: #334155 !important;
-  opacity: 1 !important;
-}
-
-[data-theme="light"] .text-slate-400,
-[data-theme="light"] .text-slate-300,
-[data-theme="light"] .text-slate-500,
-[data-theme="light"] .text-gray-400,
-[data-theme="light"] .text-gray-300,
-[data-theme="light"] .text-gray-500 {
-  color: #475569 !important;
-}
-
-[data-theme="light"] .glass-card {
-  background: #FFFFFF !important;
-  border: 1px solid #D1FAE5 !important;
-  box-shadow: 0 4px 20px -2px rgba(16, 185, 129, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
-}
-
-[data-theme="light"] .glass-card:hover {
-  border-color: #10B981 !important;
-  box-shadow: 0 12px 28px -4px rgba(16, 185, 129, 0.16) !important;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
 }
 
 [data-theme="light"] .glass-panel {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid #D1FAE5 !important;
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.06) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 10px 30px -10px rgba(30, 58, 138, 0.08) !important;
+}
+
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 8px 25px -8px rgba(30, 58, 138, 0.08) !important;
+}
+
+[data-theme="light"] .glass-card:hover {
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  box-shadow: 0 12px 30px -10px rgba(37, 99, 235, 0.18) !important;
 }
 
 [data-theme="light"] .glass-input {
-  background: #FFFFFF !important;
-  border: 1.5px solid #CBD5E1 !important;
-  color: #0F172A !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
 }
 
 [data-theme="light"] .glass-input:focus {
-  border-color: #10B981 !important;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.25) !important;
+}
+
+[data-theme="light"] .text-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e293b 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+[data-theme="light"] .text-gradient-brand {
+  background: linear-gradient(135deg, #ef4444 0%, #2563eb 50%, #1e3a8a 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+[data-theme="light"] header nav {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+[data-theme="light"] header div.bg-\[\#040711\] {
+  background-color: #1e3a8a !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .bg-\[\#070b18\],
+[data-theme="light"] .bg-\[\#080B16\],
+[data-theme="light"] .bg-\[\#040711\],
+[data-theme="light"] .bg-slate-950,
+[data-theme="light"] .bg-slate-900 {
+  background-color: #ffffff !important;
+}
+
+[data-theme="light"] .bg-slate-900\/60,
+[data-theme="light"] .bg-slate-900\/40,
+[data-theme="light"] .bg-white\/5 {
+  background-color: #f1f5f9 !important;
+}
+
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400 {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .border-slate-800,
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/5 {
+  border-color: #e2e8f0 !important;
 }
 
 [data-theme="light"] footer {
-  background-color: #065F46 !important;
-  color: #ECFDF5 !important;
-  border-top-color: #047857 !important;
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
 }
 
-[data-theme="light"] footer h1,
-[data-theme="light"] footer h2,
-[data-theme="light"] footer h3,
-[data-theme="light"] footer h4,
-[data-theme="light"] footer h5,
-[data-theme="light"] footer h6 {
-  color: #FFFFFF !important;
+[data-theme="light"] footer .text-slate-400,
+[data-theme="light"] footer .text-slate-300 {
+  color: #94a3b8 !important;
 }
 
-[data-theme="light"] footer p,
-[data-theme="light"] footer span,
-[data-theme="light"] footer div {
-  color: #A7F3D0 !important;
-}
-
-[data-theme="light"] footer a {
-  color: #6EE7B7 !important;
-}
-
-[data-theme="light"] footer a:hover {
-  color: #34D399 !important;
+[data-theme="light"] footer .text-white {
+  color: #ffffff !important;
 }

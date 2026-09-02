@@ -7,7 +7,7 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { submitRegistration } from '../services/api';
 import { sendRegistrationEmailDirect, getWhatsAppShareUrl } from '../services/directResend';
-import { User, Mail, BookOpen, GraduationCap, Briefcase, FileCheck, CheckCircle2, ArrowRight, ArrowLeft, Upload } from 'lucide-react';
+import { User, Mail, BookOpen, GraduationCap, Briefcase, FileCheck, CheckCircle2, ArrowRight, ArrowLeft, Upload, AlertCircle } from 'lucide-react';
 import { SEO } from '../components/common/SEO';
 import { getBreadcrumbSchema } from '../utils/seoSchemas';
 
@@ -52,12 +52,14 @@ export function Registration() {
   const [submitSuccess, setSubmitSuccess] = useState(null);
   const [fileNames, setFileNames] = useState({ photo: '', resume: '', idProof: '' });
   const [resumeFile, setResumeFile] = useState(null);
+  const [resumeError, setResumeError] = useState('');
 
   const {
     register,
     handleSubmit,
     trigger,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(formSchema),
@@ -90,6 +92,17 @@ export function Registration() {
     if (currentStep === 4) fieldsToValidate = ['qualification', 'institution', 'passoutYear'];
 
     const isValid = await trigger(fieldsToValidate);
+
+    // Mandatory Resume Validation on Step 6
+    if (currentStep === 6) {
+      if (!resumeFile) {
+        setResumeError('Resume / CV upload is mandatory. Please select a valid PDF, DOC, or DOCX resume.');
+        return;
+      } else {
+        setResumeError('');
+      }
+    }
+
     if (isValid && currentStep < 7) {
       setCurrentStep((prev) => prev + 1);
       window.scrollTo({ top: 300, behavior: 'smooth' });
@@ -103,6 +116,14 @@ export function Registration() {
   };
 
   const onSubmit = async (data) => {
+    // Enforce mandatory resume check
+    if (!resumeFile) {
+      setResumeError('Resume / CV upload is mandatory. Please upload your resume in Step 6.');
+      setCurrentStep(6);
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+      return;
+    }
+
     setIsSubmitting(true);
     const regId = 'CAD-2026-' + Math.floor(100000 + Math.random() * 900000);
     const payloadData = {
@@ -451,7 +472,16 @@ export function Registration() {
                   <Upload className="w-5 h-5 text-cyan-400" />
                   Upload Documents & Verification
                 </h3>
+
+                {resumeError && (
+                  <div className="p-3.5 rounded-2xl bg-red-500/10 border border-red-500/30 text-xs font-bold text-red-400 flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{resumeError}</span>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  {/* Photo */}
                   <div className="p-6 rounded-2xl bg-white/5 border border-dashed border-white/20 text-center flex flex-col items-center">
                     <Upload className="w-8 h-8 text-purple-400 mb-2" />
                     <span className="text-xs font-bold text-white mb-1">Passport Photo</span>
@@ -464,25 +494,34 @@ export function Registration() {
                     {fileNames.photo && <span className="text-[10px] text-emerald-400 mt-2">✓ {fileNames.photo}</span>}
                   </div>
 
-                  <div className="p-6 rounded-2xl bg-white/5 border border-dashed border-white/20 text-center flex flex-col items-center">
+                  {/* Resume / CV — MANDATORY */}
+                  <div className={`p-6 rounded-2xl bg-white/5 border-2 border-dashed text-center flex flex-col items-center transition-colors ${
+                    resumeError ? 'border-red-500/60 bg-red-500/5' : 'border-cyan-500/40'
+                  }`}>
                     <Upload className="w-8 h-8 text-cyan-400 mb-2" />
-                    <span className="text-xs font-bold text-white mb-1">Resume / CV</span>
+                    <span className="text-xs font-bold text-white mb-0.5">Resume / CV *</span>
+                    <span className="text-[10px] font-semibold text-cyan-400 mb-1">(Mandatory Upload)</span>
                     <span className="text-[10px] text-slate-400 mb-3">PDF / DOC / DOCX (Max 10MB)</span>
                     <input
                       type="file"
+                      required
                       accept=".pdf,.doc,.docx"
                       onChange={(e) => {
                         const file = e.target.files[0];
                         if (file) {
                           setResumeFile(file);
                           setFileNames((prev) => ({ ...prev, resume: file.name }));
+                          setResumeError('');
                         }
                       }}
                       className="text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-cyan-600/30 file:text-cyan-200 cursor-pointer"
                     />
-                    {fileNames.resume && <span className="text-[10px] text-emerald-400 mt-2">✓ {fileNames.resume}</span>}
+                    {fileNames.resume && (
+                      <span className="text-[11px] font-bold text-emerald-400 mt-2">✓ {fileNames.resume}</span>
+                    )}
                   </div>
 
+                  {/* ID Proof */}
                   <div className="p-6 rounded-2xl bg-white/5 border border-dashed border-white/20 text-center flex flex-col items-center">
                     <Upload className="w-8 h-8 text-emerald-400 mb-2" />
                     <span className="text-xs font-bold text-white mb-1">Government ID Proof</span>
@@ -529,6 +568,12 @@ export function Registration() {
                   <div>
                     <span className="text-slate-400">Batch Time:</span>
                     <strong className="text-white block text-sm mt-0.5">{watch('batchPreference')} Batch</strong>
+                  </div>
+                  <div className="sm:col-span-2 pt-2 border-t border-white/10">
+                    <span className="text-slate-400">Uploaded Resume:</span>
+                    <strong className="text-emerald-400 block text-sm mt-0.5">
+                      ✓ {fileNames.resume || resumeFile?.name || 'Resume Attached'}
+                    </strong>
                   </div>
                 </div>
 

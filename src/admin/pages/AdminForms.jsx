@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, UserCheck, Zap, Search, Eye, Trash2, X, Download, FileText } from 'lucide-react';
+import { MessageSquare, UserCheck, Zap, Search, Eye, Trash2, X, Download, FileText, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import {
   fetchAdminEnquiries,
   updateEnquiryStatus,
@@ -16,6 +16,8 @@ export function AdminForms() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [viewModal, setViewModal] = useState(null);
+  const [deleteConfirmModal, setDeleteConfirmModal] = useState(null);
+  const [toastMessage, setToastMessage] = useState(null);
 
   const loadData = async () => {
     setLoading(true);
@@ -40,19 +42,17 @@ export function AdminForms() {
   const contactOnly = enquiries.filter(e => e.formSource !== 'quick-admission-enquiry');
   const quickAdmissionOnly = enquiries.filter(e => e.formSource === 'quick-admission-enquiry');
 
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 2000);
+  };
+
   const handleEnquiryStatus = async (id, status) => {
     try {
       await updateEnquiryStatus(id, status);
       setEnquiries(prev => prev.map(e => (e.id === id || e.email === id) ? { ...e, status } : e));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleDeleteEnquiry = async (id) => {
-    try {
-      await deleteEnquiryRecord(id);
-      setEnquiries(prev => prev.filter(e => (e.id || e.email) !== id));
     } catch (err) {
       console.error(err);
     }
@@ -67,12 +67,22 @@ export function AdminForms() {
     }
   };
 
-  const handleDeleteReg = async (id) => {
+  const handleExecuteDelete = async () => {
+    if (!deleteConfirmModal) return;
+    const { type, id } = deleteConfirmModal;
     try {
-      await deleteRegistrationRecord(id);
-      setRegistrations(prev => prev.filter(r => r.registrationId !== id));
+      if (type === 'enquiry') {
+        await deleteEnquiryRecord(id);
+        setEnquiries(prev => prev.filter(e => (e.id || e.email) !== id));
+      } else if (type === 'registration') {
+        await deleteRegistrationRecord(id);
+        setRegistrations(prev => prev.filter(r => r.registrationId !== id));
+      }
+      showToast('Record deleted successfully.');
     } catch (err) {
-      console.error(err);
+      console.error('Delete error:', err);
+    } finally {
+      setDeleteConfirmModal(null);
     }
   };
 
@@ -81,7 +91,15 @@ export function AdminForms() {
   const filteredRegs = registrations.filter(r => (r.fullName || r.name || '').toLowerCase().includes(search.toLowerCase()) || (r.email || '').toLowerCase().includes(search.toLowerCase()) || (r.registrationId || '').toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 relative">
+      {/* 2-Second Top Corner Toast Notification */}
+      {toastMessage && (
+        <div className="fixed top-6 right-6 z-[200] flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0F172A] border border-emerald-500/50 shadow-2xl text-emerald-400 text-xs font-bold animate-in fade-in slide-in-from-top-4 duration-300">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <span>{toastMessage}</span>
+        </div>
+      )}
+
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
         <div>
           <h1 className="text-2xl font-extrabold font-heading text-gradient">Forms & Submissions Hub</h1>
@@ -177,7 +195,15 @@ export function AdminForms() {
                       <button onClick={() => setViewModal({ type: 'enquiry', data: enq })} className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-cyan-400 cursor-pointer">
                         <Eye className="w-3.5 h-3.5" />
                       </button>
-                      <button onClick={() => handleDeleteEnquiry(enq.id || enq.email)} className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer">
+                      <button
+                        onClick={() => setDeleteConfirmModal({
+                          type: 'enquiry',
+                          id: enq.id || enq.email,
+                          title: enq.name || enq.email
+                        })}
+                        className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer"
+                        title="Delete Enquiry"
+                      >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </td>
@@ -245,7 +271,15 @@ export function AdminForms() {
                       <button onClick={() => setViewModal({ type: 'registration', data: reg })} className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-cyan-400 cursor-pointer">
                         <Eye className="w-3.5 h-3.5" />
                       </button>
-                      <button onClick={() => handleDeleteReg(reg.registrationId)} className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer">
+                      <button
+                        onClick={() => setDeleteConfirmModal({
+                          type: 'registration',
+                          id: reg.registrationId,
+                          title: reg.fullName || reg.name || reg.registrationId
+                        })}
+                        className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer"
+                        title="Delete Registration"
+                      >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </td>
@@ -292,7 +326,15 @@ export function AdminForms() {
                       <button onClick={() => setViewModal({ type: 'enquiry', data: qa })} className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-cyan-400 cursor-pointer">
                         <Eye className="w-3.5 h-3.5" />
                       </button>
-                      <button onClick={() => handleDeleteEnquiry(qa.id || qa.email)} className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer">
+                      <button
+                        onClick={() => setDeleteConfirmModal({
+                          type: 'enquiry',
+                          id: qa.id || qa.email,
+                          title: qa.name || qa.email
+                        })}
+                        className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 cursor-pointer"
+                        title="Delete Quick Enquiry"
+                      >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </td>
@@ -304,6 +346,7 @@ export function AdminForms() {
         </div>
       )}
 
+      {/* VIEW DETAILS MODAL */}
       {viewModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
           <div className="relative w-full max-w-md rounded-3xl p-6 glass-panel border border-cyan-500/40 space-y-4 text-xs">
@@ -367,6 +410,40 @@ export function AdminForms() {
             <button onClick={() => setViewModal(null)} className="w-full py-2 rounded-xl bg-white/10 text-white font-semibold text-xs cursor-pointer">
               Close
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* DELETE CONFIRMATION MODAL */}
+      {deleteConfirmModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative w-full max-w-sm rounded-3xl p-6 glass-panel border border-red-500/40 text-center space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center mx-auto">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
+            <div className="space-y-1.5">
+              <h3 className="text-base font-bold text-white font-heading">Are you sure?</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Are you sure you want to delete this record (<strong>{deleteConfirmModal.title}</strong>)? This will permanently remove the record from the database.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => setDeleteConfirmModal(null)}
+                className="py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleExecuteDelete}
+                className="py-2.5 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-colors shadow-lg shadow-red-600/30 flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Yes, Delete</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
