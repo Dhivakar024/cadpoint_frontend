@@ -7,14 +7,15 @@ export function AdminAddCourse() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '',
-    category: 'Professional',
+    category: 'Professional Programs',
+    domain: 'IT & Non-IT',
     duration: '3 Months (120 Hours)',
-    level: 'Beginner to Advanced',
+    level: 'Professional',
     description: '',
     softwareTools: '',
     deliveryMode: 'Offline & Online',
     featured: true,
-    image: '/images/courses/fullstack.jpg'
+    image: '/images/python.jpg'
   });
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState('');
@@ -64,28 +65,43 @@ export function AdminAddCourse() {
             required
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            placeholder="e.g. Professional Program in AI Full-Stack Python & React"
+            placeholder="e.g. Professional Program AI in Full-Stack Python & React"
             className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs"
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Category *</label>
+            <label className="block font-semibold text-slate-300 mb-1">Program Type *</label>
             <select
               value={formData.category}
-              onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+              onChange={(e) => setFormData({ ...formData, category: e.target.value, level: e.target.value.includes('Master') ? 'Master Diploma' : 'Professional' })}
               className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs bg-[#0F172A]"
             >
-              <option value="Professional">Professional Program</option>
-              <option value="Master Diploma">Master Diploma Program</option>
-              <option value="IT & Software">IT & Software</option>
-              <option value="Civil & Architecture">Civil & Architecture</option>
-              <option value="Mechanical & Aeronautical">Mechanical & Aeronautical</option>
-              <option value="Electrical & Automation">Electrical & Automation</option>
+              <option value="Professional Programs">Professional Programs</option>
+              <option value="Master Diploma Programs">Master Diploma Programs</option>
             </select>
           </div>
 
+          <div>
+            <label className="block font-semibold text-slate-300 mb-1">Course Department / Section *</label>
+            <select
+              value={formData.domain}
+              onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs bg-[#0F172A]"
+            >
+              <option value="IT & Non-IT">IT & Non-IT</option>
+              <option value="Multimedia">Multimedia</option>
+              <option value="Accounts & Finance">Accounts & Finance</option>
+              <option value="Civil & Architecture">Civil & Architecture</option>
+              <option value="Mechanical & Aeronautical Designing">Mechanical & Aeronautical Designing</option>
+              <option value="Electrical & Electronics Designing">Electrical & Electronics Designing</option>
+              <option value="Digital Marketing & SEO">Digital Marketing & SEO</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block font-semibold text-slate-300 mb-1">Duration *</label>
             <input
@@ -96,6 +112,19 @@ export function AdminAddCourse() {
               placeholder="e.g. 3 Months (120 Hours)"
               className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs"
             />
+          </div>
+
+          <div>
+            <label className="block font-semibold text-slate-300 mb-1">Delivery Mode *</label>
+            <select
+              value={formData.deliveryMode}
+              onChange={(e) => setFormData({ ...formData, deliveryMode: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs bg-[#0F172A]"
+            >
+              <option value="Offline & Online">Offline & Online</option>
+              <option value="Offline Classroom">Offline Classroom</option>
+              <option value="Online Virtual">Online Virtual</option>
+            </select>
           </div>
         </div>
 

@@ -1,20 +1,39 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, PlusCircle, Search, Trash2, Eye, Edit3, X, AlertTriangle, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
+import { BookOpen, PlusCircle, Search, Trash2, Eye, Edit3, X, AlertTriangle, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
 import { fetchAdminCourses, deleteAdminCourse } from '../services/adminApi';
 
 const ITEMS_PER_PAGE = 18;
+
+// Requirement 3: Exact 7 Department / Course Section Options
+const DEPARTMENT_OPTIONS = [
+  'All Departments',
+  'IT & Non-IT',
+  'Multimedia',
+  'Accounts & Finance',
+  'Civil & Architecture',
+  'Mechanical & Aeronautical Designing',
+  'Electrical & Electronics Designing',
+  'Digital Marketing & SEO',
+];
+
+// Requirement 3: Exact Program Type Options
+const PROGRAM_OPTIONS = [
+  'All Categories',
+  'Professional Programs',
+  'Master Diploma Programs',
+];
 
 export function AdminCourses() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   
-  // Requirement 1: Category Filter with ONLY 3 options
-  const [category, setCategory] = useState('All Categories');
+  // Filter 1: Program Type
+  const [programType, setProgramType] = useState('All Categories');
   
-  // Requirement 2: Specific Course Filter Dropdown
-  const [selectedCourseId, setSelectedCourseId] = useState('All Courses');
+  // Filter 2: Department / Section
+  const [department, setDepartment] = useState('All Departments');
   
   const [currentPage, setCurrentPage] = useState(1);
   const [viewModal, setViewModal] = useState(null);
@@ -38,42 +57,6 @@ export function AdminCourses() {
     loadCourses();
   }, []);
 
-  // Compute dynamic course list options based on current category selection
-  const courseOptionsForCategory = useMemo(() => {
-    return courses.filter(c => {
-      if (category === 'All Categories') return true;
-      if (category === 'Professional Programs') {
-        return (c.category || '').toLowerCase().includes('professional');
-      }
-      if (category === 'Master Diploma Programs') {
-        return (c.category || '').toLowerCase().includes('master');
-      }
-      return true;
-    });
-  }, [courses, category]);
-
-  // Requirement 2: Auto-reset course dropdown if selected course doesn't match new category
-  const handleCategoryChange = (newCategory) => {
-    setCategory(newCategory);
-    setCurrentPage(1);
-
-    if (selectedCourseId !== 'All Courses') {
-      const isStillValid = courses.some(c => {
-        const matchesId = c.id === selectedCourseId || c.title === selectedCourseId;
-        if (!matchesId) return false;
-
-        if (newCategory === 'All Categories') return true;
-        if (newCategory === 'Professional Programs') return (c.category || '').toLowerCase().includes('professional');
-        if (newCategory === 'Master Diploma Programs') return (c.category || '').toLowerCase().includes('master');
-        return true;
-      });
-
-      if (!isStillValid) {
-        setSelectedCourseId('All Courses');
-      }
-    }
-  };
-
   const handleDelete = async () => {
     if (!deleteModal) return;
     try {
@@ -86,21 +69,48 @@ export function AdminCourses() {
     }
   };
 
-  // Filtered courses based on search, category, and selected specific course
+  const handleResetFilters = () => {
+    setSearch('');
+    setProgramType('All Categories');
+    setDepartment('All Departments');
+    setCurrentPage(1);
+  };
+
+  // Filter Matching Logic aligned with Public Website
   const filteredCourses = useMemo(() => {
     return courses.filter(c => {
-      // 1. Category Filter
-      let matchesCat = true;
-      if (category === 'Professional Programs') {
-        matchesCat = (c.category || '').toLowerCase().includes('professional');
-      } else if (category === 'Master Diploma Programs') {
-        matchesCat = (c.category || '').toLowerCase().includes('master');
+      // 1. Program Type Filter
+      let matchesProgram = true;
+      const catLower = (c.category || c.level || '').toLowerCase();
+      if (programType === 'Professional Programs') {
+        matchesProgram = catLower.includes('professional');
+      } else if (programType === 'Master Diploma Programs') {
+        matchesProgram = catLower.includes('master');
       }
 
-      // 2. Specific Course Selection Filter
-      let matchesSpecificCourse = true;
-      if (selectedCourseId !== 'All Courses') {
-        matchesSpecificCourse = (c.id === selectedCourseId || c.title === selectedCourseId);
+      // 2. Department / Section Filter
+      let matchesDepartment = true;
+      if (department !== 'All Departments') {
+        const domLower = (c.domain || c.category || '').toLowerCase();
+        const deptLower = department.toLowerCase();
+
+        if (deptLower.includes('it') && (domLower.includes('it') || domLower.includes('software'))) {
+          matchesDepartment = true;
+        } else if (deptLower.includes('multimedia') && domLower.includes('multimedia')) {
+          matchesDepartment = true;
+        } else if ((deptLower.includes('account') || deptLower.includes('finance')) && (domLower.includes('account') || domLower.includes('finance') || domLower.includes('erp'))) {
+          matchesDepartment = true;
+        } else if (deptLower.includes('civil') && (domLower.includes('civil') || domLower.includes('arch'))) {
+          matchesDepartment = true;
+        } else if (deptLower.includes('mechanical') && (domLower.includes('mech') || domLower.includes('aero'))) {
+          matchesDepartment = true;
+        } else if (deptLower.includes('electrical') && (domLower.includes('electr') || domLower.includes('mep'))) {
+          matchesDepartment = true;
+        } else if (deptLower.includes('digital marketing') && (domLower.includes('digital') || domLower.includes('seo') || domLower.includes('marketing'))) {
+          matchesDepartment = true;
+        } else {
+          matchesDepartment = domLower.includes(deptLower) || deptLower.includes(domLower);
+        }
       }
 
       // 3. Search Query
@@ -108,13 +118,14 @@ export function AdminCourses() {
       const matchesSearch =
         (c.title || '').toLowerCase().includes(search.toLowerCase()) ||
         (c.category || '').toLowerCase().includes(search.toLowerCase()) ||
+        (c.domain || '').toLowerCase().includes(search.toLowerCase()) ||
         softwareStr.toLowerCase().includes(search.toLowerCase());
 
-      return matchesCat && matchesSpecificCourse && matchesSearch;
+      return matchesProgram && matchesDepartment && matchesSearch;
     });
-  }, [courses, category, selectedCourseId, search]);
+  }, [courses, programType, department, search]);
 
-  // Paginated Courses for rendering performance
+  // Paginated Courses for Fast DOM Performance
   const totalPages = Math.ceil(filteredCourses.length / ITEMS_PER_PAGE) || 1;
   const paginatedCourses = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -123,7 +134,7 @@ export function AdminCourses() {
 
   return (
     <div className="space-y-6 pb-8">
-      {/* HEADER BAR */}
+      {/* PAGE HEADER */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
         <div>
           <h1 className="text-2xl font-extrabold font-heading text-gradient">Courses Catalog Management</h1>
@@ -140,68 +151,78 @@ export function AdminCourses() {
         </Link>
       </div>
 
-      {/* FILTER BAR: CATEGORY + COURSE SELECT + SEARCH */}
+      {/* REQUIREMENT 4: ALIGNED RESPONSIVE FILTER ROW */}
       <div className="p-4 rounded-2xl glass-panel border border-white/10 space-y-3">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
           {/* SEARCH INPUT */}
-          <div className="relative">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
-              placeholder="Search by title or software tools..."
-              className="w-full pl-9 pr-3 py-2 rounded-xl glass-input text-xs"
-            />
-          </div>
-
-          {/* REQUIREMENT 1: CATEGORY FILTER WITH ONLY 3 OPTIONS */}
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-              Category Filter
+              Search Courses
+            </label>
+            <div className="relative">
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
+                placeholder="Search by title, software..."
+                className="w-full pl-9 pr-3 py-2 rounded-xl glass-input text-xs"
+              />
+            </div>
+          </div>
+
+          {/* FILTER 1: PROGRAM TYPE */}
+          <div>
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+              Program Type
             </label>
             <select
-              value={category}
-              onChange={(e) => handleCategoryChange(e.target.value)}
+              value={programType}
+              onChange={(e) => { setProgramType(e.target.value); setCurrentPage(1); }}
               className="w-full px-3 py-2 rounded-xl glass-input text-xs bg-[#0F172A] text-white cursor-pointer"
             >
-              <option value="All Categories">All Categories</option>
-              <option value="Professional Programs">Professional Programs</option>
-              <option value="Master Diploma Programs">Master Diploma Programs</option>
+              {PROGRAM_OPTIONS.map(opt => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
             </select>
           </div>
 
-          {/* REQUIREMENT 2: SPECIFIC COURSE SELECTION FILTER */}
+          {/* FILTER 2: DEPARTMENT / COURSE SECTION */}
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-              Select Specific Course
+              Course Department
             </label>
             <select
-              value={selectedCourseId}
-              onChange={(e) => { setSelectedCourseId(e.target.value); setCurrentPage(1); }}
+              value={department}
+              onChange={(e) => { setDepartment(e.target.value); setCurrentPage(1); }}
               className="w-full px-3 py-2 rounded-xl glass-input text-xs bg-[#0F172A] text-white cursor-pointer truncate"
             >
-              <option value="All Courses">All Courses ({courseOptionsForCategory.length})</option>
-              {courseOptionsForCategory.map((crs) => (
-                <option key={crs.id || crs.title} value={crs.id || crs.title}>
-                  {crs.title}
-                </option>
+              {DEPARTMENT_OPTIONS.map(dept => (
+                <option key={dept} value={dept}>{dept}</option>
               ))}
             </select>
+          </div>
+
+          {/* RESET FILTERS BUTTON */}
+          <div>
+            <button
+              onClick={handleResetFilters}
+              className="w-full py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Reset Filters</span>
+            </button>
           </div>
         </div>
 
         {/* ACTIVE FILTER SUMMARY */}
-        <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
-          <span>Showing <strong className="text-white">{filteredCourses.length}</strong> of <strong className="text-white">{courses.length}</strong> programs</span>
-          {(category !== 'All Categories' || selectedCourseId !== 'All Courses' || search) && (
-            <button
-              onClick={() => { setCategory('All Categories'); setSelectedCourseId('All Courses'); setSearch(''); setCurrentPage(1); }}
-              className="text-cyan-400 hover:underline cursor-pointer font-semibold"
-            >
-              Reset Filters
-            </button>
-          )}
+        <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/5">
+          <span>
+            Showing <strong className="text-white">{filteredCourses.length}</strong> of <strong className="text-white">{courses.length}</strong> programs
+          </span>
+          <span className="text-[10px] text-cyan-400 font-medium">
+            Department: {department} | Program: {programType}
+          </span>
         </div>
       </div>
 
@@ -212,9 +233,16 @@ export function AdminCourses() {
           <p>Loading course catalog from database...</p>
         </div>
       ) : filteredCourses.length === 0 ? (
-        <div className="text-center py-20 text-xs text-slate-400 italic p-6 rounded-3xl glass-panel border border-white/10 space-y-2">
-          <Filter className="w-8 h-8 text-slate-500 mx-auto" />
-          <p>No courses found matching selected filters.</p>
+        <div className="text-center py-16 text-xs text-slate-400 italic p-6 rounded-3xl glass-panel border border-white/10 space-y-3">
+          <p className="text-sm font-semibold text-white">No courses found matching criteria.</p>
+          <p className="text-slate-400">Try adjusting your Department, Program Type, or search keyword.</p>
+          <button
+            onClick={handleResetFilters}
+            className="px-4 py-2 rounded-xl bg-purple-600 text-white font-bold text-xs inline-flex items-center gap-1.5 cursor-pointer"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Reset Filters</span>
+          </button>
         </div>
       ) : (
         <>
@@ -223,10 +251,10 @@ export function AdminCourses() {
               <div key={crs.id || i} className="p-5 rounded-3xl glass-panel border border-white/10 space-y-4 flex flex-col justify-between hover:border-purple-500/40 transition-all">
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                      {crs.category}
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 truncate max-w-[150px]">
+                      {crs.domain || crs.category}
                     </span>
-                    <span className="text-[10px] text-slate-400 font-mono">{crs.duration}</span>
+                    <span className="text-[10px] text-slate-400 font-mono shrink-0">{crs.duration}</span>
                   </div>
                   <h3 className="text-sm font-bold text-white line-clamp-2 font-heading">{crs.title}</h3>
                   <p className="text-xs text-slate-300 line-clamp-2">{crs.description}</p>
@@ -299,7 +327,8 @@ export function AdminCourses() {
               </button>
             </div>
             <div className="space-y-2 text-xs text-slate-300">
-              <p><strong>Category:</strong> {viewModal.category}</p>
+              <p><strong>Department / Domain:</strong> {viewModal.domain || viewModal.category}</p>
+              <p><strong>Program Type:</strong> {viewModal.category || viewModal.level}</p>
               <p><strong>Duration:</strong> {viewModal.duration}</p>
               <p><strong>Software Tools:</strong> {Array.isArray(viewModal.softwareTools) ? viewModal.softwareTools.join(', ') : (viewModal.softwareTools || viewModal.software)}</p>
               <p><strong>Description:</strong> {viewModal.description}</p>
