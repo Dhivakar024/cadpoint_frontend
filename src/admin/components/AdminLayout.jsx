@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   BookOpen,
-  PlusCircle,
   MessageSquare,
   ShieldAlert,
   BarChart3,
@@ -41,7 +40,7 @@ export function AdminLayout({ children }) {
   ];
 
   return (
-    <div className={`min-h-screen flex ${isDark ? 'bg-[#070B18] text-[#F8FAFC]' : 'bg-slate-50 text-slate-900'}`}>
+    <div className={`h-screen w-screen overflow-hidden flex ${isDark ? 'bg-[#070B18] text-[#F8FAFC]' : 'bg-slate-50 text-slate-900'}`}>
       
       {/* MOBILE HAMBURGER BUTTON */}
       <div className="lg:hidden fixed top-4 left-4 z-50">
@@ -54,9 +53,9 @@ export function AdminLayout({ children }) {
         </button>
       </div>
 
-      {/* SIDEBAR NAVIGATION */}
+      {/* FIXED ANCHORED SIDEBAR NAVIGATION */}
       <aside
-        className={`fixed lg:static top-0 bottom-0 left-0 z-40 w-64 p-4 border-r transition-all duration-300 flex flex-col justify-between overflow-y-auto custom-scrollbar ${
+        className={`fixed lg:sticky top-0 bottom-0 left-0 z-40 w-64 h-screen shrink-0 p-4 border-r transition-all duration-200 flex flex-col justify-between overflow-y-auto custom-scrollbar ${
           isDark ? 'bg-[#0B132B] border-white/10' : 'bg-white border-slate-200 shadow-md'
         } ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
       >
@@ -84,7 +83,11 @@ export function AdminLayout({ children }) {
           <nav className="space-y-1 text-xs">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = location.pathname === item.path || (item.path === '/admin/dashboard' && location.pathname === '/admin');
+              const isActive =
+                location.pathname === item.path ||
+                (item.path === '/admin/dashboard' && location.pathname === '/admin') ||
+                (item.path === '/admin/courses' && location.pathname.startsWith('/admin/courses'));
+              
               return (
                 <Link
                   key={item.path}
@@ -113,14 +116,14 @@ export function AdminLayout({ children }) {
               <div className="w-7 h-7 rounded-full bg-purple-600/30 border border-purple-500/50 flex items-center justify-center text-purple-300 font-bold text-[11px]">
                 {user?.username?.charAt(0).toUpperCase() || 'A'}
               </div>
-              <div>
-                <strong className="text-white block leading-tight text-[11px]">{user?.username || 'Admin User'}</strong>
-                <span className="text-[10px] text-slate-400">Salem Head Office</span>
+              <div className="truncate max-w-[110px]">
+                <strong className="text-white block leading-tight text-[11px] truncate">{user?.username || 'Admin'}</strong>
+                <span className="text-[10px] text-slate-400 block truncate">Salem Head Office</span>
               </div>
             </div>
             <button
               onClick={handleLogout}
-              className="p-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 transition-colors cursor-pointer"
+              className="p-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 transition-colors cursor-pointer shrink-0"
               title="Sign Out"
             >
               <LogOut className="w-4 h-4" />
@@ -138,8 +141,8 @@ export function AdminLayout({ children }) {
         </div>
       </aside>
 
-      {/* MAIN CONTENT AREA */}
-      <main className="flex-1 p-4 sm:p-8 overflow-y-auto max-w-7xl mx-auto space-y-6">
+      {/* INDEPENDENTLY SCROLLABLE MAIN CONTENT AREA */}
+      <main className="flex-1 h-screen overflow-y-auto p-4 sm:p-8 space-y-6 custom-scrollbar">
         {children}
       </main>
     </div>
