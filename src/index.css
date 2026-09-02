@@ -123,20 +123,32 @@ a {
 }
 
 /* Quick Admission Popup Custom Scrollbar */
+.popup-scrollbar {
+  overflow-x: hidden !important;
+  scrollbar-width: thin;
+}
+
+.popup-scrollbar::-webkit-scrollbar:horizontal {
+  display: none !important;
+  height: 0px !important;
+  width: 0px !important;
+}
+
 .popup-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+  height: 0px;
 }
 
 .popup-scrollbar::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
+  background: rgba(15, 23, 42, 0.4);
   border-radius: 9999px;
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
 .popup-scrollbar::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #ef4444, #a855f7);
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .popup-scrollbar::-webkit-scrollbar-thumb:hover {
