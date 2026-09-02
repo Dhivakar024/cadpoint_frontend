@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { COURSES, CATEGORIES, LEVELS } from '../utils/courseData';
+import { getCourses } from '../services/api';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
@@ -37,7 +38,7 @@ const CourseHeroBanner = ({ course, isDark }) => {
       <Badge variant={isDark ? "red" : "emerald"} className={`absolute top-3 left-3 shadow-lg backdrop-blur-md ${
         isDark ? 'bg-red-600/90' : 'bg-emerald-600/90'
       }`}>
-        {course.level}
+        {course.level || 'Professional'}
       </Badge>
       <span className="absolute bottom-3 right-3 text-xs text-white font-medium flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
         <Clock className={`w-3.5 h-3.5 ${isDark ? 'text-red-400' : 'text-emerald-400'}`} />
@@ -48,6 +49,7 @@ const CourseHeroBanner = ({ course, isDark }) => {
 };
 
 export function Courses() {
+  const [coursesList, setCoursesList] = useState(COURSES);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,15 +57,33 @@ export function Courses() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
-  const filteredCourses = COURSES.filter((course) => {
+  useEffect(() => {
+    // Fetch live courses from Backend API / MongoDB
+    getCourses()
+      .then((res) => {
+        if (res && res.courses && Array.isArray(res.courses) && res.courses.length > 0) {
+          setCoursesList(res.courses);
+        }
+      })
+      .catch((err) => {
+        console.warn('Backend API courses offline, serving full static catalog fallback:', err);
+      });
+  }, []);
+
+  const filteredCourses = coursesList.filter((course) => {
     const matchesCategory =
-      selectedCategory === 'All' || course.domain === selectedCategory;
+      selectedCategory === 'All' || (course.domain || course.category) === selectedCategory;
     const matchesLevel =
-      selectedLevel === 'All Levels' || course.level === selectedLevel;
+      selectedLevel === 'All Levels' || (course.level || 'Professional') === selectedLevel;
+    
+    const softwareStr = Array.isArray(course.softwareTools) 
+      ? course.softwareTools.join(', ') 
+      : (course.software || course.softwareTools || '');
+
     const matchesSearch =
-      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.software.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.description.toLowerCase().includes(searchQuery.toLowerCase());
+      (course.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      softwareStr.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (course.description || '').toLowerCase().includes(searchQuery.toLowerCase());
 
     return matchesCategory && matchesLevel && matchesSearch;
   });
@@ -86,176 +106,172 @@ export function Courses() {
       />
       <div className="space-y-12 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center pt-6 space-y-3">
-          <Badge variant={isDark ? "red" : "emerald"} className="mb-2">Course Catalog</Badge>
+          <Badge variant={isDark ? "red" : "emerald"} className="mb-2">Course Catalog ({filteredCourses.length} Programs)</Badge>
           <h1 className="text-4xl sm:text-6xl font-extrabold text-gradient font-heading tracking-tight">
             OFFICIAL CADPOINT COURSES
           </h1>
-        <p className={`mt-4 text-base sm:text-lg max-w-3xl mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-          Explore industry-aligned certification, diploma, and master diploma programs across IT, Multimedia, CADD, and ERP domains.
-        </p>
-      </div>
-
-      {/* FILTER BAR CARD */}
-      <div className="glass-card p-6 rounded-[24px] space-y-6 relative z-30 overflow-visible">
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-          <div className="relative w-full md:w-96">
-            <Search className={`w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 ${
-              isDark ? 'text-slate-400' : 'text-slate-500'
-            }`} />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search courses or tools (Python, React, Tally, CAD)..."
-              className="w-full pl-12 pr-4 py-3 rounded-xl glass-input text-sm"
-            />
-          </div>
-
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <Filter className={`w-4 h-4 shrink-0 ${isDark ? 'text-red-400' : 'text-emerald-600'}`} />
-            <CustomSelect
-              options={LEVELS}
-              value={selectedLevel}
-              onChange={(val) => setSelectedLevel(val)}
-              className="w-full md:w-auto"
-            />
-          </div>
+          <p className={`mt-4 text-base sm:text-lg max-w-3xl mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+            Explore industry-aligned certification, diploma, and master diploma programs across IT, Multimedia, CADD, and ERP domains.
+          </p>
         </div>
 
-        <div className={`flex flex-wrap gap-2.5 pt-4 border-t ${
-          isDark ? 'border-white/5' : 'border-[#D1FAE5]'
-        }`}>
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 cursor-pointer ${
-                selectedCategory === cat
-                  ? isDark
-                    ? 'bg-gradient-to-r from-red-600 to-slate-900 text-white shadow-lg border border-red-500/30'
-                    : 'bg-[#10B981] text-white shadow-lg border border-emerald-400'
-                  : isDark
-                    ? 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
-                    : 'bg-[#ECFDF5] text-slate-700 hover:bg-[#D1FAE5] hover:text-[#0F172A]'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
+        {/* FILTER BAR CARD */}
+        <div className="glass-card p-6 rounded-[24px] space-y-6 relative z-30 overflow-visible">
+          <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+            <div className="relative w-full md:w-96">
+              <Search className={`w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 ${
+                isDark ? 'text-slate-400' : 'text-slate-500'
+              }`} />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search courses or tools (Python, React, Tally, CAD)..."
+                className="w-full pl-12 pr-4 py-3 rounded-xl glass-input text-sm"
+              />
+            </div>
 
-      {/* COURSE CARDS GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-        {filteredCourses.map((course) => (
-          <Card key={course.id} className="flex flex-col justify-between h-full p-0 overflow-hidden group">
-            {/* HERO COVER BANNER */}
-            <CourseHeroBanner course={course} isDark={isDark} />
-
-            <div className="p-6 flex flex-col justify-between flex-grow space-y-4">
-              <div>
-                <h3 className={`text-lg font-bold font-heading mb-2 transition-colors ${
-                  isDark ? 'text-white group-hover:text-red-400' : 'text-slate-900 group-hover:text-emerald-600'
-                }`}>
-                  {course.title}
-                </h3>
-                <p className={`text-xs leading-relaxed mb-4 ${
-                  isDark ? 'text-slate-400' : 'text-slate-600'
-                }`}>
-                  {course.description}
-                </p>
-                <div className={`flex items-center gap-2 text-xs mb-2 ${
-                  isDark ? 'text-red-400' : 'text-emerald-600'
-                }`}>
-                  <Laptop className="w-3.5 h-3.5" />
-                  <span>Tools: {course.software}</span>
-                </div>
+            <div className="flex flex-wrap md:flex-nowrap gap-4 w-full md:w-auto items-center">
+              <div className="w-full sm:w-64">
+                <CustomSelect
+                  options={CATEGORIES}
+                  value={selectedCategory}
+                  onChange={setSelectedCategory}
+                  placeholder="Filter Category"
+                />
               </div>
 
-              <div className={`pt-4 border-t flex items-center justify-between mt-auto ${
-                isDark ? 'border-white/5' : 'border-slate-100'
-              }`}>
-                <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{course.mode}</span>
-                <div className="flex items-center gap-2">
-                  <Link
-                    to={`/courses/${course.slug}`}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
-                      isDark
-                        ? 'bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white border-white/10'
-                        : 'bg-[#ECFDF5] hover:bg-[#D1FAE5] text-slate-700 hover:text-[#0F172A] border-[#D1FAE5]'
-                    }`}
+              <div className="w-full sm:w-48">
+                <CustomSelect
+                  options={LEVELS}
+                  value={selectedLevel}
+                  onChange={setSelectedLevel}
+                  placeholder="Filter Level"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* COURSES GRID */}
+        {filteredCourses.length === 0 ? (
+          <div className="text-center py-16 space-y-4">
+            <Filter className="w-12 h-12 text-slate-500 mx-auto animate-bounce" />
+            <h3 className="text-xl font-bold text-white font-heading">No matching courses found</h3>
+            <p className="text-sm text-slate-400">Try adjusting your category, level, or search keyword.</p>
+            <Button variant="secondary" onClick={() => { setSelectedCategory('All'); setSelectedLevel('All Levels'); setSearchQuery(''); }}>
+              Reset All Filters
+            </Button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredCourses.map((course, idx) => (
+              <div
+                key={course.id || idx}
+                className="group glass-card rounded-[24px] overflow-hidden flex flex-col justify-between hover:border-purple-500/50 transition-all duration-300 shadow-xl"
+              >
+                <div>
+                  <CourseHeroBanner course={course} isDark={isDark} />
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                        {course.domain || course.category}
+                      </span>
+                      <span className="text-xs text-slate-400">{course.mode || 'Online / Offline'}</span>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-white font-heading group-hover:text-cyan-400 transition-colors line-clamp-2">
+                      {course.title}
+                    </h3>
+
+                    <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed">
+                      {course.description}
+                    </p>
+
+                    <div className="pt-2 border-t border-white/10">
+                      <span className="text-[11px] font-semibold text-slate-400 block mb-1">Software & Tools:</span>
+                      <p className="text-xs text-cyan-300 font-mono truncate">
+                        {Array.isArray(course.softwareTools) ? course.softwareTools.join(', ') : (course.software || course.softwareTools || 'Industry Tools')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-6 pt-0 flex items-center gap-3">
+                  <button
+                    onClick={() => setSelectedCourse(course)}
+                    className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1 cursor-pointer"
                   >
                     View Details
-                  </Link>
-                  <Link to="/registration">
-                    <Button variant="primary" size="sm" icon={ArrowRight}>
-                      Enroll
-                    </Button>
+                  </button>
+                  <Link
+                    to="/registration"
+                    className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer"
+                  >
+                    Enroll Now
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
-            </div>
-          </Card>
-        ))}
+            ))}
+          </div>
+        )}
       </div>
 
-      {filteredCourses.length === 0 && (
-        <div className="text-center py-16 glass-card rounded-2xl">
-          <p className={`text-base ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>No courses found matching your filter criteria.</p>
-          <button
-            onClick={() => {
-              setSelectedCategory('All');
-              setSelectedLevel('All Levels');
-              setSearchQuery('');
-            }}
-            className={`mt-4 hover:underline text-sm font-semibold ${
-              isDark ? 'text-red-400' : 'text-emerald-600'
-            }`}
-          >
-            Reset Filters
-          </button>
-        </div>
-      )}
-
+      {/* QUICK VIEW DETAILS MODAL */}
       {selectedCourse && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
-          <div className={`glass-panel p-8 rounded-3xl max-w-lg w-full relative border ${
-            isDark ? 'border-red-500/40' : 'border-emerald-400/40'
-          }`}>
-            <button
-              onClick={() => setSelectedCourse(null)}
-              className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <Badge variant={isDark ? "red" : "emerald"} className="mb-3">{selectedCourse.domain}</Badge>
-            <h3 className={`text-2xl font-bold font-heading mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>{selectedCourse.title}</h3>
-            <p className={`text-sm mb-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{selectedCourse.description}</p>
-            <div className="space-y-3 mb-8 text-xs">
-              <div className={`flex justify-between py-2 border-b ${isDark ? 'border-white/5' : 'border-slate-100'}`}>
-                <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Duration:</span>
-                <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{selectedCourse.duration}</span>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <div className="relative w-full max-w-xl rounded-3xl p-6 sm:p-8 glass-panel border border-purple-500/40 space-y-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
+            <div className="flex justify-between items-start pb-3 border-b border-white/10">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-400 block">{selectedCourse.domain || selectedCourse.category}</span>
+                <h3 className="text-xl font-extrabold font-heading text-white">{selectedCourse.title}</h3>
               </div>
-              <div className={`flex justify-between py-2 border-b ${isDark ? 'border-white/5' : 'border-slate-100'}`}>
-                <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Mode:</span>
-                <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{selectedCourse.mode}</span>
+              <button onClick={() => setSelectedCourse(null)} className="p-1.5 rounded-full text-slate-400 hover:text-white cursor-pointer">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-4 text-xs text-slate-300">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                  <span className="text-slate-400 block text-[10px]">Duration</span>
+                  <strong className="text-white text-sm">{selectedCourse.duration}</strong>
+                </div>
+                <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                  <span className="text-slate-400 block text-[10px]">Level</span>
+                  <strong className="text-white text-sm">{selectedCourse.level || 'Professional'}</strong>
+                </div>
               </div>
-              <div className={`flex justify-between py-2 border-b ${isDark ? 'border-white/5' : 'border-slate-100'}`}>
-                <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Software Covered:</span>
-                <span className={`font-semibold ${isDark ? 'text-red-400' : 'text-emerald-600'}`}>{selectedCourse.software}</span>
+
+              <div>
+                <span className="font-bold text-white block mb-1">Software & Tools Covered:</span>
+                <p className="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-cyan-300 font-mono text-xs">
+                  {Array.isArray(selectedCourse.softwareTools) ? selectedCourse.softwareTools.join(', ') : (selectedCourse.software || selectedCourse.softwareTools || 'Industry Tools')}
+                </p>
+              </div>
+
+              <div>
+                <span className="font-bold text-white block mb-1">Course Description & Syllabus:</span>
+                <p className="leading-relaxed text-slate-300 p-3 rounded-xl bg-white/5 border border-white/10">{selectedCourse.description}</p>
               </div>
             </div>
-            <div className="flex gap-4">
-              <Link to="/registration" className="w-full">
-                <Button variant="primary" className="w-full justify-center" icon={ArrowRight}>
-                  Proceed to Register
-                </Button>
+
+            <div className="pt-3 border-t border-white/10 flex items-center justify-end gap-3">
+              <button onClick={() => setSelectedCourse(null)} className="px-4 py-2 rounded-xl bg-white/10 text-white font-semibold text-xs cursor-pointer">
+                Close
+              </button>
+              <Link
+                to="/registration"
+                className="px-5 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-lg"
+              >
+                <span>Apply for Course</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
         </div>
       )}
-    </div>
-  </>
-);
+    </>
+  );
 }

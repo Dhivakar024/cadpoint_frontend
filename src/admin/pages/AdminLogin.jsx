@@ -12,7 +12,7 @@ export function AdminLogin() {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('admin@cadpoint.co.in');
-  const [password, setPassword] = useState('Cadpoint@2026');
+  const [password, setPassword] = useState('cadpoint@123');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
