@@ -98,35 +98,62 @@ a {
 }
 
 .glass-input:focus {
-  outline: none;
   border-color: #ef4444;
+  outline: none;
   box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
-/* Red & Navy Brand Gradients */
-.text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #cbd5e1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Custom Scrollbar Styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.text-gradient-brand {
-  background: linear-gradient(135deg, #ef4444 0%, #f87171 40%, #38bdf8 100%);
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Quick Admission Popup Custom Scrollbar */
+.popup-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.popup-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 9999px;
+  margin: 8px 0;
+}
+
+.popup-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ef4444, #a855f7);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.popup-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #dc2626, #9333ea);
+}
+
+/* Text Gradient Classes */
+.text-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 50%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-red {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
 /* =========================================================================
@@ -146,21 +173,18 @@ body[data-theme="light"],
   color: #0F172A !important;
 }
 
-/* 1. MAIN HEADINGS (h1): #0F172A (Font Weight 700) */
 [data-theme="light"] h1 {
   color: #0F172A !important;
   font-weight: 700 !important;
   opacity: 1 !important;
 }
 
-/* 2. SECTION TITLES (h2): #111827 (Font Weight 700) */
 [data-theme="light"] h2 {
   color: #111827 !important;
   font-weight: 700 !important;
   opacity: 1 !important;
 }
 
-/* 3. SUB HEADINGS (h3, h4, h5, h6): #1E293B (Font Weight 700) */
 [data-theme="light"] h3,
 [data-theme="light"] h4,
 [data-theme="light"] h5,
@@ -170,7 +194,6 @@ body[data-theme="light"],
   opacity: 1 !important;
 }
 
-/* 4. BODY TEXT (p, li, label): #334155 (Slate 700) */
 [data-theme="light"] p,
 [data-theme="light"] li,
 [data-theme="light"] label {
@@ -178,150 +201,43 @@ body[data-theme="light"],
   opacity: 1 !important;
 }
 
-/* 5. DESCRIPTION TEXT: #475569 (Slate 600) */
-[data-theme="light"] .text-slate-100,
-[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-slate-400,
 [data-theme="light"] .text-slate-300,
-[data-theme="light"] .text-slate-400 {
-  color: #475569 !important;
-  opacity: 1 !important;
-}
-
-/* 6. MUTED TEXT: #64748B (Slate 500) */
 [data-theme="light"] .text-slate-500,
-[data-theme="light"] .text-muted {
-  color: #64748B !important;
-  opacity: 1 !important;
+[data-theme="light"] .text-gray-400,
+[data-theme="light"] .text-gray-300,
+[data-theme="light"] .text-gray-500 {
+  color: #475569 !important;
 }
 
-/* 7. INPUT TEXT: #111827 & PLACEHOLDER: #94A3B8 */
-[data-theme="light"] input,
-[data-theme="light"] textarea,
-[data-theme="light"] select,
-[data-theme="light"] .glass-input {
-  color: #111827 !important;
-}
-
-[data-theme="light"] input::placeholder,
-[data-theme="light"] textarea::placeholder,
-[data-theme="light"] .glass-input::placeholder {
-  color: #94A3B8 !important;
-}
-
-/* 8. LINKS: #059669 & LINK HOVER: #047857 */
-[data-theme="light"] a {
-  color: #059669;
-}
-
-[data-theme="light"] a:hover {
-  color: #047857;
-}
-
-/* 9. SOLID BUTTON TEXT: #FFFFFF (Pure White) */
-[data-theme="light"] button.bg-gradient-to-r,
-[data-theme="light"] button.bg-red-600,
-[data-theme="light"] button.bg-emerald-600,
-[data-theme="light"] button.bg-\[\#10B981\],
-[data-theme="light"] .bg-gradient-to-r span,
-[data-theme="light"] .bg-red-600 span,
-[data-theme="light"] .bg-emerald-600 span,
-[data-theme="light"] .bg-gradient-to-r .text-white,
-[data-theme="light"] .bg-red-600 .text-white,
-[data-theme="light"] .bg-emerald-600 .text-white {
-  color: #FFFFFF !important;
-}
-
-/* 10. GRADIENTS IN LIGHT MODE */
-[data-theme="light"] .text-gradient {
-  background: linear-gradient(135deg, #0F172A 0%, #065F46 50%, #1E293B 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-[data-theme="light"] .text-gradient-brand,
-[data-theme="light"] .text-gradient-red {
-  background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-/* 11. CARDS & PANELS: Pure White (#FFFFFF), 24px Radius, Soft Emerald Border (#D1FAE5) */
-[data-theme="light"] .glass-card,
-[data-theme="light"] .glass-panel {
+[data-theme="light"] .glass-card {
   background: #FFFFFF !important;
-  border-radius: 1.5rem !important;
   border: 1px solid #D1FAE5 !important;
-  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.08) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
+  box-shadow: 0 4px 20px -2px rgba(16, 185, 129, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
 }
 
 [data-theme="light"] .glass-card:hover {
   border-color: #10B981 !important;
-  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.18) !important;
-  transform: translateY(-8px) scale(1.01) !important;
+  box-shadow: 0 12px 28px -4px rgba(16, 185, 129, 0.16) !important;
+}
+
+[data-theme="light"] .glass-panel {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #D1FAE5 !important;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.06) !important;
 }
 
 [data-theme="light"] .glass-input {
   background: #FFFFFF !important;
-  border: 1px solid #D1FAE5 !important;
-  color: #111827 !important;
+  border: 1.5px solid #CBD5E1 !important;
+  color: #0F172A !important;
 }
 
 [data-theme="light"] .glass-input:focus {
   border-color: #10B981 !important;
-  box-shadow: 0 0 18px rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
 }
 
-/* 12. BUTTONS & ALL ACCENTS: Primary Emerald (#10B981) */
-[data-theme="light"] .bg-red-600,
-[data-theme="light"] .bg-red-500,
-[data-theme="light"] .from-red-600 {
-  background-color: #10B981 !important;
-  background-image: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
-  color: #ffffff !important;
-}
-
-[data-theme="light"] .text-red-400,
-[data-theme="light"] .text-red-500,
-[data-theme="light"] .text-red-600,
-[data-theme="light"] .text-cyan-400,
-[data-theme="light"] .text-amber-400 {
-  color: #10B981 !important;
-}
-
-[data-theme="light"] .bg-red-600\/20,
-[data-theme="light"] .bg-red-500\/10,
-[data-theme="light"] .bg-red-500\/20,
-[data-theme="light"] .bg-white\/5,
-[data-theme="light"] .bg-slate-900\/60,
-[data-theme="light"] .bg-slate-900\/40 {
-  background-color: #ECFDF5 !important;
-}
-
-[data-theme="light"] .border-slate-800,
-[data-theme="light"] .border-white\/10,
-[data-theme="light"] .border-white\/5 {
-  border-color: #D1FAE5 !important;
-}
-
-/* 13. REMOVE ALL DARK SECTION BACKGROUND BREAKS IN LIGHT MODE */
-[data-theme="light"] .bg-slate-900,
-[data-theme="light"] .bg-slate-950,
-[data-theme="light"] .bg-black\/40 {
-  background-color: transparent !important;
-}
-
-/* 14. NAVBAR IN LIGHT MODE: White Glass */
-[data-theme="light"] header nav {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
-  border-bottom: 1px solid #D1FAE5 !important;
-  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.05) !important;
-}
-
-/* 15. FOOTER IN LIGHT MODE: Dark Emerald (#065F46) */
 [data-theme="light"] footer {
   background-color: #065F46 !important;
   color: #ECFDF5 !important;

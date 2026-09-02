@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, CheckCircle2, ClipboardCheck } from 'lucide-react';
-import { Button } from './Button';
 import { submitEnquiry } from '../../services/api';
 import { sendContactEmailDirect } from '../../services/directResend';
 import { PrivacyAcknowledgement, getPrivacyMetadata } from '../common/PrivacyAcknowledgement';
@@ -67,7 +66,7 @@ export function ContactPopup() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 320 }}
-            className="relative w-full max-w-[420px] rounded-2xl glass-panel p-4 sm:p-5 border border-purple-500/40 shadow-2xl overflow-hidden max-h-[92vh] overflow-y-auto custom-scrollbar"
+            className="relative w-full max-w-[410px] rounded-2xl glass-panel p-4 sm:p-5 border border-purple-500/40 shadow-2xl max-h-[78vh] sm:max-h-[460px] overflow-y-auto popup-scrollbar pr-2 flex flex-col justify-between"
           >
             {/* Background Glow */}
             <div className="absolute -top-16 -right-16 w-36 h-36 bg-purple-600/25 rounded-full blur-3xl pointer-events-none" />
@@ -83,7 +82,7 @@ export function ContactPopup() {
             </button>
 
             {!submitted ? (
-              <div className="space-y-3.5">
+              <div className="space-y-3">
                 {/* Header */}
                 <div>
                   <div className="flex items-center gap-1.5 mb-1">
@@ -105,7 +104,7 @@ export function ContactPopup() {
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-2.5">
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
                       Your Full Name *
                     </label>
                     <input
@@ -120,7 +119,7 @@ export function ContactPopup() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
                         Phone Number *
                       </label>
                       <input
@@ -133,7 +132,7 @@ export function ContactPopup() {
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
                         Email Address *
                       </label>
                       <input
@@ -148,7 +147,7 @@ export function ContactPopup() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
                       Course Interested In *
                     </label>
                     <select
@@ -167,7 +166,7 @@ export function ContactPopup() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
                       Message (Optional)
                     </label>
                     <input
