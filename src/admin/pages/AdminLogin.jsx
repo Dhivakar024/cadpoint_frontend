@@ -155,11 +155,15 @@ export function AdminLogin() {
               : 'bg-white border-emerald-300 text-slate-900 shadow-xl'
           }`}
         >
-          <div className="text-center space-y-2">
-            <div className="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-500 mx-auto shadow-lg">
-              <ShieldCheck className="w-8 h-8" />
+          <div className="text-center space-y-3">
+            <div className="flex justify-center pb-1">
+              <img
+                src={isDark ? "/cadpoint_logo.svg" : "/cadpoint_logo_light.svg"}
+                alt="CADPOINT Authorized Training Centre"
+                className="w-[180px] sm:w-[210px] h-auto object-contain mx-auto drop-shadow-md"
+              />
             </div>
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-red-500 block pt-1">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-red-500 block">
               CADPOINT Authorized Training Centre
             </span>
             <h1 className="text-2xl font-black font-heading text-gradient">

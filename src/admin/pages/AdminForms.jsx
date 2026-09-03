@@ -188,7 +188,10 @@ export function AdminForms() {
                       >
                         <option value="New">New</option>
                         <option value="Contacted">Contacted</option>
-                        <option value="Resolved">Resolved</option>
+                        <option value="Follow-up Required">Follow-up Required</option>
+                        <option value="Interested">Interested</option>
+                        <option value="Registered">Registered</option>
+                        <option value="Closed">Closed</option>
                       </select>
                     </td>
                     <td className="py-3 px-4 text-right space-x-2 whitespace-nowrap">
@@ -319,7 +322,10 @@ export function AdminForms() {
                       >
                         <option value="New">New</option>
                         <option value="Contacted">Contacted</option>
-                        <option value="Resolved">Resolved</option>
+                        <option value="Follow-up Required">Follow-up Required</option>
+                        <option value="Interested">Interested</option>
+                        <option value="Registered">Registered</option>
+                        <option value="Closed">Closed</option>
                       </select>
                     </td>
                     <td className="py-3 px-4 text-right space-x-2 whitespace-nowrap">

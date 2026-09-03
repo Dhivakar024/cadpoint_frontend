@@ -11,6 +11,7 @@ import { CookieConsentBanner } from '../common/CookieConsentBanner';
 import { CookiePreferencesModal } from '../common/CookiePreferencesModal';
 import { PrivacyNoticeModal } from '../common/PrivacyNoticeModal';
 import { PrivacyCenterModal } from '../common/PrivacyCenterModal';
+import { FluidCursor } from '../ui/FluidCursor';
 
 export function Layout({ children }) {
   const { pathname } = useLocation();
@@ -27,6 +28,9 @@ export function Layout({ children }) {
         ? 'bg-[#070B18] text-[#F8FAFC]'
         : 'bg-gradient-to-b from-white via-[#f8fffc] via-[#f3fff9] to-[#ecfdf5] text-[#0F172A]'
     }`}>
+      {/* Public Website Lightweight Fluid Cursor */}
+      <FluidCursor />
+
       <Navbar />
       <main className="flex-grow pt-24 sm:pt-28">{children}</main>
       
