@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   UserCheck,
-  ShieldCheck,
   KeyRound,
   Sun,
   Moon,
   Bell,
   MapPin,
-  Activity,
   CheckCircle2,
   AlertCircle,
   Mail,
@@ -33,7 +31,6 @@ export function AdminSettings() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  // Notification toggles
   const [emailAlerts, setEmailAlerts] = useState(true);
   const [leadAlerts, setLeadAlerts] = useState(true);
 
@@ -67,218 +64,168 @@ export function AdminSettings() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div className="pb-4 border-b border-white/10">
-        <h1 className="text-2xl font-extrabold font-heading text-gradient">Admin Settings & Configuration</h1>
-        <p className="text-xs text-slate-400">Manage administrator profile, security, notifications, and website credentials</p>
+    <div className="max-w-4xl mx-auto space-y-8">
+      <div className={`pb-6 border-b ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
+        <h1 className={`text-3xl sm:text-4xl font-extrabold font-heading ${isDark ? 'text-white' : 'text-slate-900'}`}>
+          Admin Settings & Security
+        </h1>
+        <p className="text-sm text-slate-500 font-medium mt-1">
+          Manage administrator profile, credentials, and notification preferences
+        </p>
       </div>
 
       {/* 1. ADMIN PROFILE */}
-      <div className="p-6 sm:p-8 rounded-3xl glass-panel border border-purple-500/30 space-y-4">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-          <UserCheck className="w-4 h-4 text-purple-400" />
-          Admin Profile
+      <div className={`p-8 rounded-3xl border space-y-5 ${
+        isDark ? 'glass-panel border-purple-500/30' : 'bg-white border-purple-200 shadow-md'
+      }`}>
+        <h3 className="text-sm font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 flex items-center gap-2">
+          <UserCheck className="w-5 h-5 text-purple-500" />
+          Admin Profile Overview
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-            <span className="text-slate-400 text-[10px] uppercase font-bold">Username / Email</span>
-            <strong className="text-white block font-mono text-sm">{user?.email || 'admin@cadpoint.co.in'}</strong>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
+          <div className={`p-5 rounded-2xl border space-y-1.5 ${
+            isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
+          }`}>
+            <span className="text-slate-500 text-xs uppercase font-bold tracking-wider">Admin Username / Email</span>
+            <strong className={`block font-mono text-base font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              {user?.email || 'cadpointsalem001@gmail.com'}
+            </strong>
           </div>
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-            <span className="text-slate-400 text-[10px] uppercase font-bold">Display Name & Authority</span>
-            <strong className="text-white block font-heading text-sm">Salem Head Office Super Admin</strong>
+          <div className={`p-5 rounded-2xl border space-y-1.5 ${
+            isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
+          }`}>
+            <span className="text-slate-500 text-xs uppercase font-bold tracking-wider">Display Name & Authority</span>
+            <strong className={`block font-heading text-base font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              Salem Head Office Super Admin
+            </strong>
           </div>
         </div>
       </div>
 
       {/* 2. SECURITY — CHANGE PASSWORD */}
-      <div className="p-6 sm:p-8 rounded-3xl glass-panel border border-red-500/30 space-y-4">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-2">
-          <KeyRound className="w-4 h-4 text-red-400" />
+      <div className={`p-8 rounded-3xl border space-y-5 ${
+        isDark ? 'glass-panel border-red-500/30' : 'bg-white border-red-200 shadow-md'
+      }`}>
+        <h3 className="text-sm font-bold uppercase tracking-wider text-red-600 dark:text-red-400 flex items-center gap-2">
+          <KeyRound className="w-5 h-5 text-red-500" />
           Security — Change Password
         </h3>
 
         {message && (
-          <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-300 flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 shrink-0" />
+          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-sm font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 shrink-0" />
             <span>{message}</span>
           </div>
         )}
 
         {error && (
-          <div className="p-3.5 rounded-2xl bg-red-500/10 border border-red-500/30 text-xs font-semibold text-red-400 flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0" />
+          <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/30 text-sm font-bold text-red-600 dark:text-red-400 flex items-center gap-2">
+            <AlertCircle className="w-5 h-5 shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
-        <form onSubmit={handleChangePassword} className="space-y-4 text-xs max-w-md">
+        <form onSubmit={handleChangePassword} className="space-y-5 text-sm">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1.5">Current Password *</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+              Current Password *
+            </label>
             <input
               type="password"
-              required
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
-              placeholder="••••••••••••"
-              className="w-full px-3.5 py-3 rounded-xl glass-input text-xs"
+              placeholder="Enter current password"
+              required
+              className={`w-full p-3.5 rounded-2xl text-sm transition-all ${
+                isDark ? 'glass-input' : 'bg-white border border-slate-300 text-slate-900 shadow-sm focus:border-red-500'
+              }`}
             />
           </div>
 
-          <div>
-            <label className="block font-semibold text-slate-300 mb-1.5">New Password *</label>
-            <input
-              type="password"
-              required
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="••••••••••••"
-              className="w-full px-3.5 py-3 rounded-xl glass-input text-xs"
-            />
-          </div>
-
-          <div>
-            <label className="block font-semibold text-slate-300 mb-1.5">Confirm New Password *</label>
-            <input
-              type="password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="••••••••••••"
-              className="w-full px-3.5 py-3 rounded-xl glass-input text-xs"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                New Password *
+              </label>
+              <input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Enter new password (min 6 chars)"
+                required
+                className={`w-full p-3.5 rounded-2xl text-sm transition-all ${
+                  isDark ? 'glass-input' : 'bg-white border border-slate-300 text-slate-900 shadow-sm focus:border-red-500'
+                }`}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                Confirm New Password *
+              </label>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm new password"
+                required
+                className={`w-full p-3.5 rounded-2xl text-sm transition-all ${
+                  isDark ? 'glass-input' : 'bg-white border border-slate-300 text-slate-900 shadow-sm focus:border-red-500'
+                }`}
+              />
+            </div>
           </div>
 
           <button
             type="submit"
             disabled={submitting}
-            className="py-3 px-6 rounded-xl bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg flex items-center gap-2 cursor-pointer"
+            className="py-3.5 px-6 rounded-2xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition-colors shadow-lg shadow-red-600/30 cursor-pointer disabled:opacity-50"
           >
-            <ShieldCheck className="w-4 h-4" />
-            <span>{submitting ? 'Updating Password...' : 'Update Password'}</span>
+            {submitting ? 'Updating Password...' : 'Update Admin Password'}
           </button>
         </form>
       </div>
 
-      {/* 3. APPEARANCE */}
-      <div className="p-6 sm:p-8 rounded-3xl glass-panel border border-cyan-500/30 space-y-4">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
-          <Sun className="w-4 h-4 text-cyan-400" />
-          Appearance & Theme Preference
+      {/* 3. NOTIFICATION & SYSTEM PREFERENCES */}
+      <div className={`p-8 rounded-3xl border space-y-5 ${
+        isDark ? 'glass-panel border-emerald-500/30' : 'bg-white border-emerald-200 shadow-md'
+      }`}>
+        <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+          <Bell className="w-5 h-5 text-emerald-500" />
+          Live Alert Configuration
         </h3>
-        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 text-xs">
-          <div>
-            <strong className="text-white block font-semibold">CADPOINT Dashboard UI Theme</strong>
-            <span className="text-slate-400 text-[11px]">Currently active: {isDark ? 'Dark Mode (Navy / Purple Glow)' : 'Light Mode (Clean White / Crimson Accent)'}</span>
-          </div>
-          <button
-            onClick={toggleTheme}
-            className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-bold text-xs flex items-center gap-2 shadow-md cursor-pointer"
-          >
-            {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-200" />}
-            <span>Switch Theme</span>
-          </button>
-        </div>
-      </div>
-
-      {/* 4. NOTIFICATIONS */}
-      <div className="p-6 sm:p-8 rounded-3xl glass-panel border border-emerald-500/30 space-y-4">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-2">
-          <Bell className="w-4 h-4 text-emerald-400" />
-          Notification Dispatch Controls
-        </h3>
-        <div className="space-y-3 text-xs">
-          <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10">
+        <div className="space-y-4 text-sm">
+          <div className="flex items-center justify-between">
             <div>
-              <strong className="text-white block font-semibold">Direct Email Notifications</strong>
-              <span className="text-slate-400 text-[11px]">Send instant lead alerts to {COMPANY_INFO.email}</span>
+              <strong className={`block font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                Email Lead Notifications
+              </strong>
+              <span className="text-xs text-slate-500">
+                Receive transactional Resend emails for Contact & Registration submissions
+              </span>
             </div>
             <input
               type="checkbox"
               checked={emailAlerts}
               onChange={(e) => setEmailAlerts(e.target.checked)}
-              className="w-5 h-5 rounded text-emerald-500 focus:ring-emerald-400 cursor-pointer"
+              className="w-5 h-5 text-emerald-600 rounded cursor-pointer"
             />
           </div>
 
-          <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10">
+          <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-white/5">
             <div>
-              <strong className="text-white block font-semibold">Course Application Alerts</strong>
-              <span className="text-slate-400 text-[11px]">Log student online registrations with CAD reference IDs</span>
+              <strong className={`block font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                Instant WhatsApp Webhook Alerts
+              </strong>
+              <span className="text-xs text-slate-500">
+                Forward Quick Admissions & Contact leads to WhatsApp 9566679928
+              </span>
             </div>
             <input
               type="checkbox"
               checked={leadAlerts}
               onChange={(e) => setLeadAlerts(e.target.checked)}
-              className="w-5 h-5 rounded text-emerald-500 focus:ring-emerald-400 cursor-pointer"
+              className="w-5 h-5 text-emerald-600 rounded cursor-pointer"
             />
-          </div>
-        </div>
-      </div>
-
-      {/* 5. WEBSITE INFORMATION */}
-      <div className="p-6 sm:p-8 rounded-3xl glass-panel border border-white/10 space-y-4">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
-          <MapPin className="w-4 h-4 text-amber-400" />
-          Website Information & Salem Head Office Credentials
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-            <span className="text-slate-400 text-[10px] uppercase font-bold">Headquarters Address</span>
-            <strong className="text-white block leading-snug">{COMPANY_INFO.address}</strong>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-            <span className="text-slate-400 text-[10px] uppercase font-bold">Official Contact Email</span>
-            <strong className="text-cyan-400 block font-mono">{COMPANY_INFO.email}</strong>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-            <span className="text-slate-400 text-[10px] uppercase font-bold">Helpline Phone Number</span>
-            <strong className="text-emerald-400 block font-mono">{COMPANY_INFO.phone}</strong>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-            <span className="text-slate-400 text-[10px] uppercase font-bold">Working Hours</span>
-            <strong className="text-white block">{COMPANY_INFO.hours}</strong>
-          </div>
-        </div>
-      </div>
-
-      {/* 6. SYSTEM STATUS */}
-      <div className="p-6 sm:p-8 rounded-3xl glass-panel border border-white/10 space-y-4">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-2">
-          <Activity className="w-4 h-4 text-purple-400" />
-          System Status & Health Check
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
-            <div className="flex items-center justify-between text-emerald-400">
-              <span className="font-bold uppercase text-[10px]">Backend API</span>
-              <Server className="w-4 h-4" />
-            </div>
-            <strong className="text-white block text-sm font-heading">Connected</strong>
-            <span className="text-[10px] text-emerald-300 block">CADPOINT Flask API Online</span>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
-            <div className="flex items-center justify-between text-emerald-400">
-              <span className="font-bold uppercase text-[10px]">MongoDB Database</span>
-              <Database className="w-4 h-4" />
-            </div>
-            <strong className="text-white block text-sm font-heading">Connected</strong>
-            <span className="text-[10px] text-emerald-300 block">MongoDB Atlas Production DB</span>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/30 space-y-2">
-            <div className="flex items-center justify-between text-purple-400">
-              <span className="font-bold uppercase text-[10px]">Authentication</span>
-              <Lock className="w-4 h-4" />
-            </div>
-            <strong className="text-white block text-sm font-heading">Active</strong>
-            <span className="text-[10px] text-purple-300 block">JWT Bearer Session Active</span>
           </div>
         </div>
       </div>

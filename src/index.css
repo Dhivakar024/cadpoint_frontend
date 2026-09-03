@@ -402,3 +402,12 @@ body[data-theme="light"],
 [data-theme="light"] footer a:hover {
   color: #34D399 !important;
 }
+
+/* 16. ENSURE HIGH-CONTRAST TEXT FOR CARD CONTENT IN LIGHT MODE */
+[data-theme="light"] strong.text-white,
+[data-theme="light"] b.text-white,
+[data-theme="light"] p.text-white,
+[data-theme="light"] div.text-white:not(button *):not(a.bg-gradient-to-r *):not(.badge *):not(header *):not(footer *),
+[data-theme="light"] span.text-white:not(button *):not(a.bg-gradient-to-r *):not(.badge *):not(header *):not(footer *) {
+  color: #0F172A !important;
+}

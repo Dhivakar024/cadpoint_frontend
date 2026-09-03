@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, PlusCircle, Search, Trash2, Eye, Edit3, X, AlertTriangle, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
 import { fetchAdminCourses, deleteAdminCourse } from '../services/adminApi';
+import { useTheme } from '../../context/ThemeContext';
 
 const ITEMS_PER_PAGE = 18;
 
@@ -40,6 +41,8 @@ const CANONICAL_DEPT_MAP = {
 };
 
 export function AdminCourses() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -132,53 +135,63 @@ export function AdminCourses() {
   }, [filteredCourses, currentPage]);
 
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-8 pb-8">
       {/* PAGE HEADER */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+      <div className={`flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-6 border-b ${
+        isDark ? 'border-white/10' : 'border-slate-200'
+      }`}>
         <div>
-          <h1 className="text-2xl font-extrabold font-heading text-gradient">Courses Catalog Management</h1>
-          <p className="text-xs text-slate-400">
+          <h1 className={`text-3xl sm:text-4xl font-extrabold font-heading ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            Courses Catalog Management
+          </h1>
+          <p className="text-sm text-slate-500 font-medium mt-1">
             Total {courses.length} courses loaded from production database
           </p>
         </div>
         <Link
           to="/admin/courses/add"
-          className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg cursor-pointer transition-all shrink-0"
+          className="px-5 py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 cursor-pointer transition-all shrink-0"
         >
-          <PlusCircle className="w-4 h-4" />
+          <PlusCircle className="w-5 h-5" />
           <span>Add New Course</span>
         </Link>
       </div>
 
       {/* ALIGNED RESPONSIVE FILTER ROW */}
-      <div className="p-4 rounded-2xl glass-panel border border-white/10 space-y-3">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
+      <div className={`p-6 rounded-3xl border space-y-4 ${
+        isDark ? 'glass-panel border-white/10' : 'bg-white border-slate-200 shadow-md'
+      }`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
           {/* SEARCH INPUT */}
           <div>
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
               Search Courses
             </label>
             <div className="relative">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
                 placeholder="Search by title, software..."
-                className="w-full pl-9 pr-3 py-2 rounded-xl glass-input text-xs"
+                className={`w-full pl-10 pr-4 py-2.5 rounded-xl text-sm transition-all ${
+                  isDark ? 'glass-input' : 'bg-white border border-slate-300 text-slate-900 shadow-sm focus:border-emerald-500'
+                }`}
               />
             </div>
           </div>
 
           {/* FILTER 1: PROGRAM TYPE */}
           <div>
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
               Program Type
             </label>
             <select
               value={programType}
               onChange={(e) => { setProgramType(e.target.value); setCurrentPage(1); }}
-              className="w-full px-3 py-2 rounded-xl glass-input text-xs bg-[#0F172A] text-white cursor-pointer"
+              className={`w-full px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer ${
+                isDark ? 'bg-[#0F172A] text-white border border-white/10' : 'bg-white text-slate-900 border border-slate-300 shadow-sm'
+              }`}
             >
               {PROGRAM_OPTIONS.map(opt => (
                 <option key={opt} value={opt}>{opt}</option>
@@ -188,13 +201,15 @@ export function AdminCourses() {
 
           {/* FILTER 2: DEPARTMENT / COURSE SECTION */}
           <div>
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
               Course Department
             </label>
             <select
               value={department}
               onChange={(e) => { setDepartment(e.target.value); setCurrentPage(1); }}
-              className="w-full px-3 py-2 rounded-xl glass-input text-xs bg-[#0F172A] text-white cursor-pointer truncate"
+              className={`w-full px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer truncate ${
+                isDark ? 'bg-[#0F172A] text-white border border-white/10' : 'bg-white text-slate-900 border border-slate-300 shadow-sm'
+              }`}
             >
               {DEPARTMENT_OPTIONS.map(dept => (
                 <option key={dept} value={dept}>{dept}</option>
@@ -206,160 +221,248 @@ export function AdminCourses() {
           <div>
             <button
               onClick={handleResetFilters}
-              className="w-full py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              className={`w-full py-2.5 px-4 rounded-xl font-bold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer ${
+                isDark
+                  ? 'bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white'
+                  : 'bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700'
+              }`}
             >
-              <RotateCcw className="w-3.5 h-3.5" />
+              <RotateCcw className="w-4 h-4" />
               <span>Reset Filters</span>
             </button>
           </div>
         </div>
 
         {/* ACTIVE FILTER SUMMARY */}
-        <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/5">
+        <div className={`flex items-center justify-between text-xs text-slate-500 pt-3 border-t ${
+          isDark ? 'border-white/5' : 'border-slate-100'
+        }`}>
           <span>
-            Showing <strong className="text-white">{filteredCourses.length}</strong> of <strong className="text-white">{courses.length}</strong> programs
+            Showing <strong className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{filteredCourses.length}</strong> of <strong className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{courses.length}</strong> programs
           </span>
-          <span className="text-[10px] text-cyan-400 font-medium">
-            Department: {department} | Program: {programType}
-          </span>
+          {totalPages > 1 && (
+            <span>Page {currentPage} of {totalPages}</span>
+          )}
         </div>
       </div>
 
-      {/* COURSES LIST / GRID */}
+      {/* COURSE CARDS GRID */}
       {loading ? (
-        <div className="text-center py-20 text-xs text-slate-400 space-y-2">
-          <div className="w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p>Loading course catalog from database...</p>
-        </div>
-      ) : filteredCourses.length === 0 ? (
-        <div className="text-center py-16 text-xs text-slate-400 italic p-6 rounded-3xl glass-panel border border-white/10 space-y-3">
-          <p className="text-sm font-semibold text-white">No courses found for {department !== 'All Departments' ? department : 'selected criteria'}.</p>
-          <p className="text-slate-400">Try adjusting your Department, Program Type, or search keyword.</p>
+        <div className="text-center py-20 text-sm text-slate-400">Loading courses catalog...</div>
+      ) : paginatedCourses.length === 0 ? (
+        <div className={`text-center py-20 rounded-3xl border space-y-3 ${
+          isDark ? 'glass-panel border-white/10' : 'bg-white border-slate-200 shadow-md'
+        }`}>
+          <p className="text-sm text-slate-400 italic">No courses found matching selected filters.</p>
           <button
             onClick={handleResetFilters}
-            className="px-4 py-2 rounded-xl bg-purple-600 text-white font-bold text-xs inline-flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-purple-600 text-white font-bold text-xs cursor-pointer"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset Filters</span>
+            Clear All Filters
           </button>
         </div>
       ) : (
-        <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {paginatedCourses.map((crs, i) => (
-              <div key={crs.id || i} className="p-5 rounded-3xl glass-panel border border-white/10 space-y-4 flex flex-col justify-between hover:border-purple-500/40 transition-all">
-                <div className="space-y-2.5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {paginatedCourses.map((course) => {
+            const isMaster = (course.category || course.level || '').toLowerCase().includes('master');
+            const softwareList = Array.isArray(course.softwareTools)
+              ? course.softwareTools
+              : (course.softwareTools || course.software || '').split(',').filter(Boolean);
+
+            return (
+              <div
+                key={course.id || course.title}
+                className={`p-6 rounded-3xl border flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-xl space-y-4 ${
+                  isDark ? 'glass-panel border-white/10 hover:border-emerald-500/40' : 'bg-white border-slate-200 shadow-md hover:border-emerald-400'
+                }`}
+              >
+                <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 truncate max-w-[170px]">
-                      {CANONICAL_DEPT_MAP[crs.domain || crs.department || crs.category] || crs.domain || crs.category}
+                    <span className={`text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider ${
+                      isMaster
+                        ? 'bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30'
+                        : 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30'
+                    }`}>
+                      {isMaster ? 'Master Diploma' : 'Professional'}
                     </span>
-                    <span className="text-[10px] text-slate-400 font-mono shrink-0">{crs.duration}</span>
+                    <span className="text-xs text-slate-500 font-semibold truncate max-w-[130px]">
+                      {CANONICAL_DEPT_MAP[course.domain || course.department] || course.domain || course.department || 'CADPOINT'}
+                    </span>
                   </div>
-                  <h3 className="text-sm font-bold text-white line-clamp-2 font-heading">{crs.title}</h3>
-                  <p className="text-xs text-slate-300 line-clamp-2">{crs.description}</p>
+
+                  <h3 className={`text-base sm:text-lg font-bold line-clamp-2 leading-snug ${
+                    isDark ? 'text-white' : 'text-slate-900'
+                  }`}>
+                    {course.title}
+                  </h3>
+
+                  {course.duration && (
+                    <p className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
+                      <span className="font-bold">Duration:</span> {course.duration}
+                    </p>
+                  )}
+
+                  {softwareList.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {softwareList.slice(0, 3).map((tool, idx) => (
+                        <span
+                          key={idx}
+                          className={`text-[11px] px-2.5 py-0.5 rounded-lg font-semibold ${
+                            isDark ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-700 border border-slate-200'
+                          }`}
+                        >
+                          {tool.trim()}
+                        </span>
+                      ))}
+                      {softwareList.length > 3 && (
+                        <span className="text-[10px] text-slate-400 px-1 py-0.5 self-center">
+                          +{softwareList.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
 
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-2 text-xs">
+                {/* CARD ACTIONS */}
+                <div className={`flex items-center justify-between pt-4 border-t gap-2 ${
+                  isDark ? 'border-white/5' : 'border-slate-100'
+                }`}>
                   <button
-                    onClick={() => setViewModal(crs)}
-                    className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-400 text-[11px] font-semibold flex items-center gap-1 cursor-pointer"
+                    onClick={() => setViewModal(course)}
+                    className={`flex-1 py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                      isDark ? 'bg-white/5 hover:bg-white/10 text-cyan-400' : 'bg-cyan-50 hover:bg-cyan-100 text-cyan-700'
+                    }`}
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>View</span>
                   </button>
+
                   <Link
-                    to={`/admin/courses/edit/${crs.id || encodeURIComponent(crs.title)}`}
-                    className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-amber-300 text-[11px] font-semibold flex items-center gap-1 cursor-pointer"
+                    to={`/admin/courses/edit/${course.id || course.slug || encodeURIComponent(course.title)}`}
+                    className={`flex-1 py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                      isDark ? 'bg-white/5 hover:bg-white/10 text-purple-400' : 'bg-purple-50 hover:bg-purple-100 text-purple-700'
+                    }`}
                   >
                     <Edit3 className="w-3.5 h-3.5" />
                     <span>Edit</span>
                   </Link>
+
                   <button
-                    onClick={() => setDeleteModal(crs)}
-                    className="px-3 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 text-[11px] font-semibold flex items-center gap-1 cursor-pointer"
+                    onClick={() => setDeleteModal(course)}
+                    className={`p-2 rounded-xl transition-colors cursor-pointer ${
+                      isDark ? 'bg-white/5 hover:bg-red-500/20 text-red-400' : 'bg-red-50 hover:bg-red-100 text-red-600'
+                    }`}
+                    title="Delete Course"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
-                    <span>Delete</span>
+                    <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* PAGINATION CONTROLS */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-between pt-4 border-t border-white/10 text-xs">
-              <button
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 cursor-pointer"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                <span>Previous</span>
-              </button>
-
-              <span className="text-slate-400 font-semibold">
-                Page <strong className="text-white">{currentPage}</strong> of <strong className="text-white">{totalPages}</strong>
-              </span>
-
-              <button
-                disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1 cursor-pointer"
-              >
-                <span>Next</span>
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          )}
-        </>
+            );
+          })}
+        </div>
       )}
 
-      {/* VIEW COURSE DETAILS MODAL */}
+      {/* PAGINATION CONTROLS */}
+      {totalPages > 1 && (
+        <div className={`flex items-center justify-center gap-3 pt-6 border-t ${
+          isDark ? 'border-white/10' : 'border-slate-200'
+        }`}>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            className={`p-2.5 rounded-2xl border flex items-center gap-1.5 text-xs font-bold transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
+              isDark ? 'bg-white/5 border-white/10 text-slate-300' : 'bg-white border-slate-300 text-slate-700 shadow-sm'
+            }`}
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span>Previous</span>
+          </button>
+          <span className="text-xs font-bold text-slate-500">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            className={`p-2.5 rounded-2xl border flex items-center gap-1.5 text-xs font-bold transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
+              isDark ? 'bg-white/5 border-white/10 text-slate-300' : 'bg-white border-slate-300 text-slate-700 shadow-sm'
+            }`}
+          >
+            <span>Next</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
+      {/* VIEW MODAL */}
       {viewModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-          <div className="relative w-full max-w-lg rounded-3xl p-6 glass-panel border border-purple-500/40 space-y-4">
-            <div className="flex justify-between items-center pb-2 border-b border-white/10">
-              <h3 className="text-base font-bold font-heading text-white">{viewModal.title}</h3>
-              <button onClick={() => setViewModal(null)} className="p-1 rounded-full text-slate-400 hover:text-white cursor-pointer">
+          <div className={`relative w-full max-w-lg rounded-3xl p-8 border space-y-5 text-sm ${
+            isDark ? 'glass-panel border-cyan-500/40' : 'bg-white border-slate-200 shadow-2xl'
+          }`}>
+            <div className={`flex justify-between items-center pb-3 border-b ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
+              <h3 className={`text-lg font-bold font-heading ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                {viewModal.title}
+              </h3>
+              <button
+                onClick={() => setViewModal(null)}
+                className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-white cursor-pointer"
+              >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="space-y-2 text-xs text-slate-300">
-              <p><strong>Department / Domain:</strong> {CANONICAL_DEPT_MAP[viewModal.domain || viewModal.department || viewModal.category] || viewModal.domain || viewModal.category}</p>
-              <p><strong>Program Type:</strong> {viewModal.category || viewModal.level}</p>
-              <p><strong>Duration:</strong> {viewModal.duration}</p>
-              <p><strong>Software Tools:</strong> {Array.isArray(viewModal.softwareTools) ? viewModal.softwareTools.join(', ') : (viewModal.softwareTools || viewModal.software)}</p>
-              <p><strong>Description:</strong> {viewModal.description}</p>
+            <div className={`space-y-3 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+              <p><strong className={isDark ? 'text-white' : 'text-slate-900'}>Category:</strong> {viewModal.category || 'Professional Program'}</p>
+              <p><strong className={isDark ? 'text-white' : 'text-slate-900'}>Department:</strong> {viewModal.domain || viewModal.department || 'N/A'}</p>
+              <p><strong className={isDark ? 'text-white' : 'text-slate-900'}>Duration:</strong> {viewModal.duration || 'N/A'}</p>
+              <p><strong className={isDark ? 'text-white' : 'text-slate-900'}>Overview:</strong> {viewModal.description || viewModal.overview || 'No description provided.'}</p>
             </div>
-            <button onClick={() => setViewModal(null)} className="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs cursor-pointer">
-              Close Details
+            <button
+              onClick={() => setViewModal(null)}
+              className={`w-full py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
+                isDark ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
+              }`}
+            >
+              Close
             </button>
           </div>
         </div>
       )}
 
-      {/* DELETE COURSE MODAL */}
+      {/* DELETE MODAL */}
       {deleteModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-          <div className="relative w-full max-w-md rounded-3xl p-6 glass-panel border border-red-500/40 text-center space-y-4">
-            <AlertTriangle className="w-8 h-8 text-red-400 mx-auto" />
-            <h3 className="text-lg font-bold text-white">Delete Course Program?</h3>
-            <p className="text-xs text-slate-300">
-              Are you sure you want to permanently delete <strong className="text-white">"{deleteModal.title}"</strong>?
-            </p>
-            <div className="flex items-center gap-3 pt-2">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className={`relative w-full max-w-md rounded-3xl p-8 border text-center space-y-5 ${
+            isDark ? 'glass-panel border-red-500/40' : 'bg-white border-red-300 shadow-2xl'
+          }`}>
+            <div className="w-14 h-14 rounded-2xl bg-red-500/20 text-red-500 flex items-center justify-center mx-auto">
+              <AlertTriangle className="w-7 h-7" />
+            </div>
+            <div className="space-y-2">
+              <h3 className={`text-lg font-bold font-heading ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                Confirm Delete
+              </h3>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                Are you sure you want to delete <strong>{deleteModal.title}</strong>? This action will permanently remove the course from the database catalog.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 pt-2">
               <button
-                onClick={handleDelete}
-                className="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold cursor-pointer"
-              >
-                Yes, Delete Course
-              </button>
-              <button
+                type="button"
                 onClick={() => setDeleteModal(null)}
-                className="flex-1 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold cursor-pointer"
+                className={`py-3 px-5 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
+                  isDark ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
+                }`}
               >
                 Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleDelete}
+                className="py-3 px-5 rounded-2xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition-colors shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <Trash2 className="w-4 h-4" />
+                <span>Yes, Delete</span>
               </button>
             </div>
           </div>
