@@ -60,48 +60,48 @@ export function ContactPopup() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto popup-scrollbar">
           <motion.div
             initial={{ opacity: 0, scale: 0.92, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 15 }}
             transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-            className="relative w-full max-w-[460px] rounded-3xl glass-panel p-5 sm:p-6 border border-purple-500/40 shadow-2xl my-auto max-h-[calc(100vh-2rem)] overflow-y-auto overflow-x-hidden popup-scrollbar flex flex-col justify-between"
+            className="relative w-full max-w-[460px] rounded-3xl glass-panel border border-purple-500/40 shadow-2xl my-auto max-h-[calc(100vh-2rem)] flex flex-col overflow-hidden"
           >
             {/* Background Glow */}
             <div className="absolute -top-16 -right-16 w-40 h-40 bg-purple-600/20 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-cyan-600/20 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Close Button */}
-            <button
-              onClick={handleClose}
-              className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 p-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white transition-colors cursor-pointer z-10"
-              aria-label="Close popup"
-            >
-              <X className="w-4 h-4" />
-            </button>
+            {/* Stable Header & Pinned Close Button */}
+            <div className="relative p-5 sm:p-6 pb-3 sm:pb-3.5 border-b border-white/10 shrink-0 pr-12">
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="p-1 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                  <ClipboardCheck className="w-3.5 h-3.5" />
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400">
+                  Quick Admission Enquiry
+                </span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-extrabold text-white font-heading tracking-tight leading-snug">
+                Get Free Career Counseling & Offer Details
+              </h3>
+              <p className="text-slate-300 text-[11px] sm:text-xs mt-0.5 leading-snug">
+                Leave your details and our counselor will get in touch with you right away!
+              </p>
+
+              {/* Close Button pinned at top-right */}
+              <button
+                onClick={handleClose}
+                className="absolute top-4 right-4 p-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white transition-colors cursor-pointer z-10"
+                aria-label="Close popup"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
 
             {!submitted ? (
-              <div className="space-y-3 sm:space-y-3.5">
-                {/* Header */}
-                <div>
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className="p-1 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/30">
-                      <ClipboardCheck className="w-3.5 h-3.5" />
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400">
-                      Quick Admission Enquiry
-                    </span>
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-extrabold text-white font-heading tracking-tight leading-snug">
-                    Get Free Career Counseling & Offer Details
-                  </h3>
-                  <p className="text-slate-300 text-[11px] sm:text-xs mt-0.5 leading-snug">
-                    Leave your details and our counselor will get in touch with you right away!
-                  </p>
-                </div>
-
-                {/* Form */}
+              /* Vertically Scrollable Form Container — Completely Hidden Scrollbar */
+              <div className="p-5 sm:p-6 pt-3.5 sm:pt-4 overflow-y-auto overflow-x-hidden popup-scrollbar flex-1">
                 <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3">
                   <div>
                     <label className="block text-[10px] sm:text-[11px] font-semibold text-slate-300 mb-0.5">
@@ -203,7 +203,7 @@ export function ContactPopup() {
                 </form>
               </div>
             ) : (
-              <div className="text-center py-6 sm:py-8 space-y-3">
+              <div className="p-6 sm:p-8 text-center space-y-3">
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-6 h-6 sm:w-7 sm:h-7 animate-bounce" />
                 </div>
